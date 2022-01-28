@@ -51,7 +51,7 @@ export class QueueContainer extends Component {
                         this.getApplications(this.state.currentPage, "");
                     }
                 );
-            }).catch(() => {});
+            }).catch(() => { });
     }
 
     getApplications(currentPage, personalCode) {
@@ -92,7 +92,7 @@ export class QueueContainer extends Component {
                         currentPage: response.data.number + 1
                     });
 
-                }).catch(() => {});
+                }).catch(() => { });
 
         }
 
@@ -124,7 +124,7 @@ export class QueueContainer extends Component {
                         }, function () {
                             this.getApplications(1, "");
                         });
-                    }).catch(() => {});
+                    }).catch(() => { });
 
             } else {
                 http.post(`${apiEndpoint}/api/status/${false}`)
@@ -135,7 +135,7 @@ export class QueueContainer extends Component {
                         }, function () {
                             this.getApplications(1, "");
                         });
-                    }).catch(() => {});
+                    }).catch(() => { });
             }
         }
     }
@@ -157,7 +157,7 @@ export class QueueContainer extends Component {
                     }, function () {
                         this.getApplications(1, "");
                     });
-                }).catch(() => {});
+                }).catch(() => { });
         }
     }
 
@@ -192,7 +192,7 @@ export class QueueContainer extends Component {
                                 });
                                 this.getApplications(1, "");
                             }
-                            
+
                         });
                 }
             })
@@ -233,7 +233,7 @@ export class QueueContainer extends Component {
                                 text: "Įvyko klaida. " + error.response.data,
                                 button: "Gerai"
                             });
-                        } 
+                        }
                     });
             }
         });
@@ -247,22 +247,22 @@ export class QueueContainer extends Component {
 
 
     render() {
-        
-        const { applications, totalPages,  searchQuery, isActive, isLocked, currentButtonValue } = this.state;
-       
-        let size =0;
-        
-        if(applications!==undefined) size = applications.length;
-       
+
+        const { applications, totalPages, searchQuery, isActive, isLocked, currentButtonValue } = this.state;
+
+        let size = 0;
+
+        if (applications !== undefined) size = applications.length;
+
         const placeholder = "Ieškoti pagal vaiko asmens kodą..."
 
         return (
 
             <div className="container pt-4" >
 
-                <h6 className="pl-2 pt-3">Prašymų eilė</h6>
-                {isActive && <p className="pl-2 pt-3">Registracija vykdoma</p>}
-                {!isActive && <p className="pl-2 pt-3">Šiuo metu registracija nevykdoma</p>}
+                <h6 className="ps-2 pt-3">Prašymų eilė</h6>
+                {isActive && <p className="ps-2 pt-3">Registracija vykdoma</p>}
+                {!isActive && <p className="ps-2 pt-3">Šiuo metu registracija nevykdoma</p>}
 
                 <Buttons
                     onClick={this.handleClick}

@@ -8,11 +8,11 @@ const NotFound = () => {
     const location = useLocation();
 
     return (
-        <div> 
-        <div className="container pt-5">
-            <p className="ml-2">Puslapis adresu: {apiEndpoint}{location.pathname} nerastas</p>
-            <Link to="/home" className="btn btn-primary ml-2">Pradinis</Link>
-        </div>
+        <div>
+            <div className="container pt-5">
+                <p className="ms-2">Puslapis adresu: {apiEndpoint}{location.pathname} nerastas</p>
+                <Link to="/home" className="btn btn-primary ms-2">Pradinis</Link>
+            </div>
         </div>
     );
 }

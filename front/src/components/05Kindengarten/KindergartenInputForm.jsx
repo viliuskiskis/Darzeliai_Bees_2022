@@ -89,12 +89,12 @@ function KindergartenInputForm() {
 
   const handleChange = (event) => {
     validateField(event);
-   
+
     setData({
       ...data,
       [event.target.name]: event.target.value,
     });
-    
+
   };
 
   const resetForm = (event) => {
@@ -108,8 +108,8 @@ function KindergartenInputForm() {
         <h6 className="py-3">
           <b>Pridėti naują darželį </b>
         </h6>
-        <div className="form-group">
-          <label htmlFor="id">
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="id">
             Įstaigos kodas <span className="fieldRequired">*</span>
           </label>
           <input
@@ -129,8 +129,8 @@ function KindergartenInputForm() {
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="name">
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="name">
             Pavadinimas <span className="fieldRequired">*</span>
           </label>
           <input
@@ -150,8 +150,8 @@ function KindergartenInputForm() {
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="address">
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="address">
             Adresas <span className="fieldRequired">*</span>
           </label>
           <input
@@ -169,8 +169,8 @@ function KindergartenInputForm() {
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="elderate">
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="elderate">
             Seniūnija <span className="fieldRequired">*</span>
           </label>
           <select
@@ -196,8 +196,8 @@ function KindergartenInputForm() {
           <b>Laisvų vietų skaičius </b>
           <span className="fieldRequired">*</span>
         </h6>
-        <div className="form-group">
-          <label htmlFor="capacityAgeGroup2to3">2-3 metų grupėse</label>
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="capacityAgeGroup2to3">2-3 metų grupėse</label>
           <input
             type="number"
             min="0"
@@ -215,8 +215,8 @@ function KindergartenInputForm() {
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="capacityAgeGroup3to6">3-6 metų grupėse</label>
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="capacityAgeGroup3to6">3-6 metų grupėse</label>
           <input
             type="number"
             min="0"
@@ -236,14 +236,14 @@ function KindergartenInputForm() {
 
         <button
           type="reset"
-          className="btn btn-outline-danger mr-2 form-group"
+          className="btn btn-outline-danger me-2 form-group mb-3"
           id="btnClearKindergartenForm"
         >
           Išvalyti
         </button>
         <button
           type="submit"
-          className="btn btn-primary form-group"
+          className="btn btn-primary form-group mb-3"
           id="btnSaveKindergarten"
           disabled={savingStatus}
         >

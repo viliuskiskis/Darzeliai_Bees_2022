@@ -44,7 +44,7 @@ export class KindergartenStatContainer extends Component {
                     currentPage: response.data.number + 1
                 });
 
-            }).catch(() => {});
+            }).catch(() => { });
     }
 
     handlePageChange = (page) => {
@@ -54,11 +54,11 @@ export class KindergartenStatContainer extends Component {
 
 
     render() {
-        
+
         const { darzeliai, totalElements, pageSize } = this.state;
         let count = 0;
 
-        if(darzeliai!==undefined) count = darzeliai.length;
+        if (darzeliai !== undefined) count = darzeliai.length;
 
         if (count === 0) return <div className="container pt-5"><h6 className="pt-5">Informacija ruošiama</h6></div>
 
@@ -66,7 +66,7 @@ export class KindergartenStatContainer extends Component {
 
             <div className="container pt-4" >
 
-                <h6 className="pl-2 pt-3">Prašymų statistika</h6>
+                <h6 className="ps-2 pt-3">Prašymų statistika</h6>
 
                 <div className="row pt-2">
                     <div className="col-12 col-sm-12 col-md-12 col-lg-12">

@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import UserDocumentListTable from './UserDocumentListTable';
 
 export default class UserDocumentContainer extends Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +21,7 @@ export default class UserDocumentContainer extends Component {
         this.getDocuments = this.getDocuments.bind(this);
         this.handleDownload = this.handleDownload.bind(this);
     }
-    
+
     componentDidMount() {
         this.getDocuments();
     }
@@ -34,10 +34,10 @@ export default class UserDocumentContainer extends Component {
                 })
             })
             .catch((error) => {
-                swal({         
-                    text: "Įvyko klaida perduodant duomenis iš serverio.",         
+                swal({
+                    text: "Įvyko klaida perduodant duomenis iš serverio.",
                     button: "Gerai",
-                  });
+                });
                 //console.log(error);
             })
     }
@@ -53,8 +53,8 @@ export default class UserDocumentContainer extends Component {
 
     uploadDocument(document) {
         const formData = new FormData();
-        formData.append('name',document.name);
-        formData.append('file',document);
+        formData.append('name', document.name);
+        formData.append('file', document);
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -67,7 +67,7 @@ export default class UserDocumentContainer extends Component {
                     text: "Pažyma buvo įkelta sėkmingai",
                     buttons: "Gerai"
                 })
-                this.setState({showUploadForm: false, documentToUpload: "", documentValid: false})
+                this.setState({ showUploadForm: false, documentToUpload: "", documentValid: false })
             })
             .catch((error) => {
                 //console.log(error);
@@ -79,19 +79,19 @@ export default class UserDocumentContainer extends Component {
     }
 
     validateDocument = (doc) => {
-        if(doc.type === "application/pdf" && doc.size <= 1024000) {
-            this.setState({documentValid: true});
+        if (doc.type === "application/pdf" && doc.size <= 1024000) {
+            this.setState({ documentValid: true });
         }
         else {
-            this.setState({documentValid: false});
+            this.setState({ documentValid: false });
         }
     }
 
     uploadDocumentOnChange(e) {
         const file = e.target.files[0];
-        if(file.type === "application/pdf") {
-            if(file.size <= 1024000) {
-                this.setState({documentToUpload: file});
+        if (file.type === "application/pdf") {
+            if (file.size <= 1024000) {
+                this.setState({ documentToUpload: file });
             }
             else {
                 swal({
@@ -110,12 +110,12 @@ export default class UserDocumentContainer extends Component {
     }
 
     uploadForm = () => {
-        if(this.state.showUploadForm) {
+        if (this.state.showUploadForm) {
             return (
                 <div className="form">
-                    <div className="form-group">
+                    <div className="form-group mb-3">
                         <h6 className="py-3">Pažyma privalo būti .pdf formato ir neužimti daugiau negu 1 MB vietos.</h6>
-                        <input 
+                        <input
                             type="file"
                             className="form-control-file"
                             id="inputUploadDocument"
@@ -124,7 +124,7 @@ export default class UserDocumentContainer extends Component {
                     </div>
                     <div className="row">
                         <div className="col">
-                            <button 
+                            <button
                                 id="btnUploadDocument"
                                 className="btn btn-primary"
                                 onClick={() => this.uploadDocument(this.state.documentToUpload)}
@@ -135,12 +135,12 @@ export default class UserDocumentContainer extends Component {
                             <button
                                 id="btnCancelUpload"
                                 className="btn btn-secondary"
-                                style={{marginLeft: "64px"}}
-                                onClick={() => {this.setState({showUploadForm: false})}}
+                                style={{ marginLeft: "64px" }}
+                                onClick={() => { this.setState({ showUploadForm: false }) }}
                             >
                                 Atšaukti
                             </button>
-                        </div>   
+                        </div>
                     </div>
                 </div>
             )
@@ -149,10 +149,10 @@ export default class UserDocumentContainer extends Component {
             return (
                 <div className="row">
                     <div className="col">
-                        <button 
+                        <button
                             id="btnUploadDocument"
                             className="btn btn-primary"
-                            onClick={() => {this.setState({showUploadForm: true})}}
+                            onClick={() => { this.setState({ showUploadForm: true }) }}
                         >
                             Įkelti naują
                         </button>
@@ -168,7 +168,7 @@ export default class UserDocumentContainer extends Component {
             buttons: ["Ne", "Taip"],
             dangerMode: true,
         }).then((actionConfirmed) => {
-            if(actionConfirmed) {
+            if (actionConfirmed) {
                 http.delete(`${apiEndpoint}/api/documents/delete/${document.id}`)
                     .then((response) => {
                         this.getDocuments();
@@ -229,12 +229,12 @@ export default class UserDocumentContainer extends Component {
                 <div className="row formHeader">
                     <div className="col-6">
                         {
-                        //**UserDocumentList */
-                        <UserDocumentListTable
-                            documents={this.state.documentList}
-                            onDelete={this.handleDelete}
-                            onDownload={this.handleDownload}
-                        />
+                            //**UserDocumentList */
+                            <UserDocumentListTable
+                                documents={this.state.documentList}
+                                onDelete={this.handleDelete}
+                                onDownload={this.handleDownload}
+                            />
                         }
                     </div>
                 </div>

@@ -82,3 +82,18 @@ p {
 a.#navInstructions.nav-link {
   background-color: #ffc107;
 }
+
+/* Bootstrap 4 -> 5 changes */
+
+a, .btn-link {
+  text-decoration: none;
+}
+
+a:hover, .btn-link:hover {
+  text-decoration: underline;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}

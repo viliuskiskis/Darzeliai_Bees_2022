@@ -72,8 +72,8 @@ export default class UpdateProfileFormContainer extends Component {
         if (role !== "USER") {
             return (
                 <div>
-                    <div className="form-group">
-                        <label htmlFor="txtName">Vardas <span className="fieldRequired">*</span></label>
+                    <div className="form-group mb-3">
+                        <label className="form-label" htmlFor="txtName">Vardas <span className="fieldRequired">*</span></label>
                         <input
                             type="text"
                             id="txtName"
@@ -87,8 +87,8 @@ export default class UpdateProfileFormContainer extends Component {
                             pattern="[A-zÀ-ž]{2,32}"
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="txtSurname">Pavardė <span className="fieldRequired">*</span></label>
+                    <div className="form-group mb-3">
+                        <label className="form-label" htmlFor="txtSurname">Pavardė <span className="fieldRequired">*</span></label>
                         <input
                             type="text"
                             id="txtSurname"
@@ -102,8 +102,8 @@ export default class UpdateProfileFormContainer extends Component {
                             pattern="[A-zÀ-ž]{2,32}"
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="txtEmail">El. paštas <span className="fieldRequired">*</span></label>
+                    <div className="form-group mb-3">
+                        <label className="form-label" htmlFor="txtEmail">El. paštas <span className="fieldRequired">*</span></label>
                         <input
                             type="text"
                             id="txtEmail"
@@ -124,8 +124,8 @@ export default class UpdateProfileFormContainer extends Component {
         else {
             return (
                 <div>
-                    <div className="form-group">
-                        <label htmlFor="txtName">Vardas <span className="fieldRequired">*</span></label>
+                    <div className="form-group mb-3">
+                        <label className="form-label" htmlFor="txtName">Vardas <span className="fieldRequired">*</span></label>
                         <input
                             type="text"
                             id="txtName"
@@ -139,8 +139,8 @@ export default class UpdateProfileFormContainer extends Component {
                             pattern="[A-zÀ-ž]{2,32}"
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="txtSurname">Pavardė <span className="fieldRequired">*</span></label>
+                    <div className="form-group mb-3">
+                        <label className="form-label" htmlFor="txtSurname">Pavardė <span className="fieldRequired">*</span></label>
                         <input
                             type="text"
                             id="txtSurname"
@@ -154,8 +154,8 @@ export default class UpdateProfileFormContainer extends Component {
                             pattern="[A-zÀ-ž]{2,32}"
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="txtPersonalCode">Asmens kodas <span className="fieldRequired">*</span></label>
+                    <div className="form-group mb-3">
+                        <label className="form-label" htmlFor="txtPersonalCode">Asmens kodas <span className="fieldRequired">*</span></label>
                         <input
                             type="text"
                             id="txtPersonalCode"
@@ -169,8 +169,8 @@ export default class UpdateProfileFormContainer extends Component {
                             pattern="[0-9]{11}"
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="txtTelNo">Telefonas <span className="fieldRequired">*</span></label>
+                    <div className="form-group mb-3">
+                        <label className="form-label" htmlFor="txtTelNo">Telefonas <span className="fieldRequired">*</span></label>
                         <div className="input-group">
                             <input
                                 type="tel"
@@ -185,8 +185,8 @@ export default class UpdateProfileFormContainer extends Component {
                             </input>
                         </div>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="txtEmail">El. paštas <span className="fieldRequired">*</span></label>
+                    <div className="form-group mb-3">
+                        <label className="form-label" htmlFor="txtEmail">El. paštas <span className="fieldRequired">*</span></label>
                         <input
                             type="text"
                             id="txtEmail"
@@ -200,8 +200,8 @@ export default class UpdateProfileFormContainer extends Component {
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="txtAddress">Adresas <span className="fieldRequired">*</span></label>
+                    <div className="form-group mb-3">
+                        <label className="form-label" htmlFor="txtAddress">Adresas <span className="fieldRequired">*</span></label>
                         <input
                             type="text"
                             className="form-control"
@@ -264,8 +264,8 @@ export default class UpdateProfileFormContainer extends Component {
             return (
                 <div className="form">
                     <form onSubmit={this.handleUpdatePasswordSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="txtOldPassword">Senas slaptažodis <span className="fieldRequired">*</span></label>
+                        <div className="form-group mb-3">
+                            <label className="form-label" htmlFor="txtOldPassword">Senas slaptažodis <span className="fieldRequired">*</span></label>
                             <input
                                 type="password"
                                 id="txtOldPassword"
@@ -279,9 +279,9 @@ export default class UpdateProfileFormContainer extends Component {
                             />
                         </div>
                         <div className="">
-                            <label htmlFor="txtNewPassword">Įveskite naują slaptažodį  <span className="fieldRequired">*</span></label>
+                            <label className="form-label" htmlFor="txtNewPassword">Įveskite naują slaptažodį  <span className="fieldRequired">*</span></label>
                         </div>
-                        <div className=" form-group">
+                        <div className=" form-group mb-3">
                             <p className="text-primary">Dėmesio! Slaptažodis turi būti ne mažiau 8 simbolių ilgio, turėti bent vieną didžiąją ir mažąją raides ir bent vieną skaičių.</p>
                             <input
                                 type="password"
@@ -296,8 +296,8 @@ export default class UpdateProfileFormContainer extends Component {
                                 pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                             />
                         </div>
-                        <div className=" form-group">
-                            <label htmlFor="txtRepeatNewPassword">Pakartokite naują slaptažodį  <span className="fieldRequired">*</span></label>
+                        <div className=" form-group mb-3">
+                            <label className="form-label" htmlFor="txtRepeatNewPassword">Pakartokite naują slaptažodį  <span className="fieldRequired">*</span></label>
                             <input
                                 type="password"
                                 id="txtNewPasswordRepeat"
@@ -311,7 +311,7 @@ export default class UpdateProfileFormContainer extends Component {
                                 pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                             />
                         </div>
-                        <div className=" form-group">
+                        <div className=" form-group mb-3">
                             <button type="submit" className="btn btn-primary">Išsaugoti</button>
                         </div>
                     </form>

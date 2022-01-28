@@ -17,7 +17,7 @@ const Buttons = (props) => {
                     value='Off'
                     onClick={(e) => onClick(e)}
                     id="btnStopRegistration"
-                    className="btn btn-outline-danger btn-sm ml-2">
+                    className="btn btn-outline-danger btn-sm ms-2">
                     Stabdyti registraciją
                 </button>
             </div>
@@ -27,12 +27,12 @@ const Buttons = (props) => {
 
         return (
             <div className="row py-3">
-               
+                <div className="col">
                     <button
                         value='On'
                         onClick={(e) => onClick(e)}
                         id="btnStartRegistration"
-                        className="btn btn-outline-primary btn-sm ml-3">
+                        className="btn btn-outline-primary btn-sm ms-2">
                         Pradėti registraciją
                     </button>
 
@@ -43,17 +43,17 @@ const Buttons = (props) => {
                         disabled={currentButtonValue === "Process"}
                         className="btn btn-primary btn-sm mx-2">
                         Formuoti eiles
-                    </button>               
-               
+                    </button>
+
                     <button
                         value='Confirm'
                         onClick={() => onConfirm()}
                         id="btnConfirmQueue"
                         disabled={currentButtonValue === "Confirm"}
-                        className="btn btn-outline-primary btn-sm float-left">
-                       <span> <FontAwesomeIcon icon={faEnvelope} />  Patvirtinti eiles</span>
-                    </button>               
-
+                        className="btn btn-outline-primary btn-sm">
+                        <span> <FontAwesomeIcon icon={faEnvelope} />  Patvirtinti eiles</span>
+                    </button>
+                </div>
             </div >
         )
     }

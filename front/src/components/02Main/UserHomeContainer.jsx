@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import '../../App.css';
-import swal  from 'sweetalert';
+import swal from 'sweetalert';
 
 import http from '../10Services/httpService';
 import apiEndpoint from '../10Services/endpoint';
@@ -24,14 +24,14 @@ export class UserHomeContainer extends Component {
         http
             .get(`${apiEndpoint}/api/prasymai/user`)
             .then((response) => {
-                
+
                 this.setState({ applications: response.data });
 
-            }).catch(() => {});
+            }).catch(() => { });
     }
 
     handleDelete = (item) => {
-       
+
         swal({
             text: "Ar tikrai norite ištrinti prašymą?",
             buttons: ["Ne", "Taip"],
@@ -39,13 +39,13 @@ export class UserHomeContainer extends Component {
         }).then((actionConfirmed) => {
             if (actionConfirmed) {
                 http.delete(`${apiEndpoint}/api/prasymai/user/delete/${item.id}`)
-                    .then((response) => {                       
+                    .then((response) => {
                         swal({
                             text: response.data,
                             button: "Gerai"
                         })
                         this.getUserApplications();
-                    }).catch(() => {});
+                    }).catch(() => { });
             }
         });
     }
@@ -59,7 +59,7 @@ export class UserHomeContainer extends Component {
 
             <div className="container pt-4" >
 
-                <h6 className="pl-2 pt-3">Mano prašymai</h6>
+                <h6 className="ps-2 pt-3">Mano prašymai</h6>
 
                 <div className="row pt-2">
                     <div className="col-12 col-sm-12 col-md-12 col-lg-12">

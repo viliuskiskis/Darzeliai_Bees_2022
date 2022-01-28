@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import reportWebVitals from "./reportWebVitals";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 import "./index.css";
 import App from "./App";
@@ -14,11 +14,11 @@ document.title =
 
 ReactDOM.render(
   <React.StrictMode>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <Switch>
-          <Route path="*" component={App} />
-        </Switch>
-      </BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <Switch>
+        <Route path="*" component={App} />
+      </Switch>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

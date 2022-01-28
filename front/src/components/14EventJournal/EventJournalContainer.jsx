@@ -64,7 +64,7 @@ export class EventJournalContainer extends Component {
 
             <div className="container pt-4" >
 
-                <h6 className="pl-2 pt-3">Sistemos įvykių žurnalas</h6>
+                <h6 className="ps-2 pt-3">Sistemos įvykių žurnalas</h6>
                 {this.state.entriesLoaded ? (
                     <EventJournalTable entries={this.state.entries} />
                 ) : (<Spinner />)}
@@ -80,7 +80,7 @@ export class EventJournalContainer extends Component {
                         onChange={this.handlePageChange.bind(this)}
                     />
                 </div>
-               
+
             </div>
         )
     }

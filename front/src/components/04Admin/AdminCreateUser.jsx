@@ -32,16 +32,16 @@ class AdminCreateUser extends Component {
     drawSelector() {
         return (
             <div className="form">
-                <div className="form-group ">
-                    <label htmlFor="role-selector">Naudotojo rolė:</label>
+                <div className="form-group mb-3">
+                    <label className="form-label" htmlFor="role-selector">Naudotojo rolė:</label>
                     <select name="role-selector" id="selRole" className="form-control" value={this.state.role} onChange={this.roleDropdownOnChange}>
                         <option value="ADMIN">Administratorius</option>
                         <option value="MANAGER">Švietimo specialistas</option>
                         <option value="USER">Vaiko atstovas</option>
                     </select>
                 </div>
-                <div className="form-group ">
-                    <label htmlFor="txtEmail">El. paštas <span className="fieldRequired">*</span></label>
+                <div className="form-group mb-3">
+                    <label className="form-label" htmlFor="txtEmail">El. paštas <span className="fieldRequired">*</span></label>
                     <input
                         type="text"
                         className="form-control"
@@ -63,8 +63,8 @@ class AdminCreateUser extends Component {
         if (role === "ADMIN" || role === "MANAGER") {
             return (
                 <div className="form">
-                    <div className="form-group">
-                        <label htmlFor="txtName">Vardas <span className="fieldRequired">*</span></label>
+                    <div className="form-group mb-3">
+                        <label className="form-label" htmlFor="txtName">Vardas <span className="fieldRequired">*</span></label>
                         <input
                             type="text"
                             className="form-control"
@@ -78,8 +78,8 @@ class AdminCreateUser extends Component {
                             pattern="[A-zÀ-ž]{2,32}"
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="txtSurname">Pavardė <span className="fieldRequired">*</span></label>
+                    <div className="form-group mb-3">
+                        <label className="form-label" htmlFor="txtSurname">Pavardė <span className="fieldRequired">*</span></label>
                         <input
                             type="text"
                             className="form-control"
@@ -98,10 +98,10 @@ class AdminCreateUser extends Component {
         }
         else if (role === "USER") {
             return (
-                <div className="form-group">
+                <div className="form-group mb-3">
                     <div className="form">
-                        <div className="form-group ">
-                            <label htmlFor="txtName">Vardas <span className="fieldRequired">*</span></label>
+                        <div className="form-group mb-3">
+                            <label className="form-label" htmlFor="txtName">Vardas <span className="fieldRequired">*</span></label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -117,8 +117,8 @@ class AdminCreateUser extends Component {
                         </div>
                     </div>
                     <div className="form">
-                        <div className="form-group">
-                            <label htmlFor="txtSurname">Pavardė <span className="fieldRequired">*</span></label>
+                        <div className="form-group mb-3">
+                            <label className="form-label" htmlFor="txtSurname">Pavardė <span className="fieldRequired">*</span></label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -133,9 +133,9 @@ class AdminCreateUser extends Component {
                             />
                         </div>
                     </div>
-                    <div className="form">                       
-                        <div className="form-group">
-                            <label htmlFor="txtIdentificationCode">Asmens kodas <span className="fieldRequired">*</span></label>
+                    <div className="form">
+                        <div className="form-group mb-3">
+                            <label className="form-label" htmlFor="txtIdentificationCode">Asmens kodas <span className="fieldRequired">*</span></label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -151,10 +151,10 @@ class AdminCreateUser extends Component {
                         </div>
                     </div>
                     <div className="form">
-                        <div className="form-group">
-                            <label htmlFor="txtTelNo">Telefonas <span className="fieldRequired">*</span></label>
+                        <div className="form-group mb-3">
+                            <label className="form-label" htmlFor="txtTelNo">Telefonas <span className="fieldRequired">*</span></label>
                             <div className="input-group">
-                               
+
                                 <input
                                     type="tel"
                                     className="form-control"
@@ -171,8 +171,8 @@ class AdminCreateUser extends Component {
                     </div>
 
                     <div className="form">
-                        <div className="form-group ">
-                            <label htmlFor="txtAddress">Adresas <span className="fieldRequired">*</span></label>
+                        <div className="form-group mb-3">
+                            <label className="form-label" htmlFor="txtAddress">Adresas <span className="fieldRequired">*</span></label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -244,9 +244,9 @@ class AdminCreateUser extends Component {
                 })
             })
             .catch((error) => {
-                
-                swal({                   
-                    text: error.response.data,                   
+
+                swal({
+                    text: error.response.data,
                     button: "Gerai"
                 })
             })
@@ -279,8 +279,8 @@ class AdminCreateUser extends Component {
                         </div>
                     </div>
                     <div className="mb-3">
-                        <button className="btn btn-outline-danger float-left" onClick={this.resetState} id="btnClean">Išvalyti</button>
-                        <button type="submit" className="btn btn-primary float-right" id="btnCreate">Sukurti</button>
+                        <button className="btn btn-outline-danger float-start" onClick={this.resetState} id="btnClean">Išvalyti</button>
+                        <button type="submit" className="btn btn-primary float-end" id="btnCreate">Sukurti</button>
                     </div>
                 </form>
 

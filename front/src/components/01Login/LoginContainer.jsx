@@ -50,26 +50,26 @@ export const LoginContainer = () => {
           password: "",
         });
       } else if (error.response) {
-       if (error.response.status === 401) {
-        setData({
-          ...data,
-          loginError: true,
-          loggingIn: false,
-          username: "",
-          password: "",
-        });
-      } else if (error.response.status === 403){
-        swal("Prieiga uždrausta")
-        setData({
-          ...data,
-          loginError: false,
-          loggingIn: false,
-          username: "",
-          password: "",
-        });
-      } 
+        if (error.response.status === 401) {
+          setData({
+            ...data,
+            loginError: true,
+            loggingIn: false,
+            username: "",
+            password: "",
+          });
+        } else if (error.response.status === 403) {
+          swal("Prieiga uždrausta")
+          setData({
+            ...data,
+            loginError: false,
+            loggingIn: false,
+            username: "",
+            password: "",
+          });
+        }
+      }
     }
-    } 
   );
 
   const handleChange = (event) => {
@@ -102,7 +102,7 @@ export const LoginContainer = () => {
         });
         history.push("/home");
       })
-     .catch(() => {})
+      .catch(() => { })
   };
 
   const validateText = (event) => {
@@ -127,8 +127,8 @@ export const LoginContainer = () => {
         />
         <form onSubmit={handleSubmit}>
           <h3>Prisijungti</h3>
-          <div className="form-group">
-            <label htmlFor="username">
+          <div className="form-group mb-3">
+            <label className="form-label" htmlFor="username">
               Naudotojo vardas <span className="fieldRequired">*</span>
             </label>
             <input
@@ -146,8 +146,8 @@ export const LoginContainer = () => {
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="password">
+          <div className="form-group mb-3">
+            <label className="form-label" htmlFor="password">
               Slaptažodis <span className="fieldRequired">*</span>
             </label>
             <input
@@ -179,7 +179,7 @@ export const LoginContainer = () => {
 
           <button
             type="submit"
-            className="btn btn-primary float-right"
+            className="btn btn-primary float-end"
             id="btnLogin"
             disabled={data.loggingIn}
           >
