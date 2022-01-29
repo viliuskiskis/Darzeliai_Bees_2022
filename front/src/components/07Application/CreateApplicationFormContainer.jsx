@@ -9,13 +9,14 @@ import lt from "date-fns/locale/lt";
 
 import http from "../10Services/httpService";
 import apiEndpoint from "../10Services/endpoint";
+import childDataUrl from "../10Services/childDataUrl";
 import swal from "sweetalert";
 
 import inputValidator from "../08CommonComponents/InputValidator";
 
 import "../../App.css";
 import "../08CommonComponents/datePickerStyle.css";
-import { subYears } from "date-fns";
+import { parse } from "date-fns";
 
 registerLocale("lt", lt);
 
@@ -40,7 +41,7 @@ class CreateApplicationFormContainer extends Component {
         email: "",
         address: "",
       },
-      birthdate: subYears(new Date(), 1),
+      birthdate: parse("0001-01-01", "yyyy-MM-dd", new Date()),
       childName: "",
       childPersonalCode: "",
       childSurname: "",
@@ -69,6 +70,7 @@ class CreateApplicationFormContainer extends Component {
     this.childOnChange = this.childOnChange.bind(this);
     this.checkboxOnChange = this.checkboxOnChange.bind(this);
     this.submitHandle = this.submitHandle.bind(this);
+    this.resetChildData = this.resetChildData.bind(this);
   }
 
   componentDidMount() {
@@ -383,43 +385,7 @@ class CreateApplicationFormContainer extends Component {
           <h6 className="formHeader">Vaiko duomenys</h6>
         </div>
         <div className="form-group mb-3">
-          <label className="form-label" htmlFor="txtName">
-            Vaiko vardas <span className="fieldRequired">*</span>
-          </label>
-          <input
-            type="text"
-            id="txtChildName"
-            name="childName"
-            placeholder="Vaiko vardas"
-            className="form-control"
-            value={this.state.childName}
-            onChange={this.childOnChange}
-            onInvalid={(e) => inputValidator(e)}
-            disabled={this.state.registrationDisabled}
-            required
-            pattern="[A-zÀ-ž]{2,32}"
-          />
-        </div>
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="txtSurname">
-            Vaiko pavardė <span className="fieldRequired">*</span>
-          </label>
-          <input
-            type="text"
-            id="txtChildSurname"
-            name="childSurname"
-            placeholder="Vaiko pavardė"
-            className="form-control"
-            value={this.state.childSurname}
-            onChange={this.childOnChange}
-            onInvalid={(e) => inputValidator(e)}
-            disabled={this.state.registrationDisabled}
-            required
-            pattern="[A-zÀ-ž]{2,32}"
-          />
-        </div>
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="txtPersonalCode">
+          <label className="form-label" htmlFor="txtChildPersonalCode">
             Asmens kodas <span className="fieldRequired">*</span>
           </label>
           <input
@@ -436,22 +402,59 @@ class CreateApplicationFormContainer extends Component {
             pattern="[0-9]{11}"
           />
         </div>
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="txtChildName">
+            Vaiko vardas <span className="fieldRequired">*</span>
+          </label>
+          <input
+            type="text"
+            id="txtChildName"
+            name="childName"
+            placeholder="Vaiko vardas"
+            className="form-control"
+            value={this.state.childName}
+            onChange={this.childOnChange}
+            onInvalid={(e) => inputValidator(e)}
+            required
+            pattern="[A-zÀ-ž]{2,32}"
+            disabled={true}
+          />
+        </div>
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="txtChildSurname">
+            Vaiko pavardė <span className="fieldRequired">*</span>
+          </label>
+          <input
+            type="text"
+            id="txtChildSurname"
+            name="childSurname"
+            placeholder="Vaiko pavardė"
+            className="form-control"
+            value={this.state.childSurname}
+            onChange={this.childOnChange}
+            onInvalid={(e) => inputValidator(e)}
+            required
+            pattern="[A-zÀ-ž]{2,32}"
+            disabled={true}
+          />
+        </div>
         {/** Gimimo data */}
         <div className="form-group mb-3">
-          <label className="form-label" htmlFor="txtBirthdate">
+          <label className="form-label" htmlFor="txtChildBirthdate">
             Gimimo data <span className="fieldRequired">*</span>
           </label>
           <DatePicker
+            id="txtChildBirthdate"
             className="form-control"
             locale="lt"
-            dateFormat="yyyy/MM/dd"
+            dateFormat="yyyy-MM-dd"
             selected={this.state.birthdate}
             onChange={(e) => {
               this.setState({ birthdate: e });
             }}
-            minDate={subYears(new Date(), 6)}
-            maxDate={subYears(new Date(), 1)}
-            disabled={this.state.registrationDisabled}
+            // minDate={subYears(new Date(), 6)}
+            // maxDate={subYears(new Date(), 1)}
+            disabled={true}
           />
         </div>
       </div>
@@ -814,6 +817,42 @@ class CreateApplicationFormContainer extends Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
+    let regexpFormat = new RegExp("[0-9]{11}");
+    if (regexpFormat.test(e.target.value)) {
+      http.get(`${childDataUrl}/${e.target.value}`)
+        .then(response => {
+          this.setState({
+            childName: response.data.vardas,
+            childSurname: response.data.pavarde,
+            birthdate: parse(
+              response.data.gimimoData,
+              "yyyy-MM-dd",
+              new Date()
+            )
+          })
+        })
+        .catch(error => {
+          this.resetChildData();
+          swal({
+            text: "Asmenų registre tokio asmens kodo nėra.",
+            button: "Gerai"
+          });
+        })
+    } else {
+      this.resetChildData();
+    }
+  }
+
+  resetChildData() {
+    this.setState({
+      childName: "",
+      childSurname: "",
+      birthdate: parse(
+        "0001-01-01",
+        "yyyy-MM-dd",
+        new Date()
+      )
+    })
   }
 
   /** Checkbox onChange */
