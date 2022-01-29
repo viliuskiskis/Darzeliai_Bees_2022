@@ -29,6 +29,8 @@ import UserDocumentContainer from "./components/13UserDocuments/UserDocumentCont
 import { ApplicationStatusContainer } from './components/04Admin/ApplicationStatusContainer';
 import EventJournalContainer from "./components/14EventJournal/EventJournalContainer";
 
+import Testing from "./components/99Testing/Testing";
+
 var initState = {
   isAuthenticated: null,
   username: null,
@@ -83,11 +85,10 @@ function App() {
         })
         .catch((error) => {
           const unexpectedError = error.response &&
-                                  error.response.status >= 400 &&
-                                  error.response.status < 500;
-                                  
-          if (!unexpectedError || (error.response && error.response.status === 404))
-          {
+            error.response.status >= 400 &&
+            error.response.status < 500;
+
+          if (!unexpectedError || (error.response && error.response.status === 404)) {
             swal("Įvyko klaida, puslapis nurodytu adresu nepasiekiamas");
             dispatch({
               type: "ERROR",
@@ -118,7 +119,7 @@ function App() {
                       path="/statistika"
                       component={KindergartenStatContainer}
                     />
-                     <Route
+                    <Route
                       exact
                       path="/prasymai/statusas"
                       component={ApplicationStatusContainer}
@@ -188,6 +189,8 @@ function App() {
               <div className="container-fluid px-0">
                 <UserNavBar>
                   <Switch>
+                    {/* Pabaigus aplikaciją ištrinti kelią iki "Testing" */}
+                    <Route exact path="/testing" component={Testing} />
                     <Route exact path="/" component={UserHomeContainer} />
                     <Route exact path="/home" component={UserHomeContainer} />
                     <Route
@@ -210,10 +213,10 @@ function App() {
                       path="/profilis/atnaujinti"
                       component={UpdateProfileFormContainer}
                     />
-                    <Route 
+                    <Route
                       exact
                       path="/pazymos"
-                      component={UserDocumentContainer} 
+                      component={UserDocumentContainer}
                     />
                     <Route path="*" component={NotFound} />
                   </Switch>
@@ -231,19 +234,20 @@ function App() {
           </AuthContext.Provider>
         );
     }
-  } else if (state.isAuthenticated === false){
+  } else if (state.isAuthenticated === false) {
     return (
       <div>
         <AuthContext.Provider value={{ state, dispatch }}>
-            <Switch>
-               <Route exact path="/login" component={Login} />
-                <Route path="*">
-                  <Redirect to="/login" />
-                </Route> 
-            </Switch>
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route path="*">
+              <Redirect to="/login" />
+            </Route>
+          </Switch>
         </AuthContext.Provider>
       </div>
-    );}
+    );
+  }
   else return <Spinner />;
 }
 
