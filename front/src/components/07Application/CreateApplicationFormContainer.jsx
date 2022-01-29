@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import Select from "react-select";
 import { withRouter } from "react-router-dom";
 
-import DatePicker from "react-datepicker";
 import { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import lt from "date-fns/locale/lt";
@@ -13,6 +11,11 @@ import childDataUrl from "../10Services/childDataUrl";
 import swal from "sweetalert";
 
 import inputValidator from "../08CommonComponents/InputValidator";
+import ChildFormComponent from "./ChildFormComponent";
+import CheckboxPriorityFormComponent from "./CheckboxPriorityFormComponent";
+import KindergartenPriorityFormComponent from "./KindergartenPriorityFormComponent";
+import MainGuardianFormComponent from "./MainGuardianFormComponent";
+import AdditionalGuardianFormComponent from "./AdditionalGuardianFormComponent";
 
 import "../../App.css";
 import "../08CommonComponents/datePickerStyle.css";
@@ -45,7 +48,7 @@ class CreateApplicationFormContainer extends Component {
       childName: "",
       childPersonalCode: "",
       childSurname: "",
-      kindergartenChoises: {
+      kindergartenChoices: {
         kindergartenId1: "",
         kindergartenId2: "",
         kindergartenId3: "",
@@ -63,14 +66,20 @@ class CreateApplicationFormContainer extends Component {
       additionalGuardianInput: false,
       registrationDisabled: false,
     };
+    this.kindergartenListToSelect = this.kindergartenListToSelect.bind(this);
     this.mainGuardianOnChange = this.mainGuardianOnChange.bind(this);
-    this.additionalGuardianOnChange = this.additionalGuardianOnChange.bind(
-      this
-    );
+    this.additionalGuardianOnChange = this.additionalGuardianOnChange.bind(this);
+    this.enableAdditionalGuardian = this.enableAdditionalGuardian.bind(this);
     this.childOnChange = this.childOnChange.bind(this);
-    this.checkboxOnChange = this.checkboxOnChange.bind(this);
-    this.submitHandle = this.submitHandle.bind(this);
     this.resetChildData = this.resetChildData.bind(this);
+    this.checkboxOnChange = this.checkboxOnChange.bind(this);
+    this.handleKindergarten1 = this.handleKindergarten1.bind(this);
+    this.handleKindergarten2 = this.handleKindergarten2.bind(this);
+    this.handleKindergarten3 = this.handleKindergarten3.bind(this);
+    this.handleKindergarten4 = this.handleKindergarten4.bind(this);
+    this.handleKindergarten5 = this.handleKindergarten5.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   componentDidMount() {
@@ -120,436 +129,6 @@ class CreateApplicationFormContainer extends Component {
       });
   }
 
-  /** FORMOS */
-  /** Atstovu formos */
-  userForm(mainGuardian) {
-    if (mainGuardian) {
-      return (
-        <div className="form">
-          <h6 className="formHeader">Atstovas 1</h6>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="txtName">
-              Vardas <span className="fieldRequired">*</span>
-            </label>
-            <input
-              type="text"
-              id="txtMainName"
-              name="name"
-              placeholder="Vardas"
-              className="form-control"
-              value={this.state.mainGuardian.name}
-              onChange={this.mainGuardianOnChange}
-              onInvalid={(e) => inputValidator(e)}
-              disabled={this.state.registrationDisabled}
-              required
-              pattern="[A-zÀ-ž]{2,32}"
-            />
-          </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="txtSurname">
-              Pavardė <span className="fieldRequired">*</span>
-            </label>
-            <input
-              type="text"
-              id="txtMainSurname"
-              name="surname"
-              placeholder="Pavardė"
-              className="form-control"
-              value={this.state.mainGuardian.surname}
-              onChange={this.mainGuardianOnChange}
-              onInvalid={(e) => inputValidator(e)}
-              disabled={this.state.registrationDisabled}
-              required
-              pattern="[A-zÀ-ž]{2,32}"
-            />
-          </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="txtPersonalCode">
-              Asmens kodas <span className="fieldRequired">*</span>
-            </label>
-            <input
-              type="text"
-              id="txtMainPersonalCode"
-              name="personalCode"
-              placeholder="Asmens kodas"
-              className="form-control"
-              value={this.state.mainGuardian.personalCode}
-              onChange={this.mainGuardianOnChange}
-              onInvalid={(e) => inputValidator(e)}
-              disabled={this.state.registrationDisabled}
-              required
-              pattern="[0-9]{11}"
-            />
-          </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="txtTelNo">
-              Telefonas <span className="fieldRequired">*</span>
-            </label>
-            <div className="input-group">
-              <input
-                type="tel"
-                id="txtMainPhone"
-                name="phone"
-                placeholder="+37012345678"
-                className="form-control"
-                value={this.state.mainGuardian.phone}
-                onChange={this.mainGuardianOnChange}
-                onInvalid={(e) => inputValidator(e)}
-                disabled={this.state.registrationDisabled}
-                required
-                pattern="[+]{1}[0-9]{4,19}"
-              ></input>
-            </div>
-          </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="txtEmail">
-              El. paštas <span className="fieldRequired">*</span>
-            </label>
-            <input
-              type="text"
-              id="txtMainEmail"
-              name="email"
-              placeholder="El. paštas"
-              className="form-control"
-              value={this.state.mainGuardian.email}
-              onChange={this.mainGuardianOnChange}
-              onInvalid={(e) => inputValidator(e)}
-              disabled={this.state.registrationDisabled}
-              required
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
-            />
-          </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="txtAddress">
-              Adresas <span className="fieldRequired">*</span>
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="txtMainAddress"
-              name="address"
-              placeholder="Adresas"
-              value={this.state.mainGuardian.address}
-              onChange={this.mainGuardianOnChange}
-              onInvalid={(e) => inputValidator(e)}
-              disabled={this.state.registrationDisabled}
-              required
-            />
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="form">
-          <div className="row py-1">
-            <div className="col-7">
-              <h6 className="formHeader">Atstovas 2</h6>
-            </div>
-            <div className="col-5">
-              <button
-                id="btnEnableAdditionalGuardian"
-                className="btn btn-primary btn-sm btn-block float-end my-1"
-                style={{ padding: "4px" }}
-                onClick={(e) => {
-                  this.setState({
-                    ...this.state,
-                    additionalGuardianInput: !this.state
-                      .additionalGuardianInput,
-                  });
-                }}
-                disabled={this.state.registrationDisabled}
-              >
-                {!this.state.additionalGuardianInput ? "Pridėti" : "Pašalinti"}
-              </button>
-            </div>
-          </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="txtName">
-              Vardas <span className="fieldRequired">*</span>
-            </label>
-            <input
-              type="text"
-              id="txtAdditionalName"
-              name="name"
-              placeholder="Vardas"
-              className="form-control"
-              value={this.state.additionalGuardian.name}
-              onChange={this.additionalGuardianOnChange}
-              onInvalid={(e) => inputValidator(e)}
-              disabled={!this.state.additionalGuardianInput || this.state.registrationDisabled}
-              pattern="[A-zÀ-ž]{2,32}"
-              required
-            />
-          </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="txtSurname">
-              Pavardė <span className="fieldRequired">*</span>
-            </label>
-            <input
-              type="text"
-              id="txtAdditionalSurname"
-              name="surname"
-              placeholder="Pavardė"
-              className="form-control"
-              value={this.state.additionalGuardian.surname}
-              onChange={this.additionalGuardianOnChange}
-              onInvalid={(e) => inputValidator(e)}
-              disabled={!this.state.additionalGuardianInput || this.state.registrationDisabled}
-              pattern="[A-zÀ-ž]{2,32}"
-              required
-            />
-          </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="txtPersonalCode">
-              Asmens kodas <span className="fieldRequired">*</span>
-            </label>
-            <input
-              type="text"
-              id="txtAdditionalPersonalCode"
-              name="personalCode"
-              placeholder="Asmens kodas"
-              className="form-control"
-              value={this.state.additionalGuardian.personalCode}
-              onChange={this.additionalGuardianOnChange}
-              onInvalid={(e) => inputValidator(e)}
-              disabled={!this.state.additionalGuardianInput || this.state.registrationDisabled}
-              pattern="[0-9]{11}"
-              required
-            />
-          </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="txtTelNo">
-              Telefonas <span className="fieldRequired">*</span>
-            </label>
-            <div className="input-group">
-              <input
-                type="tel"
-                id="txtAdditionalPhone"
-                name="phone"
-                placeholder="+37012345678"
-                className="form-control"
-                value={this.state.additionalGuardian.phone}
-                onChange={this.additionalGuardianOnChange}
-                onInvalid={(e) => inputValidator(e)}
-                disabled={!this.state.additionalGuardianInput || this.state.registrationDisabled}
-                pattern="[+]{1}[0-9]{4,19}"
-                required
-              />
-            </div>
-          </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="txtEmail">
-              El. paštas <span className="fieldRequired">*</span>
-            </label>
-            <input
-              type="text"
-              id="txtAdditionalEmail"
-              name="email"
-              placeholder="El. paštas"
-              className="form-control"
-              value={this.state.additionalGuardian.email}
-              onChange={this.additionalGuardianOnChange}
-              onInvalid={(e) => inputValidator(e)}
-              disabled={!this.state.additionalGuardianInput || this.state.registrationDisabled}
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
-              required
-            />
-          </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="txtAddress">
-              Adresas <span className="fieldRequired">*</span>
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="txtAdditionalAddress"
-              name="address"
-              placeholder="Adresas"
-              value={this.state.additionalGuardian.address}
-              onChange={this.additionalGuardianOnChange}
-              onInvalid={(e) => inputValidator(e)}
-              disabled={!this.state.additionalGuardianInput || this.state.registrationDisabled}
-              required
-            />
-          </div>
-        </div>
-      );
-    }
-  }
-
-  /** Vaiko forma */
-  childForm() {
-    return (
-      <div className="form">
-        <div className="pb-1">
-          <h6 className="formHeader">Vaiko duomenys</h6>
-        </div>
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="txtChildPersonalCode">
-            Asmens kodas <span className="fieldRequired">*</span>
-          </label>
-          <input
-            type="text"
-            id="txtChildPersonalCode"
-            name="childPersonalCode"
-            placeholder="Asmens kodas"
-            className="form-control"
-            value={this.state.childPersonalCode}
-            onChange={this.childOnChange}
-            onInvalid={(e) => inputValidator(e)}
-            disabled={this.state.registrationDisabled}
-            required
-            pattern="[0-9]{11}"
-          />
-        </div>
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="txtChildName">
-            Vaiko vardas <span className="fieldRequired">*</span>
-          </label>
-          <input
-            type="text"
-            id="txtChildName"
-            name="childName"
-            placeholder="Vaiko vardas"
-            className="form-control"
-            value={this.state.childName}
-            onChange={this.childOnChange}
-            onInvalid={(e) => inputValidator(e)}
-            required
-            pattern="[A-zÀ-ž]{2,32}"
-            disabled={true}
-          />
-        </div>
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="txtChildSurname">
-            Vaiko pavardė <span className="fieldRequired">*</span>
-          </label>
-          <input
-            type="text"
-            id="txtChildSurname"
-            name="childSurname"
-            placeholder="Vaiko pavardė"
-            className="form-control"
-            value={this.state.childSurname}
-            onChange={this.childOnChange}
-            onInvalid={(e) => inputValidator(e)}
-            required
-            pattern="[A-zÀ-ž]{2,32}"
-            disabled={true}
-          />
-        </div>
-        {/** Gimimo data */}
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="txtChildBirthdate">
-            Gimimo data <span className="fieldRequired">*</span>
-          </label>
-          <DatePicker
-            id="txtChildBirthdate"
-            className="form-control"
-            locale="lt"
-            dateFormat="yyyy-MM-dd"
-            selected={this.state.birthdate}
-            onChange={(e) => {
-              this.setState({ birthdate: e });
-            }}
-            // minDate={subYears(new Date(), 6)}
-            // maxDate={subYears(new Date(), 1)}
-            disabled={true}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  /** Checkbox forma prioritetams */
-  checkboxPriorityForm() {
-    return (
-      <div className="form">
-        <h6 className="formHeader">
-          Vaiko priėmimo tvarkos prioritetai
-        </h6>
-        <p>Pažymėkite tinkamus prioritetus</p>
-
-        <div className="form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            name="livesInVilnius"
-            id="chkLivesInVilnius"
-            checked={this.state.priorities.livesInVilnius}
-            onChange={this.checkboxOnChange}
-            disabled={this.state.registrationDisabled}
-          />
-          <label className="form-check-label" htmlFor="livesInVilnius">
-            Vaiko deklaruojama gyvenamoji vieta yra Vilniaus miesto
-            savivaldybė
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            name="childIsAdopted"
-            id="chkChildIsAdopted"
-            checked={this.state.priorities.childIsAdopted}
-            onChange={this.checkboxOnChange}
-            disabled={this.state.registrationDisabled}
-          />
-          <label className="form-check-label" htmlFor="childIsAdopted">
-            Vaikas yra įvaikintas
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            name="familyHasThreeOrMoreChildrenInSchools"
-            id="chkFamilyHasThreeOrMoreChildrenInSchools"
-            checked={this.state.priorities.familyHasThreeOrMoreChildrenInSchools}
-            onChange={this.checkboxOnChange}
-            disabled={this.state.registrationDisabled}
-          />
-          <label
-            className="form-check-label"
-            htmlFor="familyHasThreeOrMoreChildrenInSchools"
-          >
-            Šeima augina (globoja) tris ir daugiau vaikų, kurie mokosi pagal
-            bendrojo ugdymo programas
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            name="guardianInSchool"
-            id="chkGuardianInSchool"
-            checked={this.state.priorities.guardianInSchool}
-            onChange={this.checkboxOnChange}
-            disabled={this.state.registrationDisabled}
-          />
-          <label className="form-check-label" htmlFor="guardianInSchool">
-            Vienas iš tėvų (globėjų) mokosi bendrojo ugdymo mokykloje
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            name="guardianDisability"
-            id="chkGuardianDisability"
-            checked={this.state.priorities.guardianDisability}
-            onChange={this.checkboxOnChange}
-            disabled={this.state.registrationDisabled}
-          />
-          <label className="form-check-label" htmlFor="guardianDisability">
-            Vienas iš tėvų (globėjų) turi ne daugiau kaip 40 procentų
-            darbingumo lygio
-          </label>
-        </div>
-      </div>
-    );
-  }
-
   /** Darzeliu sarasas i options formata */
   kindergartenListToSelect(kList, priorityFieldName) {
     var optionsList = kList.map((k) => ({
@@ -558,235 +137,6 @@ class CreateApplicationFormContainer extends Component {
       name: priorityFieldName,
     }));
     return optionsList;
-  }
-
-  /** Darzeliu prioritetu forma */
-  kindergartenPriorityForm() {
-    return (
-      <div className="form">
-        <h6 className="formHeader">Darželių prioritetas</h6>
-        <p>Pasirinkite darželių prioritetą, daugiausiai leidžiamos 5
-          įstaigos.</p>
-
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="kindergartenId1">
-            1 prioritetas <span className="fieldRequired">*</span>
-          </label>
-          <span id="selectKindergarten1">
-            <Select
-              className="basic-single"
-              classNamePrefix="select"
-              name="kindergartenId1"
-              id="selKindergartenId1"
-              placeholder="Pasirinkite darželį iš sąrašo"
-              options={this.state.kindergartenList}
-              onChange={(e) => {
-                if (
-                  e.value !== this.state.kindergartenChoises.kindergartenId1
-                ) {
-                  const lastIdValue = this.state.kindergartenChoises
-                    .kindergartenId1;
-                  this.setState({
-                    ...this.state,
-                    kindergartenChoises: {
-                      ...this.state.kindergartenChoises,
-                      kindergartenId1: e.value,
-                    },
-                  });
-                  this.state.kindergartenList.forEach((element) => {
-                    if (element.value === lastIdValue) {
-                      element.disabled = "no";
-                    }
-                  });
-                }
-                this.setState({
-                  ...this.state,
-                  kindergartenChoises: {
-                    ...this.state.kindergartenChoises,
-                    kindergartenId1: e.value,
-                  },
-                });
-                this.state.kindergartenList.forEach((element) => {
-                  if (element.value === e.value) {
-                    element.disabled = "yes";
-                  }
-                });
-              }}
-              isOptionDisabled={(option) => option.disabled === "yes" || this.state.registrationDisabled}
-            />
-          </span>
-        </div>
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="kindergartenId2">2 prioritetas</label>
-          <Select
-            name="kindergartenId2"
-            id="selKindergartenId2"
-            placeholder="Pasirinkite darželį iš sąrašo"
-            options={this.state.kindergartenList}
-            onChange={(e) => {
-              if (
-                e.value !== this.state.kindergartenChoises.kindergartenId2
-              ) {
-                const lastIdValue = this.state.kindergartenChoises
-                  .kindergartenId2;
-                this.setState({
-                  ...this.state,
-                  kindergartenChoises: {
-                    ...this.state.kindergartenChoises,
-                    kindergartenId2: e.value,
-                  },
-                });
-                this.state.kindergartenList.forEach((element) => {
-                  if (element.value === lastIdValue) {
-                    element.disabled = "no";
-                  }
-                });
-              }
-              this.setState({
-                ...this.state,
-                kindergartenChoises: {
-                  ...this.state.kindergartenChoises,
-                  kindergartenId2: e.value,
-                },
-              });
-              this.state.kindergartenList.forEach((element) => {
-                if (element.value === e.value) {
-                  element.disabled = "yes";
-                }
-              });
-            }}
-            isOptionDisabled={(option) => option.disabled === "yes" || this.state.registrationDisabled}
-          />
-        </div>
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="kindergartenId3">3 prioritetas</label>
-          <Select
-            name="kindergartenId3"
-            id="selKindergartenId3"
-            placeholder="Pasirinkite darželį iš sąrašo"
-            options={this.state.kindergartenList}
-            onChange={(e) => {
-              if (
-                e.value !== this.state.kindergartenChoises.kindergartenId3
-              ) {
-                const lastIdValue = this.state.kindergartenChoises
-                  .kindergartenId3;
-                this.setState({
-                  ...this.state,
-                  kindergartenChoises: {
-                    ...this.state.kindergartenChoises,
-                    kindergartenId3: e.value,
-                  },
-                });
-                this.state.kindergartenList.forEach((element) => {
-                  if (element.value === lastIdValue) {
-                    element.disabled = "no";
-                  }
-                });
-              }
-              this.setState({
-                ...this.state,
-                kindergartenChoises: {
-                  ...this.state.kindergartenChoises,
-                  kindergartenId3: e.value,
-                },
-              });
-              this.state.kindergartenList.forEach((element) => {
-                if (element.value === e.value) {
-                  element.disabled = "yes";
-                }
-              });
-            }}
-            isOptionDisabled={(option) => option.disabled === "yes" || this.state.registrationDisabled}
-          />
-        </div>
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="kindergartenId4">4 prioritetas</label>
-          <Select
-            name="kindergartenId4"
-            id="selKindergartenId4"
-            placeholder="Pasirinkite darželį iš sąrašo"
-            options={this.state.kindergartenList}
-            onChange={(e) => {
-              if (
-                e.value !== this.state.kindergartenChoises.kindergartenId4
-              ) {
-                const lastIdValue = this.state.kindergartenChoises
-                  .kindergartenId4;
-                this.setState({
-                  ...this.state,
-                  kindergartenChoises: {
-                    ...this.state.kindergartenChoises,
-                    kindergartenId4: e.value,
-                  },
-                });
-                this.state.kindergartenList.forEach((element) => {
-                  if (element.value === lastIdValue) {
-                    element.disabled = "no";
-                  }
-                });
-              }
-              this.setState({
-                ...this.state,
-                kindergartenChoises: {
-                  ...this.state.kindergartenChoises,
-                  kindergartenId4: e.value,
-                },
-              });
-              this.state.kindergartenList.forEach((element) => {
-                if (element.value === e.value) {
-                  element.disabled = "yes";
-                }
-              });
-            }}
-            isOptionDisabled={(option) => option.disabled === "yes" || this.state.registrationDisabled}
-          />
-        </div>
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="kindergartenId5">5 prioritetas</label>
-          <Select
-            name="kindergartenId5"
-            id="selKindergartenId5"
-            placeholder="Pasirinkite darželį iš sąrašo"
-            options={this.state.kindergartenList}
-            onChange={(e) => {
-              if (
-                e.value !== this.state.kindergartenChoises.kindergartenId5
-              ) {
-                const lastIdValue = this.state.kindergartenChoises
-                  .kindergartenId5;
-                this.setState({
-                  ...this.state,
-                  kindergartenChoises: {
-                    ...this.state.kindergartenChoises,
-                    kindergartenId5: e.value,
-                  },
-                });
-                this.state.kindergartenList.forEach((element) => {
-                  if (element.value === lastIdValue) {
-                    element.disabled = "no";
-                  }
-                });
-              }
-              this.setState({
-                ...this.state,
-                kindergartenChoises: {
-                  ...this.state.kindergartenChoises,
-                  kindergartenId5: e.value,
-                },
-              });
-              this.state.kindergartenList.forEach((element) => {
-                if (element.value === e.value) {
-                  element.disabled = "yes";
-                }
-              });
-            }}
-            isOptionDisabled={(option) => option.disabled === "yes" || this.state.registrationDisabled}
-          />
-        </div>
-      </div>
-
-    );
   }
 
   /** Pagrindinio atstovo formos onChange */
@@ -811,25 +161,41 @@ class CreateApplicationFormContainer extends Component {
     });
   }
 
+  enableAdditionalGuardian() {
+    // e.preventDefault();
+    this.setState({
+      ...this.state,
+      additionalGuardianInput: !this.state.additionalGuardianInput
+    });
+  }
+
   /** Vaiko formos onChange */
   childOnChange(e) {
     inputValidator(e);
     this.setState({
-      [e.target.name]: e.target.value,
+      childPersonalCode: e.target.value,
     });
-    let regexpFormat = new RegExp("[0-9]{11}");
-    if (regexpFormat.test(e.target.value)) {
+    let akRegexp = new RegExp('^[0-9]{11}$');
+    let gimimoDataRegexp = new RegExp("[0-9]{4}-[0-9]{2}-[0-9]{2}");
+    if (akRegexp.test(e.target.value)) {
       http.get(`${childDataUrl}/${e.target.value}`)
         .then(response => {
-          this.setState({
-            childName: response.data.vardas,
-            childSurname: response.data.pavarde,
-            birthdate: parse(
-              response.data.gimimoData,
-              "yyyy-MM-dd",
-              new Date()
-            )
-          })
+          if (gimimoDataRegexp.test(response.data.gimimoData)) {
+            this.setState({
+              childName: response.data.vardas,
+              childSurname: response.data.pavarde,
+              birthdate: parse(
+                response.data.gimimoData,
+                "yyyy-MM-dd",
+                new Date()
+              )
+            })
+          } else {
+            swal({
+              text: JSON.stringify(response.data),
+              button: "Gerai"
+            })
+          }
         })
         .catch(error => {
           this.resetChildData();
@@ -860,13 +226,179 @@ class CreateApplicationFormContainer extends Component {
     this.setState({
       priorities: {
         ...this.state.priorities,
-        [e.target.name]: e.target.checked,
+        [e.target.name]: e.target.checked
       },
     });
   }
 
+  /** Kindergarten Choices onChange */
+  handleKindergarten1(e) {
+    if (
+      e.value !== this.state.kindergartenChoices.kindergartenId1
+    ) {
+      const lastIdValue = this.state.kindergartenChoices
+        .kindergartenId1;
+      this.setState({
+        ...this.state,
+        kindergartenChoices: {
+          ...this.state.kindergartenChoices,
+          kindergartenId1: e.value,
+        },
+      });
+      this.state.kindergartenList.forEach((element) => {
+        if (element.value === lastIdValue) {
+          element.disabled = "no";
+        }
+      });
+    }
+    this.setState({
+      ...this.state,
+      kindergartenChoices: {
+        ...this.state.kindergartenChoices,
+        kindergartenId1: e.value,
+      },
+    });
+    this.state.kindergartenList.forEach((element) => {
+      if (element.value === e.value) {
+        element.disabled = "yes";
+      }
+    });
+  }
+
+  handleKindergarten2(e) {
+    if (
+      e.value !== this.state.kindergartenChoices.kindergartenId2
+    ) {
+      const lastIdValue = this.state.kindergartenChoices
+        .kindergartenId2;
+      this.setState({
+        ...this.state,
+        kindergartenChoices: {
+          ...this.state.kindergartenChoices,
+          kindergartenId2: e.value,
+        },
+      });
+      this.state.kindergartenList.forEach((element) => {
+        if (element.value === lastIdValue) {
+          element.disabled = "no";
+        }
+      });
+    }
+    this.setState({
+      ...this.state,
+      kindergartenChoices: {
+        ...this.state.kindergartenChoices,
+        kindergartenId2: e.value,
+      },
+    });
+    this.state.kindergartenList.forEach((element) => {
+      if (element.value === e.value) {
+        element.disabled = "yes";
+      }
+    });
+  }
+
+  handleKindergarten3(e) {
+    if (
+      e.value !== this.state.kindergartenChoices.kindergartenId3
+    ) {
+      const lastIdValue = this.state.kindergartenChoices
+        .kindergartenId3;
+      this.setState({
+        ...this.state,
+        kindergartenChoices: {
+          ...this.state.kindergartenChoices,
+          kindergartenId3: e.value,
+        },
+      });
+      this.state.kindergartenList.forEach((element) => {
+        if (element.value === lastIdValue) {
+          element.disabled = "no";
+        }
+      });
+    }
+    this.setState({
+      ...this.state,
+      kindergartenChoices: {
+        ...this.state.kindergartenChoices,
+        kindergartenId3: e.value,
+      },
+    });
+    this.state.kindergartenList.forEach((element) => {
+      if (element.value === e.value) {
+        element.disabled = "yes";
+      }
+    });
+  }
+
+  handleKindergarten4(e) {
+    if (
+      e.value !== this.state.kindergartenChoices.kindergartenId4
+    ) {
+      const lastIdValue = this.state.kindergartenChoices
+        .kindergartenId4;
+      this.setState({
+        ...this.state,
+        kindergartenChoices: {
+          ...this.state.kindergartenChoices,
+          kindergartenId4: e.value,
+        },
+      });
+      this.state.kindergartenList.forEach((element) => {
+        if (element.value === lastIdValue) {
+          element.disabled = "no";
+        }
+      });
+    }
+    this.setState({
+      ...this.state,
+      kindergartenChoices: {
+        ...this.state.kindergartenChoices,
+        kindergartenId4: e.value,
+      },
+    });
+    this.state.kindergartenList.forEach((element) => {
+      if (element.value === e.value) {
+        element.disabled = "yes";
+      }
+    });
+  }
+
+  handleKindergarten5(e) {
+    if (
+      e.value !== this.state.kindergartenChoices.kindergartenId5
+    ) {
+      const lastIdValue = this.state.kindergartenChoices
+        .kindergartenId5;
+      this.setState({
+        ...this.state,
+        kindergartenChoices: {
+          ...this.state.kindergartenChoices,
+          kindergartenId5: e.value,
+        },
+      });
+      this.state.kindergartenList.forEach((element) => {
+        if (element.value === lastIdValue) {
+          element.disabled = "no";
+        }
+      });
+    }
+    this.setState({
+      ...this.state,
+      kindergartenChoices: {
+        ...this.state.kindergartenChoices,
+        kindergartenId5: e.value,
+      },
+    });
+    this.state.kindergartenList.forEach((element) => {
+      if (element.value === e.value) {
+        element.disabled = "yes";
+      }
+    });
+  }
+
   /** Handle submit */
-  submitHandle(e) {
+  handleSubmit(e) {
     e.preventDefault();
 
     const data = {
@@ -875,12 +407,14 @@ class CreateApplicationFormContainer extends Component {
       childName: this.state.childName,
       childPersonalCode: this.state.childPersonalCode,
       childSurname: this.state.childSurname,
-      kindergartenChoises: this.state.kindergartenChoises,
+      // choices become choises (with "s"), when sending data
+      // maybe it should be fixed?..
+      kindergartenChoises: this.state.kindergartenChoices,
       mainGuardian: this.state.mainGuardian,
       priorities: this.state.priorities
     }
 
-    if (!this.state.kindergartenChoises.kindergartenId1) {
+    if (!this.state.kindergartenChoices.kindergartenId1) {
       swal({
         title: "Įvyko klaida",
         text: "1 Prioritetas yra privalomas",
@@ -924,41 +458,56 @@ class CreateApplicationFormContainer extends Component {
           this.drawMessageRegistrationNotAvailable(this.state.registrationDisabled)
         }
         <div className="form">
-          <form onSubmit={this.submitHandle}>
+          <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="col-4">
-                {
-                  /** Atstovas 1 */
-                  this.userForm(true)
-                }
+                <MainGuardianFormComponent
+                  mainGuardian={this.state.mainGuardian}
+                  registrationDisabled={this.state.registrationDisabled}
+                  mainGuardianOnChange={this.mainGuardianOnChange}
+                />
               </div>
 
               <div className="col-4">
-                {
-                  /** Atstovas 2 */
-                  this.userForm(false)
-                }
+                <AdditionalGuardianFormComponent
+                  additionalGuardian={this.state.additionalGuardian}
+                  additionalGuardianInput={this.state.additionalGuardianInput}
+                  registrationDisabled={this.state.registrationDisabled}
+                  additionalGuardianOnChange={this.additionalGuardianOnChange}
+                  enableAdditionalGuardian={this.enableAdditionalGuardian}
+                />
               </div>
 
               <div className="col-4">
-                {
-                  /** Vaiko forma */
-                  this.childForm()
-                }
+                <ChildFormComponent
+                  childPersonalCode={this.state.childPersonalCode}
+                  childName={this.state.childName}
+                  childSurname={this.state.childSurname}
+                  birthdate={this.state.birthdate}
+                  registrationDisabled={this.state.registrationDisabled}
+                  childOnChange={this.childOnChange}
+                />
               </div>
             </div>
             <div className="row">
-              <div className="col-12">{this.checkboxPriorityForm()}</div>
+              <div className="col-12">
+                <CheckboxPriorityFormComponent
+                  priorities={this.state.priorities}
+                  registrationDisabled={this.state.registrationDisabled}
+                  checkboxOnChange={this.checkboxOnChange}
+                />
+              </div>
 
               <div className="col-7">
-                <div className="">{this.kindergartenPriorityForm()}</div>
-
-                <p>
-                  Dėmesio! Jei pirmu numeriu nurodytoje įstaigoje nėra laisvų
-                  vietų, vieta skiriama antru numeriu pažymėtoje įstaigoje, jei
-                  joje yra laisvų vietų ir t. t. Jeigu visuose prašyme pažymėtose
-                  įstaigose nėra laisvų vietų, prašymas lieka laukiančiųjų eilėje.
-                </p>
+                <KindergartenPriorityFormComponent
+                  kindergartenList={this.state.kindergartenList}
+                  registrationDisabled={this.state.registrationDisabled}
+                  handleKindergarten1={this.handleKindergarten1}
+                  handleKindergarten2={this.handleKindergarten2}
+                  handleKindergarten3={this.handleKindergarten3}
+                  handleKindergarten4={this.handleKindergarten4}
+                  handleKindergarten5={this.handleKindergarten5}
+                />
 
                 <button type="submit" className="btn btn-primary mt-3" disabled={this.state.registrationDisabled}>
                   Sukurti prašymą
