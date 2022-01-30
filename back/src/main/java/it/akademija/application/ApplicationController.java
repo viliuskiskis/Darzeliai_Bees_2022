@@ -44,7 +44,7 @@ public class ApplicationController {
 	private static final Logger LOG = LoggerFactory.getLogger(ApplicationController.class);
 
 	@Autowired
-	private ApplicationService service;
+	private ApplicationService applicationService;
 
 	@Autowired
 	private RegistrationStatusService statusService;
@@ -75,7 +75,7 @@ public class ApplicationController {
 			LOG.warn("Naudotojas [{}] bandė registruoti prašymą esant neaktyviai registracijai", currentUsername);
 			return new ResponseEntity<String>("Šiuo metu registracija nevykdoma.", HttpStatus.METHOD_NOT_ALLOWED);
 
-		} else if (service.existsByPersonalCode(childPersonalCode)) {
+		} else if (applicationService.existsByPersonalCode(childPersonalCode)) {
 
 			LOG.warn("Naudotojas [{}] bandė registruoti prašymą jau registruotam vaikui su asmens kodu [{}]",
 					currentUsername, data.getChildPersonalCode());
@@ -85,7 +85,7 @@ public class ApplicationController {
 
 		} else {
 
-			Application application = service.createNewApplication(currentUsername, data);
+			Application application = applicationService.createNewApplication(currentUsername, data);
 
 			if (application != null) {
 
@@ -113,7 +113,7 @@ public class ApplicationController {
 
 		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 
-		return service.getAllUserApplications(currentUsername);
+		return applicationService.getAllUserApplications(currentUsername);
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class ApplicationController {
 
 		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
 
-		return service.getPageFromSubmittedApplications(pageable);
+		return applicationService.getPageFromSubmittedApplications(pageable);
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class ApplicationController {
 
 		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
 
-		return new ResponseEntity<>(service.getApplicationnPageFilteredById(childPersonalCode, pageable),
+		return new ResponseEntity<>(applicationService.getApplicationnPageFilteredById(childPersonalCode, pageable),
 				HttpStatus.OK);
 	}
 
@@ -179,7 +179,7 @@ public class ApplicationController {
 
 		LOG.info("**ApplicationController: trinamas prasymas [{}] **", id);
 
-		return service.deleteApplication(id);
+		return applicationService.deleteApplication(id);
 
 	}
 
@@ -198,16 +198,16 @@ public class ApplicationController {
 
 		LOG.info("**ApplicationController: deaktyvuojamas prasymas [{}] **", id);
 
-		return service.deactivateApplication(id);
+		return applicationService.deactivateApplication(id);
 
 	}
 
 	public ApplicationService getService() {
-		return service;
+		return applicationService;
 	}
 
-	public void setService(ApplicationService service) {
-		this.service = service;
+	public void setService(ApplicationService applicationService) {
+		this.applicationService = applicationService;
 	}
 
 }

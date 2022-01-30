@@ -1,6 +1,7 @@
 package it.akademija.application;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -53,7 +54,9 @@ public class ApplicationService {
 
 	@Autowired
 	private JournalService journalService;
-
+	
+	
+	
 	/**
 	 * 
 	 * Get information about submitted applications for logged in user
@@ -171,25 +174,37 @@ public class ApplicationService {
 	@Transactional
 	public ResponseEntity<String> deleteApplication(Long id) {
 
-		Application application = applicationDao.getOne(id);
+		Optional<Application> optionalApplication = applicationDao.findById(id);  //.getOne(Id)
 
 		User user = userService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 
-		if (application != null && application.getMainGuardian().equals(user)) {
+		if (optionalApplication.isPresent() == true) { 
+			
+			Application application = optionalApplication.get();
+			
+			if(optionalApplication.get().getMainGuardian().equals(user)) {
 
-			detachAdditionalGuardian(application);
-
-			updateAvailablePlacesInKindergarten(application);
-
-			applicationDao.delete(application);
-
-			journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.APPLICATION,
-					"Ištrintas prašymas");
-
-			return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
+				detachAdditionalGuardian(application);
+	
+				updateAvailablePlacesInKindergarten(application);
+	
+				applicationDao.delete(application);
+	
+				journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.APPLICATION,
+						"Ištrintas prašymas");
+	
+				return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
+			}
+			
+			else {
+				return new ResponseEntity<String>("Prašymas nerastas", HttpStatus.NOT_FOUND);
+			}
 		}
-
-		return new ResponseEntity<String>("Prašymas nerastas", HttpStatus.NOT_FOUND);
+		
+		else {
+			return new ResponseEntity<String>("Prašymas nerastas", HttpStatus.NOT_FOUND);
+		}
+		
 	}
 
 	/**
@@ -254,18 +269,21 @@ public class ApplicationService {
 	@Transactional
 	public ResponseEntity<String> deactivateApplication(Long id) {
 
-		Application application = applicationDao.getOne(id);
+		Optional<Application> optionalApplication = applicationDao.findById(id);
 
-		if (application == null) {
+		if (optionalApplication.isPresent() == false) {  // .getStatus() == null
 
 			return new ResponseEntity<String>("Prašymas nerastas", HttpStatus.NOT_FOUND);
 
-		} else if (application.getStatus().equals(ApplicationStatus.Patvirtintas)) {
-
+		} 
+			
+		Application application = optionalApplication.get();
+		
+		if (application.getStatus().equals(ApplicationStatus.Patvirtintas)) {
 			return new ResponseEntity<String>("Veiksmas negalimas. Prašymas jau patvirtintas.",
-					HttpStatus.METHOD_NOT_ALLOWED);
-
-		} else {
+				HttpStatus.METHOD_NOT_ALLOWED);
+		}
+		else {
 
 			application.setStatus(ApplicationStatus.Neaktualus);
 
@@ -282,7 +300,6 @@ public class ApplicationService {
 
 			return new ResponseEntity<String>("Statusas pakeistas sėkmingai", HttpStatus.OK);
 		}
-
 	}
 
 	/**
@@ -333,7 +350,7 @@ public class ApplicationService {
 	public UserService getUserService() {
 		return userService;
 	}
-
+	
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}

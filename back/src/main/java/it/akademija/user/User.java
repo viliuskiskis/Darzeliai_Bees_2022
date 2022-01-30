@@ -71,7 +71,7 @@ public class User {
 	private String password;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "mainGuardian", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "mainGuardian", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY) ///// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	private Set<Application> userApplications;
 
 	public User() {
@@ -103,7 +103,7 @@ public class User {
 		this.role = role;
 		this.username = username;
 	}
-
+	
 	public void setUserApplications(Set<Application> userApplications) {
 		this.userApplications = userApplications;
 	}

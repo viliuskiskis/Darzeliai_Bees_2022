@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import it.akademija.application.Application;
 import it.akademija.application.ApplicationDAO;
 import it.akademija.application.ApplicationStatus;
-import it.akademija.journal.JournalService;
 
 @Service
 public class KindergartenService {
@@ -30,9 +29,9 @@ public class KindergartenService {
 
 	@Autowired
 	private ApplicationDAO applicationDao;
-
-	@Autowired
-	private JournalService journalService;
+// o.v. JournalService nenaudojamas kintamasis
+//	@Autowired
+//	private JournalService journalService;
 
 	/**
 	 * Get all kindergarten ID's, names and addresses where capacity in any age
@@ -140,7 +139,7 @@ public class KindergartenService {
 	@Transactional
 	public ResponseEntity<String> deleteKindergarten(String id) {
 
-		String gartenID = id;
+		// String gartenID = id; o.v. versijos paliktas nenaudojamas kintamasis.
 
 		Kindergarten garten = gartenDao.findById(id).orElse(null);
 
