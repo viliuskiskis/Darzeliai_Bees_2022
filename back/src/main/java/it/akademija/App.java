@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * 
  * Main application runner class
  * 
- * @author IT`s never to latte
+ * @author 
  *
  */
 @EnableSwagger2

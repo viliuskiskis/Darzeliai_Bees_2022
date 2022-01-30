@@ -30,10 +30,10 @@ public class ReactErrorController implements ErrorController {
 		return ResponseEntity.ok(index);
 	}
 
-	@Override
-	public String getErrorPath() {
-
-		return null;
-	}
+//	@Override
+//	public String getErrorPath() {
+//
+//		return null;
+//	}
 
 }

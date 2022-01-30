@@ -34,13 +34,13 @@ public class UserService implements UserDetailsService {
 	private UserDAO userDao;
 
 	@Autowired
-	private ApplicationService applicationService;
+	private ApplicationService applicationService; 
 
 	@Autowired
 	private UserPasswordResetRequestsDAO userPasswordResetRequestsDAO;
 
-	@Autowired
-	private PasswordEncoder encoder;
+	@Autowired		
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	DocumentDAO documentDao;
@@ -91,7 +91,7 @@ public class UserService implements UserDetailsService {
 		newUser.setEmail(userData.getEmail());
 		newUser.setRole(Role.valueOf(userData.getRole()));
 		newUser.setUsername(userData.getUsername());
-		newUser.setPassword(encoder.encode(userData.getUsername()));
+		newUser.setPassword(passwordEncoder.encode(userData.getUsername()));
 		userDao.saveAndFlush(newUser);
 	}
 
@@ -111,7 +111,7 @@ public class UserService implements UserDetailsService {
 		if (user.getRole().equals(Role.ADMIN) && userDao.findByRole(Role.ADMIN).size() == 1) {
 
 			userDao.save(new User(Role.ADMIN, "admin", "admin", "admin@admin.lt", "admin@admin.lt",
-					encoder.encode("admin@admin.lt")));
+					passwordEncoder.encode("admin@admin.lt")));
 
 		} else if (user.getRole().equals(Role.USER)) {
 
@@ -227,7 +227,7 @@ public class UserService implements UserDetailsService {
 	public void restorePassword(String username) {
 		User user = findByUsername(username);
 		userPasswordResetRequestsDAO.delete(new UserPasswordResetRequestsEntity(user.getUserId()));
-		user.setPassword(encoder.encode(username));
+		user.setPassword(passwordEncoder.encode(username));
 		userDao.save(user);
 
 	}
@@ -244,8 +244,8 @@ public class UserService implements UserDetailsService {
 	public boolean changePassword(String username, String oldPassword, String newPassword) {
 		User user = findByUsername(username);
 		String currentPassword = user.getPassword();
-		if (encoder.matches(oldPassword, currentPassword)) {
-			user.setPassword(encoder.encode(newPassword));
+		if (passwordEncoder.matches(oldPassword, currentPassword)) {
+			user.setPassword(passwordEncoder.encode(newPassword));
 			return true;
 		} else {
 			return false;
@@ -305,19 +305,20 @@ public class UserService implements UserDetailsService {
 		this.userDao = userDao;
 	}
 
-	public PasswordEncoder getEncoder() {
-		return encoder;
+	public PasswordEncoder getPasswordEncoder() {
+		return passwordEncoder;
 	}
 
-	public void setEncoder(PasswordEncoder encoder) {
-		this.encoder = encoder;
+	public void setPasswordEncoder(PasswordEncoder encoder) {
+		this.passwordEncoder = encoder;
 	}
 
 	public ApplicationService getApplicationService() {
 		return applicationService;
 	}
-
-	public void setApplicationService(ApplicationService applicationService) {
+	
+	
+	public void setApplicationService(ApplicationService applicationService) { 
 		this.applicationService = applicationService;
 	}
 

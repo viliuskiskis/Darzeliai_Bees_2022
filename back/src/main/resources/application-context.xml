@@ -10,5 +10,7 @@
 	<context:component-scan
 		base-package="it.akademija" />
 
+   <!-- Definition for spellChecker bean -->
+   
 
 </beans>

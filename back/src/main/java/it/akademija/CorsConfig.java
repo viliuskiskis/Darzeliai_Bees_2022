@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * 
  *  Cross-origin resource sharing
  * 
- * @author Jurgita
+ * @author 
  *
  */
 @Configuration
