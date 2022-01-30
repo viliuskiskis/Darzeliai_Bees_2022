@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import { withRouter } from "react-router-dom";
 
 import { registerLocale } from "react-datepicker";
@@ -11,17 +11,15 @@ import childDataUrl from "../10Services/childDataUrl";
 import swal from "sweetalert";
 
 import inputValidator from "../08CommonComponents/InputValidator";
-import ChildFormComponent from "./ChildFormComponent";
-import CheckboxPriorityFormComponent from "./CheckboxPriorityFormComponent";
-import KindergartenPriorityFormComponent from "./KindergartenPriorityFormComponent";
-import MainGuardianFormComponent from "./MainGuardianFormComponent";
-import AdditionalGuardianFormComponent from "./AdditionalGuardianFormComponent";
+import CreateApplicationFormComponent from "./CreateApplicationFormComponent";
 
 import "../../App.css";
 import "../08CommonComponents/datePickerStyle.css";
 import { parse } from "date-fns";
 
 registerLocale("lt", lt);
+
+export const ApplicationContext = createContext();
 
 class CreateApplicationFormContainer extends Component {
   constructor(props) {
@@ -78,7 +76,7 @@ class CreateApplicationFormContainer extends Component {
     this.handleKindergarten3 = this.handleKindergarten3.bind(this);
     this.handleKindergarten4 = this.handleKindergarten4.bind(this);
     this.handleKindergarten5 = this.handleKindergarten5.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleApplicationSubmit = this.handleApplicationSubmit.bind(this);
 
   }
 
@@ -398,7 +396,7 @@ class CreateApplicationFormContainer extends Component {
   }
 
   /** Handle submit */
-  handleSubmit(e) {
+  handleApplicationSubmit(e) {
     e.preventDefault();
 
     const data = {
@@ -417,7 +415,12 @@ class CreateApplicationFormContainer extends Component {
     if (!this.state.kindergartenChoices.kindergartenId1) {
       swal({
         title: "Įvyko klaida",
-        text: "1 Prioritetas yra privalomas",
+        text: "1 Prioritetas yra privalomas"
+      });
+    } else if (this.state.childName === "" || this.state.childSurname === "") {
+      swal({
+        title: "Įvyko klaida",
+        text: "Trūksta vaiko duomenų"
       });
     } else {
       http
@@ -440,84 +443,25 @@ class CreateApplicationFormContainer extends Component {
     }
   }
 
-  drawMessageRegistrationNotAvailable(status) {
-    if (status) {
-      return (
-        <div className="alert alert-warning p-1" role="alert">
-          Šiuo metu registracija nevykdoma
-        </div>
-      )
-    }
-  }
-
   render() {
 
     return (
-      <div className="container pt-4">
-        {
-          this.drawMessageRegistrationNotAvailable(this.state.registrationDisabled)
-        }
-        <div className="form">
-          <form onSubmit={this.handleSubmit}>
-            <div className="row">
-              <div className="col-4">
-                <MainGuardianFormComponent
-                  mainGuardian={this.state.mainGuardian}
-                  registrationDisabled={this.state.registrationDisabled}
-                  mainGuardianOnChange={this.mainGuardianOnChange}
-                />
-              </div>
-
-              <div className="col-4">
-                <AdditionalGuardianFormComponent
-                  additionalGuardian={this.state.additionalGuardian}
-                  additionalGuardianInput={this.state.additionalGuardianInput}
-                  registrationDisabled={this.state.registrationDisabled}
-                  additionalGuardianOnChange={this.additionalGuardianOnChange}
-                  enableAdditionalGuardian={this.enableAdditionalGuardian}
-                />
-              </div>
-
-              <div className="col-4">
-                <ChildFormComponent
-                  childPersonalCode={this.state.childPersonalCode}
-                  childName={this.state.childName}
-                  childSurname={this.state.childSurname}
-                  birthdate={this.state.birthdate}
-                  registrationDisabled={this.state.registrationDisabled}
-                  childOnChange={this.childOnChange}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <CheckboxPriorityFormComponent
-                  priorities={this.state.priorities}
-                  registrationDisabled={this.state.registrationDisabled}
-                  checkboxOnChange={this.checkboxOnChange}
-                />
-              </div>
-
-              <div className="col-7">
-                <KindergartenPriorityFormComponent
-                  kindergartenList={this.state.kindergartenList}
-                  registrationDisabled={this.state.registrationDisabled}
-                  handleKindergarten1={this.handleKindergarten1}
-                  handleKindergarten2={this.handleKindergarten2}
-                  handleKindergarten3={this.handleKindergarten3}
-                  handleKindergarten4={this.handleKindergarten4}
-                  handleKindergarten5={this.handleKindergarten5}
-                />
-
-                <button type="submit" className="btn btn-primary mt-3" disabled={this.state.registrationDisabled}>
-                  Sukurti prašymą
-                </button>
-
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+      <ApplicationContext.Provider value={{
+        state: this.state,
+        handleApplicationSubmit: this.handleApplicationSubmit,
+        mainGuardianOnChange: this.mainGuardianOnChange,
+        additionalGuardianOnChange: this.additionalGuardianOnChange,
+        enableAdditionalGuardian: this.enableAdditionalGuardian,
+        childOnChange: this.childOnChange,
+        checkboxOnChange: this.checkboxOnChange,
+        handleKindergarten1: this.handleKindergarten1,
+        handleKindergarten2: this.handleKindergarten2,
+        handleKindergarten3: this.handleKindergarten3,
+        handleKindergarten4: this.handleKindergarten4,
+        handleKindergarten5: this.handleKindergarten5
+      }}>
+        <CreateApplicationFormComponent />
+      </ApplicationContext.Provider>
     );
   }
 }

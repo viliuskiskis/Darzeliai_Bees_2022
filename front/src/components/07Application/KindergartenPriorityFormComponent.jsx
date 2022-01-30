@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Select from "react-select";
+import { ApplicationContext } from "./CreateApplicationFormContainer";
 
 
 export default function KindergartenPriorityFormComponent(props) {
+
+  const context = useContext(ApplicationContext);
 
   return (
     <div>
@@ -22,9 +25,9 @@ export default function KindergartenPriorityFormComponent(props) {
               name="kindergartenId1"
               id="selKindergartenId1"
               placeholder="Pasirinkite darželį iš sąrašo"
-              options={props.kindergartenList}
-              onChange={(e) => props.handleKindergarten1(e)}
-              isOptionDisabled={(option) => option.disabled === "yes" || props.registrationDisabled}
+              options={context.state.kindergartenList}
+              onChange={(e) => context.handleKindergarten1(e)}
+              isOptionDisabled={(option) => option.disabled === "yes" || context.state.registrationDisabled}
             />
           </span>
         </div>
@@ -34,9 +37,9 @@ export default function KindergartenPriorityFormComponent(props) {
             name="kindergartenId2"
             id="selKindergartenId2"
             placeholder="Pasirinkite darželį iš sąrašo"
-            options={props.kindergartenList}
-            onChange={(e) => props.handleKindergarten2(e)}
-            isOptionDisabled={(option) => option.disabled === "yes" || props.registrationDisabled}
+            options={context.state.kindergartenList}
+            onChange={(e) => context.handleKindergarten2(e)}
+            isOptionDisabled={(option) => option.disabled === "yes" || context.state.registrationDisabled}
           />
         </div>
         <div className="form-group mb-3">
@@ -45,9 +48,9 @@ export default function KindergartenPriorityFormComponent(props) {
             name="kindergartenId3"
             id="selKindergartenId3"
             placeholder="Pasirinkite darželį iš sąrašo"
-            options={props.kindergartenList}
-            onChange={(e) => props.handleKindergarten3(e)}
-            isOptionDisabled={(option) => option.disabled === "yes" || props.registrationDisabled}
+            options={context.state.kindergartenList}
+            onChange={(e) => context.handleKindergarten3(e)}
+            isOptionDisabled={(option) => option.disabled === "yes" || context.state.registrationDisabled}
           />
         </div>
         <div className="form-group mb-3">
@@ -56,9 +59,9 @@ export default function KindergartenPriorityFormComponent(props) {
             name="kindergartenId4"
             id="selKindergartenId4"
             placeholder="Pasirinkite darželį iš sąrašo"
-            options={props.kindergartenList}
-            onChange={(e) => props.handleKindergarten4(e)}
-            isOptionDisabled={(option) => option.disabled === "yes" || props.registrationDisabled}
+            options={context.state.kindergartenList}
+            onChange={(e) => context.handleKindergarten4(e)}
+            isOptionDisabled={(option) => option.disabled === "yes" || context.state.registrationDisabled}
           />
         </div>
         <div className="form-group mb-3">
@@ -67,9 +70,9 @@ export default function KindergartenPriorityFormComponent(props) {
             name="kindergartenId5"
             id="selKindergartenId5"
             placeholder="Pasirinkite darželį iš sąrašo"
-            options={props.kindergartenList}
-            onChange={(e) => props.handleKindergarten5(e)}
-            isOptionDisabled={(option) => option.disabled === "yes" || props.registrationDisabled}
+            options={context.state.kindergartenList}
+            onChange={(e) => context.handleKindergarten5(e)}
+            isOptionDisabled={(option) => option.disabled === "yes" || context.state.registrationDisabled}
           />
         </div>
       </div>

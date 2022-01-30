@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import DatePicker from "react-datepicker";
 import inputValidator from "../08CommonComponents/InputValidator";
+import { ApplicationContext } from "./CreateApplicationFormContainer";
 
 export default function ChildFormComponent(props) {
+
+  const context = useContext(ApplicationContext);
 
   return (
     <div>
@@ -20,9 +23,9 @@ export default function ChildFormComponent(props) {
             name="childPersonalCode"
             placeholder="Asmens kodas"
             className="form-control"
-            value={props.childPersonalCode}
-            onChange={(event) => props.childOnChange(event)}
-            disabled={props.registrationDisabled}
+            value={context.state.childPersonalCode}
+            onChange={(event) => context.childOnChange(event)}
+            disabled={context.state.registrationDisabled}
             required
             onInvalid={(e) => inputValidator(e)}
             pattern="[0-9]{11}"
@@ -38,9 +41,10 @@ export default function ChildFormComponent(props) {
             name="childName"
             placeholder="Vaiko vardas"
             className="form-control"
-            value={props.childName}
+            value={context.state.childName}
             required
             onInvalid={(e) => inputValidator(e)}
+            pattern="^[A-zÀ-ž\s]{2,32}"
             disabled={true}
           />
         </div>
@@ -54,9 +58,10 @@ export default function ChildFormComponent(props) {
             name="childSurname"
             placeholder="Vaiko pavardė"
             className="form-control"
-            value={props.childSurname}
+            value={context.state.childSurname}
             required
             onInvalid={(e) => inputValidator(e)}
+            pattern="^[A-zÀ-ž\s]{2,32}"
             disabled={true}
           />
         </div>
@@ -69,7 +74,7 @@ export default function ChildFormComponent(props) {
             className="form-control"
             locale="lt"
             dateFormat="yyyy-MM-dd"
-            selected={props.birthdate}
+            selected={context.state.birthdate}
             disabled={true}
           />
         </div>
