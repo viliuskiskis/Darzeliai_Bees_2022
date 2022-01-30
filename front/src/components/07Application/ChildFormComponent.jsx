@@ -25,7 +25,6 @@ export default function ChildFormComponent(props) {
             className="form-control"
             value={context.state.childPersonalCode}
             onChange={(event) => context.childOnChange(event)}
-            disabled={context.state.registrationDisabled}
             required
             onInvalid={(e) => inputValidator(e)}
             pattern="[0-9]{11}"

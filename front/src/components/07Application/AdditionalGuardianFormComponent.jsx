@@ -11,7 +11,7 @@ export default function AdditionalGuardianFormComponent(props) {
       <div className="form">
         <div className="row py-1">
           <div className="col-7">
-            <h6 className="formHeader">Atstovas 2</h6>
+            <h6 className="formHeader">Kito globėjo duomenys</h6>
           </div>
           <div className="col-5">
             <button

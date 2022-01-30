@@ -42,6 +42,14 @@ class CreateApplicationFormContainer extends Component {
         email: "",
         address: "",
       },
+      kindergartenData: {
+        entityName: "",
+        code: "",
+        phone: "",
+        email: "",
+        address: "",
+        account: ""
+      },
       birthdate: parse("0001-01-01", "yyyy-MM-dd", new Date()),
       childName: "",
       childPersonalCode: "",
@@ -76,8 +84,9 @@ class CreateApplicationFormContainer extends Component {
     this.handleKindergarten3 = this.handleKindergarten3.bind(this);
     this.handleKindergarten4 = this.handleKindergarten4.bind(this);
     this.handleKindergarten5 = this.handleKindergarten5.bind(this);
+    this.kindergartenOnChange = this.kindergartenOnChange.bind(this);
     this.handleApplicationSubmit = this.handleApplicationSubmit.bind(this);
-
+    this.handleCompensationSubmit = this.handleCompensationSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -159,6 +168,7 @@ class CreateApplicationFormContainer extends Component {
     });
   }
 
+  /** Suaktyvinti antro globėjo formą */
   enableAdditionalGuardian() {
     // e.preventDefault();
     this.setState({
@@ -395,7 +405,18 @@ class CreateApplicationFormContainer extends Component {
     });
   }
 
-  /** Handle submit */
+  /** Darželio formos onChange */
+  kindergartenOnChange(e) {
+    inputValidator(e);
+    this.setState({
+      kindergartenData: {
+        ...this.state.kindergartenData,
+        [e.target.name]: e.target.value,
+      }
+    });
+  }
+
+  /** Prašymo į darželius submit */
   handleApplicationSubmit(e) {
     e.preventDefault();
 
@@ -443,12 +464,50 @@ class CreateApplicationFormContainer extends Component {
     }
   }
 
+  /** Prašymo dėl kompensacijos submit */
+  handleCompensationSubmit(e) {
+    e.preventDefault();
+
+    const data = {
+      birthdate: this.state.birthdate.toLocaleDateString("en-CA"),
+      childName: this.state.childName,
+      childPersonalCode: this.state.childPersonalCode,
+      childSurname: this.state.childSurname,
+      kindergartenData: this.state.kindergartenData,
+      mainGuardian: this.state.mainGuardian,
+    }
+
+    if (this.state.childName === "" || this.state.childSurname === "") {
+      swal({
+        title: "Įvyko klaida",
+        text: "Trūksta vaiko duomenų"
+      });
+    } else {
+      http
+        .post(`${apiEndpoint}/api/prasymai/compensation/user/new`, data)
+        .then((response) => {
+          //console.log(response);
+          swal({
+            text: response.data,
+            button: "Gerai",
+          });
+
+          this.props.history.push("/prasymai")
+        })
+        .catch((error) => {
+          swal({
+            text: "Įvyko klaida. " + error.response.data,
+            button: "Gerai"
+          });
+        });
+    }
+  }
+
   render() {
 
     return (
       <ApplicationContext.Provider value={{
         state: this.state,
-        handleApplicationSubmit: this.handleApplicationSubmit,
         mainGuardianOnChange: this.mainGuardianOnChange,
         additionalGuardianOnChange: this.additionalGuardianOnChange,
         enableAdditionalGuardian: this.enableAdditionalGuardian,
@@ -458,7 +517,10 @@ class CreateApplicationFormContainer extends Component {
         handleKindergarten2: this.handleKindergarten2,
         handleKindergarten3: this.handleKindergarten3,
         handleKindergarten4: this.handleKindergarten4,
-        handleKindergarten5: this.handleKindergarten5
+        handleKindergarten5: this.handleKindergarten5,
+        kindergartenOnChange: this.kindergartenOnChange,
+        handleApplicationSubmit: this.handleApplicationSubmit,
+        handleCompensationSubmit: this.handleCompensationSubmit
       }}>
         <CreateApplicationFormComponent />
       </ApplicationContext.Provider>

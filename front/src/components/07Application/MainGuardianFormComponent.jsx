@@ -9,7 +9,7 @@ export default function MainGuardianFormComponent(props) {
   return (
     <div>
       <div className="form">
-        <h6 className="formHeader">Atstovas 1</h6>
+        <h6 className="formHeader">Globėjo duomenys</h6>
         <div className="form-group mb-3">
           <label className="form-label" htmlFor="txtName">
             Vardas <span className="fieldRequired">*</span>
