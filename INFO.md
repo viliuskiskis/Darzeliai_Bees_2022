@@ -33,4 +33,4 @@ Tėvų: https://agn709575.invisionapp.com/console/share/GB26F5SD2U/550996143
 KP:Gal žinot ar būtų įmanoma kaip nors nusikopijuoti šiuos puslapius į kitą account'ą, kad kiekviena komanda galėtų pagal save koreguotis?
 ​
 JB:*A ATSAKYMAS:*
-Sveika, J, kiek bandžiau ieškot, neradau, kad galima būtų taip padaryti, bet surinkau failus, kuriuos naudojau, tai susikūrus savo inVision accountą galima juos įsikelt (galimai tik reiks naujai sudėliot link'us, kaip nuotraukos siejasi, nesu tikra). Tik jei norės kelios komandos dirbt ir keist kažką, gali reikėt mokamo accounto, plius, reik šiek tiek žinių Photoshope/ Sketch ar pan., jei norės naujas nuotraukas pasidaryti. Nuoroda į failus: https://we.tl/t-YAR6faFsK1
+Sveika, J, kiek bandžiau ieškot, neradau, kad galima būtų taip padaryti, bet surinkau failus, kuriuos naudojau, tai susikūrus savo inVision accountą galima juos įsikelt (galimai tik reiks naujai sudėliot link'us, kaip nuotraukos siejasi, nesu tikra). Tik jei norės kelios komandos dirbt ir keist kažką, gali reikėt mokamo accounto, plius, reik šiek tiek žinių Photoshope/ Sketch ar pan., jei norės naujas nuotraukas pasidaryti.
