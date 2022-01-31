@@ -9,7 +9,7 @@ export default function KindergartenFormComponent() {
   return (
     <div>
       <div className="form">
-        <h6 className="formHeader">Darželio duomenys</h6>
+        <h6 className="formHeader">Ugdymo įstaigos duomenys</h6>
         <div className="form-group mb-3">
           <label className="form-label" htmlFor="kindergartenName">
             Pavadinimas <span className="fieldRequired">*</span>
@@ -29,13 +29,13 @@ export default function KindergartenFormComponent() {
         </div>
         <div className="form-group mb-3">
           <label className="form-label" htmlFor="kindergartenCode">
-            Įmonės kodas <span className="fieldRequired">*</span>
+            Kodas <span className="fieldRequired">*</span>
           </label>
           <input
             type="text"
             id="kindergartenCode"
             name="code"
-            placeholder="Įmonės kodas"
+            placeholder="Kodas"
             className="form-control"
             value={context.state.kindergartenData.code}
             onChange={(e) => context.kindergartenOnChange(e)}
@@ -98,7 +98,7 @@ export default function KindergartenFormComponent() {
         </div>
         <div className="form-group mb-3">
           <label className="form-label" htmlFor="kindergartenAccount">
-            Banko sąskaitos numeris <span className="fieldRequired">*</span>
+            Banko sąskaitos numeris (IBAN) <span className="fieldRequired">*</span>
           </label>
           <input
             type="text"
@@ -110,7 +110,41 @@ export default function KindergartenFormComponent() {
             onChange={(e) => context.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
-            pattern="[A-z]{2}[0-9]{18}"
+            pattern="[A-Z]{2}[0-9]{18}"
+          />
+        </div>
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="kindergartenBankCode">
+            Banko kodas (BIC/SWIFT) <span className="fieldRequired">*</span>
+          </label>
+          <input
+            type="text"
+            id="kindergartenBankCode"
+            name="bankCode"
+            placeholder="Banko kodas"
+            className="form-control"
+            value={context.state.kindergartenData.bankCode}
+            onChange={(e) => context.kindergartenOnChange(e)}
+            onInvalid={(e) => inputValidator(e)}
+            required
+            pattern="[A-Z0-9]{8,11}"
+          />
+        </div>
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="kindergartenBankName">
+            Banko pavadinimas <span className="fieldRequired">*</span>
+          </label>
+          <input
+            type="text"
+            id="kindergartenBankName"
+            name="bankName"
+            placeholder="Banko pavadinimas"
+            className="form-control"
+            value={context.state.kindergartenData.bankName}
+            onChange={(e) => context.kindergartenOnChange(e)}
+            onInvalid={(e) => inputValidator(e)}
+            required
+            pattern="[A-zÀ-ž0-9\s\-]{2,32}"
           />
         </div>
       </div>

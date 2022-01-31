@@ -48,7 +48,9 @@ class CreateApplicationFormContainer extends Component {
         phone: "",
         email: "",
         address: "",
-        account: ""
+        account: "",
+        bankCode: "",
+        bankName: ""
       },
       birthdate: parse("0001-01-01", "yyyy-MM-dd", new Date()),
       childName: "",
