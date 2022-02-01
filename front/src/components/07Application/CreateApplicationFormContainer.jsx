@@ -186,7 +186,7 @@ class CreateApplicationFormContainer extends Component {
   childAkOnChange(e) {
     inputValidator(e);
     this.setState({ childPersonalCode: e.target.value });
-    let akRegexp = new RegExp('^[0-9]{11}$');
+    let akRegexp = new RegExp('^[56][12][0-9][01][0-9][0-3][0-9]{5}$');
     let gimimoDataRegexp = new RegExp("[0-9]{4}-[0-9]{2}-[0-9]{2}");
     if (akRegexp.test(e.target.value)) {
       http.get(`${childDataUrl}/${e.target.value}`)

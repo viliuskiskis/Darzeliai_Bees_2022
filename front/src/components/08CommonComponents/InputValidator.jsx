@@ -32,7 +32,7 @@ function InputValidator(event) {
         // }
         else if (target.name === "personalCode" || target.name === "childPersonalCode") {
             if (target.validity.patternMismatch) {
-                target.setCustomValidity("Asmens kodą sudaro 11 skaičių, įvesta skaičių: " + target.value.length)
+                target.setCustomValidity("Netinkamo formato asmens kodas. Įvesta simbolių: " + target.value.length)
             }
             else {
                 target.setCustomValidity("")

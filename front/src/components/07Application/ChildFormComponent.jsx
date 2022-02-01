@@ -31,7 +31,7 @@ export default function ChildFormComponent(props) {
             onChange={(event) => context.childAkOnChange(event)}
             required
             onInvalid={(e) => inputValidator(e)}
-            pattern="[0-9]{11}"
+            pattern="[56][12][0-9][01][0-9][0-3][0-9]{5}"
           />
         </div>
         <div className="form-group mb-3">
