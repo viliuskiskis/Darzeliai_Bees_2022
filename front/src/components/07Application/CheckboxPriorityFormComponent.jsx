@@ -89,6 +89,20 @@ export default function CheckboxPriorityFormComponent(props) {
             darbingumo lygio
           </label>
         </div>
+        <div className="form-check">
+          <input
+            type="checkbox"
+            className="form-check-input"
+            name="livesMoreThanTwoYears"
+            id="chkLivesMoreThanTwoYears"
+            checked={context.state.priorities.livesMoreThanTwoYears}
+            onChange={(e) => context.checkboxOnChange(e)}
+            disabled={context.state.registrationDisabled}
+          />
+          <label className="form-check-label" htmlFor="guardianDisability">
+            Vaiko vieno iš tėvų deklaruojamoji gyvenamoji vieta Vilniaus savivaldybėje yra ne mažiau kaip 2 metai
+          </label>
+        </div>
       </div>
     </div>
   )

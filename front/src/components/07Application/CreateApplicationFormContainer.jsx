@@ -71,6 +71,7 @@ class CreateApplicationFormContainer extends Component {
         guardianDisability: false,
         guardianInSchool: false,
         livesInVilnius: false,
+        livesMoreThanTwoYears: false
       },
       kindergartenList: [],
       additionalGuardianInput: false,
