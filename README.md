@@ -12,8 +12,8 @@ System user roles and their authorities:
 | USER | submit an application (if not locked by manager), review submitted applications and their status, submit/ review pdf documents, delete application, get user data, update and delete own account |
 
 #### Technologies used: 
-- React 17.0.1,  Boostrap 4.5.3
-- Spring Boot 2.4.0, Java 11
+- React 17.0.1,  Boostrap 5.1.3
+- Spring Boot 2.6.0, Java 11
 - Spring security
 - H2 database
 - Apache Tomcat 9.0.40 server
@@ -33,11 +33,12 @@ USER pages: https://agn709575.invisionapp.com/console/share/GB26F5SD2U/550996143
 
 ## Getting Started
 
-- Clone the repository `git clone https://github.com/JurgitaVisa/Projektas_Darzeliu_IS.git`
+- create and go to project folder `cd .../Darzeliai_Bees_2022`
+- Clone the repository `git clone https://github.com/viliuskiskis/Darzeliai_Bees_2022`
 
 ### Run on Tomcat Server
 
-- go to project folder `cd .../Projektas_Darzeliu_IS/back`
+- go to project folder `cd .../Darzeliai_Bees_2022/back`
 - run the application on Tomcat Server (port 8081):
   
 ```
@@ -47,11 +48,11 @@ USER pages: https://agn709575.invisionapp.com/console/share/GB26F5SD2U/550996143
 
 ### Run with Spring boot and npm/yarn
 
-- go to project folder `cd .../Projektas_Darzeliu_IS/back`
+- go to project folder `cd .../Darzeliai_Bees_2022/back`
 - Run `mvn spring-boot:run` (application will start on port 8080)
-- go to project folder `cd .../Projektas_Darzeliu_IS/front`
+- go to project folder `cd .../Darzeliai_Bees_2022/front`
 - run `npm install` or `yarn install`
-- open file `..\Projektas_Darzeliu_IS\front\src\components\10Services\endpoint.js`
+- open file `../Darzeliai_Bees_2022/front/src/components/10Services/endpoint.js`
 - change `const apiEndpoint= process.env.PUBLIC_URL` to `const apiEndpoint = "http://localhost:8080"`
 - run `npm run start` or `yarn start`
 - application will open on your browser at http://localhost:3000
@@ -64,7 +65,6 @@ http://localhost:8081/darzelis/console
 JDBC URL:jdbc:h2:~/tmp/neverLatte1.db
 User Name:sa
 Password:
-
 ```
 
 ### Accessing API documentation
@@ -105,7 +105,8 @@ To make a war file for deployment:
 
 
 ## Authors
+List of [contributors](https://github.com/viliuskiskis/Darzeliai_Bees_2022/graphs/contributors) who participated in this project.
+Copyright ©️ 2022, Bees
 
+This project is forked from: https://github.com/JurgitaVisa/Projektas_Darzeliu_IS
 List of [contributors](https://github.com/JurgitaVisa/Projektas_Darzeliu_IS/graphs/contributors) who participated in this project.
-
-Copyright ©️ 2021, It's Never Too Latte
