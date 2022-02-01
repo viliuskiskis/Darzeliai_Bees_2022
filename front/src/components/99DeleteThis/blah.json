@@ -1,0 +1,26 @@
+{
+  "birthdate": "2016-09-26",
+  "childName": "Gilius",
+  "childPersonalCode": "51609260047",
+  "childSurname": "Namejūnas",
+  "kindergartenData": {
+    "entityName": "asdf",
+    "code": "123456798",
+    "phone": "123465",
+    "email": "asdf@afd.ykj",
+    "address": "afdsadsf",
+    "account": "ASDFASDFASDFASFD",
+    "bankCode": "ASDFASFD",
+    "bankName": "afds"
+  },
+  "mainGuardian": {
+    "name": "userasfd",
+    "surname": "userasf",
+    "personalCode": "12345678987",
+    "phone": "+37061398876",
+    "email": "user@user.lt",
+    "address": "Address 1",
+    "username": "user@user.lt",
+    "role": "USER"
+  }
+}

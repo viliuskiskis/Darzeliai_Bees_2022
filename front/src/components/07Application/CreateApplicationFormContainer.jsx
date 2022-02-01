@@ -413,7 +413,7 @@ class CreateApplicationFormContainer extends Component {
     this.setState({
       kindergartenData: {
         ...this.state.kindergartenData,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.name === "account" || e.target.name === "bankCode" ? e.target.value.toUpperCase() : e.target.value,
       }
     });
   }
@@ -485,23 +485,24 @@ class CreateApplicationFormContainer extends Component {
         text: "Trūksta vaiko duomenų"
       });
     } else {
-      http
-        .post(`${apiEndpoint}/api/prasymai/compensation/user/new`, data)
-        .then((response) => {
-          //console.log(response);
-          swal({
-            text: response.data,
-            button: "Gerai",
-          });
+      alert(JSON.stringify(data));
+      // http
+      //   .post(`${apiEndpoint}/api/prasymai/compensation/user/new`, data)
+      //   .then((response) => {
+      //     //console.log(response);
+      //     swal({
+      //       text: response.data,
+      //       button: "Gerai",
+      //     });
 
-          this.props.history.push("/prasymai")
-        })
-        .catch((error) => {
-          swal({
-            text: "Įvyko klaida. " + error.response.data,
-            button: "Gerai"
-          });
-        });
+      //     this.props.history.push("/prasymai")
+      //   })
+      //   .catch((error) => {
+      //     swal({
+      //       text: "Įvyko klaida. " + error.response.data,
+      //       button: "Gerai"
+      //     });
+      //   });
     }
   }
 

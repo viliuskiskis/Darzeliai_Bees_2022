@@ -29,7 +29,7 @@ import UserDocumentContainer from "./components/13UserDocuments/UserDocumentCont
 import { ApplicationStatusContainer } from './components/04Admin/ApplicationStatusContainer';
 import EventJournalContainer from "./components/14EventJournal/EventJournalContainer";
 
-import Testing from "./components/99Testing/Testing";
+import Testing from "./components/99DeleteThis/Testing";
 
 var initState = {
   isAuthenticated: null,

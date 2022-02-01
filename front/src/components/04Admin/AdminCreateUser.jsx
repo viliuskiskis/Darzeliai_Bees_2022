@@ -164,7 +164,7 @@ class AdminCreateUser extends Component {
                                     onChange={this.handleChange}
                                     onInvalid={(e) => inputValidator(e)}
                                     placeholder="+37012345678"
-                                    required pattern="[+]{1}[0-9]{4,19}">
+                                    required pattern="[+]?[0-9]{4,17}">
                                 </input>
                             </div>
                         </div>

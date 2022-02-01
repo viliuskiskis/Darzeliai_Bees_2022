@@ -24,14 +24,14 @@ export default function CreateApplicationFormComponent(props) {
         <div className="row">
           <div className="col col-12 col-lg-6 mb-1">
             <button
-              className="btn btn-outline-secondary navigation-button"
+              className="btn btn-primary navigation-button"
               disabled={!compensationActive}
               onClick={handleClick}
             >Prašymas į valstybinius darželius</button>
           </div>
           <div className="col col-12 col-lg-6">
             <button
-              className="btn btn-outline-secondary navigation-button"
+              className="btn btn-primary navigation-button"
               disabled={compensationActive}
               onClick={handleClick}
             >Prašymas dėl kompensacijos privatiems darželiams</button>

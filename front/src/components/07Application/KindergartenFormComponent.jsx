@@ -24,18 +24,18 @@ export default function KindergartenFormComponent() {
             onChange={(e) => context.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
-            pattern="[A-zÀ-ž0-9\s\-]{2,32}"
+            pattern="[A-Za-zĄ-Žą-ž0-9\s\-]{2,50}"
           />
         </div>
         <div className="form-group mb-3">
           <label className="form-label" htmlFor="kindergartenCode">
-            Kodas <span className="fieldRequired">*</span>
+            Įmonės kodas <span className="fieldRequired">*</span>
           </label>
           <input
             type="text"
             id="kindergartenCode"
             name="code"
-            placeholder="Kodas"
+            placeholder="Įmonės kodas"
             className="form-control"
             value={context.state.kindergartenData.code}
             onChange={(e) => context.kindergartenOnChange(e)}
@@ -59,7 +59,7 @@ export default function KindergartenFormComponent() {
               onChange={(e) => context.kindergartenOnChange(e)}
               onInvalid={(e) => inputValidator(e)}
               required
-              pattern="[+]{1}[0-9]{4,19}"
+              pattern="[+]?[0-9]{4,17}"
             ></input>
           </div>
         </div>
@@ -94,6 +94,7 @@ export default function KindergartenFormComponent() {
             onChange={(e) => context.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
+            pattern="[A-Za-zĄ-Žą-ž0-9'\s.,-]{2,50}"
           />
         </div>
         <div className="form-group mb-3">
@@ -110,7 +111,7 @@ export default function KindergartenFormComponent() {
             onChange={(e) => context.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
-            pattern="[A-Z]{2}[0-9]{18}"
+            pattern="[A-Za-z]{2}[0-9]{2}[A-z0-9]{11,30}"
           />
         </div>
         <div className="form-group mb-3">
@@ -127,7 +128,7 @@ export default function KindergartenFormComponent() {
             onChange={(e) => context.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
-            pattern="[A-Z0-9]{8,11}"
+            pattern="[A-Za-z]{6}[A-Za-z0-9]{2,5}"
           />
         </div>
         <div className="form-group mb-3">
@@ -144,7 +145,7 @@ export default function KindergartenFormComponent() {
             onChange={(e) => context.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
-            pattern="[A-zÀ-ž0-9\s\-]{2,32}"
+            pattern="[A-Za-zĄ-Žą-ž0-9\s\-]{2,50}"
           />
         </div>
       </div>

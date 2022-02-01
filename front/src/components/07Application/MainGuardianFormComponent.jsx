@@ -80,7 +80,7 @@ export default function MainGuardianFormComponent(props) {
               onInvalid={(e) => inputValidator(e)}
               disabled={context.registrationDisabled}
               required
-              pattern="[+]{1}[0-9]{4,19}"
+              pattern="[+]?[0-9]{4,17}"
             ></input>
           </div>
         </div>

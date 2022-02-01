@@ -40,7 +40,7 @@ function InputValidator(event) {
         }
         else if (target.name === "code") {
             if (target.validity.patternMismatch) {
-                target.setCustomValidity("Įmonės kodą sudaro 9 skaičiai, įvesta skaičių: " + target.value.length)
+                target.setCustomValidity("Įmonės kodą sudaro 9 skaičiai. Įvesta simbolių: " + target.value.length)
             }
             else {
                 target.setCustomValidity("")
@@ -54,7 +54,7 @@ function InputValidator(event) {
                 target.setCustomValidity("")
             }
         }
-        else if (target.name === "entityName") {
+        else if (target.name === "entityName" || target.name === "bankName") {
             if (target.validity.patternMismatch) {
                 target.setCustomValidity("Pavadinimą gali sudaryti raidės, skaičiai, tarpai ir brūkšneliai")
             }
@@ -64,7 +64,15 @@ function InputValidator(event) {
         }
         else if (target.name === "account") {
             if (target.validity.patternMismatch) {
-                target.setCustomValidity("Sąskaitos numerį (IBAN) sudaro dvi raidės ir 18 skaičių, įvesta simbolių: " + target.value.length)
+                target.setCustomValidity("Netinkamo formato IBAN kodas. Įvesta simbolių: " + target.value.length)
+            }
+            else {
+                target.setCustomValidity("")
+            }
+        }
+        else if (target.name === "bankCode") {
+            if (target.validity.patternMismatch) {
+                target.setCustomValidity("Netinkamo formato BIC/SWIFT kodas. Įvesta simbolių: " + target.value.length)
             }
             else {
                 target.setCustomValidity("")
@@ -79,7 +87,12 @@ function InputValidator(event) {
             }
         }
         else if (target.name === "address") {
-            target.setCustomValidity("");
+            if (target.validity.patternMismatch) {
+                target.setCustomValidity("Netinkamo formato adresas")
+            }
+            else {
+                target.setCustomValidity("")
+            }
         }
         else if (target.name === "phone") {
             if (target.validity.valueMissing) {
@@ -88,14 +101,17 @@ function InputValidator(event) {
             else {
                 if (target.value.includes('+')) {
                     if (target.validity.patternMismatch) {
-                        target.setCustomValidity("Telefono numerį sudaro nuo 4 iki 19 skaičiai, įvesta skaičių: " + (0 + target.value.length - 1))
+                        target.setCustomValidity("Telefono numerį sudaro nuo 4 iki 17 skaičių, įvesta skaičių: " + (0 + target.value.length - 1))
                     }
                     else {
                         target.setCustomValidity("");
                     }
                 }
+                else if (target.validity.patternMismatch) {
+                    target.setCustomValidity("Telefono numerį sudaro nuo 4 iki 17 skaičių, įvesta skaičių: " + (target.value.length))
+                }
                 else {
-                    target.setCustomValidity('Formatas: +37000000000')
+                    target.setCustomValidity("");
                 }
             }
         }

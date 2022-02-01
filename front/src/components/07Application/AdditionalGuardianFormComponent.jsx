@@ -94,7 +94,7 @@ export default function AdditionalGuardianFormComponent(props) {
               onChange={(e) => context.additionalGuardianOnChange(e)}
               onInvalid={(e) => inputValidator(e)}
               disabled={!context.state.additionalGuardianInput || context.registrationDisabled}
-              pattern="[+]{1}[0-9]{4,19}"
+              pattern="[+]?[0-9]{4,17}"
               required
             />
           </div>
