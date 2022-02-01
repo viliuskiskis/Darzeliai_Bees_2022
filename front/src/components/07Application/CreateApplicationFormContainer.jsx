@@ -56,6 +56,8 @@ class CreateApplicationFormContainer extends Component {
       childName: "",
       childPersonalCode: "",
       childSurname: "",
+      hiddenChildName: "",
+      hiddenChildSurname: "",
       kindergartenChoices: {
         kindergartenId1: "",
         kindergartenId2: "",
@@ -78,7 +80,8 @@ class CreateApplicationFormContainer extends Component {
     this.mainGuardianOnChange = this.mainGuardianOnChange.bind(this);
     this.additionalGuardianOnChange = this.additionalGuardianOnChange.bind(this);
     this.enableAdditionalGuardian = this.enableAdditionalGuardian.bind(this);
-    this.childOnChange = this.childOnChange.bind(this);
+    this.childAkOnChange = this.childAkOnChange.bind(this);
+    this.childSurnameOnChange = this.childSurnameOnChange.bind(this);
     this.resetChildData = this.resetChildData.bind(this);
     this.checkboxOnChange = this.checkboxOnChange.bind(this);
     this.handleKindergarten1 = this.handleKindergarten1.bind(this);
@@ -180,11 +183,9 @@ class CreateApplicationFormContainer extends Component {
   }
 
   /** Vaiko formos onChange */
-  childOnChange(e) {
+  childAkOnChange(e) {
     inputValidator(e);
-    this.setState({
-      childPersonalCode: e.target.value,
-    });
+    this.setState({ childPersonalCode: e.target.value });
     let akRegexp = new RegExp('^[0-9]{11}$');
     let gimimoDataRegexp = new RegExp("[0-9]{4}-[0-9]{2}-[0-9]{2}");
     if (akRegexp.test(e.target.value)) {
@@ -192,20 +193,20 @@ class CreateApplicationFormContainer extends Component {
         .then(response => {
           if (gimimoDataRegexp.test(response.data.gimimoData)) {
             this.setState({
-              childName: response.data.vardas,
-              childSurname: response.data.pavarde,
               birthdate: parse(
                 response.data.gimimoData,
                 "yyyy-MM-dd",
                 new Date()
               )
             })
-          } else {
-            swal({
-              text: JSON.stringify(response.data),
-              button: "Gerai"
-            })
           }
+          if (response.data.pavarde === this.state.childSurname) {
+            this.setState({ childName: response.data.vardas })
+          }
+          this.setState({
+            hiddenChildName: response.data.vardas,
+            hiddenChildSurname: response.data.pavarde
+          })
         })
         .catch(error => {
           this.resetChildData();
@@ -219,10 +220,21 @@ class CreateApplicationFormContainer extends Component {
     }
   }
 
+  childSurnameOnChange(e) {
+    inputValidator(e);
+    this.setState({ childSurname: e.target.value });
+    if (e.target.value === this.state.hiddenChildSurname) {
+      this.setState({ childName: this.state.hiddenChildName });
+    } else {
+      this.setState({ childName: "" });
+    }
+  }
+
   resetChildData() {
     this.setState({
       childName: "",
-      childSurname: "",
+      hiddenChildName: "",
+      hiddenChildSurname: "",
       birthdate: parse(
         "0001-01-01",
         "yyyy-MM-dd",
@@ -485,7 +497,10 @@ class CreateApplicationFormContainer extends Component {
         text: "Trūksta vaiko duomenų"
       });
     } else {
-      alert(JSON.stringify(data));
+      swal({
+        title: "Kai bus padarytas back'as, bus siunčiami šie duomenys:",
+        text: JSON.stringify(data)
+      });
       // http
       //   .post(`${apiEndpoint}/api/prasymai/compensation/user/new`, data)
       //   .then((response) => {
@@ -514,7 +529,8 @@ class CreateApplicationFormContainer extends Component {
         mainGuardianOnChange: this.mainGuardianOnChange,
         additionalGuardianOnChange: this.additionalGuardianOnChange,
         enableAdditionalGuardian: this.enableAdditionalGuardian,
-        childOnChange: this.childOnChange,
+        childAkOnChange: this.childAkOnChange,
+        childSurnameOnChange: this.childSurnameOnChange,
         checkboxOnChange: this.checkboxOnChange,
         handleKindergarten1: this.handleKindergarten1,
         handleKindergarten2: this.handleKindergarten2,
