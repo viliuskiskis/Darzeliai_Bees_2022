@@ -216,7 +216,7 @@ class AdminCreateUser extends Component {
         const target = event.target;
         inputValidator(event);
         this.setState({
-            [target.name]: target.value
+            [target.name]: target.name === "email" ? target.value.toLowerCase() : target.value
         })
     }
 

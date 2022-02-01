@@ -158,7 +158,7 @@ class CreateApplicationFormContainer extends Component {
     this.setState({
       mainGuardian: {
         ...this.state.mainGuardian,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.name === "email" ? e.target.value.toLowerCase() : e.target.value
       },
     });
   }
@@ -169,7 +169,7 @@ class CreateApplicationFormContainer extends Component {
     this.setState({
       additionalGuardian: {
         ...this.state.additionalGuardian,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.name === "email" ? e.target.value.toLowerCase() : e.target.value
       },
     });
   }
@@ -426,7 +426,8 @@ class CreateApplicationFormContainer extends Component {
     this.setState({
       kindergartenData: {
         ...this.state.kindergartenData,
-        [e.target.name]: e.target.name === "account" || e.target.name === "bankCode" ? e.target.value.toUpperCase() : e.target.value,
+        [e.target.name]: e.target.name === "account" || e.target.name === "bankCode" ? e.target.value.toUpperCase() :
+          e.target.name === "email" ? e.target.value.toLowerCase() : e.target.value
       }
     });
   }

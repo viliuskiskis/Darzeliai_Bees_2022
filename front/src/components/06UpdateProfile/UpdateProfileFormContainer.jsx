@@ -224,7 +224,7 @@ export default class UpdateProfileFormContainer extends Component {
     handleChange(e) {
         inputValidator(e);
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.name === "email" ? e.target.value.toLowerCase() : e.target.value
         })
     }
 
