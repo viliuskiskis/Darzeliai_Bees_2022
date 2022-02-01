@@ -25,7 +25,7 @@ export default function MainGuardianFormComponent(props) {
             onInvalid={(e) => inputValidator(e)}
             disabled={context.registrationDisabled}
             required
-            pattern="[A-zÀ-ž]{2,32}"
+            pattern="[A-zÀ-ž\s-]{2,32}"
           />
         </div>
         <div className="form-group mb-3">
@@ -43,7 +43,7 @@ export default function MainGuardianFormComponent(props) {
             onInvalid={(e) => inputValidator(e)}
             disabled={context.registrationDisabled}
             required
-            pattern="[A-zÀ-ž]{2,32}"
+            pattern="[A-zÀ-ž\s-]{2,32}"
           />
         </div>
         <div className="form-group mb-3">

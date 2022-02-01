@@ -84,7 +84,7 @@ export default class UpdateProfileFormContainer extends Component {
                             onChange={this.handleChange}
                             onInvalid={(e) => inputValidator(e)}
                             required
-                            pattern="[A-zÀ-ž]{2,32}"
+                            pattern="[A-zÀ-ž\s-]{2,32}"
                         />
                     </div>
                     <div className="form-group mb-3">
@@ -99,7 +99,7 @@ export default class UpdateProfileFormContainer extends Component {
                             onChange={this.handleChange}
                             onInvalid={(e) => inputValidator(e)}
                             required
-                            pattern="[A-zÀ-ž]{2,32}"
+                            pattern="[A-zÀ-ž\s-]{2,32}"
                         />
                     </div>
                     <div className="form-group mb-3">
@@ -136,7 +136,7 @@ export default class UpdateProfileFormContainer extends Component {
                             onChange={this.handleChange}
                             onInvalid={(e) => inputValidator(e)}
                             required
-                            pattern="[A-zÀ-ž]{2,32}"
+                            pattern="[A-zÀ-ž\s-]{2,32}"
                         />
                     </div>
                     <div className="form-group mb-3">
@@ -151,7 +151,7 @@ export default class UpdateProfileFormContainer extends Component {
                             onChange={this.handleChange}
                             onInvalid={(e) => inputValidator(e)}
                             required
-                            pattern="[A-zÀ-ž]{2,32}"
+                            pattern="[A-zÀ-ž\s-]{2,32}"
                         />
                     </div>
                     <div className="form-group mb-3">

@@ -39,7 +39,7 @@ export default function AdditionalGuardianFormComponent(props) {
             onChange={(e) => context.additionalGuardianOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             disabled={!context.state.additionalGuardianInput || context.registrationDisabled}
-            pattern="[A-zÀ-ž]{2,32}"
+            pattern="[A-zÀ-ž\s-]{2,32}"
             required
           />
         </div>
@@ -57,7 +57,7 @@ export default function AdditionalGuardianFormComponent(props) {
             onChange={(e) => context.additionalGuardianOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             disabled={!context.state.additionalGuardianInput || context.registrationDisabled}
-            pattern="[A-zÀ-ž]{2,32}"
+            pattern="[A-zÀ-ž\s-]{2,32}"
             required
           />
         </div>

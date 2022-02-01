@@ -75,7 +75,7 @@ class AdminCreateUser extends Component {
                             onInvalid={(e) => inputValidator(e)}
                             placeholder="Vardas"
                             required
-                            pattern="[A-zÀ-ž]{2,32}"
+                            pattern="[A-zÀ-ž\s-]{2,32}"
                         />
                     </div>
                     <div className="form-group mb-3">
@@ -90,7 +90,7 @@ class AdminCreateUser extends Component {
                             onInvalid={(e) => inputValidator(e)}
                             placeholder="Pavardė"
                             required
-                            pattern="[A-zÀ-ž]{2,32}"
+                            pattern="[A-zÀ-ž\s-]{2,32}"
                         />
                     </div>
                 </div>
@@ -112,7 +112,7 @@ class AdminCreateUser extends Component {
                                 onInvalid={(e) => inputValidator(e)}
                                 placeholder="Vardas"
                                 required
-                                pattern="[A-zÀ-ž]{2,32}"
+                                pattern="[A-zÀ-ž\s-]{2,32}"
                             />
                         </div>
                     </div>
@@ -129,7 +129,7 @@ class AdminCreateUser extends Component {
                                 onInvalid={(e) => inputValidator(e)}
                                 placeholder="Pavardė"
                                 required
-                                pattern="[A-zÀ-ž]{2,32}"
+                                pattern="[A-zÀ-ž\s-]{2,32}"
                             />
                         </div>
                     </div>

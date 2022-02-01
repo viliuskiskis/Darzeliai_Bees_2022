@@ -48,7 +48,7 @@ export default function ChildFormComponent(props) {
             onChange={(event) => context.childSurnameOnChange(event)}
             required
             onInvalid={(e) => inputValidator(e)}
-            pattern="^[A-zÀ-ž\s]{2,32}"
+            pattern="^[A-zÀ-ž\s-]{2,32}"
           />
         </div>
         <div className="form-group mb-3">
@@ -64,7 +64,7 @@ export default function ChildFormComponent(props) {
             value={context.state.childName}
             required
             onInvalid={(e) => inputValidator(e)}
-            pattern="^[A-zÀ-ž\s]{2,32}"
+            pattern="^[A-zÀ-ž\s-]{2,32}"
             disabled={true}
           />
         </div>
