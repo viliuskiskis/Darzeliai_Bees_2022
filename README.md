@@ -65,6 +65,7 @@ http://localhost:8081/darzelis/console
 JDBC URL:jdbc:h2:~/tmp/neverLatte1.db
 User Name:sa
 Password:
+
 ```
 
 ### Accessing API documentation
