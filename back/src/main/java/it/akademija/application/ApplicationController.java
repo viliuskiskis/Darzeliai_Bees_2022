@@ -75,7 +75,9 @@ public class ApplicationController {
 			LOG.warn("Naudotojas [{}] bandė registruoti prašymą esant neaktyviai registracijai", currentUsername);
 			return new ResponseEntity<String>("Šiuo metu registracija nevykdoma.", HttpStatus.METHOD_NOT_ALLOWED);
 
-		} else if (applicationService.existsByPersonalCode(childPersonalCode)) {
+		} 
+		
+		else if (applicationService.existsByPersonalCode(childPersonalCode)) {
 
 			LOG.warn("Naudotojas [{}] bandė registruoti prašymą jau registruotam vaikui su asmens kodu [{}]",
 					currentUsername, data.getChildPersonalCode());
@@ -83,7 +85,9 @@ public class ApplicationController {
 			return new ResponseEntity<String>("Prašymas vaikui su tokiu asmens kodu jau yra registruotas",
 					HttpStatus.CONFLICT);
 
-		} else {
+		} 
+		
+		else {
 
 			Application application = applicationService.createNewApplication(currentUsername, data);
 

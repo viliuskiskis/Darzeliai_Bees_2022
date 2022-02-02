@@ -24,6 +24,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import it.akademija.application.Application;
+import it.akademija.compensationApplication.CompensationApplication;
 import it.akademija.role.Role;
 
 @Entity
@@ -73,6 +74,9 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "mainGuardian", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY) ///// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	private Set<Application> userApplications;
+	
+	@OneToMany(mappedBy = "mainGuardian", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY) ///// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	private Set<CompensationApplication> compensationApplications;
 
 	public User() {
 	}
