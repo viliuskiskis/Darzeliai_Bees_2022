@@ -74,7 +74,8 @@ public class SubmitNewApplicationPage extends AbstractObjectPage{
 	// choose kindergarten priorities
 	@FindBy (id = "selKindergartenId1")
 	public WebElement kindergartenPriorityOne;
-	
+
+
 	public void clickAddAdditionalGuardianButton () {
 	addAdditionalGuardianButton.click();
 	}
