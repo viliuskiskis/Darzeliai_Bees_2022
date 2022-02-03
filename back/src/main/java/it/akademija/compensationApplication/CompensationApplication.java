@@ -58,7 +58,6 @@ public class CompensationApplication {
 	
 	@NotEmpty(message = "Ugdymo įstaigos pavadinimas privalomas!")
 	@Size(min = 2, max = 70)
-	@Pattern(regexp = "[A-Za-zĄ-Žą-ž0-9\s]") // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	private String kindergardenName;
 	
 	@NotEmpty(message = "Ugdymo įstaigos kodas privalomas!")
@@ -75,7 +74,6 @@ public class CompensationApplication {
 	
 	@NotEmpty(message = "Ugdymo įstaigos banko pavadinimas privalomas!")
 	@Size(min = 2, max = 50)
-	@Pattern(regexp ="[A-Za-zĄ-Žą-ž0-9\s]") // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	private String kindergadenBankName;
 	
 	@NotEmpty(message = "Ugdymo įstaigos banko sąskaitos numeris privalomas!")
