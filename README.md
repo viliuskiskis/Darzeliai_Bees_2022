@@ -33,29 +33,15 @@ USER pages: https://agn709575.invisionapp.com/console/share/GB26F5SD2U/550996143
 
 ## Getting Started
 
-- create and go to project folder `cd .../Darzeliai_Bees_2022`
-- Clone the repository `git clone https://github.com/viliuskiskis/Darzeliai_Bees_2022`
+- to run manually - follow bash files runViaTomcat.sh or runViaSpringYarn.sh
 
 ### Run on Tomcat Server
 
-- go to project folder `cd .../Darzeliai_Bees_2022/back`
-- run the application on Tomcat Server (port 8081):
-  
-```
- mvn clean install org.codehaus.cargo:cargo-maven2-plugin:1.7.7:run -Dcargo.maven.containerId=tomcat9x -Dcargo.servlet.port=8081 -Dcargo.maven.containerUrl=https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/9.0.40/tomcat-9.0.40.zip
- ```
- - the application will start on your browser http://localhost:8081/darzelis
+- edit as needed and run bash script runViaTomcat.sh, takes ~ 30min
 
 ### Run with Spring boot and npm/yarn
 
-- go to project folder `cd .../Darzeliai_Bees_2022/back`
-- Run `mvn spring-boot:run` (application will start on port 8080)
-- go to project folder `cd .../Darzeliai_Bees_2022/front`
-- run `npm install` or `yarn install`
-- open file `../Darzeliai_Bees_2022/front/src/components/10Services/endpoint.js`
-- change `const apiEndpoint= process.env.PUBLIC_URL` to `const apiEndpoint = "http://localhost:8080"`
-- run `npm run start` or `yarn start`
-- application will open on your browser at http://localhost:3000
+- edit as needed and run bash script runViaSpringYarn.sh, takes ~ 10min
 
 ### Accessing the database
 
