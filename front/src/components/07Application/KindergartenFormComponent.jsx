@@ -20,7 +20,7 @@ export default function KindergartenFormComponent() {
             name="entityName"
             placeholder="Pavadinimas"
             className="form-control"
-            value={context.state.kindergartenData.name}
+            value={context.state.kindergartenData.entityName}
             onChange={(e) => context.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required

@@ -203,6 +203,8 @@ class CreateApplicationFormContainer extends Component {
           }
           if (response.data.pavarde === this.state.childSurname) {
             this.setState({ childName: response.data.vardas })
+          } else {
+            this.setState({ childName: "" });
           }
           this.setState({
             hiddenChildName: response.data.vardas,

@@ -48,7 +48,7 @@ function InputValidator(event) {
         }
         else if (target.name === "name" || target.name === "childName") {
             if (target.validity.patternMismatch) {
-                target.setCustomValidity("Netinkamo formato vardas")
+                target.setCustomValidity("Vardą gali sudaryti raidės, tarpai ir brūkšneliai")
             }
             else {
                 target.setCustomValidity("")
@@ -80,7 +80,7 @@ function InputValidator(event) {
         }
         else if (target.name === "surname" || target.name === "childSurname") {
             if (target.validity.patternMismatch) {
-                target.setCustomValidity("Netinkamo formato pavardė")
+                target.setCustomValidity("Pavardę gali sudaryti raidės, tarpai ir brūkšneliai")
             }
             else {
                 target.setCustomValidity("")

@@ -24,6 +24,7 @@ export default function CreateApplicationFormComponent(props) {
         <div className="row">
           <div className="col col-12 col-lg-6 mb-1">
             <button
+              id="chooseApplicationFormButton"
               className="btn btn-primary navigation-button"
               disabled={!compensationActive}
               onClick={handleClick}
@@ -31,6 +32,7 @@ export default function CreateApplicationFormComponent(props) {
           </div>
           <div className="col col-12 col-lg-6">
             <button
+              id="chooseCompensationFormButton"
               className="btn btn-primary navigation-button"
               disabled={compensationActive}
               onClick={handleClick}
@@ -73,7 +75,11 @@ export default function CreateApplicationFormComponent(props) {
                   <div className="col-12 col-lg-7">
                     <KindergartenPriorityFormComponent />
 
-                    <button type="submit" className="btn btn-primary mt-3" disabled={context.state.registrationDisabled}>
+                    <button
+                      id="submitApplicationButton"
+                      type="submit"
+                      className="btn btn-primary mt-3"
+                      disabled={context.state.registrationDisabled}>
                       Sukurti prašymą į darželius
                     </button>
 
@@ -108,7 +114,10 @@ export default function CreateApplicationFormComponent(props) {
 
                   <div className="col-12 col-lg-7">
 
-                    <button type="submit" className="btn btn-primary mt-3">
+                    <button
+                      id="submitCompensationButton"
+                      type="submit"
+                      className="btn btn-primary mt-3">
                       Sukurti prašymą kompensacijai
                     </button>
 
