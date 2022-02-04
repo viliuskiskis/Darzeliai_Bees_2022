@@ -43,19 +43,19 @@ class CreateApplicationFormContainer extends Component {
         address: "",
       },
       kindergartenData: {
-        entityName: "",
-        code: "",
-        phone: "",
-        email: "",
-        address: "",
-        account: "",
-        bankCode: "",
-        bankName: ""
+        entityName: "Lukiskiu kalejimas",
+        code: "123456789",
+        phone: "+37062777888",
+        email: "lukasbambukas@gmail.com",
+        address: "slibinų g. 11, Vilnius",
+        account: "AB123456789123456789",
+        bankCode: "AZSAZS235",
+        bankName: "Pinigu pienine"
       },
-      birthdate: parse("0001-01-01", "yyyy-MM-dd", new Date()),
-      childName: "",
-      childPersonalCode: "",
-      childSurname: "",
+      birthdate: parse("2016-09-26", "yyyy-MM-dd", new Date()),
+      childName: "Gilius",
+      childPersonalCode: "51609260047",
+      childSurname: "Namejūnas",
       hiddenChildName: "",
       hiddenChildSurname: "",
       kindergartenChoices: {
@@ -499,12 +499,8 @@ class CreateApplicationFormContainer extends Component {
         text: "Trūksta vaiko duomenų"
       });
     } else {
-      // swal({
-      //   title: "Kai bus padarytas back'as, bus siunčiami šie duomenys:",
-      //   text: JSON.stringify(data)
-      // });
       http
-        .post(`${apiEndpoint}/api/kompensacijosPrasymai/user/new`, data)
+        .post(`${apiEndpoint}/api/kompensacijos/user/new`, data)
         .then((response) => {
           console.log(response);
           swal({
@@ -516,7 +512,7 @@ class CreateApplicationFormContainer extends Component {
         })
         .catch((error) => {
           swal({
-            text: "Įvyko klaida. " , //+ error.response.data
+            text: "Įvyko klaida. " + error.response.data,
             button: "Gerai"
           });
         });

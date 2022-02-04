@@ -17,9 +17,6 @@ public class CompensationApplicationService {
 	@Autowired
 	private CompensationApplicationDAO compensationApplicationDAO;
 	
-	//@Autowired
-	//private KindergardenDataDAO kindergardenDataDAO;
-	
 	@Autowired
 	private UserService userService;
 
@@ -36,7 +33,7 @@ public class CompensationApplicationService {
 		compensationApplication.setChildName(compensationApplicationDTO.getChildName());
 		compensationApplication.setChildSurname(compensationApplicationDTO.getChildSurname());
 		compensationApplication.setBirthdate(compensationApplicationDTO.getBirthdate());
-		compensationApplication.setKindergardenName(compensationApplicationDTO.getKindergartenData().getBankName());
+		compensationApplication.setKindergardenName(compensationApplicationDTO.getKindergartenData().getEntityName());
 		compensationApplication.setKindergardenCode(compensationApplicationDTO.getKindergartenData().getCode());
 		compensationApplication.setKindergardenPhone(compensationApplicationDTO.getKindergartenData().getPhone());
 		compensationApplication.setKindergardenEmail(compensationApplicationDTO.getKindergartenData().getEmail());

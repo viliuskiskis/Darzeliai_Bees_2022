@@ -81,6 +81,14 @@ public class User {
 	public User() {
 	}
 
+	public Set<CompensationApplication> getCompensationApplications() {
+		return compensationApplications;
+	}
+
+	public void setCompensationApplications(Set<CompensationApplication> compensationApplications) {
+		this.compensationApplications = compensationApplications;
+	}
+
 	public User(Role role, String name, String surname, String email, String username, String password) {
 		super();
 		this.role = role;

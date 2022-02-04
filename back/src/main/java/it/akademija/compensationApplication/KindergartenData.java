@@ -2,7 +2,7 @@ package it.akademija.compensationApplication;
 
 
 
-public class KindergardenData {
+public class KindergartenData {
 	
 	
 
@@ -15,11 +15,11 @@ public class KindergardenData {
 	private String bankCode;
 	private String bankName;
 	
-	public KindergardenData() {
+	public KindergartenData() {
 		super();
 	}
 	
-	public KindergardenData(String entityName, String code, String phone, String email, String address,
+	public KindergartenData(String entityName, String code, String phone, String email, String address,
 			String account, String bankCode, String bankName) {
 		super();
 		this.entityName = entityName;
@@ -35,51 +35,75 @@ public class KindergardenData {
 	public String getEntityName() {
 		return entityName;
 	}
+
 	public void setEntityName(String entityName) {
 		this.entityName = entityName;
 	}
+
 	public String getCode() {
 		return code;
 	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getAccount() {
 		return account;
 	}
+
 	public void setAccount(String account) {
 		this.account = account;
 	}
+
 	public String getBankCode() {
 		return bankCode;
 	}
+
 	public void setBankCode(String bankCode) {
 		this.bankCode = bankCode;
 	}
+
 	public String getBankName() {
 		return bankName;
 	}
+
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
 	}
+
+	@Override
+	public String toString() {
+		return "KindergartenData [entityName=" + entityName + ", code=" + code + ", phone=" + phone + ", email=" + email
+				+ ", address=" + address + ", account=" + account + ", bankCode=" + bankCode + ", bankName=" + bankName
+				+ "]";
+	}
+
+
 	
 	
 }

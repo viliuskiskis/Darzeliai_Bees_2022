@@ -1,22 +1,28 @@
 package it.akademija.compensationApplication;
 
+import java.time.LocalDate;
+
 import it.akademija.user.UserDTO;
 
 public class CompensationApplicationDTO {
 	
-	private String birthdate;
+	private LocalDate birthdate;
 	private String childName;
 	private String childPersonalCode;
 	private String childSurname;
-	private KindergardenData kindergartenData;
+	private KindergartenData kindergartenData;
 	private UserDTO mainGuardian;
 	
 	public CompensationApplicationDTO() {
 		super();
 	}
-
-	public CompensationApplicationDTO(String birthdate, String childName, String childPersonalCode, String childSurname,
-			KindergardenData kindergartenData, UserDTO mainGuardian) {
+	
+	public CompensationApplicationDTO(LocalDate birthdate,
+										String childName, 
+										String childPersonalCode, 
+										String childSurname,
+										KindergartenData kindergartenData, 
+										UserDTO mainGuardian) {
 		super();
 		this.birthdate = birthdate;
 		this.childName = childName;
@@ -26,11 +32,11 @@ public class CompensationApplicationDTO {
 		this.mainGuardian = mainGuardian;
 	}
 
-	public String getBirthdate() {
+	public LocalDate getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(String birthdate) {
+	public void setBirthdate(LocalDate birthdate) {
 		this.birthdate = birthdate;
 	}
 
@@ -58,19 +64,12 @@ public class CompensationApplicationDTO {
 		this.childSurname = childSurname;
 	}
 
-	public KindergardenData getKindergartenData() {
+	public KindergartenData getKindergartenData() {
 		return kindergartenData;
 	}
 
-	public void setKindergartenData(KindergardenData kindergartenData) {
+	public void setKindergartenData(KindergartenData kindergartenData) {
 		this.kindergartenData = kindergartenData;
-	}
-
-	@Override
-	public String toString() {
-		return "CompensationApplicationDTO [birthdate=" + birthdate + ", childName=" + childName
-				+ ", childPersonalCode=" + childPersonalCode + ", childSurname=" + childSurname + ", kindergartenData="
-				+ kindergartenData + ", userDTO=" + mainGuardian + "]";
 	}
 
 	public UserDTO getMainGuardian() {
@@ -81,10 +80,12 @@ public class CompensationApplicationDTO {
 		this.mainGuardian = mainGuardian;
 	}
 
-	
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "CompensationApplicationDTO [birthdate=" + birthdate + ", childName=" + childName
+				+ ", childPersonalCode=" + childPersonalCode + ", childSurname=" + childSurname + ", kindergartenData="
+				+ kindergartenData + ", mainGuardian=" + mainGuardian + "]";
+	}
+
 	
 }

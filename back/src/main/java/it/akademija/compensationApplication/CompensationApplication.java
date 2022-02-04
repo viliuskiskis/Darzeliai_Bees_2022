@@ -3,18 +3,12 @@ package it.akademija.compensationApplication;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import it.akademija.application.ApplicationStatus;
 import it.akademija.user.User;
@@ -23,7 +17,6 @@ import it.akademija.user.User;
 public class CompensationApplication {
 	
 	@Id
-	@Column(name = "compensationApplication_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
@@ -32,56 +25,35 @@ public class CompensationApplication {
 	@JoinColumn(name = "user_id")
 	private User mainGuardian;
 	
-	@Column(name = "date_of_submition")
-	LocalDate submitedAt;
+	private LocalDate submitedAt;
 	
 	private ApplicationStatus aplicationStatus;
 	
-	@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{11}$|")
+	
 	private String childPersonalCode;
 	
-	@NotEmpty(message = "Vardas privalomas!")
-	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
+
 	private String childName;
 
-	@NotEmpty(message = "Pavardė privaloma!")
-	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
+	
 	private String childSurname;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private String birthdate;
+	private LocalDate birthdate;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate approvalDate;
 	
-	@NotEmpty(message = "Ugdymo įstaigos pavadinimas privalomas!")
-	@Size(min = 2, max = 70)
 	private String kindergardenName;
 	
-	@NotEmpty(message = "Ugdymo įstaigos kodas privalomas!")
-	@Pattern(regexp = "[0-9]{9}")
 	private String kindergardenCode;
 	
-	@NotEmpty(message = "Ugdymo įstaigos telefono numeris privalomas!")
-	@Pattern(regexp = "[+]?[0-9]{4,17}")
 	private String kindergardenPhone;
 	
-	@NotEmpty(message = "Ugdymo įstaigos elektroninio pašto adresas privalomas!")
-	@Pattern(regexp = "\"^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$\"")
 	private String kindergardenEmail;
 	
-	@NotEmpty(message = "Ugdymo įstaigos banko pavadinimas privalomas!")
-	@Size(min = 2, max = 50)
 	private String kindergadenBankName;
 	
-	@NotEmpty(message = "Ugdymo įstaigos banko sąskaitos numeris privalomas!")
-	@Pattern(regexp = "[A-Za-z]{2}[0-9]{2}[A-z0-9]{11,30}")
 	private String kindergardenBankAccount;
 	
-	@NotEmpty(message = "Ugdymo įstaigos banko kodas privalomas!")
-	@Pattern(regexp = "[A-Za-z]{6}[A-Za-z0-9]{2,5}")
 	private String kindergardenBankCode;
 	
 	@Override
@@ -97,11 +69,11 @@ public class CompensationApplication {
 
 	public CompensationApplication() { }
 
-	public CompensationApplication(User mainGuardian, LocalDate submitedAt, ApplicationStatus aplicationStatus, 
+	public CompensationApplication( LocalDate submitedAt, ApplicationStatus aplicationStatus, 
 			String childPersonalCode,
 			String childName,
 			String childSurname,
-			String birthdate, 
+			LocalDate birthdate, 
 			String kindergardenName,
 			String kindergardenCode,
 			String kindergardenPhone,
@@ -110,7 +82,7 @@ public class CompensationApplication {
 			String kindergardenBankAccount,
 			String kindergardenBankCode ) {
 		super();
-		this.mainGuardian = mainGuardian;
+		
 		this.submitedAt = submitedAt;
 		this.aplicationStatus = aplicationStatus;
 		this.childPersonalCode = childPersonalCode;
@@ -166,11 +138,12 @@ public class CompensationApplication {
 		this.childSurname = childSurname;
 	}
 
-	public String getBirthdate() {
+	
+	public LocalDate getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(String birthdate) {
+	public void setBirthdate(LocalDate birthdate) {
 		this.birthdate = birthdate;
 	}
 
