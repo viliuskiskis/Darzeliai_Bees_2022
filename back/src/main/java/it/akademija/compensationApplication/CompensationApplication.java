@@ -51,7 +51,7 @@ public class CompensationApplication {
 	private String childSurname;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate birthdate;
+	private String birthdate;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate approvalDate;
@@ -101,7 +101,7 @@ public class CompensationApplication {
 			String childPersonalCode,
 			String childName,
 			String childSurname,
-			LocalDate birthdate, 
+			String birthdate, 
 			String kindergardenName,
 			String kindergardenCode,
 			String kindergardenPhone,
@@ -166,11 +166,11 @@ public class CompensationApplication {
 		this.childSurname = childSurname;
 	}
 
-	public LocalDate getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(LocalDate birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 

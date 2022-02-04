@@ -33,9 +33,9 @@ public class CompensationApplicationService {
 		compensationApplication.setSubmitedAt(LocalDate.now());
 		compensationApplication.setAplicationStatus(ApplicationStatus.Pateiktas);
 		compensationApplication.setChildPersonalCode(compensationApplicationDTO.getChildPersonalCode());
-		compensationApplication.setChildName(compensationApplication.getChildName());
-		compensationApplication.setChildSurname(compensationApplication.getChildSurname());
-		compensationApplication.setBirthdate(compensationApplication.getBirthdate());
+		compensationApplication.setChildName(compensationApplicationDTO.getChildName());
+		compensationApplication.setChildSurname(compensationApplicationDTO.getChildSurname());
+		compensationApplication.setBirthdate(compensationApplicationDTO.getBirthdate());
 		compensationApplication.setKindergardenName(compensationApplicationDTO.getKindergartenData().getBankName());
 		compensationApplication.setKindergardenCode(compensationApplicationDTO.getKindergartenData().getCode());
 		compensationApplication.setKindergardenPhone(compensationApplicationDTO.getKindergartenData().getPhone());
