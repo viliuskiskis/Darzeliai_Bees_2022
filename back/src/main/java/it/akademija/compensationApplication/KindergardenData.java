@@ -1,6 +1,11 @@
 package it.akademija.compensationApplication;
 
+
+
 public class KindergardenData {
+	
+	
+
 	private String entityName;
 	private String code;
 	private String phone;

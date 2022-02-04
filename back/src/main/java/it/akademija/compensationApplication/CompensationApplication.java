@@ -84,6 +84,17 @@ public class CompensationApplication {
 	@Pattern(regexp = "[A-Za-z]{6}[A-Za-z0-9]{2,5}")
 	private String kindergardenBankCode;
 	
+	@Override
+	public String toString() {
+		return "CompensationApplication [id=" + id + ", mainGuardian=" + mainGuardian + ", submitedAt=" + submitedAt
+				+ ", aplicationStatus=" + aplicationStatus + ", childPersonalCode=" + childPersonalCode + ", childName="
+				+ childName + ", childSurname=" + childSurname + ", birthdate=" + birthdate + ", approvalDate="
+				+ approvalDate + ", kindergardenName=" + kindergardenName + ", kindergardenCode=" + kindergardenCode
+				+ ", kindergardenPhone=" + kindergardenPhone + ", kindergardenEmail=" + kindergardenEmail
+				+ ", kindergadenBankName=" + kindergadenBankName + ", kindergardenBankAccount="
+				+ kindergardenBankAccount + ", kindergardenBankCode=" + kindergardenBankCode + "]";
+	}
+
 	public CompensationApplication() { }
 
 	public CompensationApplication(User mainGuardian, LocalDate submitedAt, ApplicationStatus aplicationStatus, 

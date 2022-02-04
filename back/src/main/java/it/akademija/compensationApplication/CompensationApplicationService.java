@@ -17,12 +17,18 @@ public class CompensationApplicationService {
 	@Autowired
 	private CompensationApplicationDAO compensationApplicationDAO;
 	
+	//@Autowired
+	//private KindergardenDataDAO kindergardenDataDAO;
+	
+	@Autowired
 	private UserService userService;
 
-	public void createNewCompensationApplication(CompensationApplicationDTO compensationApplicationDTO) {
+	public CompensationApplication createNewCompensationApplication(CompensationApplicationDTO compensationApplicationDTO) {
 		CompensationApplication compensationApplication = new CompensationApplication();
 		
-		User user = userService.getUserByUsername(compensationApplicationDTO.getUserDTO().getUsername());
+		
+		
+		User user = userService.getUserByUsername(compensationApplicationDTO.getMainGuardian().getUsername());
 		compensationApplication.setMainGuardian(user);
 		compensationApplication.setSubmitedAt(LocalDate.now());
 		compensationApplication.setAplicationStatus(ApplicationStatus.Pateiktas);
@@ -39,5 +45,7 @@ public class CompensationApplicationService {
 		compensationApplication.setKindergardenBankCode(compensationApplicationDTO.getKindergartenData().getBankCode());
 		
 		compensationApplicationDAO.save(compensationApplication);
+		
+		return compensationApplication;
 	}
 }

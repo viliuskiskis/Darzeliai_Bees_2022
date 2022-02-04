@@ -499,27 +499,27 @@ class CreateApplicationFormContainer extends Component {
         text: "Trūksta vaiko duomenų"
       });
     } else {
-      swal({
-        title: "Kai bus padarytas back'as, bus siunčiami šie duomenys:",
-        text: JSON.stringify(data)
-      });
-      // http
-      //   .post(`${apiEndpoint}/api/prasymai/compensation/user/new`, data)
-      //   .then((response) => {
-      //     //console.log(response);
-      //     swal({
-      //       text: response.data,
-      //       button: "Gerai",
-      //     });
+      // swal({
+      //   title: "Kai bus padarytas back'as, bus siunčiami šie duomenys:",
+      //   text: JSON.stringify(data)
+      // });
+      http
+        .post(`${apiEndpoint}/api/kompensacijosPrasymai/user/new`, data)
+        .then((response) => {
+          console.log(response);
+          swal({
+            text: response.data,
+            button: "Gerai",
+          });
 
-      //     this.props.history.push("/prasymai")
-      //   })
-      //   .catch((error) => {
-      //     swal({
-      //       text: "Įvyko klaida. " + error.response.data,
-      //       button: "Gerai"
-      //     });
-      //   });
+          this.props.history.push("/prasymai")
+        })
+        .catch((error) => {
+          swal({
+            text: "Įvyko klaida. " , //+ error.response.data
+            button: "Gerai"
+          });
+        });
     }
   }
 

@@ -9,21 +9,21 @@ public class CompensationApplicationDTO {
 	private String childPersonalCode;
 	private String childSurname;
 	private KindergardenData kindergartenData;
-	private UserDTO userDTO;
+	private UserDTO mainGuardian;
 	
 	public CompensationApplicationDTO() {
 		super();
 	}
 
 	public CompensationApplicationDTO(String birthdate, String childName, String childPersonalCode, String childSurname,
-			KindergardenData kindergartenData, UserDTO userDTO) {
+			KindergardenData kindergartenData, UserDTO mainGuardian) {
 		super();
 		this.birthdate = birthdate;
 		this.childName = childName;
 		this.childPersonalCode = childPersonalCode;
 		this.childSurname = childSurname;
 		this.kindergartenData = kindergartenData;
-		this.userDTO = userDTO;
+		this.mainGuardian = mainGuardian;
 	}
 
 	public String getBirthdate() {
@@ -66,16 +66,23 @@ public class CompensationApplicationDTO {
 		this.kindergartenData = kindergartenData;
 	}
 
-	public UserDTO getUserDTO() {
-		return userDTO;
+	@Override
+	public String toString() {
+		return "CompensationApplicationDTO [birthdate=" + birthdate + ", childName=" + childName
+				+ ", childPersonalCode=" + childPersonalCode + ", childSurname=" + childSurname + ", kindergartenData="
+				+ kindergartenData + ", userDTO=" + mainGuardian + "]";
 	}
 
-	public void setUserDTO(UserDTO userDTO) {
-		this.userDTO = userDTO;
+	public UserDTO getMainGuardian() {
+		return mainGuardian;
+	}
+
+	public void setMainGuardian(UserDTO mainGuardian) {
+		this.mainGuardian = mainGuardian;
 	}
 
 	
-
+	
 	
 	
 	

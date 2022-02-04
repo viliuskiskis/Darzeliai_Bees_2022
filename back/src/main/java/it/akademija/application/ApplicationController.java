@@ -61,7 +61,6 @@ public class ApplicationController {
 	 */
 	@Secured({ "ROLE_USER" })
 	@PostMapping("/user/new")
-
 	@ApiOperation(value = "Create new application")
 	public ResponseEntity<String> createNewApplication(
 			@ApiParam(value = "Application", required = true) @Valid @RequestBody ApplicationDTO data) {
