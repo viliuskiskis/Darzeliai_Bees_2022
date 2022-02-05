@@ -3,12 +3,15 @@ package it.akademija.compensationApplication;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import it.akademija.application.ApplicationStatus;
 import it.akademija.user.User;
@@ -17,6 +20,7 @@ import it.akademija.user.User;
 public class CompensationApplication {
 	
 	@Id
+	@Column(name = "compensattion_application_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
@@ -25,6 +29,7 @@ public class CompensationApplication {
 	@JoinColumn(name = "user_id")
 	private User mainGuardian;
 	
+	@Column(name = "date_of_submition")
 	private LocalDate submitedAt;
 	
 	private ApplicationStatus aplicationStatus;
@@ -38,33 +43,34 @@ public class CompensationApplication {
 	
 	private String childSurname;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthdate;
 	
 	private LocalDate approvalDate;
 	
-	private String kindergardenName;
+	private String kindergartenName;
 	
-	private String kindergardenCode;
+	private String kindergartenCode;
 	
-	private String kindergardenPhone;
+	private String kindergartenPhone;
 	
-	private String kindergardenEmail;
+	private String kindergartenEmail;
 	
-	private String kindergadenBankName;
+	private String kindergartenBankName;
 	
-	private String kindergardenBankAccount;
+	private String kindergartenBankAccount;
 	
-	private String kindergardenBankCode;
+	private String kindergartenBankCode;
 	
 	@Override
 	public String toString() {
 		return "CompensationApplication [id=" + id + ", mainGuardian=" + mainGuardian + ", submitedAt=" + submitedAt
 				+ ", aplicationStatus=" + aplicationStatus + ", childPersonalCode=" + childPersonalCode + ", childName="
 				+ childName + ", childSurname=" + childSurname + ", birthdate=" + birthdate + ", approvalDate="
-				+ approvalDate + ", kindergardenName=" + kindergardenName + ", kindergardenCode=" + kindergardenCode
-				+ ", kindergardenPhone=" + kindergardenPhone + ", kindergardenEmail=" + kindergardenEmail
-				+ ", kindergadenBankName=" + kindergadenBankName + ", kindergardenBankAccount="
-				+ kindergardenBankAccount + ", kindergardenBankCode=" + kindergardenBankCode + "]";
+				+ approvalDate + ", kindergardenName=" + kindergartenName + ", kindergardenCode=" + kindergartenCode
+				+ ", kindergardenPhone=" + kindergartenPhone + ", kindergardenEmail=" + kindergartenEmail
+				+ ", kindergadenBankName=" + kindergartenBankName + ", kindergardenBankAccount="
+				+ kindergartenBankAccount + ", kindergardenBankCode=" + kindergartenBankCode + "]";
 	}
 
 	public CompensationApplication() { }
@@ -89,13 +95,13 @@ public class CompensationApplication {
 		this.childName = childName;
 		this.childSurname = childSurname;
 		this.birthdate = birthdate;
-		this.kindergardenName = kindergardenName;
-		this.kindergardenCode = kindergardenCode;
-		this.kindergardenPhone = kindergardenPhone;
-		this.kindergardenEmail = kindergardenEmail;
-		this.kindergadenBankName = kindergadenBankName;
-		this.kindergardenBankAccount = kindergardenBankAccount;
-		this.kindergardenBankCode = kindergardenBankCode;
+		this.kindergartenName = kindergardenName;
+		this.kindergartenCode = kindergardenCode;
+		this.kindergartenPhone = kindergardenPhone;
+		this.kindergartenEmail = kindergardenEmail;
+		this.kindergartenBankName = kindergadenBankName;
+		this.kindergartenBankAccount = kindergardenBankAccount;
+		this.kindergartenBankCode = kindergardenBankCode;
 	}
 
 	Long getId() {
@@ -155,60 +161,60 @@ public class CompensationApplication {
 		this.approvalDate = approvalDate;
 	}
 
-	public String getKindergardenName() {
-		return kindergardenName;
+	public String getKindergartenName() {
+		return kindergartenName;
 	}
 
-	public void setKindergardenName(String kindergardenName) {
-		this.kindergardenName = kindergardenName;
+	public void setKindergartenName(String kindergartenName) {
+		this.kindergartenName = kindergartenName;
 	}
 
-	public String getKindergardenCode() {
-		return kindergardenCode;
+	public String getKindergartenCode() {
+		return kindergartenCode;
 	}
 
-	public void setKindergardenCode(String kindergardenCode) {
-		this.kindergardenCode = kindergardenCode;
+	public void setKindergartenCode(String kindergartenCode) {
+		this.kindergartenCode = kindergartenCode;
 	}
 
-	public String getKindergardenPhone() {
-		return kindergardenPhone;
+	public String getKindergartenPhone() {
+		return kindergartenPhone;
 	}
 
-	public void setKindergardenPhone(String kindergardenPhone) {
-		this.kindergardenPhone = kindergardenPhone;
+	public void setKindergartenPhone(String kindergartenPhone) {
+		this.kindergartenPhone = kindergartenPhone;
 	}
 
-	public String getKindergardenEmail() {
-		return kindergardenEmail;
+	public String getKindergartenEmail() {
+		return kindergartenEmail;
 	}
 
-	public void setKindergardenEmail(String kindergardenEmail) {
-		this.kindergardenEmail = kindergardenEmail;
+	public void setKindergartenEmail(String kindergartenEmail) {
+		this.kindergartenEmail = kindergartenEmail;
 	}
 
-	public String getKindergadenBankName() {
-		return kindergadenBankName;
+	public String getKindergartenBankName() {
+		return kindergartenBankName;
 	}
 
-	public void setKindergadenBankName(String kindergadenBankName) {
-		this.kindergadenBankName = kindergadenBankName;
+	public void setKindergartenBankName(String kindergartenBankName) {
+		this.kindergartenBankName = kindergartenBankName;
 	}
 
-	public String getKindergardenBankAccount() {
-		return kindergardenBankAccount;
+	public String getKindergartenBankAccount() {
+		return kindergartenBankAccount;
 	}
 
-	public void setKindergardenBankAccount(String kindergardenBankAccount) {
-		this.kindergardenBankAccount = kindergardenBankAccount;
+	public void setKindergartenBankAccount(String kindergartenBankAccount) {
+		this.kindergartenBankAccount = kindergartenBankAccount;
 	}
 
-	public String getKindergardenBankCode() {
-		return kindergardenBankCode;
+	public String getKindergartenBankCode() {
+		return kindergartenBankCode;
 	}
 
-	public void setKindergardenBankCode(String kindergardenBankCode) {
-		this.kindergardenBankCode = kindergardenBankCode;
+	public void setKindergartenBankCode(String kindergartenBankCode) {
+		this.kindergartenBankCode = kindergartenBankCode;
 	}
 
 	public User getMainGuardian() {

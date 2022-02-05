@@ -33,13 +33,13 @@ public class CompensationApplicationService {
 		compensationApplication.setChildName(compensationApplicationDTO.getChildName());
 		compensationApplication.setChildSurname(compensationApplicationDTO.getChildSurname());
 		compensationApplication.setBirthdate(compensationApplicationDTO.getBirthdate());
-		compensationApplication.setKindergardenName(compensationApplicationDTO.getKindergartenData().getEntityName());
-		compensationApplication.setKindergardenCode(compensationApplicationDTO.getKindergartenData().getCode());
-		compensationApplication.setKindergardenPhone(compensationApplicationDTO.getKindergartenData().getPhone());
-		compensationApplication.setKindergardenEmail(compensationApplicationDTO.getKindergartenData().getEmail());
-		compensationApplication.setKindergadenBankName(compensationApplicationDTO.getKindergartenData().getBankName());
-		compensationApplication.setKindergardenBankAccount(compensationApplicationDTO.getKindergartenData().getAccount());
-		compensationApplication.setKindergardenBankCode(compensationApplicationDTO.getKindergartenData().getBankCode());
+		compensationApplication.setKindergartenName(compensationApplicationDTO.getKindergartenData().getEntityName());
+		compensationApplication.setKindergartenCode(compensationApplicationDTO.getKindergartenData().getCode());
+		compensationApplication.setKindergartenPhone(compensationApplicationDTO.getKindergartenData().getPhone());
+		compensationApplication.setKindergartenEmail(compensationApplicationDTO.getKindergartenData().getEmail());
+		compensationApplication.setKindergartenBankName(compensationApplicationDTO.getKindergartenData().getBankName());
+		compensationApplication.setKindergartenBankAccount(compensationApplicationDTO.getKindergartenData().getAccount());
+		compensationApplication.setKindergartenBankCode(compensationApplicationDTO.getKindergartenData().getBankCode());
 		
 		compensationApplicationDAO.save(compensationApplication);
 		

@@ -48,15 +48,15 @@ public class CompensationApplicationController {
 			
 			CompensationApplication compensationApplication = compensationApplicationService.createNewCompensationApplication(compensationApplicationDTO);
 			
-//			if (compensationApplication != null) {
+			if (compensationApplication != null) {
 				journalService.newJournalEntry(OperationType.APPLICATION_SUBMITED, 123L, ObjectType.COMPENSATIOAPPLICATION,
 					"Sukurtas naujas prašymas");
-//				
-//				return new ResponseEntity<String>(compensationApplication.toString(), HttpStatus.OK);
-//			}
-//			else {
-				return new ResponseEntity<String>( compensationApplicationDTO.toString(), HttpStatus.OK);
-//			}
+				
+				return new ResponseEntity<String>(compensationApplication.toString(), HttpStatus.OK);
+			}
+			else {
+				return new ResponseEntity<String>( compensationApplicationDTO.toString(), HttpStatus.BAD_REQUEST);
+			}
 		
 		
 	}
