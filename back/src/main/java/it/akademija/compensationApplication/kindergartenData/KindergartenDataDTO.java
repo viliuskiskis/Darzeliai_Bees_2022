@@ -1,10 +1,8 @@
-package it.akademija.compensationApplication;
+package it.akademija.compensationApplication.kindergartenData;
 
 
 
-public class KindergartenData {
-	
-	
+public class KindergartenDataDTO {
 
 	private String entityName;
 	private String code;
@@ -15,11 +13,11 @@ public class KindergartenData {
 	private String bankCode;
 	private String bankName;
 	
-	public KindergartenData() {
+	public KindergartenDataDTO() {
 		super();
 	}
 	
-	public KindergartenData(String entityName, String code, String phone, String email, String address,
+	public KindergartenDataDTO(String entityName, String code, String phone, String email, String address,
 			String account, String bankCode, String bankName) {
 		super();
 		this.entityName = entityName;
