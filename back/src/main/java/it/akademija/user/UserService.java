@@ -51,6 +51,15 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	@Lazy
 	private SessionRegistry sessionRegistry;
+	
+	/**
+	 * Finds User by username
+	 * 
+	 * @param id
+	 */
+	public User getUserByUsername(String username) {
+		return userDao.findByUsername(username);
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

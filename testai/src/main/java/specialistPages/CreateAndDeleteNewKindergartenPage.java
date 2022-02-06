@@ -1,6 +1,7 @@
 package specialistPages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pages.AbstractObjectPage;
+
+import java.time.Duration;
 
 public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
 
@@ -74,8 +77,12 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
 		capacityAgeGroup3to6.sendKeys(value);
 	}
 	
-	public void clickButtonSaveKindergarten () {
-		buttonSaveKindergarten.click();
+//	public void clickButtonSaveKindergarten () {
+//		buttonSaveKindergarten.click();
+//	}
+	public void clickButtonSaveKindergarten() {
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].click();", buttonSaveKindergarten);
 	}
 	
 	public void clickOKPopUp() {
@@ -90,7 +97,7 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
 	}
 	
 	public Boolean newKindergartenSearchResult () {
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 20);
 		return wait.until(ExpectedConditions.textToBe(By.xpath("//*//td[1]"), "123 Testinis"));
 	}
 	
@@ -120,8 +127,8 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
 		buttonAgreeToDeleteKindergarten.click();
 	}
 	
-	public Boolean assertKindergartenWasDeletedSuccesfully () {
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+	public Boolean assertKindergartenWasDeletedSuccessfully() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 		return wait.until(ExpectedConditions.textToBe(By.xpath("//body/div[2]/div/div[1]"), "Darželis ištrintas sėkmingai"));
 	}
 	

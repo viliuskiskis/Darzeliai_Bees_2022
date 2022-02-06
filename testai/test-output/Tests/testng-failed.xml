@@ -8,16 +8,9 @@
       </run>
     </groups>
     <classes>
-      <class name="parentTests.SubmitNewApplication">
-        <methods>
-          <include name="setUp"/>
-          <include name="deleteApplication"/>
-          <include name="successfullySubmitNewApplication"/>
-          <include name="closeBrowser"/>
-        </methods>
-      </class> <!-- parentTests.SubmitNewApplication -->
       <class name="specialistTests.UpdateSpecialistDetails">
         <methods>
+          <include name="tearDown"/>
           <include name="setUp"/>
           <include name="successfullyResetSpecialistPasswordToOriginal"/>
           <include name="closeBrowser"/>

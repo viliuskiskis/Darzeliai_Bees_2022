@@ -69,6 +69,24 @@ public class ApplicationService {
     }
 
     /**
+     * 
+     * Get information about submitted application for logged in user by id
+     * 
+     * @param currentUsername
+     * @param application     id
+     * @return user application
+     */
+    @Transactional(readOnly = true)
+    public ApplicationInfoUser getUserApplicationById(String currentUsername, Long id) {
+
+	return applicationDao.findAllUserApplications(currentUsername)
+			     .stream()
+			     .filter(data -> data.getId() == id)
+			     .findAny()
+			     .get();
+    }
+
+    /**
      * Create an application for logged in user's child with specified child data.
      * Receives and updates user data, receives saves additional child's guardian if
      * person with such personal code is not already in the database. Sets received

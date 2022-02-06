@@ -1,6 +1,3 @@
-### Modesto pakeitimai (reikia patikrinti) ###
-back/src/main/resources/public/
-
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
