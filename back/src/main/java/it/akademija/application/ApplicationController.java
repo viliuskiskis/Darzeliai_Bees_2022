@@ -41,177 +41,199 @@ import it.akademija.journal.OperationType;
 @RequestMapping(path = "/api/prasymai")
 public class ApplicationController {
 
-	private static final Logger LOG = LoggerFactory.getLogger(ApplicationController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ApplicationController.class);
 
-	@Autowired
-	private ApplicationService applicationService;
+    @Autowired
+    private ApplicationService applicationService;
 
-	@Autowired
-	private RegistrationStatusService statusService;
+    @Autowired
+    private RegistrationStatusService statusService;
 
-	@Autowired
-	private JournalService journalService;
+    @Autowired
+    private JournalService journalService;
 
-	/**
-	 * 
-	 * Create new application for logged user
-	 * 
-	 * @param data
-	 * @return message
-	 */
-	@Secured({ "ROLE_USER" })
-	@PostMapping("/user/new")
+    /**
+     * 
+     * Create new application for logged user
+     * 
+     * @param data
+     * @return message
+     */
+    @Secured({ "ROLE_USER" })
+    @PostMapping("/user/new")
 
-	@ApiOperation(value = "Create new application")
-	public ResponseEntity<String> createNewApplication(
-			@ApiParam(value = "Application", required = true) @Valid @RequestBody ApplicationDTO data) {
+    @ApiOperation(value = "Create new application")
+    public ResponseEntity<String> createNewApplication(
+	    @ApiParam(value = "Application", required = true) @Valid @RequestBody ApplicationDTO data) {
 
-		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+	String currentUsername = SecurityContextHolder.getContext()
+						      .getAuthentication()
+						      .getName();
 
-		String childPersonalCode = data.getChildPersonalCode();
+	String childPersonalCode = data.getChildPersonalCode();
 
-		if (!statusService.getStatus().isRegistrationActive()) {
+	if (!statusService.getStatus()
+			  .isRegistrationActive()) {
 
-			LOG.warn("Naudotojas [{}] bandė registruoti prašymą esant neaktyviai registracijai", currentUsername);
-			return new ResponseEntity<String>("Šiuo metu registracija nevykdoma.", HttpStatus.METHOD_NOT_ALLOWED);
-
-		} 
-		
-		else if (applicationService.existsByPersonalCode(childPersonalCode)) {
-
-			LOG.warn("Naudotojas [{}] bandė registruoti prašymą jau registruotam vaikui su asmens kodu [{}]",
-					currentUsername, data.getChildPersonalCode());
-
-			return new ResponseEntity<String>("Prašymas vaikui su tokiu asmens kodu jau yra registruotas",
-					HttpStatus.CONFLICT);
-
-		} 
-		
-		else {
-
-			Application application = applicationService.createNewApplication(currentUsername, data);
-
-			if (application != null) {
-
-				journalService.newJournalEntry(OperationType.APPLICATION_SUBMITED, 123L, ObjectType.APPLICATION,
-						"Sukurtas naujas prašymas");
-
-				return new ResponseEntity<String>("Prašymas sukurtas sėkmingai", HttpStatus.OK);
-
-			}
-
-			return new ResponseEntity<String>("Prašymo sukurti nepavyko", HttpStatus.BAD_REQUEST);
-
-		}
-	}
-
-	/**
-	 * Get list of all applications for logged user
-	 * 
-	 * @return list applications
-	 */
-	@Secured({ "ROLE_USER" })
-	@GetMapping("/user")
-	@ApiOperation(value = "Get all user applications")
-	public Set<ApplicationInfoUser> getAllUserApplications() {
-
-		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-
-		return applicationService.getAllUserApplications(currentUsername);
-	}
-
-	/**
-	 *
-	 * Get page of unsorted applications
-	 *
-	 * @param page
-	 * @param size
-	 * @return page of applications
-	 */
-	@Secured({ "ROLE_MANAGER" })
-	@GetMapping("/manager")
-	@ApiOperation(value = "Get a page from all submitted applications")
-	public Page<ApplicationInfo> getPageFromSubmittedApplications(@RequestParam("page") int page,
-			@RequestParam("size") int size) {
-
-		List<Order> orders = new ArrayList<>();
-		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
-		orders.add(new Order(Direction.ASC, "childName").ignoreCase());
-
-		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
-
-		return applicationService.getPageFromSubmittedApplications(pageable);
-	}
-
-	/**
-	 * Get page of unsorted applications filtered by child personal code
-	 * 
-	 * @param childPersonalCode
-	 * @param page
-	 * @param size
-	 * @return page of applications
-	 */
-	@Secured({ "ROLE_MANAGER" })
-	@GetMapping("/manager/page/{childPersonalCode}")
-	@ApiOperation(value = "Get a page from all submitted applications with specified child personal code")
-	public ResponseEntity<Page<ApplicationInfo>> getApplicationnPageFilteredById(@PathVariable String childPersonalCode,
-			@RequestParam("page") int page, @RequestParam("size") int size) {
-
-		List<Order> orders = new ArrayList<>();
-		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
-		orders.add(new Order(Direction.ASC, "childName").ignoreCase());
-
-		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
-
-		return new ResponseEntity<>(applicationService.getApplicationnPageFilteredById(childPersonalCode, pageable),
-				HttpStatus.OK);
-	}
-
-	/**
-	 * 
-	 * Delete user application by id
-	 * 
-	 * @param id
-	 * @return message
-	 */
-
-	@Secured({ "ROLE_USER" })
-	@DeleteMapping("/user/delete/{id}")
-	@ApiOperation("Delete user application by id")
-	public ResponseEntity<String> deleteApplication(
-			@ApiParam(value = "Application id", required = true) @PathVariable Long id) {
-
-		LOG.info("**ApplicationController: trinamas prasymas [{}] **", id);
-
-		return applicationService.deleteApplication(id);
+	    LOG.warn("Naudotojas [{}] bandė registruoti prašymą esant neaktyviai registracijai", currentUsername);
+	    return new ResponseEntity<String>("Šiuo metu registracija nevykdoma.", HttpStatus.METHOD_NOT_ALLOWED);
 
 	}
 
-	/**
-	 * 
-	 * Manager sets user application status to inactive
-	 * 
-	 * @param id
-	 * @return message
-	 */
-	@Secured({ "ROLE_MANAGER" })
-	@PostMapping("/manager/deactivate/{id}")
-	@ApiOperation("Delete user application by id")
-	public ResponseEntity<String> deactivateApplication(
-			@ApiParam(value = "Application id", required = true) @PathVariable Long id) {
+	else if (applicationService.existsByPersonalCode(childPersonalCode)) {
 
-		LOG.info("**ApplicationController: deaktyvuojamas prasymas [{}] **", id);
+	    LOG.warn("Naudotojas [{}] bandė registruoti prašymą jau registruotam vaikui su asmens kodu [{}]",
+		    currentUsername, data.getChildPersonalCode());
 
-		return applicationService.deactivateApplication(id);
+	    return new ResponseEntity<String>("Prašymas vaikui su tokiu asmens kodu jau yra registruotas",
+		    HttpStatus.CONFLICT);
 
 	}
 
-	public ApplicationService getService() {
-		return applicationService;
-	}
+	else {
 
-	public void setService(ApplicationService applicationService) {
-		this.applicationService = applicationService;
+	    Application application = applicationService.createNewApplication(currentUsername, data);
+
+	    if (application != null) {
+
+		journalService.newJournalEntry(OperationType.APPLICATION_SUBMITED, 123L, ObjectType.APPLICATION,
+			"Sukurtas naujas prašymas");
+
+		return new ResponseEntity<String>("Prašymas sukurtas sėkmingai", HttpStatus.OK);
+
+	    }
+
+	    return new ResponseEntity<String>("Prašymo sukurti nepavyko", HttpStatus.BAD_REQUEST);
+
 	}
+    }
+
+    /**
+     * Get list of all applications for logged user
+     * 
+     * @return list applications
+     */
+    @Secured({ "ROLE_USER" })
+    @GetMapping("/user")
+    @ApiOperation(value = "Get all user applications")
+    public Set<ApplicationInfoUser> getAllUserApplications() {
+
+	String currentUsername = SecurityContextHolder.getContext()
+						      .getAuthentication()
+						      .getName();
+
+	return applicationService.getAllUserApplications(currentUsername);
+    }
+
+    /**
+     * Get chosen application for logged user by id
+     * 
+     * @return application
+     */
+    @Secured({ "ROLE_USER" })
+    @GetMapping("/user/{id}")
+    @ApiOperation(value = "Get user application by id")
+    public ApplicationInfoUser getUserApplicationById(@PathVariable Long id) {
+
+	String currentUsername = SecurityContextHolder.getContext()
+						      .getAuthentication()
+						      .getName();
+
+	return applicationService.getUserApplicationById(currentUsername, id);
+    }
+
+    /**
+     *
+     * Get page of unsorted applications
+     *
+     * @param page
+     * @param size
+     * @return page of applications
+     */
+    @Secured({ "ROLE_MANAGER" })
+    @GetMapping("/manager")
+    @ApiOperation(value = "Get a page from all submitted applications")
+    public Page<ApplicationInfo> getPageFromSubmittedApplications(@RequestParam("page") int page,
+	    @RequestParam("size") int size) {
+
+	List<Order> orders = new ArrayList<>();
+	orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
+	orders.add(new Order(Direction.ASC, "childName").ignoreCase());
+
+	Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
+
+	return applicationService.getPageFromSubmittedApplications(pageable);
+    }
+
+    /**
+     * Get page of unsorted applications filtered by child personal code
+     * 
+     * @param childPersonalCode
+     * @param page
+     * @param size
+     * @return page of applications
+     */
+    @Secured({ "ROLE_MANAGER" })
+    @GetMapping("/manager/page/{childPersonalCode}")
+    @ApiOperation(value = "Get a page from all submitted applications with specified child personal code")
+    public ResponseEntity<Page<ApplicationInfo>> getApplicationnPageFilteredById(@PathVariable String childPersonalCode,
+	    @RequestParam("page") int page, @RequestParam("size") int size) {
+
+	List<Order> orders = new ArrayList<>();
+	orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
+	orders.add(new Order(Direction.ASC, "childName").ignoreCase());
+
+	Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
+
+	return new ResponseEntity<>(applicationService.getApplicationnPageFilteredById(childPersonalCode, pageable),
+		HttpStatus.OK);
+    }
+
+    /**
+     * 
+     * Delete user application by id
+     * 
+     * @param id
+     * @return message
+     */
+
+    @Secured({ "ROLE_USER" })
+    @DeleteMapping("/user/delete/{id}")
+    @ApiOperation("Delete user application by id")
+    public ResponseEntity<String> deleteApplication(
+	    @ApiParam(value = "Application id", required = true) @PathVariable Long id) {
+
+	LOG.info("**ApplicationController: trinamas prasymas [{}] **", id);
+
+	return applicationService.deleteApplication(id);
+
+    }
+
+    /**
+     * 
+     * Manager sets user application status to inactive
+     * 
+     * @param id
+     * @return message
+     */
+    @Secured({ "ROLE_MANAGER" })
+    @PostMapping("/manager/deactivate/{id}")
+    @ApiOperation("Delete user application by id")
+    public ResponseEntity<String> deactivateApplication(
+	    @ApiParam(value = "Application id", required = true) @PathVariable Long id) {
+
+	LOG.info("**ApplicationController: deaktyvuojamas prasymas [{}] **", id);
+
+	return applicationService.deactivateApplication(id);
+
+    }
+
+    public ApplicationService getService() {
+	return applicationService;
+    }
+
+    public void setService(ApplicationService applicationService) {
+	this.applicationService = applicationService;
+    }
 
 }

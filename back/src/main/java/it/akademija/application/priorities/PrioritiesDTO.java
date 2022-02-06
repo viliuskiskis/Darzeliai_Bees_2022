@@ -1,73 +1,80 @@
 package it.akademija.application.priorities;
 
-public class PrioritiesDTO {	
-	
-	private boolean livesInVilnius;
+public class PrioritiesDTO {
 
-	private boolean childIsAdopted;
+    private boolean livesInVilnius;
 
-	private boolean familyHasThreeOrMoreChildrenInSchools;
+    private boolean childIsAdopted;
 
-	private boolean guardianInSchool;
+    private boolean familyHasThreeOrMoreChildrenInSchools;
 
-	private boolean guardianDisability;
+    private boolean guardianInSchool;
 
-	public PrioritiesDTO() {
-		
-	}
+    private boolean guardianDisability;
 
-	public PrioritiesDTO(boolean livesInVilnius, boolean childIsAdopted, boolean familyHasThreeOrMoreChildrenInSchools,
-			boolean guardianInSchool, boolean guardianDisability) {
-		super();
-		this.livesInVilnius = livesInVilnius;
-		this.childIsAdopted = childIsAdopted;
-		this.familyHasThreeOrMoreChildrenInSchools = familyHasThreeOrMoreChildrenInSchools;
-		this.guardianInSchool = guardianInSchool;
-		this.guardianDisability = guardianDisability;
-	}
+    private boolean livesMoreThanTwoYears;
 
-	public boolean isLivesInVilnius() {
-		return livesInVilnius;
-	}
+    public PrioritiesDTO() {
 
-	public void setLivesInVilnius(boolean livesInVilnius) {
-		this.livesInVilnius = livesInVilnius;
-	}
+    }
 
-	public boolean isChildIsAdopted() {
-		return childIsAdopted;
-	}
+    public PrioritiesDTO(boolean livesInVilnius, boolean childIsAdopted, boolean familyHasThreeOrMoreChildrenInSchools,
+	    boolean guardianInSchool, boolean guardianDisability, boolean livesMoreThanTwoYears) {
+	super();
+	this.livesInVilnius = livesInVilnius;
+	this.childIsAdopted = childIsAdopted;
+	this.familyHasThreeOrMoreChildrenInSchools = familyHasThreeOrMoreChildrenInSchools;
+	this.guardianInSchool = guardianInSchool;
+	this.guardianDisability = guardianDisability;
+	this.livesMoreThanTwoYears = livesMoreThanTwoYears;
+    }
 
-	public void setChildIsAdopted(boolean childIsAdopted) {
-		this.childIsAdopted = childIsAdopted;
-	}
+    public boolean isLivesInVilnius() {
+	return livesInVilnius;
+    }
 
-	public boolean isFamilyHasThreeOrMoreChildrenInSchools() {
-		return familyHasThreeOrMoreChildrenInSchools;
-	}
+    public void setLivesInVilnius(boolean livesInVilnius) {
+	this.livesInVilnius = livesInVilnius;
+    }
 
-	public void setFamilyHasThreeOrMoreChildrenInSchools(boolean familyHasThreeOrMoreChildrenInSchools) {
-		this.familyHasThreeOrMoreChildrenInSchools = familyHasThreeOrMoreChildrenInSchools;
-	}
+    public boolean isChildIsAdopted() {
+	return childIsAdopted;
+    }
 
-	public boolean isGuardianInSchool() {
-		return guardianInSchool;
-	}
+    public void setChildIsAdopted(boolean childIsAdopted) {
+	this.childIsAdopted = childIsAdopted;
+    }
 
-	public void setGuardianInSchool(boolean guardianInSchool) {
-		this.guardianInSchool = guardianInSchool;
-	}
+    public boolean isFamilyHasThreeOrMoreChildrenInSchools() {
+	return familyHasThreeOrMoreChildrenInSchools;
+    }
 
-	public boolean isGuardianDisability() {
-		return guardianDisability;
-	}
+    public void setFamilyHasThreeOrMoreChildrenInSchools(boolean familyHasThreeOrMoreChildrenInSchools) {
+	this.familyHasThreeOrMoreChildrenInSchools = familyHasThreeOrMoreChildrenInSchools;
+    }
 
-	public void setGuardianDisability(boolean guardianDisability) {
-		this.guardianDisability = guardianDisability;
-	}
-	
-	
-	
-	
+    public boolean isGuardianInSchool() {
+	return guardianInSchool;
+    }
+
+    public void setGuardianInSchool(boolean guardianInSchool) {
+	this.guardianInSchool = guardianInSchool;
+    }
+
+    public boolean isGuardianDisability() {
+	return guardianDisability;
+    }
+
+    public void setGuardianDisability(boolean guardianDisability) {
+	this.guardianDisability = guardianDisability;
+    }
+
+    public boolean isLivesMoreThanTwoYears() {
+	return livesMoreThanTwoYears;
+    }
+
+    public void setLivesMoreThanTwoYears(boolean livesMoreThanTwoYears) {
+	this.livesMoreThanTwoYears = livesMoreThanTwoYears;
+    }
 
 }

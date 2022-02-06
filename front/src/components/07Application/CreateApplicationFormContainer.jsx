@@ -203,6 +203,8 @@ class CreateApplicationFormContainer extends Component {
           }
           if (response.data.pavarde === this.state.childSurname) {
             this.setState({ childName: response.data.vardas })
+          } else {
+            this.setState({ childName: "" });
           }
           this.setState({
             hiddenChildName: response.data.vardas,
@@ -499,27 +501,23 @@ class CreateApplicationFormContainer extends Component {
         text: "Trūksta vaiko duomenų"
       });
     } else {
-      swal({
-        title: "Kai bus padarytas back'as, bus siunčiami šie duomenys:",
-        text: JSON.stringify(data)
-      });
-      // http
-      //   .post(`${apiEndpoint}/api/prasymai/compensation/user/new`, data)
-      //   .then((response) => {
-      //     //console.log(response);
-      //     swal({
-      //       text: response.data,
-      //       button: "Gerai",
-      //     });
+      http
+        .post(`${apiEndpoint}/api/kompensacijos/user/new`, data)
+        .then((response) => {
+          console.log(response);
+          swal({
+            text: response.data,
+            button: "Gerai",
+          });
 
-      //     this.props.history.push("/prasymai")
-      //   })
-      //   .catch((error) => {
-      //     swal({
-      //       text: "Įvyko klaida. " + error.response.data,
-      //       button: "Gerai"
-      //     });
-      //   });
+          this.props.history.push("/prasymai")
+        })
+        .catch((error) => {
+          swal({
+            text: "Įvyko klaida. " + error.response.data,
+            button: "Gerai"
+          });
+        });
     }
   }
 
