@@ -7,35 +7,38 @@ import javax.persistence.Id;
 @Entity
 public class RegistrationStatus {
 
-    @Id
-    private Integer id;
+	@Id
+	private Integer id;
 
-    @Column(name = "registration_status")
-    private boolean registrationActive;
+	@Column(name = "registration_status")
+	private boolean registrationActive;
+	
+	@Column(name = "queue_editing_locked")
+	private boolean queueEditingLocked;
+	
 
-    @Column(name = "queue_editing_locked")
-    private boolean queueEditingLocked;
+	public RegistrationStatus() {
+		id = 1;
+		registrationActive = false;
+		queueEditingLocked = false;
+	}		
 
-    public RegistrationStatus() {
-	id = 1;
-	registrationActive = true;
-	queueEditingLocked = false;
-    }
+	public boolean isRegistrationActive() {
+		return registrationActive;
+	}
 
-    public boolean isRegistrationActive() {
-	return registrationActive;
-    }
+	public void setRegistrationActive(boolean registrationActive) {
+		this.registrationActive = registrationActive;
+	}
 
-    public void setRegistrationActive(boolean registrationActive) {
-	this.registrationActive = registrationActive;
-    }
+	public boolean isQueueEditingLocked() {
+		return queueEditingLocked;
+	}
 
-    public boolean isQueueEditingLocked() {
-	return queueEditingLocked;
-    }
+	public void setQueueEditingLocked(boolean queueEditingLocked) {
+		this.queueEditingLocked = queueEditingLocked;
+	}
 
-    public void setQueueEditingLocked(boolean queueEditingLocked) {
-	this.queueEditingLocked = queueEditingLocked;
-    }
+	
 
 }

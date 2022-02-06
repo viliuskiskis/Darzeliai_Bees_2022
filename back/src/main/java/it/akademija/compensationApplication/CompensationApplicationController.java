@@ -2,6 +2,8 @@ package it.akademija.compensationApplication;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,7 @@ import it.akademija.journal.OperationType;
 @RequestMapping(path = "/api/kompensacijos")
 public class CompensationApplicationController {
 	
-	//private static final Logger LOG = LoggerFactory.getLogger(ApplicationController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(CompensationApplicationController.class);
 
 	@Autowired
 	private JournalService journalService;
@@ -32,7 +34,13 @@ public class CompensationApplicationController {
 	private CompensationApplicationService compensationApplicationService;
 	
 	
-	
+	/**
+	 * 
+	 * Create new compensation application for logged user
+	 * 
+	 * @param compensationApplicationDTO
+	 * @return message
+	 */
 	@Secured({ "ROLE_USER" })
 	@PostMapping("/user/new")
 	@ApiOperation(value = "Create new compensation application")
@@ -41,24 +49,32 @@ public class CompensationApplicationController {
 			@Valid 
 			@RequestBody CompensationApplicationDTO compensationApplicationDTO) {
 
-		if (compensationApplicationDTO != null) {
-			
-			if(compensationApplicationService.childExistsByPersonalCode(compensationApplicationDTO.getChildPersonalCode())) {
-				
-			}
-			CompensationApplication compensationApplication = compensationApplicationService.createNewCompensationApplication(compensationApplicationDTO);
+		if(compensationApplicationDTO != null) {
 			
 			String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 			
+			if(compensationApplicationService.childExistsByPersonalCode(compensationApplicationDTO.getChildPersonalCode())) {
+				
+				LOG.warn("Naudotojas [{}] bandė registruoti kompensacijos prašymą jau registruotam vaikui su asmens kodu [{}]",
+						currentUsername, compensationApplicationDTO.getChildPersonalCode());
+				
+				return new ResponseEntity<String>("Kompensacijos prašymas vaikui su tokiu asmens kodu jau yra registruotas", HttpStatus.CONFLICT);
+			}
 			
+			else {
+				
+				compensationApplicationService.createNewCompensationApplication(compensationApplicationDTO);
 			
-			journalService.newJournalEntry(OperationType.APPLICATION_SUBMITED, 123L, ObjectType.COMPENSATIOAPPLICATION,
-				"Sukurtas naujas prašymas");
-			return new ResponseEntity<String>( "Kompensacijos prašymas sukuras sėkmingai", HttpStatus.OK);
+				journalService.newJournalEntry(OperationType.APPLICATION_SUBMITED, 123L, ObjectType.COMPENSATIOAPPLICATION,
+					"Sukurtas naujas prašymas");
+				
+				return new ResponseEntity<String>( "Kompensacijos prašymas sukuras sėkmingai", HttpStatus.OK);
+			}	
 		}
-			
-		return new ResponseEntity<String>("Prašymo sukurti nepavyko", HttpStatus.BAD_REQUEST);
 		
+		return new ResponseEntity<String>("Prašymo sukurti nepavyko", HttpStatus.BAD_REQUEST);
 	}
+	
+	
 
 }

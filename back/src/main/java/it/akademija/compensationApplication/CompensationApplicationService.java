@@ -30,9 +30,12 @@ public class CompensationApplicationService {
 	@Autowired
 	private ChildDataService childDataService;
 	
-	public CompensationApplication createNewCompensationApplication(CompensationApplicationDTO compensationApplicationDTO) {
+	public void createNewCompensationApplication(CompensationApplicationDTO compensationApplicationDTO) {
 		
 		CompensationApplication compensationApplication = new CompensationApplication();
+		
+		compensationApplication.setSubmitedAt(LocalDate.now());
+		compensationApplication.setAplicationStatus(ApplicationStatus.Pateiktas);
 		
 		User user = userService.getUserByUsername(compensationApplicationDTO.getMainGuardian().getUsername());
 		compensationApplication.setMainGuardian(user);
@@ -43,15 +46,11 @@ public class CompensationApplicationService {
 		ChildData childData = childDataService.createNewChildData(compensationApplicationDTO);
 		compensationApplication.setChildData(childData);
 
-		compensationApplication.setSubmitedAt(LocalDate.now());
-		compensationApplication.setAplicationStatus(ApplicationStatus.Pateiktas);
-		
 		compensationApplicationDAO.save(compensationApplication);
 		
 		childData.setCompensationApplication(compensationApplication);
 		kindergartenData.setCompensationApplication(compensationApplication);
 		
-		return compensationApplication;
 	}
 
 	public boolean childExistsByPersonalCode(String childPersonalCode) {
