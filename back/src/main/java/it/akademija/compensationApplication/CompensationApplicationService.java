@@ -17,27 +17,32 @@ public class CompensationApplicationService {
 	@Autowired
 	private CompensationApplicationDAO compensationApplicationDAO;
 	
+	@Autowired
 	private UserService userService;
 
-	public void createNewCompensationApplication(CompensationApplicationDTO compensationApplicationDTO) {
+	public CompensationApplication createNewCompensationApplication(CompensationApplicationDTO compensationApplicationDTO) {
 		CompensationApplication compensationApplication = new CompensationApplication();
 		
-		User user = userService.getUserByUsername(compensationApplicationDTO.getUserDTO().getUsername());
+		
+		
+		User user = userService.getUserByUsername(compensationApplicationDTO.getMainGuardian().getUsername());
 		compensationApplication.setMainGuardian(user);
 		compensationApplication.setSubmitedAt(LocalDate.now());
 		compensationApplication.setAplicationStatus(ApplicationStatus.Pateiktas);
 		compensationApplication.setChildPersonalCode(compensationApplicationDTO.getChildPersonalCode());
-		compensationApplication.setChildName(compensationApplication.getChildName());
-		compensationApplication.setChildSurname(compensationApplication.getChildSurname());
-		compensationApplication.setBirthdate(compensationApplication.getBirthdate());
-		compensationApplication.setKindergardenName(compensationApplicationDTO.getKindergartenData().getBankName());
-		compensationApplication.setKindergardenCode(compensationApplicationDTO.getKindergartenData().getCode());
-		compensationApplication.setKindergardenPhone(compensationApplicationDTO.getKindergartenData().getPhone());
-		compensationApplication.setKindergardenEmail(compensationApplicationDTO.getKindergartenData().getEmail());
-		compensationApplication.setKindergadenBankName(compensationApplicationDTO.getKindergartenData().getBankName());
-		compensationApplication.setKindergardenBankAccount(compensationApplicationDTO.getKindergartenData().getAccount());
-		compensationApplication.setKindergardenBankCode(compensationApplicationDTO.getKindergartenData().getBankCode());
+		compensationApplication.setChildName(compensationApplicationDTO.getChildName());
+		compensationApplication.setChildSurname(compensationApplicationDTO.getChildSurname());
+		compensationApplication.setBirthdate(compensationApplicationDTO.getBirthdate());
+		compensationApplication.setKindergartenName(compensationApplicationDTO.getKindergartenData().getEntityName());
+		compensationApplication.setKindergartenCode(compensationApplicationDTO.getKindergartenData().getCode());
+		compensationApplication.setKindergartenPhone(compensationApplicationDTO.getKindergartenData().getPhone());
+		compensationApplication.setKindergartenEmail(compensationApplicationDTO.getKindergartenData().getEmail());
+		compensationApplication.setKindergartenBankName(compensationApplicationDTO.getKindergartenData().getBankName());
+		compensationApplication.setKindergartenBankAccount(compensationApplicationDTO.getKindergartenData().getAccount());
+		compensationApplication.setKindergartenBankCode(compensationApplicationDTO.getKindergartenData().getBankCode());
 		
 		compensationApplicationDAO.save(compensationApplication);
+		
+		return compensationApplication;
 	}
 }

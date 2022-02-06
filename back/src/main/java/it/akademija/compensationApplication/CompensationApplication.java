@@ -10,9 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,7 +20,7 @@ import it.akademija.user.User;
 public class CompensationApplication {
 	
 	@Id
-	@Column(name = "compensationApplication_id")
+	@Column(name = "compensattion_application_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
@@ -33,60 +30,52 @@ public class CompensationApplication {
 	private User mainGuardian;
 	
 	@Column(name = "date_of_submition")
-	LocalDate submitedAt;
+	private LocalDate submitedAt;
 	
 	private ApplicationStatus aplicationStatus;
 	
-	@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{11}$|")
+	
 	private String childPersonalCode;
 	
-	@NotEmpty(message = "Vardas privalomas!")
-	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
+
 	private String childName;
 
-	@NotEmpty(message = "Pavardė privaloma!")
-	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
+	
 	private String childSurname;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthdate;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate approvalDate;
 	
-	@NotEmpty(message = "Ugdymo įstaigos pavadinimas privalomas!")
-	@Size(min = 2, max = 70)
-	private String kindergardenName;
+	private String kindergartenName;
 	
-	@NotEmpty(message = "Ugdymo įstaigos kodas privalomas!")
-	@Pattern(regexp = "[0-9]{9}")
-	private String kindergardenCode;
+	private String kindergartenCode;
 	
-	@NotEmpty(message = "Ugdymo įstaigos telefono numeris privalomas!")
-	@Pattern(regexp = "[+]?[0-9]{4,17}")
-	private String kindergardenPhone;
+	private String kindergartenPhone;
 	
-	@NotEmpty(message = "Ugdymo įstaigos elektroninio pašto adresas privalomas!")
-	@Pattern(regexp = "\"^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$\"")
-	private String kindergardenEmail;
+	private String kindergartenEmail;
 	
-	@NotEmpty(message = "Ugdymo įstaigos banko pavadinimas privalomas!")
-	@Size(min = 2, max = 50)
-	private String kindergadenBankName;
+	private String kindergartenBankName;
 	
-	@NotEmpty(message = "Ugdymo įstaigos banko sąskaitos numeris privalomas!")
-	@Pattern(regexp = "[A-Za-z]{2}[0-9]{2}[A-z0-9]{11,30}")
-	private String kindergardenBankAccount;
+	private String kindergartenBankAccount;
 	
-	@NotEmpty(message = "Ugdymo įstaigos banko kodas privalomas!")
-	@Pattern(regexp = "[A-Za-z]{6}[A-Za-z0-9]{2,5}")
-	private String kindergardenBankCode;
+	private String kindergartenBankCode;
 	
+	@Override
+	public String toString() {
+		return "CompensationApplication [id=" + id + ", mainGuardian=" + mainGuardian + ", submitedAt=" + submitedAt
+				+ ", aplicationStatus=" + aplicationStatus + ", childPersonalCode=" + childPersonalCode + ", childName="
+				+ childName + ", childSurname=" + childSurname + ", birthdate=" + birthdate + ", approvalDate="
+				+ approvalDate + ", kindergardenName=" + kindergartenName + ", kindergardenCode=" + kindergartenCode
+				+ ", kindergardenPhone=" + kindergartenPhone + ", kindergardenEmail=" + kindergartenEmail
+				+ ", kindergadenBankName=" + kindergartenBankName + ", kindergardenBankAccount="
+				+ kindergartenBankAccount + ", kindergardenBankCode=" + kindergartenBankCode + "]";
+	}
+
 	public CompensationApplication() { }
 
-	public CompensationApplication(User mainGuardian, LocalDate submitedAt, ApplicationStatus aplicationStatus, 
+	public CompensationApplication( LocalDate submitedAt, ApplicationStatus aplicationStatus, 
 			String childPersonalCode,
 			String childName,
 			String childSurname,
@@ -99,20 +88,20 @@ public class CompensationApplication {
 			String kindergardenBankAccount,
 			String kindergardenBankCode ) {
 		super();
-		this.mainGuardian = mainGuardian;
+		
 		this.submitedAt = submitedAt;
 		this.aplicationStatus = aplicationStatus;
 		this.childPersonalCode = childPersonalCode;
 		this.childName = childName;
 		this.childSurname = childSurname;
 		this.birthdate = birthdate;
-		this.kindergardenName = kindergardenName;
-		this.kindergardenCode = kindergardenCode;
-		this.kindergardenPhone = kindergardenPhone;
-		this.kindergardenEmail = kindergardenEmail;
-		this.kindergadenBankName = kindergadenBankName;
-		this.kindergardenBankAccount = kindergardenBankAccount;
-		this.kindergardenBankCode = kindergardenBankCode;
+		this.kindergartenName = kindergardenName;
+		this.kindergartenCode = kindergardenCode;
+		this.kindergartenPhone = kindergardenPhone;
+		this.kindergartenEmail = kindergardenEmail;
+		this.kindergartenBankName = kindergadenBankName;
+		this.kindergartenBankAccount = kindergardenBankAccount;
+		this.kindergartenBankCode = kindergardenBankCode;
 	}
 
 	Long getId() {
@@ -155,6 +144,7 @@ public class CompensationApplication {
 		this.childSurname = childSurname;
 	}
 
+	
 	public LocalDate getBirthdate() {
 		return birthdate;
 	}
@@ -171,60 +161,60 @@ public class CompensationApplication {
 		this.approvalDate = approvalDate;
 	}
 
-	public String getKindergardenName() {
-		return kindergardenName;
+	public String getKindergartenName() {
+		return kindergartenName;
 	}
 
-	public void setKindergardenName(String kindergardenName) {
-		this.kindergardenName = kindergardenName;
+	public void setKindergartenName(String kindergartenName) {
+		this.kindergartenName = kindergartenName;
 	}
 
-	public String getKindergardenCode() {
-		return kindergardenCode;
+	public String getKindergartenCode() {
+		return kindergartenCode;
 	}
 
-	public void setKindergardenCode(String kindergardenCode) {
-		this.kindergardenCode = kindergardenCode;
+	public void setKindergartenCode(String kindergartenCode) {
+		this.kindergartenCode = kindergartenCode;
 	}
 
-	public String getKindergardenPhone() {
-		return kindergardenPhone;
+	public String getKindergartenPhone() {
+		return kindergartenPhone;
 	}
 
-	public void setKindergardenPhone(String kindergardenPhone) {
-		this.kindergardenPhone = kindergardenPhone;
+	public void setKindergartenPhone(String kindergartenPhone) {
+		this.kindergartenPhone = kindergartenPhone;
 	}
 
-	public String getKindergardenEmail() {
-		return kindergardenEmail;
+	public String getKindergartenEmail() {
+		return kindergartenEmail;
 	}
 
-	public void setKindergardenEmail(String kindergardenEmail) {
-		this.kindergardenEmail = kindergardenEmail;
+	public void setKindergartenEmail(String kindergartenEmail) {
+		this.kindergartenEmail = kindergartenEmail;
 	}
 
-	public String getKindergadenBankName() {
-		return kindergadenBankName;
+	public String getKindergartenBankName() {
+		return kindergartenBankName;
 	}
 
-	public void setKindergadenBankName(String kindergadenBankName) {
-		this.kindergadenBankName = kindergadenBankName;
+	public void setKindergartenBankName(String kindergartenBankName) {
+		this.kindergartenBankName = kindergartenBankName;
 	}
 
-	public String getKindergardenBankAccount() {
-		return kindergardenBankAccount;
+	public String getKindergartenBankAccount() {
+		return kindergartenBankAccount;
 	}
 
-	public void setKindergardenBankAccount(String kindergardenBankAccount) {
-		this.kindergardenBankAccount = kindergardenBankAccount;
+	public void setKindergartenBankAccount(String kindergartenBankAccount) {
+		this.kindergartenBankAccount = kindergartenBankAccount;
 	}
 
-	public String getKindergardenBankCode() {
-		return kindergardenBankCode;
+	public String getKindergartenBankCode() {
+		return kindergartenBankCode;
 	}
 
-	public void setKindergardenBankCode(String kindergardenBankCode) {
-		this.kindergardenBankCode = kindergardenBankCode;
+	public void setKindergartenBankCode(String kindergartenBankCode) {
+		this.kindergartenBankCode = kindergartenBankCode;
 	}
 
 	public User getMainGuardian() {
