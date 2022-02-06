@@ -2,6 +2,7 @@ package it.akademija.compensationApplication;
 
 import java.time.LocalDate;
 
+import it.akademija.compensationApplication.kindergartenData.KindergartenDataDTO;
 import it.akademija.user.UserDTO;
 
 public class CompensationApplicationDTO {
@@ -10,25 +11,28 @@ public class CompensationApplicationDTO {
 	private String childName;
 	private String childPersonalCode;
 	private String childSurname;
-	private KindergartenData kindergartenData;
+	private KindergartenDataDTO kindergartenData;
 	private UserDTO mainGuardian;
 	
 	public CompensationApplicationDTO() {
 		super();
 	}
 	
-	public CompensationApplicationDTO(LocalDate birthdate,
-										String childName, 
+	public CompensationApplicationDTO(LocalDate birthdate, String childName, 
 										String childPersonalCode, 
 										String childSurname,
-										KindergartenData kindergartenData, 
+										KindergartenDataDTO kindergartenData, 
 										UserDTO mainGuardian) {
 		super();
-		this.birthdate = birthdate;
-		this.childName = childName;
-		this.childPersonalCode = childPersonalCode;
-		this.childSurname = childSurname;
 		this.kindergartenData = kindergartenData;
+		this.mainGuardian = mainGuardian;
+	}
+
+	public UserDTO getMainGuardian() {
+		return mainGuardian;
+	}
+
+	public void setMainGuardian(UserDTO mainGuardian) {
 		this.mainGuardian = mainGuardian;
 	}
 
@@ -64,28 +68,22 @@ public class CompensationApplicationDTO {
 		this.childSurname = childSurname;
 	}
 
-	public KindergartenData getKindergartenData() {
+	public KindergartenDataDTO getKindergartenData() {
 		return kindergartenData;
 	}
 
-	public void setKindergartenData(KindergartenData kindergartenData) {
+	public void setKindergartenData(KindergartenDataDTO kindergartenData) {
 		this.kindergartenData = kindergartenData;
-	}
-
-	public UserDTO getMainGuardian() {
-		return mainGuardian;
-	}
-
-	public void setMainGuardian(UserDTO mainGuardian) {
-		this.mainGuardian = mainGuardian;
 	}
 
 	@Override
 	public String toString() {
 		return "CompensationApplicationDTO [birthdate=" + birthdate + ", childName=" + childName
-				+ ", childPersonalCode=" + childPersonalCode + ", childSurname=" + childSurname + ", kindergartenData="
-				+ kindergartenData + ", mainGuardian=" + mainGuardian + "]";
+				+ ", childPersonalCode=" + childPersonalCode + ", childSurname=" + childSurname
+				+ ", kindergartenDataDTO=" + kindergartenData + ", mainGuardian=" + mainGuardian + "]";
 	}
+
+	
 
 	
 }
