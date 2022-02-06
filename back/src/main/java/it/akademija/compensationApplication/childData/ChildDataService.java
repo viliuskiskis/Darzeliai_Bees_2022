@@ -24,5 +24,9 @@ public class ChildDataService {
 		
 		return childData;
 	}
+
+	public boolean childExistsByPersonalCode(String childPersonalCode) {
+		return childDataDAO.existsChildDataByChildPersonalCode(childPersonalCode);
+	}
 	
 }

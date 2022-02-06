@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,24 +40,24 @@ public class CompensationApplicationController {
 			@ApiParam(value = "Application", required = true) 
 			@Valid 
 			@RequestBody CompensationApplicationDTO compensationApplicationDTO) {
+
+		if (compensationApplicationDTO != null) {
 			
-			//String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-			
+			if(compensationApplicationService.childExistsByPersonalCode(compensationApplicationDTO.getChildPersonalCode())) {
+				
+			}
 			CompensationApplication compensationApplication = compensationApplicationService.createNewCompensationApplication(compensationApplicationDTO);
 			
-			if (compensationApplication != null && 
-					compensationApplication.getKindergartenData() != null && 
-					compensationApplication.getMainGuardian() != null) {
-				
-				journalService.newJournalEntry(OperationType.APPLICATION_SUBMITED, 123L, ObjectType.COMPENSATIOAPPLICATION,
-					"Sukurtas naujas prašymas");
-				
-				return new ResponseEntity<String>( "VISKAS GERAI", HttpStatus.OK);
-			}
-			else {
-				return new ResponseEntity<String>("KAŽKUR SUMALTAS ŠŪDAS", HttpStatus.BAD_REQUEST);
-			}
-		
+			String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+			
+			
+			
+			journalService.newJournalEntry(OperationType.APPLICATION_SUBMITED, 123L, ObjectType.COMPENSATIOAPPLICATION,
+				"Sukurtas naujas prašymas");
+			return new ResponseEntity<String>( "Kompensacijos prašymas sukuras sėkmingai", HttpStatus.OK);
+		}
+			
+		return new ResponseEntity<String>("Prašymo sukurti nepavyko", HttpStatus.BAD_REQUEST);
 		
 	}
 

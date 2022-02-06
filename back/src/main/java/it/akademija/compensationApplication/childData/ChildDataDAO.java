@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ChildDataDAO extends JpaRepository<ChildData, Long> {
-
+	boolean existsChildDataByChildPersonalCode(String childPersonalCode);
 }

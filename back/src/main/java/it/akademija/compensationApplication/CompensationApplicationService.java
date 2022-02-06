@@ -53,4 +53,8 @@ public class CompensationApplicationService {
 		
 		return compensationApplication;
 	}
+
+	public boolean childExistsByPersonalCode(String childPersonalCode) {
+		return childDataService.childExistsByPersonalCode(childPersonalCode);
+	}
 }
