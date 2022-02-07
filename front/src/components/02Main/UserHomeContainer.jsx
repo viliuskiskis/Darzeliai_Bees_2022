@@ -101,7 +101,7 @@ export class UserHomeContainer extends Component {
 
                 {/* Jei viskas veikia, DELETE THIS: */}
                 <div className='row pt-2'>
-                    <h1>Lentelė dar neveikia (nes nulūžta su blogais nuomenim). Čia response iš serverio:</h1>
+                    <h1>Lentelė dar neveikia (nes nulūžta su blogais duomenim). Čia response iš serverio:</h1>
                     <p>{JSON.stringify(this.state.compensations)}</p>
                 </div>
 

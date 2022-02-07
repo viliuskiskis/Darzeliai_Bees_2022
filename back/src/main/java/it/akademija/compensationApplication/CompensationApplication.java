@@ -39,7 +39,7 @@ public class CompensationApplication {
 	@Column(name = "date_of_submition")
 	private LocalDate submitedAt;
 	
-	private ApplicationStatus aplicationStatus;
+	private ApplicationStatus applicationStatus;
 	
 	private LocalDate approvalDate;
 	
@@ -76,12 +76,12 @@ public class CompensationApplication {
 		this.submitedAt = submitedAt;
 	}
 
-	public ApplicationStatus getAplicationStatus() {
-		return aplicationStatus;
+	public ApplicationStatus getApplicationStatus() {
+		return applicationStatus;
 	}
 
-	public void setAplicationStatus(ApplicationStatus aplicationStatus) {
-		this.aplicationStatus = aplicationStatus;
+	public void setApplicationStatus(ApplicationStatus applicationStatus) {
+		this.applicationStatus = applicationStatus;
 	}
 
 	public ChildData getChildData() {
@@ -111,7 +111,7 @@ public class CompensationApplication {
 	@Override
 	public String toString() {
 		return "CompensationApplication [id=" + id + ", mainGuardian=" + mainGuardian + ", submitedAt=" + submitedAt
-				+ ", aplicationStatus=" + aplicationStatus + "]";
+				+ ", applicationStatus=" + applicationStatus + "]";
 	}
 	
 	

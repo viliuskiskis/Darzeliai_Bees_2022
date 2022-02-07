@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.akademija.application.ApplicationStatus;
 import it.akademija.compensationApplication.childData.ChildData;
@@ -34,7 +35,7 @@ public class CompensationApplicationService {
 		CompensationApplication compensationApplication = new CompensationApplication();
 		
 		compensationApplication.setSubmitedAt(LocalDate.now());
-		compensationApplication.setAplicationStatus(ApplicationStatus.Pateiktas);
+		compensationApplication.setApplicationStatus(ApplicationStatus.Pateiktas);
 		
 		User user = userService.getUserByUsername(compensationApplicationDTO.getMainGuardian().getUsername());
 		compensationApplication.setMainGuardian(user);
@@ -52,6 +53,7 @@ public class CompensationApplicationService {
 		
 	}
 
+	@Transactional(readOnly = true)
 	public Set<CompensationApplicationInfoUser> getAllUserCompensationApplications(String currentUsername) {
 		return compensationApplicationDAO.findAllUserCompensationApplications(currentUsername);
 	}

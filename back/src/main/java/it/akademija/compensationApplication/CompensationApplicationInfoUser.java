@@ -7,32 +7,25 @@ import it.akademija.application.ApplicationStatus;
 public class CompensationApplicationInfoUser {
 	
 	private Long id;
+	private ApplicationStatus applicationStatus;
+	private LocalDate submitedAt;
     private String childName;
     private String childSurname;
-    private String kindergartenName;
-    private ApplicationStatus status;
-    private LocalDate submitedAt;
+    private String entityName;    
     
 	public CompensationApplicationInfoUser(Long id, 
+				ApplicationStatus applicationStatus, 
+				LocalDate submitedAt, 
 				String childName, 
 				String childSurname, 
-				String kindergartenName,
-				ApplicationStatus status, LocalDate submitedAt) {
+				String entityName) {
 		super();
 		this.id = id;
+		this.applicationStatus = applicationStatus;
+		this.submitedAt = submitedAt;
 		this.childName = childName;
 		this.childSurname = childSurname;
-		this.kindergartenName = kindergartenName;
-		this.status = status;
-		this.submitedAt = submitedAt;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+		this.entityName = entityName;
 	}
 
 	public String getChildName() {
@@ -51,20 +44,28 @@ public class CompensationApplicationInfoUser {
 		this.childSurname = childSurname;
 	}
 
-	public String getKindergartenName() {
-		return kindergartenName;
+	public String getEntityName() {
+		return entityName;
 	}
 
-	public void setKindergartenName(String kindergartenName) {
-		this.kindergartenName = kindergartenName;
+	public void setEntityName(String entityName) {
+		this.entityName = entityName;
 	}
 
-	public ApplicationStatus getStatus() {
-		return status;
+	public ApplicationStatus getApplicationStatus() {
+		return applicationStatus;
 	}
 
-	public void setStatus(ApplicationStatus status) {
-		this.status = status;
+	public void setApplicationStatus(ApplicationStatus applicationStatus) {
+		this.applicationStatus = applicationStatus;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public LocalDate getSubmitedAt() {
@@ -74,7 +75,5 @@ public class CompensationApplicationInfoUser {
 	public void setSubmitedAt(LocalDate submitedAt) {
 		this.submitedAt = submitedAt;
 	}
-    
-    
 
 }
