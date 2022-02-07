@@ -1,8 +1,7 @@
 package it.akademija.compensationApplication;
 
-
-
 import java.time.LocalDate;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,7 +52,12 @@ public class CompensationApplicationService {
 		
 	}
 
+	public Set<CompensationApplicationInfoUser> getAllUserCompensationApplications(String currentUsername) {
+		return compensationApplicationDAO.findAllUserCompensationApplications(currentUsername);
+	}
+	
 	public boolean childExistsByPersonalCode(String childPersonalCode) {
 		return childDataService.childExistsByPersonalCode(childPersonalCode);
 	}
+	
 }

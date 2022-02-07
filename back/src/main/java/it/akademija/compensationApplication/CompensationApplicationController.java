@@ -1,5 +1,7 @@
 package it.akademija.compensationApplication;
 
+import java.util.Set;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,6 +78,14 @@ public class CompensationApplicationController {
 		return new ResponseEntity<String>("Prašymo sukurti nepavyko", HttpStatus.BAD_REQUEST);
 	}
 	
+	@Secured({ "ROLE_USER" })
+	@GetMapping("/user")
+	@ApiOperation(value = "Get all user applications")
+	public Set<CompensationApplicationInfoUser> getAllUserCompensationApplications(){
+		
+		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		return compensationApplicationService.getAllUserCompensationApplications(currentUsername);
+	}
 	
-
 }

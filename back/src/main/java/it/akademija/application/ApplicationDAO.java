@@ -14,7 +14,16 @@ public interface ApplicationDAO extends JpaRepository<Application, Long> {
 
 	boolean existsApplicationByChildPersonalCode(String childPersonalCode);
 
-	@Query("SELECT new it.akademija.application.ApplicationInfoUser(a.id, a.childName, a.childSurname, a.submitedAt, k.name, a.status, a.numberInWaitingList) FROM Application a LEFT JOIN Kindergarten k ON a.approvedKindergarten.id=k.id WHERE a.mainGuardian.username=?1")
+	@Query("SELECT new it.akademija.application.ApplicationInfoUser(a.id, "
+			+ "a.childName, "
+			+ "a.childSurname, "
+			+ "a.submitedAt, "
+			+ "k.name, "
+			+ "a.status, "
+			+ "a.numberInWaitingList) "
+			+ "FROM Application a LEFT JOIN Kindergarten k ON "
+			+ "a.approvedKindergarten.id=k.id "
+			+ "WHERE a.mainGuardian.username=?1")
 	Set<ApplicationInfoUser> findAllUserApplications(String currentUsername);
 
 	@Query("SELECT new it.akademija.application.ApplicationInfo(a.id, a.childPersonalCode,  a.childName, a.childSurname, a.status, max(case when c.kindergartenChoisePriority ='1' then c.kindergarten.name end) as choise1, max(case when c.kindergartenChoisePriority ='2' then c.kindergarten.name end) as choise2, max(case when c.kindergartenChoisePriority ='3' then c.kindergarten.name end) as choise3, max(case when c.kindergartenChoisePriority ='4' then c.kindergarten.name end) as choise4, max(case when c.kindergartenChoisePriority ='5' then c.kindergarten.name end) as choise5) FROM Application a LEFT JOIN KindergartenChoise c on a.id = c.application.id GROUP BY a.id HAVING a.childPersonalCode LIKE(concat(?1, '%'))")
