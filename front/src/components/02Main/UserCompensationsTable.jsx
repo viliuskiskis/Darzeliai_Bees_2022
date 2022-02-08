@@ -11,7 +11,6 @@ class UserCompensationsTable extends Component {
       label: 'Pateikimo data',
       content: compensation => <span>{compensation.submitedAt}</span>
     },
-
     {
       key: 'childName',
       path: 'childName',
@@ -31,12 +30,15 @@ class UserCompensationsTable extends Component {
       content: compensation => <span>{compensation.entityName}</span>
     },
     {
+      key: 'review',
+      label: 'Peržiūrėti prašymą',
+      content: compensation => <button onClick={() => this.props.handleCompensationReview(compensation.id)} id="btnReviewCompensation" className="btn btn-outline-primary btn-sm btn-block">Peržiūrėti</button>
+    },
+    {
       key: 'delete',
       label: 'Ištrinti prašymą',
-      content: compensation => <button onClick={() => this.props.onDelete(compensation)} id="btnDeleteCompensation" className="btn btn-outline-danger btn-sm btn-block">Ištrinti</button>
-
+      content: compensation => <button onClick={() => this.props.handleCompensationDelete(compensation.id)} id="btnDeleteCompensation" className="btn btn-outline-danger btn-sm btn-block">Ištrinti</button>
     }
-
   ]
 
 

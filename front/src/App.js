@@ -31,6 +31,7 @@ import EventJournalContainer from "./components/14EventJournal/EventJournalConta
 
 import Testing from "./components/99DeleteThis/Testing";
 import ApplicationReviewContainer from "./components/07Application/ApplicationReview/ApplicationReviewContainer";
+import CompensationReviewContainer from "./components/07Application/ApplicationReview/CompensationReviewContainer";
 
 var initState = {
   isAuthenticated: null,
@@ -200,8 +201,12 @@ function App() {
                       component={UserHomeContainer}
                     />
                     <Route
-                      path="/prasymas/:id"
+                      path="/prasymas/d/:id"
                       component={ApplicationReviewContainer}
+                    />
+                    <Route
+                      path="/prasymas/k/:id"
+                      component={CompensationReviewContainer}
                     />
                     <Route
                       exact

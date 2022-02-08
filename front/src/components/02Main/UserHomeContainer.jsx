@@ -37,14 +37,33 @@ export class UserHomeContainer extends Component {
             }).catch(() => { });
     }
 
-    handleDelete = (item) => {
+    handleApplicationDelete = (applicationId) => {
         swal({
             text: "Ar tikrai norite ištrinti prašymą?",
             buttons: ["Ne", "Taip"],
             dangerMode: true,
         }).then((actionConfirmed) => {
             if (actionConfirmed) {
-                http.delete(`${apiEndpoint}/api/prasymai/user/delete/${item.id}`)
+                http.delete(`${apiEndpoint}/api/prasymai/user/delete/${applicationId}`)
+                    .then((response) => {
+                        swal({
+                            text: response.data,
+                            button: "Gerai"
+                        })
+                        this.getUserCompensations();
+                    }).catch(() => { });
+            }
+        });
+    }
+
+    handleCompensationDelete = (compensationId) => {
+        swal({
+            text: "Ar tikrai norite ištrinti prašymą?",
+            buttons: ["Ne", "Taip"],
+            dangerMode: true,
+        }).then((actionConfirmed) => {
+            if (actionConfirmed) {
+                http.delete(`${apiEndpoint}/api/kompensacijos/user/delete/${compensationId}`)
                     .then((response) => {
                         swal({
                             text: response.data,
@@ -56,8 +75,12 @@ export class UserHomeContainer extends Component {
         });
     }
 
-    handleCompensationDelete = () => {
-        // FILL THIS
+    handleApplicationReview = (applicationId) => {
+        this.props.history.push(`/prasymas/d/${applicationId}`)
+    }
+
+    handleCompensationReview = (compensationId) => {
+        this.props.history.push(`/prasymas/k/${compensationId}`)
     }
 
     render() {
@@ -79,7 +102,8 @@ export class UserHomeContainer extends Component {
                                 <div className="col-12 col-sm-12 col-md-12 col-lg-12">
                                     <UserApplicationsTable
                                         applications={this.state.applications}
-                                        onDelete={this.handleDelete}
+                                        handleApplicationDelete={this.handleApplicationDelete}
+                                        handleApplicationReview={this.handleApplicationReview}
                                     />
                                 </div>
                             </div>
@@ -92,9 +116,9 @@ export class UserHomeContainer extends Component {
                             <div className="row pt-2">
                                 <div className="col-12 col-sm-12 col-md-12 col-lg-12">
                                     <UserCompensationsTable
-                                        // compensations={this.state.compensations}
                                         compensations={this.state.compensations}
-                                        onDelete={this.handleCompensationDelete}
+                                        handleCompensationDelete={this.handleCompensationDelete}
+                                        handleCompensationReview={this.handleCompensationReview}
                                     />
                                 </div>
                             </div>
