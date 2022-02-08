@@ -6,29 +6,29 @@ class UserCompensationsTable extends Component {
 
   columns = [
     {
-      key: 'date',
-      path: 'date',
+      key: 'submitedAt',
+      path: 'submitedAt',
       label: 'Pateikimo data',
       content: compensation => <span>{compensation.submitedAt}</span>
     },
 
     {
-      key: 'childSurname',
-      path: 'childSurname',
+      key: 'childName',
+      path: 'childName',
       label: 'Vaiko vardas, pavardė',
       content: compensation => <span>{compensation.childName} {compensation.childSurname}</span>
     },
     {
-      key: 'status',
-      path: 'status',
+      key: 'applicationStatus',
+      path: 'applicationStatus',
       label: 'Prašymo statusas',
-      content: compensation => <span>{compensation.status} </span>
+      content: compensation => <span>{compensation.applicationStatus} </span>
     },
     {
-      key: 'kindergarten',
-      path: 'kindergarten',
+      key: 'entityName',
+      path: 'entityName',
       label: 'Darželio pavadinimas',
-      content: compensation => <span>{compensation.kindergartenName}</span>
+      content: compensation => <span>{compensation.entityName}</span>
     },
     {
       key: 'delete',

@@ -12,18 +12,21 @@ public class PrioritiesDTO {
 
 	private boolean guardianDisability;
 
+	private boolean livesMoreThanTwoYears;
+
 	public PrioritiesDTO() {
 		
 	}
 
 	public PrioritiesDTO(boolean livesInVilnius, boolean childIsAdopted, boolean familyHasThreeOrMoreChildrenInSchools,
-			boolean guardianInSchool, boolean guardianDisability) {
+		boolean guardianInSchool, boolean guardianDisability, boolean livesMoreThanTwoYears) {
 		super();
 		this.livesInVilnius = livesInVilnius;
 		this.childIsAdopted = childIsAdopted;
 		this.familyHasThreeOrMoreChildrenInSchools = familyHasThreeOrMoreChildrenInSchools;
 		this.guardianInSchool = guardianInSchool;
 		this.guardianDisability = guardianDisability;
+		this.livesMoreThanTwoYears = livesMoreThanTwoYears;
 	}
 
 	public boolean isLivesInVilnius() {
@@ -65,9 +68,13 @@ public class PrioritiesDTO {
 	public void setGuardianDisability(boolean guardianDisability) {
 		this.guardianDisability = guardianDisability;
 	}
-	
-	
-	
-	
 
-}
+	public boolean isLivesMoreThanTwoYears() {
+	    return livesMoreThanTwoYears;
+	}
+
+	public void setLivesMoreThanTwoYears(boolean livesMoreThanTwoYears) {
+	    this.livesMoreThanTwoYears = livesMoreThanTwoYears;
+	}
+	
+    }
