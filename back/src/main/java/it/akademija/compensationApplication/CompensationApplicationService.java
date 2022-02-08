@@ -1,9 +1,11 @@
 package it.akademija.compensationApplication;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +32,15 @@ public class CompensationApplicationService {
 	@Autowired
 	private ChildDataService childDataService;
 	
+	/**
+	 * Create an compensation application for logged in user's child with specified child data.
+	 * Receives and updates user data. Sets received
+	 * main guardian, child data to kindergarten data to application.
+	 * 
+	 * @param currentUsername
+	 * @param data
+	 */
+	@Transactional
 	public void createNewCompensationApplication(CompensationApplicationDTO compensationApplicationDTO) {
 		
 		CompensationApplication compensationApplication = new CompensationApplication();
@@ -52,12 +63,63 @@ public class CompensationApplicationService {
 		kindergartenData.setCompensationApplication(compensationApplication);
 		
 	}
-
+	
+	/**
+	 * 
+	 * Get information about submitted compensation applications for logged in user
+	 * 
+	 * @param currentUsername
+	 * @return set of user compensation applications
+	 */
 	@Transactional(readOnly = true)
 	public Set<CompensationApplicationInfoUser> getAllUserCompensationApplications(String currentUsername) {
 		return compensationApplicationDAO.findAllUserCompensationApplications(currentUsername);
 	}
 	
+	
+	
+	/**
+	 * Delete user compensation application by id. Also deletes ChildData
+	 * and KindergartenData connected to them. Accessible to User only.
+	 *
+	 * @param id
+	 * @return boolean indicating whether deletion was successful
+	 */
+	@Transactional
+	public boolean deleteUserCompensationApplicationById(Long id){
+
+		Optional<CompensationApplication> optionalCompensationApplication = 
+				compensationApplicationDAO.findById(id);
+		
+		if (optionalCompensationApplication.isPresent()) {
+			
+			CompensationApplication compensationApplication = 
+					optionalCompensationApplication.get();			
+			
+			User user = userService.findByUsername(SecurityContextHolder
+					.getContext()
+					.getAuthentication()
+					.getName());
+			
+			if(compensationApplication.getMainGuardian().equals(user)) {
+				
+				childDataService.deleteChildData(
+						compensationApplication.getChildData());
+				
+				kindergartenDataService.deleteKindergartenData(
+						compensationApplication.getKindergartenData());
+				
+				compensationApplicationDAO.delete(
+						compensationApplication);
+				
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+
 	public boolean childExistsByPersonalCode(String childPersonalCode) {
 		return childDataService.childExistsByPersonalCode(childPersonalCode);
 	}

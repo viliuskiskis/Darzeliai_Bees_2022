@@ -174,37 +174,28 @@ public class ApplicationService {
 	@Transactional
 	public ResponseEntity<String> deleteApplication(Long id) {
 
-		Optional<Application> optionalApplication = applicationDao.findById(id);  //.getOne(Id)
+		Optional<Application> optionalApplication = applicationDao.findById(id);
 
 		User user = userService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 
-		if (optionalApplication.isPresent() == true) { 
+		if (optionalApplication.isPresent() == true && 
+				optionalApplication.get().getMainGuardian().equals(user)) { 
 			
 			Application application = optionalApplication.get();
 			
-			if(optionalApplication.get().getMainGuardian().equals(user)) {
+			detachAdditionalGuardian(application);
 
-				detachAdditionalGuardian(application);
-	
-				updateAvailablePlacesInKindergarten(application);
-	
-				applicationDao.delete(application);
-	
-				journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.APPLICATION,
-						"Ištrintas prašymas");
-	
-				return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
-			}
-			
-			else {
-				return new ResponseEntity<String>("Prašymas nerastas", HttpStatus.NOT_FOUND);
-			}
+			updateAvailablePlacesInKindergarten(application);
+
+			applicationDao.delete(application);
+
+			journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.APPLICATION,
+					"Ištrintas prašymas");
+
+			return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
 		}
 		
-		else {
-			return new ResponseEntity<String>("Prašymas nerastas", HttpStatus.NOT_FOUND);
-		}
-		
+		return new ResponseEntity<String>("Prašymas nerastas", HttpStatus.NOT_FOUND);
 	}
 
 	/**

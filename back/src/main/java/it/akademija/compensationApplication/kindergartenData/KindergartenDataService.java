@@ -25,4 +25,8 @@ public class KindergartenDataService {
 		
 		return kindergartenData;
 	}
+
+	public void deleteKindergartenData(KindergartenData kindergartenData) {
+		kindergartenDataDAO.delete(kindergartenData);
+	}
 }

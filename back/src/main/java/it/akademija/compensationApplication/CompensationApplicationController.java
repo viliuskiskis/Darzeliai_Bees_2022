@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,6 +80,11 @@ public class CompensationApplicationController {
 		return new ResponseEntity<String>("Prašymo sukurti nepavyko", HttpStatus.BAD_REQUEST);
 	}
 	
+	/**
+	 * Get list of all compensation applications for logged user
+	 * 
+	 * @return set compensation applications
+	 */
 	@Secured({ "ROLE_USER" })
 	@GetMapping("/user")
 	@ApiOperation(value = "Get all user applications")
@@ -86,6 +93,37 @@ public class CompensationApplicationController {
 		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 		
 		return compensationApplicationService.getAllUserCompensationApplications(currentUsername);
+	}
+	
+	/**
+	 * 
+	 * Delete user compensation application by id
+	 * 
+	 * @param id
+	 * @return message
+	 */
+
+	@Secured({ "ROLE_USER" })
+	@DeleteMapping("/user/delete/{id}")
+	@ApiOperation("Delete user application by id")
+	public ResponseEntity<String> deleteUserCompensationApplication(
+			@ApiParam(value = "CompensationApplication id", required = true) @PathVariable Long id) {
+		
+		if(id != null) {
+			
+			boolean isCompensationApplicationPresentAndMatchesMainGuardian = 
+					compensationApplicationService.deleteUserCompensationApplicationById(id);
+			
+			if(isCompensationApplicationPresentAndMatchesMainGuardian) {
+				
+				journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.COMPENSATIOAPPLICATION,
+						"Ištrintas kompensacijos prašymas");
+				
+				return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
+			}
+		}
+		
+		return new ResponseEntity<String>("Prašymas kompensacijai nerastas", HttpStatus.NOT_FOUND);
 	}
 	
 }
