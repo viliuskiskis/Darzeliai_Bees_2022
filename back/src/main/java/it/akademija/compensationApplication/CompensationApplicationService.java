@@ -48,13 +48,19 @@ public class CompensationApplicationService {
 		compensationApplication.setSubmitedAt(LocalDate.now());
 		compensationApplication.setApplicationStatus(ApplicationStatus.Pateiktas);
 		
-		User user = userService.getUserByUsername(compensationApplicationDTO.getMainGuardian().getUsername());
+		User user = userService
+				.getUserByUsername(compensationApplicationDTO.getMainGuardian().getUsername());
+		
 		compensationApplication.setMainGuardian(user);
 		
-		KindergartenData kindergartenData = kindergartenDataService.creteNewKindergartenData(compensationApplicationDTO.getKindergartenData());
+		KindergartenData kindergartenData = kindergartenDataService
+				.creteNewKindergartenData(compensationApplicationDTO.getKindergartenData());
+		
 		compensationApplication.setKindergartenData(kindergartenData);
 		
-		ChildData childData = childDataService.createNewChildData(compensationApplicationDTO);
+		ChildData childData = childDataService
+				.createNewChildData(compensationApplicationDTO);
+		
 		compensationApplication.setChildData(childData);
 
 		compensationApplicationDAO.save(compensationApplication);
@@ -119,7 +125,16 @@ public class CompensationApplicationService {
 		return false;
 	}
 	
-
+	
+	
+	
+	/**
+	 * 
+	 * Check if compensation application for a child already exists
+	 * 
+	 * @param childPersonalCode
+	 * @return true if exists
+	 */
 	public boolean childExistsByPersonalCode(String childPersonalCode) {
 		return childDataService.childExistsByPersonalCode(childPersonalCode);
 	}
