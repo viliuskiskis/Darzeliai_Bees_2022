@@ -30,8 +30,8 @@ import { ApplicationStatusContainer } from './components/04Admin/ApplicationStat
 import EventJournalContainer from "./components/14EventJournal/EventJournalContainer";
 
 import Testing from "./components/99DeleteThis/Testing";
-import ApplicationReviewContainer from "./components/07Application/ApplicationReview/ApplicationReviewContainer";
-import CompensationReviewContainer from "./components/07Application/ApplicationReview/CompensationReviewContainer";
+import ApplicationReviewContainer from "./components/15ApplicationReview/ApplicationReviewContainer";
+import CompensationReviewContainer from "./components/15ApplicationReview/CompensationReviewContainer";
 
 var initState = {
   isAuthenticated: null,

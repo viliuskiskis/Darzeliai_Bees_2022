@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
-import apiEndpoint from "../../10Services/endpoint";
-import http from "../../10Services/httpService";
+import apiEndpoint from "../10Services/endpoint";
+import http from "../10Services/httpService";
 import swal from "sweetalert";
 
 class CompensationReviewContainer extends Component {
