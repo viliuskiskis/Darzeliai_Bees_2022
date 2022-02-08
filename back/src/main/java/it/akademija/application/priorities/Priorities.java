@@ -31,6 +31,9 @@ public class Priorities {
 	@Column
 	private boolean guardianDisability;
 
+	@Column
+	private boolean livesMoreThanTwoYears;
+
 	@OneToOne(mappedBy = "priorities")
 
 	private Application application;
@@ -40,13 +43,14 @@ public class Priorities {
 	}
 
 	public Priorities(boolean livesInVilnius, boolean childIsAdopted, boolean familyHasThreeOrMoreChildrenInSchools,
-			boolean guardianInSchool, boolean guardianDisability) {
+		boolean guardianInSchool, boolean guardianDisability, boolean livesMoreThanTwoYears) {
 
 		this.livesInVilnius = livesInVilnius;
 		this.childIsAdopted = childIsAdopted;
 		this.familyHasThreeOrMoreChildrenInSchools = familyHasThreeOrMoreChildrenInSchools;
 		this.guardianInSchool = guardianInSchool;
 		this.guardianDisability = guardianDisability;
+		this.livesMoreThanTwoYears = livesMoreThanTwoYears;
 	}
 
 	public Integer getScore() {
@@ -71,6 +75,11 @@ public class Priorities {
 		if (this.guardianDisability) {
 			score += 1;
 		}
+
+		if (this.livesMoreThanTwoYears) {
+		    score += 1;
+		}
+
 		return score;
 	}
 
@@ -124,6 +133,14 @@ public class Priorities {
 
 	public void setGuardianDisability(boolean guardianDisability) {
 		this.guardianDisability = guardianDisability;
+	}
+
+	public boolean isLivesMoreThanTwoYears() {
+	    return livesMoreThanTwoYears;
+	}
+
+	public void setLivesMoreThanTwoYears(boolean livesMoreThanTwoYears) {
+	    this.livesMoreThanTwoYears = livesMoreThanTwoYears;
 	}
 
 }

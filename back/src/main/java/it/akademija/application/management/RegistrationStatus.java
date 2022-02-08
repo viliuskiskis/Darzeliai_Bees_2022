@@ -19,7 +19,7 @@ public class RegistrationStatus {
 
 	public RegistrationStatus() {
 		id = 1;
-		registrationActive = false;
+		registrationActive = true;
 		queueEditingLocked = false;
 	}		
 

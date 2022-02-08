@@ -69,7 +69,7 @@ class ApplicationServiceTest {
 	@Transactional
 	void testCreateNewApplication() {
 
-		PrioritiesDTO prioritiesDto = new PrioritiesDTO(true, false, false, false, false);
+	    PrioritiesDTO prioritiesDto = new PrioritiesDTO(true, false, false, false, false, false);
 
 		UserDTO mainGuardian = new UserDTO("USER", "Testas", "Testauskas", "12345698745", "Adresas 1", "+37068945123",
 				"test@test.lt", "test@test.lt", "password");

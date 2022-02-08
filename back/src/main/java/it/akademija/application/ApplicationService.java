@@ -106,7 +106,8 @@ public class ApplicationService {
 
 		Priorities priorities = prioritiesDao.save(new Priorities(prioritiesDto.isLivesInVilnius(),
 				prioritiesDto.isChildIsAdopted(), prioritiesDto.isFamilyHasThreeOrMoreChildrenInSchools(),
-				prioritiesDto.isGuardianInSchool(), prioritiesDto.isGuardianDisability()));
+			prioritiesDto.isGuardianInSchool(), prioritiesDto.isGuardianDisability(),
+			prioritiesDto.isLivesMoreThanTwoYears()));
 
 		application.setPriorities(priorities);
 		application.setPriorityScore(priorities.getScore());

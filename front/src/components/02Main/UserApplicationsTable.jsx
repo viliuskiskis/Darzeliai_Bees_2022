@@ -43,9 +43,14 @@ class UserApplicationsTable extends Component {
                 </span>
         },
         {
+            key: 'review',
+            label: 'Peržiūrėti prašymą',
+            content: compensation => <button onClick={() => this.props.handleApplicationReview(compensation.id)} id="btnReviewCompensation" className="btn btn-outline-primary btn-sm btn-block">Peržiūrėti</button>
+        },
+        {
             key: 'delete',
             label: 'Ištrinti prašymą',
-            content: application => <button onClick={() => this.props.onDelete(application)} id="btnDeleteApplication" className="btn btn-outline-danger btn-sm btn-block">Ištrinti</button>
+            content: application => <button onClick={() => this.props.handleApplicationDelete(application.id)} id="btnDeleteApplication" className="btn btn-outline-danger btn-sm btn-block">Ištrinti</button>
 
         }
 

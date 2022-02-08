@@ -19,18 +19,14 @@ export class UserHomeContainer extends Component {
         }
     }
     componentDidMount() {
-
         this.getUserApplications();
         this.getUserCompensations();
     }
 
     getUserApplications() {
-        http
-            .get(`${apiEndpoint}/api/prasymai/user`)
+        http.get(`${apiEndpoint}/api/prasymai/user`)
             .then((response) => {
-
                 this.setState({ applications: response.data });
-
             }).catch(() => { });
     }
 
@@ -41,15 +37,33 @@ export class UserHomeContainer extends Component {
             }).catch(() => { });
     }
 
-    handleDelete = (item) => {
-
+    handleApplicationDelete = (applicationId) => {
         swal({
             text: "Ar tikrai norite ištrinti prašymą?",
             buttons: ["Ne", "Taip"],
             dangerMode: true,
         }).then((actionConfirmed) => {
             if (actionConfirmed) {
-                http.delete(`${apiEndpoint}/api/prasymai/user/delete/${item.id}`)
+                http.delete(`${apiEndpoint}/api/prasymai/user/delete/${applicationId}`)
+                    .then((response) => {
+                        swal({
+                            text: response.data,
+                            button: "Gerai"
+                        })
+                        this.getUserCompensations();
+                    }).catch(() => { });
+            }
+        });
+    }
+
+    handleCompensationDelete = (compensationId) => {
+        swal({
+            text: "Ar tikrai norite ištrinti prašymą?",
+            buttons: ["Ne", "Taip"],
+            dangerMode: true,
+        }).then((actionConfirmed) => {
+            if (actionConfirmed) {
+                http.delete(`${apiEndpoint}/api/kompensacijos/user/delete/${compensationId}`)
                     .then((response) => {
                         swal({
                             text: response.data,
@@ -61,50 +75,57 @@ export class UserHomeContainer extends Component {
         });
     }
 
-    handleCompensationDelete = () => {
+    handleApplicationReview = (applicationId) => {
+        this.props.history.push(`/prasymas/d/${applicationId}`)
+    }
 
+    handleCompensationReview = (compensationId) => {
+        this.props.history.push(`/prasymas/k/${compensationId}`)
     }
 
     render() {
-        const { length: count } = this.state.applications;
-
-        if (count === 0) return <div className="container pt-5"><h6 className="pt-5">Jūs neturite pateiktų prašymų.</h6></div>
+        const { length: ApplicationCount } = this.state.applications;
+        const { length: CompensationCount } = this.state.compensations;
 
         return (
+            <div>
+                {ApplicationCount === 0 && CompensationCount === 0 &&
+                    <div className="container pt-5"><h6 className="pt-5">Jūs neturite pateiktų prašymų.</h6></div>
+                }
 
-            <div className="container pt-4" >
+                <div className="container pt-4" >
 
-                <h6 className="ps-2 pt-3">Mano prašymai į valstybinius darželius</h6>
+                    {ApplicationCount !== 0 &&
+                        <div>
+                            <h6 className="ps-2 pt-3">Mano prašymai į valstybinius darželius</h6>
+                            <div className="row pt-2">
+                                <div className="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <UserApplicationsTable
+                                        applications={this.state.applications}
+                                        handleApplicationDelete={this.handleApplicationDelete}
+                                        handleApplicationReview={this.handleApplicationReview}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    }
 
-                <div className="row pt-2">
-                    <div className="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <UserApplicationsTable
-                            applications={this.state.applications}
-                            onDelete={this.handleDelete}
-                        />
-                    </div>
+                    {CompensationCount !== 0 &&
+                        <div>
+                            <h6 className="ps-2 pt-3">Mano prašymai dėl kompensacijos</h6>
+                            <div className="row pt-2">
+                                <div className="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <UserCompensationsTable
+                                        compensations={this.state.compensations}
+                                        handleCompensationDelete={this.handleCompensationDelete}
+                                        handleCompensationReview={this.handleCompensationReview}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    }
 
                 </div>
-
-                <h6 className="ps-2 pt-3">Mano prašymai dėl kompensacijos</h6>
-
-                <div className="row pt-2">
-                    <div className="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <UserCompensationsTable
-                            // compensations={this.state.compensations}
-                            compensations={this.state.applications}
-                            onDelete={this.handleCompensationDelete}
-                        />
-                    </div>
-
-                </div>
-
-                {/* Jei viskas veikia, DELETE THIS: */}
-                <div className='row pt-2'>
-                    <h1>Lentelė dar neveikia (nes nulūžta su blogais duomenim). Čia response iš serverio:</h1>
-                    <p>{JSON.stringify(this.state.compensations)}</p>
-                </div>
-
             </div>
         )
     }
