@@ -32,6 +32,7 @@ import EventJournalContainer from "./components/14EventJournal/EventJournalConta
 import Testing from "./components/99DeleteThis/Testing";
 import ApplicationReviewContainer from "./components/15ApplicationReview/ApplicationReviewContainer";
 import CompensationReviewContainer from "./components/15ApplicationReview/CompensationReviewContainer";
+import CompensationListContainer from "./components/16CompensationList/CompensationListContainer";
 
 var initState = {
   isAuthenticated: null,
@@ -172,6 +173,11 @@ function App() {
                       component={KindergartenContainer}
                     />
                     <Route exact path="/eile" component={QueueContainer} />
+                    <Route
+                      exact
+                      path="/kompensacijos"
+                      component={CompensationListContainer}
+                    />
                     <Route
                       exact
                       path="/profilis/atnaujinti"
