@@ -28,5 +28,13 @@ public class ChildDataService {
 	public boolean childExistsByPersonalCode(String childPersonalCode) {
 		return childDataDAO.existsChildDataByChildPersonalCode(childPersonalCode);
 	}
+
+	public void deleteChildData(ChildData childData) {
+		childDataDAO.delete(childData);
+	}
+
+	public ChildDataInfo getChildDataInfoByCompensationApplicationId(Long id) {
+		return childDataDAO.getChildDataInfoByCompensationApplicationId(id);
+	}
 	
 }

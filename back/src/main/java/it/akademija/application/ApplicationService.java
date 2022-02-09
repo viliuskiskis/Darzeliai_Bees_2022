@@ -175,37 +175,28 @@ public class ApplicationService {
 	@Transactional
 	public ResponseEntity<String> deleteApplication(Long id) {
 
-		Optional<Application> optionalApplication = applicationDao.findById(id);  //.getOne(Id)
+		Optional<Application> optionalApplication = applicationDao.findById(id);
 
 		User user = userService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 
-		if (optionalApplication.isPresent() == true) { 
+		if (optionalApplication.isPresent() == true && 
+				optionalApplication.get().getMainGuardian().equals(user)) { 
 			
 			Application application = optionalApplication.get();
 			
-			if(optionalApplication.get().getMainGuardian().equals(user)) {
+			detachAdditionalGuardian(application);
 
-				detachAdditionalGuardian(application);
-	
-				updateAvailablePlacesInKindergarten(application);
-	
-				applicationDao.delete(application);
-	
-				journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.APPLICATION,
-						"Ištrintas prašymas");
-	
-				return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
-			}
-			
-			else {
-				return new ResponseEntity<String>("Prašymas nerastas", HttpStatus.NOT_FOUND);
-			}
+			updateAvailablePlacesInKindergarten(application);
+
+			applicationDao.delete(application);
+
+			journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.APPLICATION,
+					"Ištrintas prašymas");
+
+			return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
 		}
 		
-		else {
-			return new ResponseEntity<String>("Prašymas nerastas", HttpStatus.NOT_FOUND);
-		}
-		
+		return new ResponseEntity<String>("Prašymas nerastas", HttpStatus.NOT_FOUND);
 	}
 
 	/**
@@ -338,54 +329,6 @@ public class ApplicationService {
 	public Page<ApplicationInfo> getApplicationnPageFilteredById(String childPersonalCode, Pageable pageable) {
 
 		return applicationDao.findByIdContaining(childPersonalCode, pageable);
-	}
-
-	public ApplicationDAO getApplicationDao() {
-		return applicationDao;
-	}
-
-	public void setApplicationDao(ApplicationDAO applicationDao) {
-		this.applicationDao = applicationDao;
-	}
-
-	public UserService getUserService() {
-		return userService;
-	}
-	
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
-	public KindergartenService getGartenService() {
-		return gartenService;
-	}
-
-	public void setGartenService(KindergartenService gartenService) {
-		this.gartenService = gartenService;
-	}
-
-	public ParentDetailsDAO getParentDetailsDao() {
-		return parentDetailsDao;
-	}
-
-	public void setParentDetailsDao(ParentDetailsDAO parentDetailsDao) {
-		this.parentDetailsDao = parentDetailsDao;
-	}
-
-	public PrioritiesDAO getPrioritiesDao() {
-		return prioritiesDao;
-	}
-
-	public void setPrioritiesDao(PrioritiesDAO prioritiesDao) {
-		this.prioritiesDao = prioritiesDao;
-	}
-
-	public KindergartenChoiseDAO getChoiseDao() {
-		return choiseDao;
-	}
-
-	public void setChoiseDao(KindergartenChoiseDAO choiseDao) {
-		this.choiseDao = choiseDao;
 	}
 
 }
