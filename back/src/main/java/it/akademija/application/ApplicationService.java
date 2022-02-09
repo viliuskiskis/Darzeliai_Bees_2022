@@ -261,19 +261,24 @@ public class ApplicationService {
 	@Transactional
 	public ResponseEntity<String> deactivateApplication(Long id) {
 
-		Optional<Application> optionalApplication = applicationDao.findById(id);
+		Optional<Application> optionalApplication = 
+				applicationDao.findById(id);
 
-		if (optionalApplication.isPresent() == false) {  // .getStatus() == null
+		if (optionalApplication.isPresent() == false) { 
 
-			return new ResponseEntity<String>("Prašymas nerastas", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>
+					("Prašymas nerastas", HttpStatus.NOT_FOUND);
 
 		} 
 			
 		Application application = optionalApplication.get();
 		
-		if (application.getStatus().equals(ApplicationStatus.Patvirtintas)) {
-			return new ResponseEntity<String>("Veiksmas negalimas. Prašymas jau patvirtintas.",
-				HttpStatus.METHOD_NOT_ALLOWED);
+		if (application.getStatus()
+					.equals(ApplicationStatus.Patvirtintas)) {
+			
+			return new ResponseEntity<String>
+					("Veiksmas negalimas. Prašymas jau patvirtintas.",
+							HttpStatus.METHOD_NOT_ALLOWED);
 		}
 		else {
 
@@ -283,14 +288,15 @@ public class ApplicationService {
 
 				gartenService.decreaseNumberOfTakenPlacesInAgeGroup(application.getApprovedKindergarten(),
 						application.calculateAgeInYears());
-				application.setApprovedKindergarten(null);
+						application.setApprovedKindergarten(null);
 			}
 
 			application.setNumberInWaitingList(0);
 
 			applicationDao.save(application);
 
-			return new ResponseEntity<String>("Statusas pakeistas sėkmingai", HttpStatus.OK);
+			return new ResponseEntity<String>
+					("Statusas pakeistas sėkmingai", HttpStatus.OK);
 		}
 	}
 

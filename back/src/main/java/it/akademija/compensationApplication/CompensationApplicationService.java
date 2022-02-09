@@ -5,6 +5,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -89,11 +91,11 @@ public class CompensationApplicationService {
 	 * 
 	 * Get information about submitted compensation application for logged in user
 	 * 
-	 * @param currentUsername
-	 * @return set of user compensation applications
+	 * @param currentUsername, id
+	 * @return user compensation application
 	 */
 	@Transactional(readOnly = true)
-	public CompensationApplicationInfo getUserCompensationApplication(String currentUsername, Long id) {
+	public CompensationApplicationInfo getUserCompensationApplicationInfo(String currentUsername, Long id) {
 		
 		CompensationApplicationInfo compensationApplicationInfo = 
 				compensationApplicationDAO.findUserCompensationApplication(currentUsername, id);
@@ -109,6 +111,38 @@ public class CompensationApplicationService {
 				childDataService.getChildDataInfoByCompensationApplicationId(id);
 		compensationApplicationInfo.setChildDataInfo(childDataInfo);
 		return compensationApplicationInfo;
+	}
+	
+	/**
+	 * 
+	 * Get information about submitted compensation application for manager
+	 * 
+	 * @param id
+	 * @return compensation applications
+	 */
+	@Transactional(readOnly = true)
+	public CompensationApplicationInfo getCompensationApplicationInfo(Long id) {
+		
+		CompensationApplicationInfo compensationApplicationInfo = 
+				compensationApplicationDAO.findUserCompensationApplication(id);
+		
+		KindergartenDataInfo kindergartenDataInfo = 
+				kindergartenDataService.getKindergartenDataByCompensationApplicationId(id);
+		
+		compensationApplicationInfo.setKindergartenDataInfo(kindergartenDataInfo);
+		
+		UserInfo userInfo = userService.getUserInfoByUsername(id);
+		
+		compensationApplicationInfo.setMainGuardianInfo(userInfo);
+		
+		ChildDataInfo childDataInfo = 
+				childDataService.getChildDataInfoByCompensationApplicationId(id);
+		
+		compensationApplicationInfo.setChildDataInfo(childDataInfo);
+		
+		return compensationApplicationInfo;
+		
+		
 	}
 	
 	
@@ -167,5 +201,25 @@ public class CompensationApplicationService {
 	public boolean childExistsByPersonalCode(String childPersonalCode) {
 		return childDataService.childExistsByPersonalCode(childPersonalCode);
 	}
+
+	public Page<CompensationApplicationInfoUser> getPageFromCompensationApplications(Pageable pageable) {
+		return compensationApplicationDAO.findAllCompensationApplicationInfoUser(pageable);
+		
+	}
+
+	public boolean existsCompensationApplicationById(Long id) {
+		return compensationApplicationDAO.existsById(id);
+	}
+
+	public void deactivateCompensationApplication(CompensationApplication compensationApplication) {
+		compensationApplication
+				.setApplicationStatus(ApplicationStatus.Neaktualus);
+	}
+
+	public CompensationApplication getCompensationApplicationById(Long id) {
+		return compensationApplicationDAO.getById(id);
+	}
+	
+	
 	
 }
