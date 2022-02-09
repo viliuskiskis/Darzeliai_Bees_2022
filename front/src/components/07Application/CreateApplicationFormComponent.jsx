@@ -1,16 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import ChildFormComponent from "./ChildFormComponent";
 import CheckboxPriorityFormComponent from "./CheckboxPriorityFormComponent";
 import KindergartenPriorityFormComponent from "./KindergartenPriorityFormComponent";
 import MainGuardianFormComponent from "./MainGuardianFormComponent";
 import AdditionalGuardianFormComponent from "./AdditionalGuardianFormComponent";
 import KindergartenFormComponent from "./KindergartenFormComponent";
-import { ApplicationContext } from "./CreateApplicationFormContainer";
 import "./Application.css";
 
 export default function CreateApplicationFormComponent(props) {
-
-  const context = useContext(ApplicationContext);
 
   const [compensationActive, setCompensationActive] = useState(false);
 
@@ -46,40 +43,66 @@ export default function CreateApplicationFormComponent(props) {
         {/* Prašymo forma į darželius */}
         {!compensationActive &&
           <div>
-            {context.state.registrationDisabled &&
+            {props.state.registrationDisabled &&
               <div className="alert alert-warning p-1" role="alert">
                 Šiuo metu registracija nevykdoma
               </div>
             }
 
             <div className="form">
-              <form onSubmit={(e) => context.handleApplicationSubmit(e)}>
+              <form onSubmit={(e) => props.handleApplicationSubmit(e)}>
                 <div className="row">
                   <div className="col-12 col-md-4">
-                    <MainGuardianFormComponent />
+                    <MainGuardianFormComponent
+                      mainGuardian={props.state.mainGuardian}
+                      mainGuardianOnChange={props.mainGuardianOnChange}
+                    />
                   </div>
 
                   <div className="col-12 col-md-4">
-                    <AdditionalGuardianFormComponent />
+                    <AdditionalGuardianFormComponent
+                      additionalGuardian={props.state.additionalGuardian}
+                      enableAdditionalGuardian={props.enableAdditionalGuardian}
+                      additionalGuardianInput={props.state.additionalGuardianInput}
+                      additionalGuardianOnChange={props.additionalGuardianOnChange}
+                    />
                   </div>
 
                   <div className="col-12 col-md-4">
-                    <ChildFormComponent />
+                    <ChildFormComponent
+                      birthdate={props.state.birthdate}
+                      childName={props.state.childName}
+                      childPersonalCode={props.state.childPersonalCode}
+                      childSurname={props.state.childSurname}
+                      hiddenChildSurname={props.state.hiddenChildSurname}
+                      childAkOnChange={props.childAkOnChange}
+                      childSurnameOnChange={props.childSurnameOnChange}
+                    />
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-12">
-                    <CheckboxPriorityFormComponent />
+                    <CheckboxPriorityFormComponent
+                      priorities={props.state.priorities}
+                      checkboxOnChange={props.checkboxOnChange}
+                    />
                   </div>
 
                   <div className="col-12 col-lg-7">
-                    <KindergartenPriorityFormComponent />
+                    <KindergartenPriorityFormComponent
+                      kindergartenList={props.state.kindergartenList}
+                      handleKindergarten1={props.handleKindergarten1}
+                      handleKindergarten2={props.handleKindergarten2}
+                      handleKindergarten3={props.handleKindergarten3}
+                      handleKindergarten4={props.handleKindergarten4}
+                      handleKindergarten5={props.handleKindergarten5}
+                    />
 
                     <button
                       id="submitApplicationButton"
                       type="submit"
                       className="btn btn-primary mt-3"
-                      disabled={context.state.registrationDisabled}>
+                      disabled={props.state.registrationDisabled}>
                       Sukurti prašymą į darželius
                     </button>
 
@@ -95,18 +118,32 @@ export default function CreateApplicationFormComponent(props) {
         {compensationActive &&
           <div>
             <div className="form">
-              <form onSubmit={(e) => context.handleCompensationSubmit(e)}>
+              <form onSubmit={(e) => props.handleCompensationSubmit(e)}>
                 <div className="row">
                   <div className="col-12 col-md-4">
-                    <MainGuardianFormComponent />
+                    <MainGuardianFormComponent
+                      mainGuardian={props.state.mainGuardian}
+                      mainGuardianOnChange={props.mainGuardianOnChange}
+                    />
                   </div>
 
                   <div className="col-12 col-md-4">
-                    <KindergartenFormComponent />
+                    <KindergartenFormComponent
+                      kindergartenData={props.state.kindergartenData}
+                      kindergartenOnChange={props.kindergartenOnChange}
+                    />
                   </div>
 
                   <div className="col-12 col-md-4">
-                    <ChildFormComponent />
+                    <ChildFormComponent
+                      birthdate={props.state.birthdate}
+                      childName={props.state.childName}
+                      childPersonalCode={props.state.childPersonalCode}
+                      childSurname={props.state.childSurname}
+                      hiddenChildSurname={props.state.hiddenChildSurname}
+                      childAkOnChange={props.childAkOnChange}
+                      childSurnameOnChange={props.childSurnameOnChange}
+                    />
                   </div>
                 </div>
                 <div className="row">

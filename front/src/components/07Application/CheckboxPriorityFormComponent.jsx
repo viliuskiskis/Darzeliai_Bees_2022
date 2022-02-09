@@ -1,9 +1,6 @@
-import React, { useContext } from "react";
-import { ApplicationContext } from "./CreateApplicationFormContainer";
+import React from "react";
 
 export default function CheckboxPriorityFormComponent(props) {
-
-  const context = useContext(ApplicationContext);
 
   return (
     <div>
@@ -19,9 +16,9 @@ export default function CheckboxPriorityFormComponent(props) {
             className="form-check-input"
             name="livesInVilnius"
             id="chkLivesInVilnius"
-            checked={context.state.priorities.livesInVilnius}
-            onChange={(e) => context.checkboxOnChange(e)}
-            disabled={context.state.registrationDisabled}
+            checked={props.priorities.livesInVilnius}
+            onChange={(e) => props.checkboxOnChange(e)}
+            disabled={props.registrationDisabled}
           />
           <label className="form-check-label" htmlFor="livesInVilnius">
             Vaiko deklaruojama gyvenamoji vieta yra Vilniaus miesto
@@ -34,9 +31,9 @@ export default function CheckboxPriorityFormComponent(props) {
             className="form-check-input"
             name="childIsAdopted"
             id="chkChildIsAdopted"
-            checked={context.state.priorities.childIsAdopted}
-            onChange={(e) => context.checkboxOnChange(e)}
-            disabled={context.state.registrationDisabled}
+            checked={props.priorities.childIsAdopted}
+            onChange={(e) => props.checkboxOnChange(e)}
+            disabled={props.registrationDisabled}
           />
           <label className="form-check-label" htmlFor="childIsAdopted">
             Vaikas yra įvaikintas
@@ -48,9 +45,9 @@ export default function CheckboxPriorityFormComponent(props) {
             className="form-check-input"
             name="familyHasThreeOrMoreChildrenInSchools"
             id="chkFamilyHasThreeOrMoreChildrenInSchools"
-            checked={context.state.priorities.familyHasThreeOrMoreChildrenInSchools}
-            onChange={(e) => context.checkboxOnChange(e)}
-            disabled={context.state.registrationDisabled}
+            checked={props.priorities.familyHasThreeOrMoreChildrenInSchools}
+            onChange={(e) => props.checkboxOnChange(e)}
+            disabled={props.registrationDisabled}
           />
           <label
             className="form-check-label"
@@ -66,9 +63,9 @@ export default function CheckboxPriorityFormComponent(props) {
             className="form-check-input"
             name="guardianInSchool"
             id="chkGuardianInSchool"
-            checked={context.state.priorities.guardianInSchool}
-            onChange={(e) => context.checkboxOnChange(e)}
-            disabled={context.state.registrationDisabled}
+            checked={props.priorities.guardianInSchool}
+            onChange={(e) => props.checkboxOnChange(e)}
+            disabled={props.registrationDisabled}
           />
           <label className="form-check-label" htmlFor="guardianInSchool">
             Vienas iš tėvų (globėjų) mokosi bendrojo ugdymo mokykloje
@@ -80,9 +77,9 @@ export default function CheckboxPriorityFormComponent(props) {
             className="form-check-input"
             name="guardianDisability"
             id="chkGuardianDisability"
-            checked={context.state.priorities.guardianDisability}
-            onChange={(e) => context.checkboxOnChange(e)}
-            disabled={context.state.registrationDisabled}
+            checked={props.priorities.guardianDisability}
+            onChange={(e) => props.checkboxOnChange(e)}
+            disabled={props.registrationDisabled}
           />
           <label className="form-check-label" htmlFor="guardianDisability">
             Vienas iš tėvų (globėjų) turi ne daugiau kaip 40 procentų
@@ -95,9 +92,9 @@ export default function CheckboxPriorityFormComponent(props) {
             className="form-check-input"
             name="livesMoreThanTwoYears"
             id="chkLivesMoreThanTwoYears"
-            checked={context.state.priorities.livesMoreThanTwoYears}
-            onChange={(e) => context.checkboxOnChange(e)}
-            disabled={context.state.registrationDisabled}
+            checked={props.priorities.livesMoreThanTwoYears}
+            onChange={(e) => props.checkboxOnChange(e)}
+            disabled={props.registrationDisabled}
           />
           <label className="form-check-label" htmlFor="guardianDisability">
             Vaiko vieno iš tėvų deklaruojamoji gyvenamoji vieta Vilniaus savivaldybėje yra ne mažiau kaip 2 metai

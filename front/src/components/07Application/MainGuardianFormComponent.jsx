@@ -1,10 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import inputValidator from "../08CommonComponents/InputValidator";
-import { ApplicationContext } from "./CreateApplicationFormContainer";
 
 export default function MainGuardianFormComponent(props) {
-
-  const context = useContext(ApplicationContext);
 
   return (
     <div>
@@ -20,10 +17,10 @@ export default function MainGuardianFormComponent(props) {
             name="name"
             placeholder="Vardas"
             className="form-control"
-            value={context.state.mainGuardian.name}
-            onChange={(e) => context.mainGuardianOnChange(e)}
+            value={props.mainGuardian.name}
+            onChange={(e) => props.mainGuardianOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
-            disabled={context.registrationDisabled}
+            disabled={props.registrationDisabled}
             required
             pattern="[A-zÀ-ž\s-]{2,32}"
           />
@@ -38,10 +35,10 @@ export default function MainGuardianFormComponent(props) {
             name="surname"
             placeholder="Pavardė"
             className="form-control"
-            value={context.state.mainGuardian.surname}
-            onChange={(e) => context.mainGuardianOnChange(e)}
+            value={props.mainGuardian.surname}
+            onChange={(e) => props.mainGuardianOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
-            disabled={context.registrationDisabled}
+            disabled={props.registrationDisabled}
             required
             pattern="[A-zÀ-ž\s-]{2,32}"
           />
@@ -56,10 +53,10 @@ export default function MainGuardianFormComponent(props) {
             name="personalCode"
             placeholder="Asmens kodas"
             className="form-control"
-            value={context.state.mainGuardian.personalCode}
-            onChange={(e) => context.mainGuardianOnChange(e)}
+            value={props.mainGuardian.personalCode}
+            onChange={(e) => props.mainGuardianOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
-            disabled={context.registrationDisabled}
+            disabled={props.registrationDisabled}
             required
             pattern="[0-9]{11}"
           />
@@ -75,10 +72,10 @@ export default function MainGuardianFormComponent(props) {
               name="phone"
               placeholder="+37012345678"
               className="form-control"
-              value={context.state.mainGuardian.phone}
-              onChange={(e) => context.mainGuardianOnChange(e)}
+              value={props.mainGuardian.phone}
+              onChange={(e) => props.mainGuardianOnChange(e)}
               onInvalid={(e) => inputValidator(e)}
-              disabled={context.registrationDisabled}
+              disabled={props.registrationDisabled}
               required
               pattern="[+]?[0-9]{4,17}"
             ></input>
@@ -94,10 +91,10 @@ export default function MainGuardianFormComponent(props) {
             name="email"
             placeholder="El. paštas"
             className="form-control"
-            value={context.state.mainGuardian.email}
-            onChange={(e) => context.mainGuardianOnChange(e)}
+            value={props.mainGuardian.email}
+            onChange={(e) => props.mainGuardianOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
-            disabled={context.registrationDisabled}
+            disabled={props.registrationDisabled}
             required
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
           />
@@ -112,10 +109,10 @@ export default function MainGuardianFormComponent(props) {
             id="txtMainAddress"
             name="address"
             placeholder="Adresas"
-            value={context.state.mainGuardian.address}
-            onChange={(e) => context.mainGuardianOnChange(e)}
+            value={props.mainGuardian.address}
+            onChange={(e) => props.mainGuardianOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
-            disabled={context.registrationDisabled}
+            disabled={props.registrationDisabled}
             required
           />
         </div>
