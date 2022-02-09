@@ -29,6 +29,10 @@ public class CompensationApplicationInfo {
 	}
 	
 	
+	public CompensationApplicationInfo() {
+	}
+
+
 	public Long getId() {
 		return id;
 	}

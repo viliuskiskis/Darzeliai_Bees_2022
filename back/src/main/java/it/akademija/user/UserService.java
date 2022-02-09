@@ -318,4 +318,8 @@ public class UserService implements UserDetailsService {
 		return userDao.getUserInfoByUsername(currentUsername);
 	}
 
+	public UserInfo getUserInfoByUsername(Long id) {
+		return userDao.getUserInfoByCompensationApplicationId(id);
+	}
+
 }

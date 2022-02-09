@@ -120,53 +120,6 @@ public class ApplicationController {
 	}
 
 	/**
-	 *
-	 * Get page of unsorted applications
-	 *
-	 * @param page
-	 * @param size
-	 * @return page of applications
-	 */
-	@Secured({ "ROLE_MANAGER" })
-	@GetMapping("/manager")
-	@ApiOperation(value = "Get a page from all submitted applications")
-	public Page<ApplicationInfo> getPageFromSubmittedApplications(@RequestParam("page") int page,
-			@RequestParam("size") int size) {
-
-		List<Order> orders = new ArrayList<>();
-		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
-		orders.add(new Order(Direction.ASC, "childName").ignoreCase());
-
-		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
-
-		return applicationService.getPageFromSubmittedApplications(pageable);
-	}
-
-	/**
-	 * Get page of unsorted applications filtered by child personal code
-	 * 
-	 * @param childPersonalCode
-	 * @param page
-	 * @param size
-	 * @return page of applications
-	 */
-	@Secured({ "ROLE_MANAGER" })
-	@GetMapping("/manager/page/{childPersonalCode}")
-	@ApiOperation(value = "Get a page from all submitted applications with specified child personal code")
-	public ResponseEntity<Page<ApplicationInfo>> getApplicationnPageFilteredById(@PathVariable String childPersonalCode,
-			@RequestParam("page") int page, @RequestParam("size") int size) {
-
-		List<Order> orders = new ArrayList<>();
-		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
-		orders.add(new Order(Direction.ASC, "childName").ignoreCase());
-
-		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
-
-		return new ResponseEntity<>(applicationService.getApplicationnPageFilteredById(childPersonalCode, pageable),
-				HttpStatus.OK);
-	}
-
-	/**
 	 * 
 	 * Delete user application by id
 	 * 
@@ -178,14 +131,64 @@ public class ApplicationController {
 	@DeleteMapping("/user/delete/{id}")
 	@ApiOperation("Delete user application by id")
 	public ResponseEntity<String> deleteApplication(
-			@ApiParam(value = "Application id", required = true) @PathVariable Long id) {
+			@ApiParam(value = "Application id", required = true)
+			@PathVariable Long id) {
 
 		LOG.info("**ApplicationController: trinamas prasymas [{}] **", id);
 
 		return applicationService.deleteApplication(id);
 
 	}
+/**
+	 *
+	 * Get page of unsorted applications
+	 *
+	 * @param page
+	 * @param size
+	 * @return page of applications
+	 */
+	@Secured({ "ROLE_MANAGER" })
+	@GetMapping("/manager")
+	@ApiOperation(value = "Get a page from all submitted applications")
+	public Page<ApplicationInfo> getPageFromSubmittedApplications(
+			@RequestParam("page") int page,
+			@RequestParam("size") int size) {
 
+		List<Order> orders = new ArrayList<>();
+		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
+		orders.add(new Order(Direction.ASC, "childName").ignoreCase());
+
+		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
+
+		return applicationService.getPageFromSubmittedApplications(pageable);
+	}
+	
+		/**
+	 * Get page of unsorted applications filtered by child personal code
+	 * 
+	 * @param childPersonalCode
+	 * @param page
+	 * @param size
+	 * @return page of applications
+	 */
+	@Secured({ "ROLE_MANAGER" })
+	@GetMapping("/manager/page/{childPersonalCode}")
+	@ApiOperation(value = "Get a page from all submitted applications with specified child personal code")
+	public ResponseEntity<Page<ApplicationInfo>> getApplicationnPageFilteredById(
+			@PathVariable String childPersonalCode,
+			@RequestParam("page") int page, 
+			@RequestParam("size") int size) {
+
+		List<Order> orders = new ArrayList<>();
+		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
+		orders.add(new Order(Direction.ASC, "childName").ignoreCase());
+
+		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
+
+		return new ResponseEntity<>(applicationService.getApplicationnPageFilteredById(childPersonalCode, pageable),
+				HttpStatus.OK);
+	}
+	
 	/**
 	 * 
 	 * Manager sets user application status to inactive
@@ -197,20 +200,13 @@ public class ApplicationController {
 	@PostMapping("/manager/deactivate/{id}")
 	@ApiOperation("Delete user application by id")
 	public ResponseEntity<String> deactivateApplication(
-			@ApiParam(value = "Application id", required = true) @PathVariable Long id) {
+			@ApiParam(value = "Application id", required = true)
+			@PathVariable Long id) {
 
 		LOG.info("**ApplicationController: deaktyvuojamas prasymas [{}] **", id);
 
 		return applicationService.deactivateApplication(id);
 
-	}
-
-	public ApplicationService getService() {
-		return applicationService;
-	}
-
-	public void setService(ApplicationService applicationService) {
-		this.applicationService = applicationService;
 	}
 
 }
