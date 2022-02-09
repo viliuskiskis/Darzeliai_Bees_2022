@@ -11,10 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.akademija.application.ApplicationStatus;
 import it.akademija.compensationApplication.childData.ChildData;
+import it.akademija.compensationApplication.childData.ChildDataInfo;
 import it.akademija.compensationApplication.childData.ChildDataService;
 import it.akademija.compensationApplication.kindergartenData.KindergartenData;
+import it.akademija.compensationApplication.kindergartenData.KindergartenDataInfo;
 import it.akademija.compensationApplication.kindergartenData.KindergartenDataService;
 import it.akademija.user.User;
+import it.akademija.user.UserInfo;
 import it.akademija.user.UserService;
 
 @Service
@@ -80,6 +83,32 @@ public class CompensationApplicationService {
 	@Transactional(readOnly = true)
 	public Set<CompensationApplicationInfoUser> getAllUserCompensationApplications(String currentUsername) {
 		return compensationApplicationDAO.findAllUserCompensationApplications(currentUsername);
+	}
+	
+	/**
+	 * 
+	 * Get information about submitted compensation application for logged in user
+	 * 
+	 * @param currentUsername
+	 * @return set of user compensation applications
+	 */
+	@Transactional(readOnly = true)
+	public CompensationApplicationInfo getUserCompensationApplication(String currentUsername, Long id) {
+		
+		CompensationApplicationInfo compensationApplicationInfo = 
+				compensationApplicationDAO.findUserCompensationApplication(currentUsername, id);
+		
+		KindergartenDataInfo kindergartenDataInfo = 
+				kindergartenDataService.getKindergartenDataByCompensationApplicationId(id);
+		compensationApplicationInfo.setKindergartenDataInfo(kindergartenDataInfo);
+		
+		UserInfo userInfo = userService.getUserInfoByUsername(currentUsername);
+		compensationApplicationInfo.setMainGuardianInfo(userInfo);
+		
+		ChildDataInfo childDataInfo = 
+				childDataService.getChildDataInfoByCompensationApplicationId(id);
+		compensationApplicationInfo.setChildDataInfo(childDataInfo);
+		return compensationApplicationInfo;
 	}
 	
 	

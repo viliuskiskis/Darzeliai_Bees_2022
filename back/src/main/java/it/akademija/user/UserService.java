@@ -305,30 +305,17 @@ public class UserService implements UserDetailsService {
 
 		return userDao.findByUsername(currentUsername).getUserApplications();
 	}
-
-	public UserDAO getUserDao() {
-		return userDao;
-	}
-
-	public void setUserDao(UserDAO userDao) {
-		this.userDao = userDao;
-	}
-
-	public PasswordEncoder getPasswordEncoder() {
-		return passwordEncoder;
-	}
-
-	public void setPasswordEncoder(PasswordEncoder encoder) {
-		this.passwordEncoder = encoder;
-	}
-
-	public ApplicationService getApplicationService() {
-		return applicationService;
-	}
 	
-	
-	public void setApplicationService(ApplicationService applicationService) { 
-		this.applicationService = applicationService;
+	/**
+	 * 
+	 * Returns information about logged in user.
+	 * 
+	 * @param username
+	 * @return user information
+	 */
+	@Transactional(readOnly = true)
+	public UserInfo getUserInfoByUsername(String currentUsername) {
+		return userDao.getUserInfoByUsername(currentUsername);
 	}
 
 }

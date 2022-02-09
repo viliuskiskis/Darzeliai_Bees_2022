@@ -96,6 +96,28 @@ public class CompensationApplicationController {
 	}
 	
 	/**
+	 * Get compensation application for logged user by id
+	 * @param id
+	 * @return compensation application
+	 */
+	@Secured({ "ROLE_USER" })
+	@GetMapping("/user/{id}")
+	@ApiOperation(value = "Get all user applications")
+	public CompensationApplicationInfo getUserCompensationApplication(
+			@ApiParam(value = "CompensationApplication id", required = true) @PathVariable Long id){
+		if(id != null) {
+			String currentUsername = SecurityContextHolder
+				.getContext()
+				.getAuthentication()
+				.getName();
+		
+			return compensationApplicationService
+					.getUserCompensationApplication(currentUsername, id);
+		}
+		return null;
+	}
+	
+	/**
 	 * 
 	 * Delete user compensation application by id
 	 * 

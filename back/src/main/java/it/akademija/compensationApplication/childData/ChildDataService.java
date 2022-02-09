@@ -32,5 +32,9 @@ public class ChildDataService {
 	public void deleteChildData(ChildData childData) {
 		childDataDAO.delete(childData);
 	}
+
+	public ChildDataInfo getChildDataInfoByCompensationApplicationId(Long id) {
+		return childDataDAO.getChildDataInfoByCompensationApplicationId(id);
+	}
 	
 }

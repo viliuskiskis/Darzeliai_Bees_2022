@@ -29,4 +29,9 @@ public class KindergartenDataService {
 	public void deleteKindergartenData(KindergartenData kindergartenData) {
 		kindergartenDataDAO.delete(kindergartenData);
 	}
+
+	public KindergartenDataInfo getKindergartenDataByCompensationApplicationId(Long id) {
+		return kindergartenDataDAO.getByCompensationApplication(id);
+	}
+
 }

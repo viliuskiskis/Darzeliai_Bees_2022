@@ -12,7 +12,8 @@ public interface CompensationApplicationDAO extends JpaRepository<CompensationAp
 	@Query(value ="SELECT new it.akademija.compensationApplication.CompensationApplicationInfoUser("
 			+ "ca.id, "
 			+ "ca.applicationStatus, "
-			+ "ca.submitedAt, cd.childName, "
+			+ "ca.submitedAt, "
+			+ "cd.childName, "
 			+ "cd.childSurname, "
 			+ "kd.entityName) "
 			+ "FROM CompensationApplication ca "
@@ -23,5 +24,17 @@ public interface CompensationApplicationDAO extends JpaRepository<CompensationAp
 			+ "WHERE ca.mainGuardian.username=?1",
 			nativeQuery = false)							
 	Set<CompensationApplicationInfoUser> findAllUserCompensationApplications(String currentUsername);
+	
+	@Query(value="SELECT new it.akademija.compensationApplication.CompensationApplicationInfo("
+			+ "ca.id, "
+			+ "ca.submitedAt, "
+			+ "ca.applicationStatus, "
+			+ "ca.approvalDate) "
+			+ "FROM CompensationApplication ca "
+			+ "WHERE ca.mainGuardian.username=?1 AND ca.id = ?2", 
+			nativeQuery = false)
+	CompensationApplicationInfo findUserCompensationApplication(String currentUsername, Long id);
+
+	
 	
 }
