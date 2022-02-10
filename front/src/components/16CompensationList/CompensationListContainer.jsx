@@ -3,7 +3,7 @@ import "../../App.css";
 import http from "../10Services/httpService";
 import apiEndpoint from "../10Services/endpoint";
 import swal from "sweetalert";
-import Pagination from "react-js-pagination";
+import Pagination from './../08CommonComponents/Pagination';
 
 import CompensationListTable from "./CompensationListTable";
 
@@ -12,13 +12,13 @@ export default class CompensationListContainer extends Component {
     super(props);
     this.state = {
       compensations: [],
-      pageSize: 20, // PAGE SIZE FUNCTIONALITY NOT YET IMPLEMENTED
-      currentPage: 0,
+      pageSize: 10, // PAGE SIZE FUNCTIONALITY NOT YET IMPLEMENTED
+      currentPage: 1,
       totalPages: 0,
       totalElements: 0,
       numberOfElements: 0,
-      searchQuery: ""
     }
+    this.handlePageChange = this.handlePageChange.bind(this);
   }
 
   componentDidMount() {
@@ -26,15 +26,19 @@ export default class CompensationListContainer extends Component {
   }
 
   getCompensations(page) {
-    http.post(`${apiEndpoint}/api/kompensacijos/manager?pageNumber=${this.state.currentPage}&pageSize=20`)
+    http.post(`${apiEndpoint}/api/kompensacijos/manager?pageNumber=${page - 1}&pageSize=10`)
       .then(response => {
         this.setState({
           compensations: response.data.content,
           totalPages: response.data.totalPages,
           totalElements: response.data.totalElements,
           numberOfElements: response.data.numberOfElements,
-          currentPage: response.data.number
+          currentPage: response.data.number + 1
         });
+        // alert("total pages: " + response.data.totalPages + "\n"
+        //   + "current page:" + response.data.number + "\n"
+        //   + "total elements:" + response.data.totalElements + "\n"
+        //   + "number of elements:" + response.data.numberOfElements, "\n")
       }).catch(error => {
         swal({
           text: "Įvyko klaida perduodant duomenis" + JSON.stringify(error),
@@ -45,7 +49,7 @@ export default class CompensationListContainer extends Component {
 
   handlePageChange(page) {
     this.setState({ currentPage: page });
-    this.getApplications(page);
+    this.getCompensations(page);
   }
 
   render() {
@@ -56,15 +60,12 @@ export default class CompensationListContainer extends Component {
           compensations={this.state.compensations}
         />
 
-        {this.state.totalPages > -1 && <div className="d-flex justify-content-center">
+        {this.state.totalPages > 1 && <div className="d-flex justify-content-center">
           <Pagination
-            itemClass="page-item"
-            linkClass="page-link"
-            activePage={this.state.currentPage}
-            itemsCountPerPage={this.state.pageSize}
-            totalItemsCount={this.state.totalElements}
-            pageRangeDisplayed={15}
-            onPageChange={this.handlePageChange.bind(this)}
+            itemsCount={this.state.totalElements}
+            pageSize={this.state.pageSize}
+            onPageChange={this.handlePageChange}
+            currentPage={this.state.currentPage}
           />
         </div>
         }

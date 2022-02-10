@@ -68,8 +68,8 @@ public interface CompensationApplicationDAO extends JpaRepository<CompensationAp
 			+ "JOIN ChildData cd "
 			+ "ON ca.id = cd.compensationApplication.id "
 			+ "JOIN KindergartenData kd "
-			+ "ON ca.id = kd.compensationApplication.id "
-			+ "WHERE ca.mainGuardian.username=?1", nativeQuery = false)
+			+ "ON ca.id = kd.compensationApplication.id",
+			nativeQuery = false)
 	Page<CompensationApplicationInfoUser> findAllCompensationApplicationInfoUser(Pageable pageable);
 
 	

@@ -467,10 +467,12 @@ class CreateApplicationFormContainer extends Component {
   handleCompensationSubmit(e) {
     e.preventDefault();
 
+    // for (let i = 0; i < 100; i++) {
     const data = {
       birthdate: this.state.birthdate,
       childName: this.state.childName,
       childPersonalCode: this.state.childPersonalCode,
+      // childPersonalCode: 51609260300 + i,
       childSurname: this.state.childSurname,
       kindergartenData: this.state.kindergartenData,
       mainGuardian: this.state.mainGuardian,
@@ -485,7 +487,6 @@ class CreateApplicationFormContainer extends Component {
       http
         .post(`${apiEndpoint}/api/kompensacijos/user/new`, data)
         .then((response) => {
-          console.log(response);
           swal({
             text: response.data,
             button: "Gerai",
@@ -500,6 +501,7 @@ class CreateApplicationFormContainer extends Component {
           });
         });
     }
+    // }
   }
 
   render() {
