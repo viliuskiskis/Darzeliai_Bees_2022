@@ -306,20 +306,8 @@ public class KindergartenService {
 		gartenDao.save(garten);
 	}
 
-	public KindergartenDAO getGartenDao() {
-		return gartenDao;
-	}
-
-	public void setGartenDao(KindergartenDAO gartenDao) {
-		this.gartenDao = gartenDao;
-	}
-
-	public ApplicationDAO getApplicationDao() {
-		return applicationDao;
-	}
-
-	public void setApplicationDao(ApplicationDAO applicationDao) {
-		this.applicationDao = applicationDao;
+	public KindergartenInfo getKindergartenInfoByApplicationId(Long id) {
+		return gartenDao.getKindergartenInfoByApplicationId(id);
 	}
 
 }

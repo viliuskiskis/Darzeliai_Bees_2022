@@ -118,6 +118,35 @@ public class ApplicationController {
 
 		return applicationService.getAllUserApplications(currentUsername);
 	}
+	
+	/**
+	 * Get application for logged user by id
+	 * @param id
+	 * @return compensation application
+	 */
+	@Secured({ "ROLE_USER" })
+	@GetMapping("/user/{id}")
+	@ApiOperation(value = "Get compensation application by id and username")
+	public ResponseEntity<ApplicationDetails> getUserApplicationDetails(
+			@ApiParam(value = "Application id", required = true) @PathVariable Long id){
+		if(id != null) {
+			String currentUsername = SecurityContextHolder
+				.getContext()
+				.getAuthentication()
+				.getName();
+
+				ApplicationDetails applicationDetails = 
+					applicationService
+					.getUserApplicationDetails(currentUsername, id);
+			
+				return new ResponseEntity<ApplicationDetails>
+					(applicationDetails, HttpStatus.OK );
+			
+		}
+		return new ResponseEntity<ApplicationDetails>
+					(new ApplicationDetails(), HttpStatus.BAD_REQUEST);
+	}
+	
 
 	/**
 	 * 
@@ -207,6 +236,25 @@ public class ApplicationController {
 
 		return applicationService.deactivateApplication(id);
 
+	}
+	
+	@Secured({ "ROLE_MANAGER" })
+	@GetMapping("/Manager/{id}")
+	@ApiOperation(value = "Get application by id")
+	public ResponseEntity<ApplicationDetails> getApplication(
+			@ApiParam(value = "CompensationApplication id", required = true) @PathVariable Long id){
+		
+		if(id != null) {
+			
+			ApplicationDetails applicationDetails = 
+					applicationService
+					.getApplicationDetails(id);
+			
+			return new ResponseEntity<ApplicationDetails>
+					(applicationDetails, HttpStatus.OK );
+		}
+		return new ResponseEntity<ApplicationDetails>
+					(new ApplicationDetails(), HttpStatus.BAD_REQUEST);
 	}
 
 }

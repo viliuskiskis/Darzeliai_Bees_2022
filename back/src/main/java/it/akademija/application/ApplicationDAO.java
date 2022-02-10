@@ -74,5 +74,32 @@ public interface ApplicationDAO extends JpaRepository<Application, Long> {
 
 	@Query("SELECT COUNT(a.id) FROM Application a WHERE a.status=0 AND a.approvedKindergarten=null AND a.numberInWaitingList=0")
 	int findNumberOfUnprocessedApplications();
+	
+	@Query("SELECT new it.akademija.application.ApplicationDetails("
+			+ "a.id, "
+			+ "a.submitedAt, "
+			+ "a.status, "
+			+ "a.childName, "
+			+ "a.childSurname, "
+			+ "a.childPersonalCode, "
+			+ "a.approvalDate, "
+			+ "a.birthdate) "
+			+ "FROM Application a "
+			+ "WHERE a.mainGuardian.username=?1 "
+			+ "AND a.id=?2")
+	ApplicationDetails getUserApplicationDetails(String currentUsername, Long id);
+	
+	@Query("SELECT new it.akademija.application.ApplicationDetails("
+			+ "a.id, "
+			+ "a.submitedAt, "
+			+ "a.status, "
+			+ "a.childName, "
+			+ "a.childSurname, "
+			+ "a.childPersonalCode, "
+			+ "a.approvalDate, "
+			+ "a.birthdate) "
+			+ "FROM Application a "
+			+ "WHERE a.id=?1")
+	ApplicationDetails getApplicationDetails(Long id);
 
 }
