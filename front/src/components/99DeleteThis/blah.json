@@ -1,73 +1,45 @@
 {
-  "id": 16,
-  "submitedAt": "2022-02-08",
-  "applicationStatus": "Pateiktas",
-  "approvalDate": null,
-  "kindergartenDataInfo": {
-    "entityName": "asfd",
-    "code": "321654987",
-    "phone": "321564",
-    "email": "as@asd.as",
-    "address": "asfd",
-    "account": "AS321654987321654987",
-    "bankCode": "ASFDAS321",
-    "bankName": "asdfasfdasfd"
+  "content": [
+    {
+      "id": 102,
+      "applicationStatus": "Pateiktas",
+      "submitedAt": "2022-02-09",
+      "childName": "Sandijus",
+      "childSurname": "Kututis",
+      "entityName": "Darželis"
+    },
+    {
+      "id": 107,
+      "applicationStatus": "Pateiktas",
+      "submitedAt": "2022-02-09",
+      "childName": "Benadas",
+      "childSurname": "Juozauskas",
+      "entityName": "Darželis"
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "empty": false,
+      "sorted": true,
+      "unsorted": false
+    },
+    "offset": 0,
+    "pageSize": 5,
+    "pageNumber": 0,
+    "paged": true,
+    "unpaged": false
   },
-  "mainGuardianInfo": {
-    "userId": 2,
-    "role": null,
-    "name": "user",
-    "surname": "user",
-    "personalCode": "12345678987",
-    "address": "Address 1",
-    "phone": "+37061398876",
-    "email": "user@user.lt",
-    "username": "user@user.lt"
+  "last": true,
+  "totalElements": 2,
+  "totalPages": 1,
+  "size": 5,
+  "number": 0,
+  "sort": {
+    "empty": false,
+    "sorted": true,
+    "unsorted": false
   },
-  "childDataInfo": {
-    "birthdate": "2016-09-26",
-    "childName": "Sandijus",
-    "childPersonalCode": "51609260014",
-    "childSurname": "Kututis"
-  }
-}
-
-{
-  "additionalGuardian": {
-    "name": "asf",
-    "surname": "asfd",
-    "personalCode": "32132132132",
-    "phone": "321321",
-    "email": "as@as.as",
-    "address": "asfdasf"
-  },
-  "birthdate": "2016-09-26",
-  "childName": "Benadas",
-  "childPersonalCode": "51609260069",
-  "childSurname": "Juozauskas",
-  "kindergartenChoises": {
-    "kindergartenId1": "190020391",
-    "kindergartenId2": "190019122",
-    "kindergartenId3": "303318623",
-    "kindergartenId4": "190032931",
-    "kindergartenId5": "190017071"
-  },
-  "mainGuardian": {
-    "name": "user",
-    "surname": "user",
-    "personalCode": "12345678987",
-    "phone": "+37061398876",
-    "email": "user@user.lt",
-    "address": "Address 1",
-    "username": "user@user.lt",
-    "role": "USER"
-  },
-  "priorities": {
-    "childIsAdopted": true,
-    "familyHasThreeOrMoreChildrenInSchools": true,
-    "guardianDisability": true,
-    "guardianInSchool": true,
-    "livesInVilnius": true,
-    "livesMoreThanTwoYears": true
-  }
+  "first": true,
+  "numberOfElements": 2,
+  "empty": false
 }
