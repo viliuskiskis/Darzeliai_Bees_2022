@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import it.akademija.compensationApplication.CompensationApplication;
 
@@ -23,13 +25,35 @@ public class KindergartenData {
 	@JoinColumn(name = "compensation_application_id")
 	private CompensationApplication compensationApplication;
 	
+	@NotBlank(message = "Pavadinimas privalomas")
+	@Pattern(regexp = "\\S[\\s\\S]{2,49}")
 	private String entityName;
+	
+	@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{9}$|", 
+			message = "Įstaigos kodas turi būti sudarytas iš 9 skaitmenų")
 	private String code;
+	// !!!!!!!
+	@Pattern(regexp = "[+]?[0-9]{4,17}", 
+			message = "Telefono numeris gali būti sudarytas iš 4-17 skaitmenų")
 	private String phone;
+	// !!!!!!!
+	@Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", 
+			message = "Įstaigos elektroninis paštas privalomas")
 	private String email;
+	
+	@NotBlank(message = "Adresas privalomas")
 	private String address;
+	// !!!!!!!
+	@Pattern(regexp = "[A-Za-z]{2}[0-9]{2}[A-z0-9]{11,30}", 
+			message = "Įstaigos banko sąskaita privaloma")
 	private String account;
+	
+	@Pattern(regexp = "[A-Za-z]{6}[A-Za-z0-9]{2,5}", 
+			message = "Įstaigos banko kodas privalomas")
 	private String bankCode;
+	
+	@Pattern(regexp = "[A-Za-zĄ-Žą-ž0-9\\s\\-]{2,50}", 
+			message = "Įstaigos banko pavadinimas privalomas")
 	private String bankName;
 	
 	public KindergartenData() {

@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import it.akademija.application.ApplicationStatus;
 import it.akademija.compensationApplication.childData.ChildData;
 import it.akademija.compensationApplication.kindergartenData.KindergartenData;
@@ -41,6 +43,7 @@ public class CompensationApplication {
 	
 	private ApplicationStatus applicationStatus;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate approvalDate;
 	
 	public CompensationApplication() { }

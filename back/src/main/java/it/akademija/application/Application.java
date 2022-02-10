@@ -85,6 +85,7 @@ public class Application {
 	@JoinColumn(name = "approved_kindergarten_id")
 	private Kindergarten approvedKindergarten;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate approvalDate;
 
 	public Application() {
