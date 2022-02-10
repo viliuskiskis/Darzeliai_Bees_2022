@@ -53,5 +53,23 @@ public interface UserDAO extends JpaRepository<User, Long> {
 			+ "WHERE ca.id=?1", 
 			nativeQuery = false)
 	UserInfo getUserInfoByCompensationApplicationId(Long id);
+	
+	@Query(value="SELECT new it.akademija.user.UserInfo("
+			+ "u.userId, "
+			+ "u.name, "
+			+ "u.surname, "
+			+ "pd.personalCode, "
+			+ "pd.address, "
+			+ "pd.phone, "
+			+ "u.email, "
+			+ "u.username) "
+			+ "FROM User u "
+			+ "JOIN ParentDetails pd "
+			+ "ON u.userId = pd.user.id "
+			+ "JOIN Application a "
+			+ "ON u.userId = a.mainGuardian.id "
+			+ "WHERE a.id=?1", 
+			nativeQuery = false)
+	UserInfo getUserInfoByApplicationId(Long id);
 
 }

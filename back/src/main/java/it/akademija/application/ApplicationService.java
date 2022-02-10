@@ -286,7 +286,8 @@ public class ApplicationService {
 
 			if (application.getApprovedKindergarten() != null) {
 
-				gartenService.decreaseNumberOfTakenPlacesInAgeGroup(application.getApprovedKindergarten(),
+				gartenService.decreaseNumberOfTakenPlacesInAgeGroup(
+						application.getApprovedKindergarten(),
 						application.calculateAgeInYears());
 						application.setApprovedKindergarten(null);
 			}
@@ -335,6 +336,49 @@ public class ApplicationService {
 	public Page<ApplicationInfo> getApplicationnPageFilteredById(String childPersonalCode, Pageable pageable) {
 
 		return applicationDao.findByIdContaining(childPersonalCode, pageable);
+	}
+
+	/**
+	 * Returns application details about submitted application by id and username
+	 * 
+	 * @param currentUsername 
+	 * @param id
+	 * @return application details
+	 */
+	public ApplicationDetails getUserApplicationDetails(String currentUsername, Long id) {
+		
+		ApplicationDetails applicationDetails = 
+				applicationDao.getUserApplicationDetails(currentUsername, id);
+		
+		applicationDetails.setMainGuardian(
+				userService.getUserInfoByUsername(currentUsername));
+	
+		applicationDetails.setKindergartenInfo(
+				gartenService.getKindergartenInfoByApplicationId(id));
+		
+		
+		return applicationDetails;
+	}
+
+	/**
+	 * Returns application details about submitted application by id 
+	 * 
+	 * @param id
+	 * @return application details
+	 */
+	public ApplicationDetails getApplicationDetails(Long id) {
+		
+		ApplicationDetails applicationDetails = 
+				applicationDao.getApplicationDetails(id);
+		
+		applicationDetails.setMainGuardian(
+				userService.getUserInfoByApplicationId(id));
+	
+		applicationDetails.setKindergartenInfo(
+				gartenService.getKindergartenInfoByApplicationId(id));
+		
+		
+		return applicationDetails;
 	}
 
 }

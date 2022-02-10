@@ -18,7 +18,7 @@ import it.akademija.kindergartenchoise.KindergartenChoise;
 
 @Entity
 public class Kindergarten {
-
+	
 	@Id
 	@Column(name = "kindergarten_id")
 	@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{9}$|", message = "Įstaigos kodas turi būti sudarytas iš 9 skaitmenų")

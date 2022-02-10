@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,9 +31,19 @@ public class ChildData {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthdate;
 	
+	@NotEmpty(message = "Vardas privalomas!")
+	@Size(min = 2, max = 70)
+	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
 	private String childName;
-	private String childPersonalCode;
+	
+	@NotEmpty(message = "Pavardė privaloma!")
+	@Size(min = 2, max = 70)
+	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
 	private String childSurname;
+	
+	@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{11}$|")
+	private String childPersonalCode;
+	
 
 	public ChildData() {
 		super();

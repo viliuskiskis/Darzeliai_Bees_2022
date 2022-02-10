@@ -131,7 +131,7 @@ public class CompensationApplicationService {
 		
 		compensationApplicationInfo.setKindergartenDataInfo(kindergartenDataInfo);
 		
-		UserInfo userInfo = userService.getUserInfoByUsername(id);
+		UserInfo userInfo = userService.getUserInfoById(id);
 		
 		compensationApplicationInfo.setMainGuardianInfo(userInfo);
 		
