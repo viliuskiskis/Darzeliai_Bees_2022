@@ -50,8 +50,11 @@ export class UserHomeContainer extends Component {
                             text: response.data,
                             button: "Gerai"
                         })
-                        this.getUserCompensations();
-                    }).catch(() => { });
+                    }).then(
+                        setTimeout(() => {
+                            this.getUserApplications()
+                        }, 1000)
+                    ).catch(() => { });
             }
         });
     }
@@ -69,8 +72,11 @@ export class UserHomeContainer extends Component {
                             text: response.data,
                             button: "Gerai"
                         })
-                        this.getUserApplications();
-                    }).catch(() => { });
+                    }).then(
+                        setTimeout(() => {
+                            this.getUserCompensations()
+                        }, 1000)
+                    ).catch(() => { });
             }
         });
     }

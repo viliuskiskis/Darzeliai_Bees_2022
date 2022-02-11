@@ -32,7 +32,10 @@ class UserCompensationsTable extends Component {
     {
       key: 'review',
       label: 'Peržiūrėti prašymą',
-      content: compensation => <button onClick={() => this.props.handleCompensationReview(compensation.id)} id="btnReviewCompensation" className="btn btn-outline-primary btn-sm btn-block">Peržiūrėti</button>
+      content: compensation =>
+        <button onClick={() => this.props.handleCompensationReview(compensation.id)}
+          id="btnReviewCompensationUser"
+          className="btn btn-outline-primary btn-sm btn-block">Peržiūrėti</button>
     },
     {
       key: 'delete',

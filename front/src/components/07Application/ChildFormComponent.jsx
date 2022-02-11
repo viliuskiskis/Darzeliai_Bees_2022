@@ -1,15 +1,11 @@
-import React, { useContext } from "react";
-import DatePicker from "react-datepicker";
+import React from "react";
 import inputValidator from "../08CommonComponents/InputValidator";
-import { ApplicationContext } from "./CreateApplicationFormContainer";
 import "./Application.css";
 
 export default function ChildFormComponent(props) {
 
-  const context = useContext(ApplicationContext);
-
-  let datePresent = context.state.hiddenChildSurname === "" ? "form-control" : "form-control green-background";
-  let namePresent = context.state.childName === "" ? "form-control" : "form-control green-background";
+  let datePresent = props.hiddenChildSurname === "" ? "form-control" : "form-control green-background";
+  let namePresent = props.childName === "" ? "form-control" : "form-control green-background";
 
   return (
     <div>
@@ -27,8 +23,8 @@ export default function ChildFormComponent(props) {
             name="childPersonalCode"
             placeholder="Asmens kodas"
             className="form-control"
-            value={context.state.childPersonalCode}
-            onChange={(event) => context.childAkOnChange(event)}
+            value={props.childPersonalCode}
+            onChange={(event) => props.childAkOnChange(event)}
             required
             onInvalid={(e) => inputValidator(e)}
             pattern="[56][12][0-9][01][0-9][0-3][0-9]{5}"
@@ -44,8 +40,8 @@ export default function ChildFormComponent(props) {
             name="childSurname"
             placeholder="Vaiko pavardė"
             className="form-control"
-            value={context.state.childSurname}
-            onChange={(event) => context.childSurnameOnChange(event)}
+            value={props.childSurname}
+            onChange={(event) => props.childSurnameOnChange(event)}
             required
             onInvalid={(e) => inputValidator(e)}
             pattern="^[A-zÀ-ž\s-]{2,32}"
@@ -61,7 +57,7 @@ export default function ChildFormComponent(props) {
             name="childName"
             placeholder="Vaiko vardas"
             className={namePresent}
-            value={context.state.childName}
+            value={props.childName}
             required
             onInvalid={(e) => inputValidator(e)}
             pattern="^[A-zÀ-ž\s-]{2,32}"
@@ -72,12 +68,12 @@ export default function ChildFormComponent(props) {
           <label className="form-label" htmlFor="txtChildBirthdate">
             Gimimo data <span className="fieldRequired">*</span>
           </label>
-          <DatePicker
+          <input
             id="txtChildBirthdate"
             className={datePresent}
-            locale="lt"
-            dateFormat="yyyy-MM-dd"
-            selected={context.state.birthdate}
+            name="birthdate"
+            value={props.birthdate}
+            placeholder="Gimimo data"
             disabled={true}
           />
         </div>

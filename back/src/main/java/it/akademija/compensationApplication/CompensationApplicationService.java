@@ -216,8 +216,8 @@ public class CompensationApplicationService {
 	}
 
 	public void deactivateCompensationApplication(CompensationApplication compensationApplication) {
-		compensationApplication
-				.setApplicationStatus(ApplicationStatus.Neaktualus);
+		compensationApplication.setApplicationStatus(ApplicationStatus.Neaktualus);
+		compensationApplicationDAO.save(compensationApplication);
 	}
 
 	public CompensationApplication getCompensationApplicationById(Long id) {

@@ -1,10 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import inputValidator from "../08CommonComponents/InputValidator";
-import { ApplicationContext } from "./CreateApplicationFormContainer";
 
-export default function KindergartenFormComponent() {
-
-  const context = useContext(ApplicationContext);
+export default function KindergartenFormComponent(props) {
 
   return (
     <div>
@@ -20,8 +17,8 @@ export default function KindergartenFormComponent() {
             name="entityName"
             placeholder="Pavadinimas"
             className="form-control"
-            value={context.state.kindergartenData.entityName}
-            onChange={(e) => context.kindergartenOnChange(e)}
+            value={props.kindergartenData.entityName}
+            onChange={(e) => props.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
             pattern="[A-Za-zĄ-Žą-ž0-9\s\-]{2,50}"
@@ -37,8 +34,8 @@ export default function KindergartenFormComponent() {
             name="code"
             placeholder="Įmonės kodas"
             className="form-control"
-            value={context.state.kindergartenData.code}
-            onChange={(e) => context.kindergartenOnChange(e)}
+            value={props.kindergartenData.code}
+            onChange={(e) => props.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
             pattern="[0-9]{9}"
@@ -55,8 +52,8 @@ export default function KindergartenFormComponent() {
               name="phone"
               placeholder="+37012345678"
               className="form-control"
-              value={context.state.kindergartenData.phone}
-              onChange={(e) => context.kindergartenOnChange(e)}
+              value={props.kindergartenData.phone}
+              onChange={(e) => props.kindergartenOnChange(e)}
               onInvalid={(e) => inputValidator(e)}
               required
               pattern="[+]?[0-9]{4,17}"
@@ -73,8 +70,8 @@ export default function KindergartenFormComponent() {
             name="email"
             placeholder="El. paštas"
             className="form-control"
-            value={context.state.kindergartenData.email}
-            onChange={(e) => context.kindergartenOnChange(e)}
+            value={props.kindergartenData.email}
+            onChange={(e) => props.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
@@ -90,8 +87,8 @@ export default function KindergartenFormComponent() {
             id="kindergartenAddress"
             name="address"
             placeholder="Adresas"
-            value={context.state.kindergartenData.address}
-            onChange={(e) => context.kindergartenOnChange(e)}
+            value={props.kindergartenData.address}
+            onChange={(e) => props.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
             pattern="[A-Za-zĄ-Žą-ž0-9'\s.,-]{2,50}"
@@ -107,8 +104,8 @@ export default function KindergartenFormComponent() {
             name="account"
             placeholder="Banko sąskaitos numeris"
             className="form-control"
-            value={context.state.kindergartenData.account}
-            onChange={(e) => context.kindergartenOnChange(e)}
+            value={props.kindergartenData.account}
+            onChange={(e) => props.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
             pattern="[A-Za-z]{2}[0-9]{2}[A-z0-9]{11,30}"
@@ -124,8 +121,8 @@ export default function KindergartenFormComponent() {
             name="bankCode"
             placeholder="Banko kodas"
             className="form-control"
-            value={context.state.kindergartenData.bankCode}
-            onChange={(e) => context.kindergartenOnChange(e)}
+            value={props.kindergartenData.bankCode}
+            onChange={(e) => props.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
             pattern="[A-Za-z]{6}[A-Za-z0-9]{2,5}"
@@ -141,8 +138,8 @@ export default function KindergartenFormComponent() {
             name="bankName"
             placeholder="Banko pavadinimas"
             className="form-control"
-            value={context.state.kindergartenData.bankName}
-            onChange={(e) => context.kindergartenOnChange(e)}
+            value={props.kindergartenData.bankName}
+            onChange={(e) => props.kindergartenOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
             required
             pattern="[A-Za-zĄ-Žą-ž0-9\s\-]{2,50}"

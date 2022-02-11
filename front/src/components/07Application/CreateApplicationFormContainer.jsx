@@ -1,10 +1,5 @@
-import React, { Component, createContext } from "react";
+import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-
-import { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import lt from "date-fns/locale/lt";
-
 import http from "../10Services/httpService";
 import apiEndpoint from "../10Services/endpoint";
 import childDataUrl from "../10Services/childDataUrl";
@@ -14,12 +9,6 @@ import inputValidator from "../08CommonComponents/InputValidator";
 import CreateApplicationFormComponent from "./CreateApplicationFormComponent";
 
 import "../../App.css";
-import "../08CommonComponents/datePickerStyle.css";
-import { parse } from "date-fns";
-
-registerLocale("lt", lt);
-
-export const ApplicationContext = createContext();
 
 class CreateApplicationFormContainer extends Component {
   constructor(props) {
@@ -52,7 +41,7 @@ class CreateApplicationFormContainer extends Component {
         bankCode: "",
         bankName: ""
       },
-      birthdate: parse("0001-01-01", "yyyy-MM-dd", new Date()),
+      birthdate: "",
       childName: "",
       childPersonalCode: "",
       childSurname: "",
@@ -194,11 +183,7 @@ class CreateApplicationFormContainer extends Component {
         .then(response => {
           if (gimimoDataRegexp.test(response.data.gimimoData)) {
             this.setState({
-              birthdate: parse(
-                response.data.gimimoData,
-                "yyyy-MM-dd",
-                new Date()
-              )
+              birthdate: response.data.gimimoData
             })
           }
           if (response.data.pavarde === this.state.childSurname) {
@@ -238,11 +223,7 @@ class CreateApplicationFormContainer extends Component {
       childName: "",
       hiddenChildName: "",
       hiddenChildSurname: "",
-      birthdate: parse(
-        "0001-01-01",
-        "yyyy-MM-dd",
-        new Date()
-      )
+      birthdate: ""
     })
   }
 
@@ -465,7 +446,7 @@ class CreateApplicationFormContainer extends Component {
       http
         .post(`${apiEndpoint}/api/prasymai/user/new`, data)
         .then((response) => {
-          //console.log(response);
+          alert(JSON.stringify(data))
           swal({
             text: response.data,
             button: "Gerai",
@@ -486,10 +467,12 @@ class CreateApplicationFormContainer extends Component {
   handleCompensationSubmit(e) {
     e.preventDefault();
 
+    // for (let i = 0; i < 100; i++) {
     const data = {
-      birthdate: this.state.birthdate.toLocaleDateString("en-CA"),
+      birthdate: this.state.birthdate,
       childName: this.state.childName,
       childPersonalCode: this.state.childPersonalCode,
+      // childPersonalCode: 51609260300 + i,
       childSurname: this.state.childSurname,
       kindergartenData: this.state.kindergartenData,
       mainGuardian: this.state.mainGuardian,
@@ -504,7 +487,6 @@ class CreateApplicationFormContainer extends Component {
       http
         .post(`${apiEndpoint}/api/kompensacijos/user/new`, data)
         .then((response) => {
-          console.log(response);
           swal({
             text: response.data,
             button: "Gerai",
@@ -519,30 +501,29 @@ class CreateApplicationFormContainer extends Component {
           });
         });
     }
+    // }
   }
 
   render() {
 
     return (
-      <ApplicationContext.Provider value={{
-        state: this.state,
-        mainGuardianOnChange: this.mainGuardianOnChange,
-        additionalGuardianOnChange: this.additionalGuardianOnChange,
-        enableAdditionalGuardian: this.enableAdditionalGuardian,
-        childAkOnChange: this.childAkOnChange,
-        childSurnameOnChange: this.childSurnameOnChange,
-        checkboxOnChange: this.checkboxOnChange,
-        handleKindergarten1: this.handleKindergarten1,
-        handleKindergarten2: this.handleKindergarten2,
-        handleKindergarten3: this.handleKindergarten3,
-        handleKindergarten4: this.handleKindergarten4,
-        handleKindergarten5: this.handleKindergarten5,
-        kindergartenOnChange: this.kindergartenOnChange,
-        handleApplicationSubmit: this.handleApplicationSubmit,
-        handleCompensationSubmit: this.handleCompensationSubmit
-      }}>
-        <CreateApplicationFormComponent />
-      </ApplicationContext.Provider>
+      <CreateApplicationFormComponent
+        state={this.state}
+        mainGuardianOnChange={this.mainGuardianOnChange}
+        additionalGuardianOnChange={this.additionalGuardianOnChange}
+        enableAdditionalGuardian={this.enableAdditionalGuardian}
+        childAkOnChange={this.childAkOnChange}
+        childSurnameOnChange={this.childSurnameOnChange}
+        checkboxOnChange={this.checkboxOnChange}
+        handleKindergarten1={this.handleKindergarten1}
+        handleKindergarten2={this.handleKindergarten2}
+        handleKindergarten3={this.handleKindergarten3}
+        handleKindergarten4={this.handleKindergarten4}
+        handleKindergarten5={this.handleKindergarten5}
+        kindergartenOnChange={this.kindergartenOnChange}
+        handleApplicationSubmit={this.handleApplicationSubmit}
+        handleCompensationSubmit={this.handleCompensationSubmit}
+      />
     );
   }
 }

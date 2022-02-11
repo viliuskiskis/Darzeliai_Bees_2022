@@ -239,7 +239,7 @@ public class ApplicationController {
 	}
 	
 	@Secured({ "ROLE_MANAGER" })
-	@GetMapping("/Manager/{id}")
+	@GetMapping("/manager/{id}")
 	@ApiOperation(value = "Get application by id")
 	public ResponseEntity<ApplicationDetails> getApplication(
 			@ApiParam(value = "CompensationApplication id", required = true) @PathVariable Long id){

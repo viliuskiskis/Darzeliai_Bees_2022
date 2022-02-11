@@ -1,10 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import inputValidator from "../08CommonComponents/InputValidator";
-import { ApplicationContext } from "./CreateApplicationFormContainer";
 
 export default function AdditionalGuardianFormComponent(props) {
-
-  const context = useContext(ApplicationContext);
 
   return (
     <div>
@@ -18,10 +15,10 @@ export default function AdditionalGuardianFormComponent(props) {
               id="btnEnableAdditionalGuardian"
               className="btn btn-primary btn-sm btn-block float-end my-1"
               style={{ padding: "4px" }}
-              onClick={context.enableAdditionalGuardian}
-              disabled={context.registrationDisabled}
+              onClick={props.enableAdditionalGuardian}
+              disabled={props.registrationDisabled}
             >
-              {!context.state.additionalGuardianInput ? "Pridėti" : "Pašalinti"}
+              {!props.additionalGuardianInput ? "Pridėti" : "Pašalinti"}
             </button>
           </div>
         </div>
@@ -35,10 +32,10 @@ export default function AdditionalGuardianFormComponent(props) {
             name="name"
             placeholder="Vardas"
             className="form-control"
-            value={context.state.additionalGuardian.name}
-            onChange={(e) => context.additionalGuardianOnChange(e)}
+            value={props.additionalGuardian.name}
+            onChange={(e) => props.additionalGuardianOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
-            disabled={!context.state.additionalGuardianInput || context.registrationDisabled}
+            disabled={!props.additionalGuardianInput || props.registrationDisabled}
             pattern="[A-zÀ-ž\s-]{2,32}"
             required
           />
@@ -53,10 +50,10 @@ export default function AdditionalGuardianFormComponent(props) {
             name="surname"
             placeholder="Pavardė"
             className="form-control"
-            value={context.state.additionalGuardian.surname}
-            onChange={(e) => context.additionalGuardianOnChange(e)}
+            value={props.additionalGuardian.surname}
+            onChange={(e) => props.additionalGuardianOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
-            disabled={!context.state.additionalGuardianInput || context.registrationDisabled}
+            disabled={!props.additionalGuardianInput || props.registrationDisabled}
             pattern="[A-zÀ-ž\s-]{2,32}"
             required
           />
@@ -71,10 +68,10 @@ export default function AdditionalGuardianFormComponent(props) {
             name="personalCode"
             placeholder="Asmens kodas"
             className="form-control"
-            value={context.state.additionalGuardian.personalCode}
-            onChange={(e) => context.additionalGuardianOnChange(e)}
+            value={props.additionalGuardian.personalCode}
+            onChange={(e) => props.additionalGuardianOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
-            disabled={!context.state.additionalGuardianInput || context.registrationDisabled}
+            disabled={!props.additionalGuardianInput || props.registrationDisabled}
             pattern="[0-9]{11}"
             required
           />
@@ -90,10 +87,10 @@ export default function AdditionalGuardianFormComponent(props) {
               name="phone"
               placeholder="+37012345678"
               className="form-control"
-              value={context.state.additionalGuardian.phone}
-              onChange={(e) => context.additionalGuardianOnChange(e)}
+              value={props.additionalGuardian.phone}
+              onChange={(e) => props.additionalGuardianOnChange(e)}
               onInvalid={(e) => inputValidator(e)}
-              disabled={!context.state.additionalGuardianInput || context.registrationDisabled}
+              disabled={!props.additionalGuardianInput || props.registrationDisabled}
               pattern="[+]?[0-9]{4,17}"
               required
             />
@@ -109,10 +106,10 @@ export default function AdditionalGuardianFormComponent(props) {
             name="email"
             placeholder="El. paštas"
             className="form-control"
-            value={context.state.additionalGuardian.email}
-            onChange={(e) => context.additionalGuardianOnChange(e)}
+            value={props.additionalGuardian.email}
+            onChange={(e) => props.additionalGuardianOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
-            disabled={!context.state.additionalGuardianInput || context.registrationDisabled}
+            disabled={!props.additionalGuardianInput || props.registrationDisabled}
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
             required
           />
@@ -127,10 +124,10 @@ export default function AdditionalGuardianFormComponent(props) {
             id="txtAdditionalAddress"
             name="address"
             placeholder="Adresas"
-            value={context.state.additionalGuardian.address}
-            onChange={(e) => context.additionalGuardianOnChange(e)}
+            value={props.additionalGuardian.address}
+            onChange={(e) => props.additionalGuardianOnChange(e)}
             onInvalid={(e) => inputValidator(e)}
-            disabled={!context.state.additionalGuardianInput || context.registrationDisabled}
+            disabled={!props.additionalGuardianInput || props.registrationDisabled}
             required
           />
         </div>
