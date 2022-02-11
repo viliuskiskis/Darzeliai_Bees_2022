@@ -34,4 +34,20 @@ public class KindergartenDataService {
 		return kindergartenDataDAO.getByCompensationApplication(id);
 	}
 
+	public void updateKindergartenData(KindergartenDataDTO kindergartenDataDTO, Long id) {
+		
+		KindergartenData kindergartenData = kindergartenDataDAO.getById(id);
+		
+		kindergartenData.setEntityName(kindergartenDataDTO.getEntityName());
+		kindergartenData.setAddress(kindergartenDataDTO.getAddress());
+		kindergartenData.setEmail(kindergartenDataDTO.getEmail());
+		kindergartenData.setPhone(kindergartenDataDTO.getPhone());
+		kindergartenData.setBankName(kindergartenDataDTO.getBankName());
+		kindergartenData.setBankCode(kindergartenDataDTO.getBankCode());
+		kindergartenData.setAccount(kindergartenDataDTO.getAccount());
+		kindergartenData.setCode(kindergartenDataDTO.getCode());
+		
+		kindergartenDataDAO.save(kindergartenData);
+	}
+
 }

@@ -2,6 +2,7 @@ package it.akademija.compensationApplication;
 
 import java.time.LocalDate;
 
+import it.akademija.application.ApplicationStatus;
 import it.akademija.compensationApplication.kindergartenData.KindergartenDataDTO;
 import it.akademija.user.UserDTO;
 
@@ -13,6 +14,8 @@ public class CompensationApplicationDTO {
 	private String childSurname;
 	private KindergartenDataDTO kindergartenData;
 	private UserDTO mainGuardian;
+	private ApplicationStatus applicationStatus;
+	private LocalDate approvalDate;
 	
 	public CompensationApplicationDTO() {
 		super();
@@ -26,6 +29,38 @@ public class CompensationApplicationDTO {
 		super();
 		this.kindergartenData = kindergartenData;
 		this.mainGuardian = mainGuardian;
+	}
+	
+	
+
+	public CompensationApplicationDTO(LocalDate birthdate, String childName, String childPersonalCode,
+			String childSurname, KindergartenDataDTO kindergartenData, UserDTO mainGuardian,
+			ApplicationStatus applicationStatus, LocalDate approvalDate) {
+		super();
+		this.birthdate = birthdate;
+		this.childName = childName;
+		this.childPersonalCode = childPersonalCode;
+		this.childSurname = childSurname;
+		this.kindergartenData = kindergartenData;
+		this.mainGuardian = mainGuardian;
+		this.applicationStatus = applicationStatus;
+		this.approvalDate = approvalDate;
+	}
+
+	public ApplicationStatus getApplicationStatus() {
+		return applicationStatus;
+	}
+
+	public void setApplicationStatus(ApplicationStatus applicationStatus) {
+		this.applicationStatus = applicationStatus;
+	}
+
+	public LocalDate getApprovalDate() {
+		return approvalDate;
+	}
+
+	public void setApprovalDate(LocalDate approvalDate) {
+		this.approvalDate = approvalDate;
 	}
 
 	public UserDTO getMainGuardian() {

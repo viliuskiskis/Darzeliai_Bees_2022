@@ -152,11 +152,26 @@ public class CompensationApplicationService {
 	 * and KindergartenData connected to them. Accessible to User only.
 	 *
 	 * @param id
-	 * @return boolean indicating whether deletion was successful
+	 * 
 	 */
-	@Transactional
-	public boolean deleteUserCompensationApplicationById(Long id){
-
+	public void deleteUserCompensationApplicationById(Long id){
+			
+		CompensationApplication compensationApplication = 
+				compensationApplicationDAO.getById(id);
+		
+		childDataService.deleteChildData(
+				compensationApplication.getChildData());
+		
+		kindergartenDataService.deleteKindergartenData(
+				compensationApplication.getKindergartenData());
+		
+		compensationApplicationDAO.delete(
+				compensationApplication);
+				
+	}
+	
+	public boolean isCompensationApplicationPresentAndMatchesMainGuardian(Long id) {
+		
 		Optional<CompensationApplication> optionalCompensationApplication = 
 				compensationApplicationDAO.findById(id);
 		
@@ -170,21 +185,10 @@ public class CompensationApplicationService {
 					.getAuthentication()
 					.getName());
 			
-			if(compensationApplication.getMainGuardian().equals(user)) {
-				
-				childDataService.deleteChildData(
-						compensationApplication.getChildData());
-				
-				kindergartenDataService.deleteKindergartenData(
-						compensationApplication.getKindergartenData());
-				
-				compensationApplicationDAO.delete(
-						compensationApplication);
-				
-				return true;
-			}
+				if(compensationApplication.getMainGuardian().equals(user)) {
+					return true;
+				}	
 		}
-		
 		return false;
 	}
 	
@@ -218,6 +222,36 @@ public class CompensationApplicationService {
 
 	public CompensationApplication getCompensationApplicationById(Long id) {
 		return compensationApplicationDAO.getById(id);
+	}
+
+	public void editCompesationApplication(
+			CompensationApplicationDTO compensationApplicationdDTO,
+			Long id) {
+		
+		CompensationApplication compensationApplication = 
+				compensationApplicationDAO.getById(id);
+		
+		compensationApplication.setApplicationStatus(
+				compensationApplicationdDTO.getApplicationStatus());
+		
+		compensationApplication.setApprovalDate(
+				compensationApplicationdDTO.getApprovalDate());
+		
+		String currentUsername = SecurityContextHolder
+				.getContext()
+				.getAuthentication()
+				.getName();
+		
+		userService.updateUserData(
+				compensationApplicationdDTO.getMainGuardian(), currentUsername);
+		
+		kindergartenDataService.updateKindergartenData(
+				compensationApplicationdDTO.getKindergartenData(), 
+				compensationApplication.getKindergartenData().getId());
+		
+		childDataService.updateChildData(compensationApplicationdDTO, compensationApplication.getId());
+		
+		compensationApplicationDAO.save(compensationApplication);
 	}
 	
 	

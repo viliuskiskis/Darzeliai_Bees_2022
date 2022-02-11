@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -98,12 +99,16 @@ public class CompensationApplicationController {
 	@ApiOperation(value = "Get all user applications")
 	public ResponseEntity<Set<CompensationApplicationInfoUser>>  getAllUserCompensationApplications(){
 		
-		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+		String currentUsername = SecurityContextHolder
+				.getContext()
+				.getAuthentication()
+				.getName();
 		
 		Set<CompensationApplicationInfoUser> compensationApplicationInfoUser = 
 				new HashSet<CompensationApplicationInfoUser>();
 			
 		if (currentUsername != null) {
+			
 			compensationApplicationInfoUser = 
 				compensationApplicationService
 				.getAllUserCompensationApplications(currentUsername);
@@ -125,12 +130,16 @@ public class CompensationApplicationController {
 	@GetMapping("/user/{id}")
 	@ApiOperation(value = "Get compensation application by id")
 	public ResponseEntity<CompensationApplicationInfo> getUserCompensationApplication(
-			@ApiParam(value = "CompensationApplication id", required = true) @PathVariable Long id){
-		if(id != null) {
-			String currentUsername = SecurityContextHolder
+			@ApiParam(value = "CompensationApplication id", required = true) 
+			@PathVariable Long id){
+		
+		String currentUsername = SecurityContextHolder
 				.getContext()
 				.getAuthentication()
 				.getName();
+		
+		if(id != null && compensationApplicationService
+				.isCompensationApplicationPresentAndMatchesMainGuardian(id)) {
 			
 			CompensationApplicationInfo compensationApplicationInfo = 
 					compensationApplicationService
@@ -150,35 +159,78 @@ public class CompensationApplicationController {
 	 * @param id
 	 * @return message
 	 */
-
 	@Secured({ "ROLE_USER" })
 	@DeleteMapping("/user/delete/{id}")
 	@ApiOperation("Delete user application by id")
 	public ResponseEntity<String> deleteUserCompensationApplication(
-			@ApiParam(value = "CompensationApplication id", required = true) @PathVariable Long id) {
+			@ApiParam(value = "CompensationApplication id", required = true) 
+			@PathVariable Long id) {
 		
-		if(id != null) {
+		if(id != null && compensationApplicationService
+					.isCompensationApplicationPresentAndMatchesMainGuardian(id)) {
 			
-			boolean isCompensationApplicationPresentAndMatchesMainGuardian = 
-					compensationApplicationService.deleteUserCompensationApplicationById(id);
-			
-			if(isCompensationApplicationPresentAndMatchesMainGuardian) {
-				
-				journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.COMPENSATIOAPPLICATION,
+				journalService.newJournalEntry(
+						OperationType.APPLICATION_DELETED, 
+						id, 
+						ObjectType.COMPENSATIOAPPLICATION,
 						"Ištrintas kompensacijos prašymas");
 				
-				return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
-			}
+				compensationApplicationService
+						.deleteUserCompensationApplicationById(id);
+				
+				return new ResponseEntity<String>
+						("Ištrinta sėkmingai", HttpStatus.OK);
 		}
 		
-		return new ResponseEntity<String>("Prašymas kompensacijai nerastas", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>
+				("Prašymas kompensacijai nerastas", HttpStatus.NOT_FOUND);
 	}
 	
+	/**
+	 * 
+	 * Update user compensation application by id
+	 * 
+	 * @param id
+	 * @return message
+	 */
+	@Secured({ "ROLE_USER" })
+	@PutMapping("/user/edit/{id}")
+	@ApiOperation("Edit user application by id")
+	public ResponseEntity<String> editUserCompensationApplication(
+			@RequestBody CompensationApplicationDTO compensationApplicationdDTO, 
+			@PathVariable Long id){
+		
+		if(id != null && compensationApplicationdDTO != null) {
+			
+			if(compensationApplicationService
+					.isCompensationApplicationPresentAndMatchesMainGuardian(id)) {
+				
+				compensationApplicationService
+						.editCompesationApplication(compensationApplicationdDTO, id);
+				
+				return new ResponseEntity<String>
+					("Prašymas redaguotas sėkmingai", HttpStatus.OK);
+			}
+			
+		}
+	
+		return new ResponseEntity<String>
+				("Toks prašymas nerastas", HttpStatus.BAD_REQUEST);
+	}
+	
+	/**
+	 * 
+	 * Get information about compensation application by id
+	 * 
+	 * @param id
+	 * @return CompensationApplication Info
+	 */
 	@Secured({ "ROLE_MANAGER" })
 	@GetMapping("/manager/{id}")
 	@ApiOperation("Get compensation application by id")
 	public ResponseEntity<CompensationApplicationInfo> getCompensationApplication(
-			@ApiParam(value = "Application id", required = true) @PathVariable Long id) {
+			@ApiParam(value = "CompensationApplication id", required = true) 
+			@PathVariable Long id) {
 		
 		if(id != null) {
 			CompensationApplicationInfo compensationApplicationInfo = 
