@@ -32,6 +32,14 @@ export default class CompensationListTable extends Component {
       path: 'entityName',
       label: 'Darželio pavadinimas',
       content: compensation => <span> {compensation.entityName} </span>
+    },
+    {
+      key: 'review',
+      label: 'Peržiūrėti prašymą',
+      content: compensation =>
+        <button onClick={() => this.props.handleCompensationReview(compensation.id)}
+          id="btnReviewCompensationManager"
+          className="btn btn-outline-primary btn-sm btn-block">Peržiūrėti</button>
     }
   ]
 

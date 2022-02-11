@@ -33,6 +33,7 @@ import Testing from "./components/99DeleteThis/Testing";
 import ApplicationReviewContainer from "./components/15ApplicationReview/ApplicationReviewContainer";
 import CompensationReviewContainer from "./components/15ApplicationReview/CompensationReviewContainer";
 import CompensationListContainer from "./components/16CompensationList/CompensationListContainer";
+import ReviewContainer from "./components/16CompensationList/ReviewContainer";
 
 var initState = {
   isAuthenticated: null,
@@ -177,6 +178,10 @@ function App() {
                       exact
                       path="/kompensacijos"
                       component={CompensationListContainer}
+                    />
+                    <Route
+                      path="/prasymas/k/:id"
+                      component={ReviewContainer}
                     />
                     <Route
                       exact

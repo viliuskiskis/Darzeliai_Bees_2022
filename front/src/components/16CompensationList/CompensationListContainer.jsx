@@ -19,6 +19,7 @@ export default class CompensationListContainer extends Component {
       numberOfElements: 0,
     }
     this.handlePageChange = this.handlePageChange.bind(this);
+    this.handleCompensationReview = this.handleCompensationReview.bind(this);
   }
 
   componentDidMount() {
@@ -52,12 +53,17 @@ export default class CompensationListContainer extends Component {
     this.getCompensations(page);
   }
 
+  handleCompensationReview(id) {
+    this.props.history.push(`/prasymas/k/${id}`)
+  }
+
   render() {
     return (
       <div className="container pt-4">
         <h6 className="ps-2 pt-3">Prašymai gauti kompensaciją</h6>
         <CompensationListTable
           compensations={this.state.compensations}
+          handleCompensationReview={this.handleCompensationReview}
         />
 
         {this.state.totalPages > 1 && <div className="d-flex justify-content-center">
