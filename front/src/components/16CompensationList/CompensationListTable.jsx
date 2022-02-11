@@ -47,7 +47,7 @@ export default class CompensationListTable extends Component {
       content: compensation =>
         <button onClick={() => this.props.handleCompensationDeactivate(compensation.id)}
           id="btnDeactivateCompensationManager"
-          className="btn btn-outline-warning btn-sm btn-block">Deaktyvuoti</button>
+          className="btn btn-outline-danger btn-sm btn-block">Deaktyvuoti</button>
     }
   ]
 

@@ -88,7 +88,6 @@ class CreateApplicationFormContainer extends Component {
     /** Get registation status */
     http.get(`${apiEndpoint}/api/status`)
       .then((response) => {
-        //console.log(response.data.registrationActive);
         this.setState({ registrationDisabled: !response.data.registrationActive })
       })
 
@@ -421,7 +420,7 @@ class CreateApplicationFormContainer extends Component {
 
     const data = {
       additionalGuardian: this.state.additionalGuardian,
-      birthdate: this.state.birthdate.toLocaleDateString("en-CA"),
+      birthdate: this.state.birthdate,
       childName: this.state.childName,
       childPersonalCode: this.state.childPersonalCode,
       childSurname: this.state.childSurname,
@@ -446,7 +445,6 @@ class CreateApplicationFormContainer extends Component {
       http
         .post(`${apiEndpoint}/api/prasymai/user/new`, data)
         .then((response) => {
-          alert(JSON.stringify(data))
           swal({
             text: response.data,
             button: "Gerai",
