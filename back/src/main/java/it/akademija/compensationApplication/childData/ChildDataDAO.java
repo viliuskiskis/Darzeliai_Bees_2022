@@ -17,4 +17,10 @@ public interface ChildDataDAO extends JpaRepository<ChildData, Long> {
 			+ "FROM ChildData cd "
 			+ "WHERE cd.compensationApplication.id = ?1", nativeQuery = false)
 	ChildDataInfo getChildDataInfoByCompensationApplicationId(Long id);
+
+	@Query(value = "SELECT cd "
+			+ "FROM ChildData cd "
+			+ "WHERE cd.compensationApplication.id=?1",
+			nativeQuery = false)
+	ChildData getChildDataByCompensationApplicationId(Long id);
 }

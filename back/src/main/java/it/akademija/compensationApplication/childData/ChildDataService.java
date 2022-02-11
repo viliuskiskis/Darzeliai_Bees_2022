@@ -36,5 +36,18 @@ public class ChildDataService {
 	public ChildDataInfo getChildDataInfoByCompensationApplicationId(Long id) {
 		return childDataDAO.getChildDataInfoByCompensationApplicationId(id);
 	}
+
+	public void updateChildData(CompensationApplicationDTO compensationApplicationdDTO, Long id) {
+		
+		ChildData childData = childDataDAO.getChildDataByCompensationApplicationId(id);
+		
+		childData.setBirthdate(compensationApplicationdDTO.getBirthdate());
+		childData.setChildName(compensationApplicationdDTO.getChildName());
+		childData.setChildSurname(compensationApplicationdDTO.getChildSurname());
+		childData.setChildPersonalCode(compensationApplicationdDTO.getChildPersonalCode());
+		
+		childDataDAO.save(childData);
+		
+	}
 	
 }
