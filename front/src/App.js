@@ -34,6 +34,7 @@ import ApplicationReviewContainer from "./components/15ApplicationReview/Applica
 import CompensationReviewContainer from "./components/15ApplicationReview/CompensationReviewContainer";
 import CompensationListContainer from "./components/16CompensationList/CompensationListContainer";
 import ReviewContainer from "./components/16CompensationList/ReviewContainer";
+import ReviewApplicationContainer from "./components/12Queue/ReviewApplicationContainer";
 
 var initState = {
   isAuthenticated: null,
@@ -182,6 +183,10 @@ function App() {
                     <Route
                       path="/prasymas/k/:id"
                       component={ReviewContainer}
+                    />
+                    <Route
+                      path="/prasymas/d/:id"
+                      component={ReviewApplicationContainer}
                     />
                     <Route
                       exact

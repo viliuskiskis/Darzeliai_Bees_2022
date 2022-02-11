@@ -28,6 +28,7 @@ export class QueueContainer extends Component {
             isLocked: false,
             currentButtonValue: ""
         }
+        this.handleApplicationReview = this.handleApplicationReview.bind(this);
     }
     componentDidMount() {
         this.getApplicationState();
@@ -239,6 +240,9 @@ export class QueueContainer extends Component {
         });
     }
 
+    handleApplicationReview(id) {
+        this.props.history.push(`/prasymas/d/${id}`)
+    }
 
     handlePageChange = (page) => {
         this.setState({ currentPage: page });
@@ -288,6 +292,7 @@ export class QueueContainer extends Component {
                             applications={applications}
                             isLocked={isLocked}
                             onDeactivate={this.handleDeactivate}
+                            handleApplicationReview={this.handleApplicationReview}
                         />
                     }
 

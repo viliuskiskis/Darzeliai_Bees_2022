@@ -3,9 +3,9 @@ import { withRouter } from "react-router";
 import apiEndpoint from "../10Services/endpoint";
 import http from "../10Services/httpService";
 import swal from "sweetalert";
-import ApplicationReviewComponent from "./ApplicationReviewComponent";
+import ReviewApplicationComponent from "./ReviewApplicationComponent";
 
-class ApplicationReviewContainer extends Component {
+class ReviewApplicationContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,7 +36,7 @@ class ApplicationReviewContainer extends Component {
   }
 
   getUserApplication() {
-    http.get(`${apiEndpoint}/api/prasymai/user/${this.props.match.params.id}`)
+    http.get(`${apiEndpoint}/api/prasymai/manager/${this.props.match.params.id}`)
       .then(response => {
         this.setState({
           id: response.data.id,
@@ -59,12 +59,12 @@ class ApplicationReviewContainer extends Component {
   }
 
   handleReturn() {
-    this.props.history.push("/prasymai");
+    this.props.history.push("/eile");
   }
 
   render() {
     return (
-      <ApplicationReviewComponent
+      <ReviewApplicationComponent
         state={this.state}
         handleReturn={this.handleReturn}
       />
@@ -72,4 +72,4 @@ class ApplicationReviewContainer extends Component {
   }
 }
 
-export default withRouter(ApplicationReviewContainer);
+export default withRouter(ReviewApplicationContainer);

@@ -1,45 +1,22 @@
 {
-  "content": [
-    {
-      "id": 102,
-      "applicationStatus": "Pateiktas",
-      "submitedAt": "2022-02-09",
-      "childName": "Sandijus",
-      "childSurname": "Kututis",
-      "entityName": "Darželis"
-    },
-    {
-      "id": 107,
-      "applicationStatus": "Pateiktas",
-      "submitedAt": "2022-02-09",
-      "childName": "Benadas",
-      "childSurname": "Juozauskas",
-      "entityName": "Darželis"
-    }
-  ],
-  "pageable": {
-    "sort": {
-      "empty": false,
-      "sorted": true,
-      "unsorted": false
-    },
-    "offset": 0,
-    "pageSize": 5,
-    "pageNumber": 0,
-    "paged": true,
-    "unpaged": false
+  "id": 12,
+  "submitedAt": "2022-02-08",
+  "status": "Pateiktas",
+  "childName": "Sandijus",
+  "childSurname": "Kututis",
+  "childPersonalCode": "51609260014",
+  "approvalDate": null,
+  "birthdate": "2016-09-26",
+  "mainGuardian": {
+    "userId": 2,
+    "role": null,
+    "name": "user",
+    "surname": "user",
+    "personalCode": "12345678987",
+    "address": "Address 1",
+    "phone": "+37061398876",
+    "email": "user@user.lt",
+    "username": "user@user.lt"
   },
-  "last": true,
-  "totalElements": 2,
-  "totalPages": 1,
-  "size": 5,
-  "number": 0,
-  "sort": {
-    "empty": false,
-    "sorted": true,
-    "unsorted": false
-  },
-  "first": true,
-  "numberOfElements": 2,
-  "empty": false
+  "kindergartenInfo": null
 }

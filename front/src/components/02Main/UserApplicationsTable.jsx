@@ -50,7 +50,6 @@ class UserApplicationsTable extends Component {
                     onClick={() => this.props.handleApplicationReview(compensation.id)}
                     id="btnReviewCompensation"
                     className="btn btn-outline-primary btn-sm btn-block"
-                    disabled={true}
                 >Peržiūrėti</button>
         },
         {

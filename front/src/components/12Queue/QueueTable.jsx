@@ -52,7 +52,15 @@ class QueueTable extends Component {
             key: 'status',
             label: 'Statusas',
             content: application => <span>{application.status}</span>
-        }
+        },
+        {
+            key: 'review',
+            label: 'Peržiūrėti prašymą',
+            content: application =>
+                <button onClick={() => this.props.handleApplicationReview(application.id)}
+                    id="btnReviewApplicationManager"
+                    className="btn btn-outline-primary btn-sm btn-block">Peržiūrėti</button>
+        },
     ]
 
     additionalColumn =
