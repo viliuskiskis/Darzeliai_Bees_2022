@@ -231,11 +231,11 @@ public class CompensationApplicationService {
 		CompensationApplication compensationApplication = 
 				compensationApplicationDAO.getById(id);
 		
-		compensationApplication.setApplicationStatus(
-				compensationApplicationdDTO.getApplicationStatus());
-		
-		compensationApplication.setApprovalDate(
-				compensationApplicationdDTO.getApprovalDate());
+//		compensationApplication.setApplicationStatus(
+//				compensationApplicationdDTO.getApplicationStatus());
+//		
+//		compensationApplication.setApprovalDate(
+//				compensationApplicationdDTO.getApprovalDate());
 		
 		String currentUsername = SecurityContextHolder
 				.getContext()

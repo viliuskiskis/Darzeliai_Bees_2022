@@ -122,7 +122,8 @@ class CompensationReviewContainer extends Component {
       childPersonalCode: this.state.childPersonalCode,
       childSurname: this.state.childSurname,
       kindergartenData: this.state.kindergartenData,
-      mainGuardian: this.state.mainGuardian
+      mainGuardian: this.state.mainGuardian,
+      applicationStatus: this.state.applicationStatus
     }
     if (this.state.childName === "" || this.state.childSurname === "") {
       swal({
@@ -131,7 +132,7 @@ class CompensationReviewContainer extends Component {
       });
     } else {
       http
-        .put(`${apiEndpoint}/api/kompensacijos/user/${this.state.id}`, data)
+        .put(`${apiEndpoint}/api/kompensacijos/user/edit/${this.state.id}`, data)
         .then((response) => {
           swal({
             text: response.data,
@@ -141,7 +142,7 @@ class CompensationReviewContainer extends Component {
         })
         .catch((error) => {
           swal({
-            text: "Įvyko klaida. " + error.response.data,
+            text: "Įvyko klaida. ",
             button: "Gerai"
           });
         });
