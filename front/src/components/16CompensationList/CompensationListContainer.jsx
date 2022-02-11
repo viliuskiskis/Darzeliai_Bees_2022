@@ -20,6 +20,7 @@ export default class CompensationListContainer extends Component {
     }
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleCompensationReview = this.handleCompensationReview.bind(this);
+    this.handleCompensationDeactivate = this.handleCompensationDeactivate.bind(this);
   }
 
   componentDidMount() {
@@ -27,7 +28,7 @@ export default class CompensationListContainer extends Component {
   }
 
   getCompensations(page) {
-    http.post(`${apiEndpoint}/api/kompensacijos/manager?pageNumber=${page - 1}&pageSize=10`)
+    http.get(`${apiEndpoint}/api/kompensacijos/manager?pageNumber=${page - 1}&pageSize=10`)
       .then(response => {
         this.setState({
           compensations: response.data.content,
@@ -36,13 +37,9 @@ export default class CompensationListContainer extends Component {
           numberOfElements: response.data.numberOfElements,
           currentPage: response.data.number + 1
         });
-        // alert("total pages: " + response.data.totalPages + "\n"
-        //   + "current page:" + response.data.number + "\n"
-        //   + "total elements:" + response.data.totalElements + "\n"
-        //   + "number of elements:" + response.data.numberOfElements, "\n")
       }).catch(error => {
         swal({
-          text: "Įvyko klaida perduodant duomenis" + JSON.stringify(error),
+          text: "Įvyko klaida perduodant duomenis",
           button: "Gerai"
         })
       })
@@ -57,6 +54,25 @@ export default class CompensationListContainer extends Component {
     this.props.history.push(`/prasymas/k/${id}`)
   }
 
+  handleCompensationDeactivate(id) {
+    http.post(`${apiEndpoint}/api/kompensacijos/manager/deactivate/${id}`)
+      .then(response => {
+        swal({
+          text: response.data,
+          button: "Gerai"
+        })
+      })
+      .then(setTimeout(() => {
+        this.getCompensations(this.state.currentPage);
+      }, 1000))
+      .catch(error => {
+        swal({
+          text: "Įvyko klaida",
+          button: "Gerai"
+        })
+      })
+  }
+
   render() {
     return (
       <div className="container pt-4">
@@ -64,6 +80,7 @@ export default class CompensationListContainer extends Component {
         <CompensationListTable
           compensations={this.state.compensations}
           handleCompensationReview={this.handleCompensationReview}
+          handleCompensationDeactivate={this.handleCompensationDeactivate}
         />
 
         {this.state.totalPages > 1 && <div className="d-flex justify-content-center">

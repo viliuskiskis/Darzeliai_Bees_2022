@@ -50,7 +50,7 @@ class ReviewContainer extends Component {
   }
 
   getUserCompensation() {
-    http.post(`${apiEndpoint}/api/kompensacijos/manager/${this.props.match.params.id}`)
+    http.get(`${apiEndpoint}/api/kompensacijos/manager/${this.props.match.params.id}`)
       .then(response => {
         this.setState({
           id: response.data.id,

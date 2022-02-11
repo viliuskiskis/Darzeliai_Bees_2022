@@ -21,31 +21,31 @@ class QueueTable extends Component {
         {
             key: 'choiseName1',
             path: 'choiseName1',
-            label: '1 darželio prioritetas',
+            label: '1 prioritetas',
             content: application => <span> {application.choise1 ? application.choise1 : "-"} </span>
         },
         {
             key: 'choiseName2',
             path: 'choiseName2',
-            label: '2 darželio prioritetas',
+            label: '2 prioritetas',
             content: application => <span> {application.choise2 ? application.choise2 : "-"} </span>
         },
         {
             key: 'choiseName3',
             path: 'choiseName3',
-            label: '3 darželio prioritetas',
+            label: '3 prioritetas',
             content: application => <span> {application.choise3 ? application.choise3 : "-"} </span>
         },
         {
             key: 'choiseName4',
             path: 'choiseName4',
-            label: '4 darželio prioritetas',
+            label: '4 prioritetas',
             content: application => <span> {application.choise4 ? application.choise4 : "-"} </span>
         },
         {
             key: 'choiseName5',
             path: 'choiseName5',
-            label: '5 darželio prioritetas',
+            label: '5 prioritetas',
             content: application => <span> {application.choise5 ? application.choise5 : "-"} </span>
         },
         {
@@ -72,12 +72,12 @@ class QueueTable extends Component {
 
         const { applications, isLocked } = this.props;
 
-        let columns=[];
+        let columns = [];
 
-        if(isLocked){
-            columns=this.columns;
+        if (isLocked) {
+            columns = this.columns;
         } else {
-            columns=[...this.columns, this.additionalColumn]
+            columns = [...this.columns, this.additionalColumn]
         }
 
         return (
