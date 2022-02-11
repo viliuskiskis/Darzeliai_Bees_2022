@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -170,6 +171,8 @@ public class CompensationApplicationController {
 				journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.COMPENSATIOAPPLICATION,
 						"Ištrintas kompensacijos prašymas");
 				
+				compensationApplicationService.deleteUserCompensationApplicationById(id);
+				
 				return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
 			}
 		}
@@ -178,7 +181,7 @@ public class CompensationApplicationController {
 	}
 	
 	@Secured({ "ROLE_USER" })
-	@DeleteMapping("/user/edit/{id}")
+	@PutMapping("/user/edit/{id}")
 	@ApiOperation("Edit user application by id")
 	public ResponseEntity<String> editUserCompensationApplication(
 			@RequestBody CompensationApplicationDTO compensationApplicationdDTO, 
