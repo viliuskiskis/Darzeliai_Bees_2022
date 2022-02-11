@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -129,6 +130,7 @@ public class ApplicationController {
 	@ApiOperation(value = "Get compensation application by id and username")
 	public ResponseEntity<ApplicationDetails> getUserApplicationDetails(
 			@ApiParam(value = "Application id", required = true) @PathVariable Long id){
+		
 		if(id != null) {
 			String currentUsername = SecurityContextHolder
 				.getContext()
@@ -168,7 +170,40 @@ public class ApplicationController {
 		return applicationService.deleteApplication(id);
 
 	}
-/**
+	
+	/**
+	 * 
+	 * Update user application by id
+	 * 
+	 * @param id
+	 * @return message
+	 */
+	@Secured({ "ROLE_USER" })
+	@PutMapping("/user/edit/{id}")
+	@ApiOperation("Edit user application by id")
+	public ResponseEntity<String> editUserCompensationApplication(
+			@RequestBody ApplicationDTO applicationdDTO, 
+			@PathVariable Long id){
+		
+		if(id != null && applicationdDTO != null) {
+			
+			if(applicationService
+					.isApplicationPresentAndMatchesMainGuardian(id)) {
+				
+				applicationService
+						.updateApplication(applicationdDTO, id);
+				
+				return new ResponseEntity<String>
+					("Prašymas redaguotas sėkmingai", HttpStatus.OK);
+			}
+			
+		}
+	
+		return new ResponseEntity<String>
+				("Toks prašymas nerastas", HttpStatus.BAD_REQUEST);
+	}
+	
+	/**
 	 *
 	 * Get page of unsorted applications
 	 *

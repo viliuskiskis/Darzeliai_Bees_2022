@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import it.akademija.application.priorities.Priorities;
 import it.akademija.application.priorities.PrioritiesDAO;
 import it.akademija.application.priorities.PrioritiesDTO;
+import it.akademija.compensationApplication.CompensationApplication;
 import it.akademija.journal.JournalService;
 import it.akademija.journal.ObjectType;
 import it.akademija.journal.OperationType;
@@ -379,6 +380,42 @@ public class ApplicationService {
 		
 		
 		return applicationDetails;
+	}
+
+	public boolean isApplicationPresentAndMatchesMainGuardian(Long id) {
+		Optional<Application> optionalApplication = 
+				applicationDao.findById(id);
+		
+		if (optionalApplication.isPresent()) {
+			
+			Application application = 
+					optionalApplication.get();			
+			
+			User user = userService.findByUsername(SecurityContextHolder
+					.getContext()
+					.getAuthentication()
+					.getName());
+			
+				if(application.getMainGuardian().equals(user)) {
+					return true;
+				}	
+		}
+		return false;
+	}
+
+	public void updateApplication(ApplicationDTO applicationdDTO, Long id) {
+		
+		Application application = 
+				applicationDao.getById(id);
+		
+		application.setBirthdate(applicationdDTO.getBirthdate());
+		application.setChildName(applicationdDTO.getChildName());
+		application.setChildSurname(applicationdDTO.getChildSurname());
+		application.setChildPersonalCode(applicationdDTO.getChildPersonalCode());
+//		application.setKindergartenChoises(null);
+//		application.setMainGuardian(null);
+//		application.setAdditionalGuardian(null);
+		
 	}
 
 }
