@@ -7,7 +7,7 @@ import http from '../10Services/httpService';
 import apiEndpoint from '../10Services/endpoint';
 import swal from 'sweetalert';
 
-import inputValidator from '../08CommonComponents/InputValidator';
+import inputValidator from '../01CommonComponents/00Reusable/InputValidator';
 
 
 class AdminCreateUser extends Component {

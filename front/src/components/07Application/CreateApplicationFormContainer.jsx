@@ -5,7 +5,7 @@ import apiEndpoint from "../10Services/endpoint";
 import childDataUrl from "../10Services/childDataUrl";
 import swal from "sweetalert";
 
-import inputValidator from "../08CommonComponents/InputValidator";
+import inputValidator from "../01CommonComponents/00Reusable/InputValidator";
 import CreateApplicationFormComponent from "./CreateApplicationFormComponent";
 
 import "../../App.css";

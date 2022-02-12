@@ -6,7 +6,7 @@ import http from '../10Services/httpService';
 import apiEndpoint from '../10Services/endpoint';
 
 import KindergartenStatTable from './KindergartenStatTable';
-import Pagination from './../08CommonComponents/Pagination';
+import Pagination from '../01CommonComponents/00Reusable/Pagination';
 
 export class KindergartenStatContainer extends Component {
 

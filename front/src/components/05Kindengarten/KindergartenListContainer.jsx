@@ -6,8 +6,8 @@ import apiEndpoint from '../10Services/endpoint';
 import '../../App.css';
 
 import KindergartenListTable from './KindergartenListTable';
-import Pagination from './../08CommonComponents/Pagination';
-import SearchBox from './../08CommonComponents/SeachBox';
+import Pagination from '../01CommonComponents/00Reusable/Pagination';
+import SearchBox from '../01CommonComponents/00Reusable/SeachBox';
 export class KindergartenListContainer extends Component {
 
     constructor(props) {
@@ -40,7 +40,7 @@ export class KindergartenListContainer extends Component {
     handleEscape = (e) => {
         if (e.key === 'Escape') {
             this.onCancel();
-             
+
             setTimeout(function () {
                 window.location.reload();
             }, 10);
@@ -54,7 +54,7 @@ export class KindergartenListContainer extends Component {
 
         let page = currentPage - 1;
 
-        if (page < 0 ) page = 0;
+        if (page < 0) page = 0;
 
         var uri = `${apiEndpoint}/api/darzeliai/manager/page?page=${page}&size=${pageSize}`;
 
@@ -75,7 +75,7 @@ export class KindergartenListContainer extends Component {
                     currentPage: response.data.number + 1
                 });
 
-            }).catch(() => {});
+            }).catch(() => { });
     }
 
     getElderates() {
@@ -84,7 +84,7 @@ export class KindergartenListContainer extends Component {
             .then((response) => {
                 this.setState({ elderates: response.data });
             })
-            .catch(() => {});
+            .catch(() => { });
     }
 
     handleSearch = (e) => {
@@ -114,10 +114,10 @@ export class KindergartenListContainer extends Component {
                             text: response.data,
                             button: "Gerai"
                         });
-                        this.setState({searchQuery: ""});
+                        this.setState({ searchQuery: "" });
                         this.getKindergartenInfo(page, "");
 
-                    }).catch(() => {});
+                    }).catch(() => { });
             }
         });
     }
@@ -160,7 +160,7 @@ export class KindergartenListContainer extends Component {
 
     handleSaveEdited = () => {
         const { editedKindergarten, editRowId, errorMessages } = this.state;
-     
+
         if (Object.keys(errorMessages).length === 0) {
             http.put(`${apiEndpoint}/api/darzeliai/manager/update/${editRowId}`, editedKindergarten)
                 .then(() => {
@@ -173,7 +173,7 @@ export class KindergartenListContainer extends Component {
                             button: "Gerai"
                         });
                     }
-                    
+
                 })
         }
     }

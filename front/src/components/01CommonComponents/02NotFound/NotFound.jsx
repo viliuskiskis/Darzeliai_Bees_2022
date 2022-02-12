@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import apiEndpoint from './../10Services/endpoint';
+import apiEndpoint from '../../10Services/endpoint';
 
-import '../../App.css';
+import '../../../App.css';
 
 const NotFound = () => {
     const location = useLocation();

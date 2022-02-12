@@ -4,7 +4,7 @@ import Pagination from "react-js-pagination";
 import http from '../10Services/httpService';
 import apiEndpoint from '../10Services/endpoint';
 import '../../App.css';
-import Spinner from '../08CommonComponents/Spinner'
+import Spinner from '../01CommonComponents/00Reusable/Spinner'
 
 import EventJournalTable from './EventJournalTable';
 

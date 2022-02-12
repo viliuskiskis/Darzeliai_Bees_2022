@@ -3,11 +3,11 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import "./index.css";
 import "./App.css";
-import Spinner from "./components/08CommonComponents/Spinner";
+import Spinner from "./components/01CommonComponents/00Reusable/Spinner";
 import swal from "sweetalert";
 
-import Login from "./components/01Login/LoginContainer";
-import NotFound from "./components/03NotFound/NotFound";
+import Login from "./components/01CommonComponents/01Login/LoginContainer";
+import NotFound from "./components/01CommonComponents/02NotFound/NotFound";
 import Admin from "./components/04Admin/AdminContainer";
 import UserListContainer from "./components/04Admin/UserListContainer";
 import KindergartenContainer from "./components/05Kindengarten/KindergartenContainer";

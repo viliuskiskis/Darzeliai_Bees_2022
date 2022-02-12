@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Table from "../08CommonComponents/Table";
+import Table from "../01CommonComponents/00Reusable/Table";
 
 class UserCompensationsTable extends Component {
 

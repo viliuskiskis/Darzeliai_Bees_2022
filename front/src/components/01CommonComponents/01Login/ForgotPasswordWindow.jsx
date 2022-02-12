@@ -1,9 +1,9 @@
 import swal from "sweetalert";
 
-import '../../App.css';
+import '../../../App.css';
 
-import http from '../10Services/httpService';
-import apiEndpoint from '../10Services/endpoint';
+import http from '../../10Services/httpService';
+import apiEndpoint from '../../10Services/endpoint';
 
 export default function ForgotPasswordWindow() {
     swal({
@@ -13,17 +13,17 @@ export default function ForgotPasswordWindow() {
         button: "Atstatyti",
     }).then((userEmail) => {
         const regexPattern = /\S+@\S+\.\S+/
-        if(regexPattern.test(userEmail)) {
+        if (regexPattern.test(userEmail)) {
             http.post(`${apiEndpoint}/passwordresetrequests/request/${userEmail}`)
-            .then(
-                swal({                    
-                    text: "Staptažodžio atstatymo prašymas buvo sėkmingai išsiųstas administratoriui.",
-                    button: "Baigti"                    
-                })
-            );
+                .then(
+                    swal({
+                        text: "Staptažodžio atstatymo prašymas buvo sėkmingai išsiųstas administratoriui.",
+                        button: "Baigti"
+                    })
+                );
         }
-        else if(userEmail){
-            swal({                
+        else if (userEmail) {
+            swal({
                 text: "Neteisingas el. paštas",
                 button: "Gerai"
             })

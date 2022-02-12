@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Table from '../08CommonComponents/Table';
+import Table from '../01CommonComponents/00Reusable/Table';
 
 class QueueProcessedTable extends Component {
     columns = [
@@ -50,12 +50,12 @@ class QueueProcessedTable extends Component {
     render() {
         const { applications, isLocked } = this.props;
 
-        let columns=[];
+        let columns = [];
 
-        if(isLocked){
-            columns=this.columns;
+        if (isLocked) {
+            columns = this.columns;
         } else {
-            columns=[...this.columns, this.additionalColumn]
+            columns = [...this.columns, this.additionalColumn]
         }
 
         return (

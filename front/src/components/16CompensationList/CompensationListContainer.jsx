@@ -3,7 +3,7 @@ import "../../App.css";
 import http from "../10Services/httpService";
 import apiEndpoint from "../10Services/endpoint";
 import swal from "sweetalert";
-import Pagination from './../08CommonComponents/Pagination';
+import Pagination from '../01CommonComponents/00Reusable/Pagination';
 
 import CompensationListTable from "./CompensationListTable";
 

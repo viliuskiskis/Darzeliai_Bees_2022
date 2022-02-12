@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../images/logo.png';
 import '../../App.css';
 
-import LogoutContainer from './LogoutContainer';
+import Logout from '../01CommonComponents/00Reusable/Logout';
 
 function Navigation(props) {
     return (
@@ -43,7 +43,7 @@ function Navigation(props) {
                             </li>
 
                             <li className="nav-item nav-item me-2" id="navManagerLogout">
-                                <LogoutContainer />
+                                <Logout />
                             </li>
 
                         </ul>

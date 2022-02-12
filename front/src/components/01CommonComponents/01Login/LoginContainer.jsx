@@ -2,16 +2,16 @@ import React from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-import "../../App.css";
+import "../../../App.css";
 
-import apiEndpoint from "../10Services/endpoint";
-import AuthContext from "../11Context/AuthContext";
-import logo from "../../images/logo.png";
+import apiEndpoint from "../../10Services/endpoint";
+import AuthContext from "../../11Context/AuthContext";
+import logo from "../../../images/logo.png";
 import swal from "sweetalert";
 
-import ForgotPasswordWindow from "../01Login/ForgotPasswordWindow";
+import ForgotPasswordWindow from "./ForgotPasswordWindow";
 
-import instructionsPdf from '../../documents/VMS_VDIS_naudotojo_gidas.pdf';
+import instructionsPdf from '../../../documents/VMS_VDIS_naudotojo_gidas.pdf';
 
 axios.defaults.withCredentials = true;
 

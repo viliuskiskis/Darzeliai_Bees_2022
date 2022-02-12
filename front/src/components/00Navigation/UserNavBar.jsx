@@ -9,7 +9,7 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
 import instructionsPdf from '../../documents/VMS_VDIS_naudotojo_gidas.pdf';
 
-import LogoutContainer from './LogoutContainer';
+import Logout from '../01CommonComponents/00Reusable/Logout';
 
 function Navigation(props) {
     return (
@@ -60,7 +60,7 @@ function Navigation(props) {
                             </li>
 
                             <li className="nav-item nav-item me-2">
-                                <LogoutContainer />
+                                <Logout />
                             </li>
 
                         </ul>

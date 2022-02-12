@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 import apiEndpoint from "../10Services/endpoint";
 import http from "../10Services/httpService";
 import swal from "sweetalert";
-import inputValidator from "../08CommonComponents/InputValidator";
+import inputValidator from "../01CommonComponents/00Reusable/InputValidator";
 import CompensationReviewComponent from "./CompensationReviewComponent";
 import CompensationEditComponent from "./CompensationEditComponent";
 import childDataUrl from "../10Services/childDataUrl";

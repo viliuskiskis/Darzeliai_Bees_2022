@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Table from '../08CommonComponents/Table';
+import Table from '../01CommonComponents/00Reusable/Table';
 
 export default class UserDocumentListTable extends Component {
 
@@ -20,19 +20,19 @@ export default class UserDocumentListTable extends Component {
             content: document => <button
                 className="btn btn-primary btn-sm btn-block"
                 onClick={() => this.props.onDownload(document)}
-                >
-                    Atsisiųsti
-                </button>
+            >
+                Atsisiųsti
+            </button>
         },
         {
             key: "delete",
             label: "Ištrinti pažymą",
-            content: document => <button 
+            content: document => <button
                 className="btn btn-outline-danger btn-sm btn-block"
                 onClick={() => this.props.onDelete(document)}
-                >
-                    Ištrinti
-                </button>
+            >
+                Ištrinti
+            </button>
         }
     ]
 

@@ -10,7 +10,7 @@ import apiEndpoint from '../10Services/endpoint';
 import QueueTable from './QueueTable';
 import QueueProcessedTable from './QueueProcessedTable';
 
-import SearchBox from './../08CommonComponents/SeachBox';
+import SearchBox from '../01CommonComponents/00Reusable/SeachBox';
 import Buttons from './Buttons';
 export class QueueContainer extends Component {
 

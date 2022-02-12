@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../App.css';
 import http from '../10Services/httpService';
 import apiEndpoint from '../10Services/endpoint';
-import inputValidator from '../08CommonComponents/InputValidator';
+import inputValidator from '../01CommonComponents/00Reusable/InputValidator';
 import swal from 'sweetalert';
 import DownloaderContainer from './DownloaderContainer';
 import ForgetMe from './ForgetMe';
