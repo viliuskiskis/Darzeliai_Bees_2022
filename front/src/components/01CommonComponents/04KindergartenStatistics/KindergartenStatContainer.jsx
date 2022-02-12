@@ -8,7 +8,7 @@ import apiEndpoint from '../../00Services/endpoint';
 import KindergartenStatTable from './KindergartenStatTable';
 import Pagination from '../../05ReusableComponents/Pagination';
 
-export class KindergartenStatContainer extends Component {
+export default class KindergartenStatContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -89,5 +89,3 @@ export class KindergartenStatContainer extends Component {
         )
     }
 }
-
-export default KindergartenStatContainer

@@ -8,7 +8,7 @@ import Spinner from '../../05ReusableComponents/Spinner'
 
 import EventJournalTable from './EventJournalTable';
 
-export class EventJournalContainer extends Component {
+export default class EventJournalContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -85,5 +85,3 @@ export class EventJournalContainer extends Component {
         )
     }
 }
-
-export default EventJournalContainer

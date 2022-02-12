@@ -6,7 +6,7 @@ import '../../../App.css';
 
 import Logout from '../../05ReusableComponents/Logout';
 
-function Navigation(props) {
+export default function ManagerNavBar(props) {
     return (
         <div className="pb-4" >
             <nav className="navbar navbar-expand-md py-4 navbar-light bg-light">
@@ -53,9 +53,5 @@ function Navigation(props) {
             </nav>
             <div>{props.children}</div>
         </div >
-
     );
-
 }
-
-export default Navigation;

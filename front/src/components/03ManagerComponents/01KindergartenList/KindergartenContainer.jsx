@@ -5,7 +5,7 @@ import '../../../App.css';
 import { KindergartenListContainer } from './KindergartenListContainer';
 import KindergartenInputForm from './KindergartenInputForm';
 
-export class KindergartenContainer extends Component {
+export default class KindergartenContainer extends Component {
 
     render() {
         return (
@@ -28,5 +28,3 @@ export class KindergartenContainer extends Component {
         )
     }
 }
-
-export default KindergartenContainer;

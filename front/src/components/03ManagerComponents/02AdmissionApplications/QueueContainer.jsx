@@ -12,7 +12,7 @@ import QueueProcessedTable from './QueueProcessedTable';
 
 import SearchBox from '../../05ReusableComponents/SeachBox';
 import Buttons from './Buttons';
-export class QueueContainer extends Component {
+export default class QueueContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -322,5 +322,3 @@ export class QueueContainer extends Component {
         )
     }
 }
-
-export default QueueContainer

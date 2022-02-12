@@ -6,7 +6,7 @@ import http from '../../00Services/httpService';
 import apiEndpoint from '../../00Services/endpoint';
 
 
-export class ApplicationStatusContainer extends Component {
+export default class ApplicationStatusContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -77,5 +77,3 @@ export class ApplicationStatusContainer extends Component {
         )
     }
 }
-
-export default ApplicationStatusContainer

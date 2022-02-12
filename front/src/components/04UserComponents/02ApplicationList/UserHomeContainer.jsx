@@ -9,7 +9,7 @@ import apiEndpoint from '../../00Services/endpoint';
 import UserApplicationsTable from './UserApplicationsTable';
 import UserCompensationsTable from './UserCompensationsTable';
 
-export class UserHomeContainer extends Component {
+export default class UserHomeContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -136,5 +136,3 @@ export class UserHomeContainer extends Component {
         )
     }
 }
-
-export default UserHomeContainer
