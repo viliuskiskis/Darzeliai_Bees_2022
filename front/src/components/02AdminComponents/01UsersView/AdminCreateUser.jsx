@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import '../../App.css';
+import '../../../App.css';
 
-import http from '../00Services/httpService';
-import apiEndpoint from '../00Services/endpoint';
+import http from '../../00Services/httpService';
+import apiEndpoint from '../../00Services/endpoint';
 import swal from 'sweetalert';
 
-import inputValidator from '../00Services/InputValidator';
+import inputValidator from '../../00Services/InputValidator';
 
 
 class AdminCreateUser extends Component {

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
-import '../../App.css';
+import '../../../App.css';
 
 import AdminCreateUser from './AdminCreateUser';
-import { UserListContainer } from './UserListContainer';
+import UsersListContainer from './UsersListContainer';
 
-export class AdminContainer extends Component {
-
+export default class UsersViewContainer extends Component {
 
     render() {
         return (
@@ -19,18 +18,12 @@ export class AdminContainer extends Component {
                         </div>
 
                         <div className="col-12 col-sm-12 col-md-12 col-lg-9 pt-1">
-                            <UserListContainer />
+                            <UsersListContainer />
                         </div>
-
-
                     </div>
 
                 </div>
-
-
             </div>
         )
     }
 }
-
-export default AdminContainer

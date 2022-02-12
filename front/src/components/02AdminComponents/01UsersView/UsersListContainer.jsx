@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import swal from "sweetalert";
 import Pagination from "react-js-pagination";
 
-import http from "../00Services/httpService";
-import apiEndpoint from "../00Services/endpoint";
-import "../../App.css";
+import http from "../../00Services/httpService";
+import apiEndpoint from "../../00Services/endpoint";
+import "../../../App.css";
 
-import UserListTable from "./UserListTable";
+import UserListTable from "./UsersListTable";
 
-export class UserListContainer extends Component {
+export default class UsersListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -174,5 +174,3 @@ export class UserListContainer extends Component {
     );
   }
 }
-
-export default UserListContainer;

@@ -8,15 +8,15 @@ import swal from "sweetalert";
 
 import Login from "./components/01CommonComponents/01Login/LoginContainer";
 import NotFound from "./components/01CommonComponents/02NotFound/NotFound";
-import Admin from "./components/02AdminComponents/AdminContainer";
-import UserListContainer from "./components/02AdminComponents/UserListContainer";
+import Admin from "./components/02AdminComponents/01UsersView/UsersViewContainer";
+import UserListContainer from "./components/02AdminComponents/01UsersView/UsersListContainer";
 import KindergartenContainer from "./components/03ManagerComponents/01KindergartenList/KindergartenContainer";
 import UpdateProfileFormContainer from "./components/01CommonComponents/03UpdateProfile/UpdateProfileFormContainer";
 import CreateApplicationFormContainer from "./components/04UserComponents/01ApplicationForms/CreateApplicationFormContainer";
 
-import AdminNavBar from "./components/02AdminComponents/AdminNavBar";
-import UserNavBar from "./components/04UserComponents/UserNavBar";
-import ManagerNavBar from "./components/03ManagerComponents/ManagerNavBar";
+import AdminNavBar from "./components/02AdminComponents/00NavBar/AdminNavBar";
+import UserNavBar from "./components/04UserComponents/00NavBar/UserNavBar";
+import ManagerNavBar from "./components/03ManagerComponents/00NavBar/ManagerNavBar";
 
 import AuthContext from "./components/00Services/AuthContext";
 import http from "./components/00Services/httpService";
@@ -26,7 +26,7 @@ import UserHomeContainer from "./components/04UserComponents/02ApplicationList/U
 import KindergartenStatContainer from "./components/01CommonComponents/04KindergartenStatistics/KindergartenStatContainer";
 import QueueContainer from "./components/03ManagerComponents/02AdmissionApplications/QueueContainer";
 import UserDocumentContainer from "./components/04UserComponents/04Documents/UserDocumentContainer";
-import { ApplicationStatusContainer } from './components/02AdminComponents/ApplicationStatusContainer';
+import ApplicationStatusContainer from "./components/02AdminComponents/02ApplicationStatus/ApplicationStatusContainer";
 import EventJournalContainer from "./components/02AdminComponents/03EventJournal/EventJournalContainer";
 
 import Testing from "./components/99DeleteThis/Testing";
@@ -34,7 +34,7 @@ import ApplicationReviewContainer from "./components/04UserComponents/03Applicat
 import CompensationReviewContainer from "./components/04UserComponents/03ApplicationReview/CompensationReviewContainer";
 import CompensationListContainer from "./components/03ManagerComponents/03CompensationApplications/CompensationListContainer";
 import ReviewContainer from "./components/03ManagerComponents/03CompensationApplications/ReviewContainer";
-import ReviewApplicationContainer from "./components/03ManagerComponents/02AdmissionApplications/ReviewApplicationContainer";
+import ManagerAdmissionReviewContainer from "./components/03ManagerComponents/02AdmissionApplications/ManagerAdmissionReviewContainer";
 
 var initState = {
   isAuthenticated: null,
@@ -186,7 +186,7 @@ function App() {
                     />
                     <Route
                       path="/prasymas/d/:id"
-                      component={ReviewApplicationContainer}
+                      component={ManagerAdmissionReviewContainer}
                     />
                     <Route
                       exact

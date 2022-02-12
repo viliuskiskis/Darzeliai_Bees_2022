@@ -1,15 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import logo from '../../images/logo.png';
-import '../../App.css';
+import logo from '../../../images/logo.png';
+import '../../../App.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
-import instructionsPdf from '../../documents/VMS_VDIS_naudotojo_gidas.pdf';
+import instructionsPdf from '../../../documents/VMS_VDIS_naudotojo_gidas.pdf';
 
-import Logout from '../05ReusableComponents/Logout';
+import Logout from '../../05ReusableComponents/Logout';
 
 function Navigation(props) {
     return (

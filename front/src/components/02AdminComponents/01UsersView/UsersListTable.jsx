@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-import '../../App.css';
+import '../../../App.css';
 
-import Table from '../05ReusableComponents/Table';
+import Table from '../../05ReusableComponents/Table';
 //import Modal from '../08CommonComponents/Modal';
 
-class UserListTable extends Component {
+export default class UsersListTable extends Component {
 
     columns = [
         {
@@ -61,6 +61,3 @@ class UserListTable extends Component {
         );
     }
 }
-
-
-export default UserListTable;

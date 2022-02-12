@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ReviewApplicationComponent(props) {
+export default function ManagerAdmissionReviewComponent(props) {
 
   return (
     <div className="container pt-4" >

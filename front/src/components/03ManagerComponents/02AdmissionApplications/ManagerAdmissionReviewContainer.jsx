@@ -3,9 +3,9 @@ import { withRouter } from "react-router";
 import apiEndpoint from "../../00Services/endpoint";
 import http from "../../00Services/httpService";
 import swal from "sweetalert";
-import ReviewApplicationComponent from "./ReviewApplicationComponent";
+import ManagerAdmissionReviewComponent from "./ManagerAdmissionReviewComponent";
 
-class ReviewApplicationContainer extends Component {
+class ManagerAdmissionReviewContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -64,7 +64,7 @@ class ReviewApplicationContainer extends Component {
 
   render() {
     return (
-      <ReviewApplicationComponent
+      <ManagerAdmissionReviewComponent
         state={this.state}
         handleReturn={this.handleReturn}
       />
@@ -72,4 +72,4 @@ class ReviewApplicationContainer extends Component {
   }
 }
 
-export default withRouter(ReviewApplicationContainer);
+export default withRouter(ManagerAdmissionReviewContainer);

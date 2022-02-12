@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import logo from '../../images/logo.png';
-import '../../App.css';
+import logo from '../../../images/logo.png';
+import '../../../App.css';
 
-import Logout from '../05ReusableComponents/Logout';
+import Logout from '../../05ReusableComponents/Logout';
 
 function Navigation(props) {
     return (
@@ -23,26 +23,26 @@ function Navigation(props) {
                         <ul className="navbar-nav ms-auto ">
 
                             <li className="nav-item me-2">
-                                <NavLink className="nav-link" id="navManagerKindergartenList" to={"/darzeliai"}>Darželių sąrašas</NavLink>
+                                <NavLink className="nav-link" id="navAdminUserList" to={"/admin"}>Naudotojai</NavLink>
                             </li>
 
                             <li className="nav-item me-2">
-                                <NavLink className="nav-link" id="navManagerApplicationQueue" to={"/eile"}>Prašymų eilė</NavLink>
+                                <NavLink className="nav-link" id="navAdminApplicationStats" to={"/statistika"}>Prašymų statistika</NavLink>
                             </li>
 
                             <li className="nav-item me-2">
-                                <NavLink className="nav-link" id="navManagerCompensationQueue" to={"/kompensacijos"}>Prašymai kompensacijai</NavLink>
+                                <NavLink className="nav-link" id="navManagerApplicationAdmin" to={"/prasymai/statusas"}>Sąrašo redagavimas</NavLink>
                             </li>
 
                             <li className="nav-item me-2">
-                                <NavLink className="nav-link" id="navManagerApplicationStats" to={"/statistika"}>Prašymų statistika</NavLink>
+                                <NavLink className="nav-link" id="navAdminEventLog" to={"/zurnalas"}>Įvykių žurnalas</NavLink>
                             </li>
 
                             <li className="nav-item me-2">
-                                <NavLink className="nav-link" id="navManagerMyAccount" to={"/profilis/atnaujinti"}>Mano paskyra</NavLink>
+                                <NavLink className="nav-link" id="navAdminMyAccount" to={"/profilis/atnaujinti"}>Mano paskyra</NavLink>
                             </li>
 
-                            <li className="nav-item nav-item me-2" id="navManagerLogout">
+                            <li className="nav-item nav-item me-2">
                                 <Logout />
                             </li>
 
