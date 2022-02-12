@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import apiEndpoint from '../../10Services/endpoint';
+import apiEndpoint from '../../00Services/endpoint';
 
 import '../../../App.css';
 

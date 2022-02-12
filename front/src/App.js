@@ -3,38 +3,38 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import "./index.css";
 import "./App.css";
-import Spinner from "./components/01CommonComponents/00Reusable/Spinner";
+import Spinner from "./components/05ReusableComponents/Spinner";
 import swal from "sweetalert";
 
 import Login from "./components/01CommonComponents/01Login/LoginContainer";
 import NotFound from "./components/01CommonComponents/02NotFound/NotFound";
-import Admin from "./components/04Admin/AdminContainer";
-import UserListContainer from "./components/04Admin/UserListContainer";
-import KindergartenContainer from "./components/05Kindengarten/KindergartenContainer";
-import UpdateProfileFormContainer from "./components/06UpdateProfile/UpdateProfileFormContainer";
-import CreateApplicationFormContainer from "./components/07Application/CreateApplicationFormContainer";
+import Admin from "./components/02AdminComponents/AdminContainer";
+import UserListContainer from "./components/02AdminComponents/UserListContainer";
+import KindergartenContainer from "./components/03ManagerComponents/01KindergartenList/KindergartenContainer";
+import UpdateProfileFormContainer from "./components/01CommonComponents/03UpdateProfile/UpdateProfileFormContainer";
+import CreateApplicationFormContainer from "./components/04UserComponents/01ApplicationForms/CreateApplicationFormContainer";
 
-import AdminNavBar from "./components/00Navigation/AdminNavBar";
-import UserNavBar from "./components/00Navigation/UserNavBar";
-import ManagerNavBar from "./components/00Navigation/ManagerNavBar";
+import AdminNavBar from "./components/02AdminComponents/AdminNavBar";
+import UserNavBar from "./components/04UserComponents/UserNavBar";
+import ManagerNavBar from "./components/03ManagerComponents/ManagerNavBar";
 
-import AuthContext from "./components/11Context/AuthContext";
-import http from "./components/10Services/httpService";
-import CommonErrorHandler from "./components/10Services/CommonErrorHandler";
-import apiEndpoint from "./components/10Services/endpoint";
-import { UserHomeContainer } from "./components/02Main/UserHomeContainer";
-import { KindergartenStatContainer } from "./components/09Statistics/KindergartenStatContainer";
-import { QueueContainer } from "./components/12Queue/QueueContainer";
-import UserDocumentContainer from "./components/13UserDocuments/UserDocumentContainer";
-import { ApplicationStatusContainer } from './components/04Admin/ApplicationStatusContainer';
-import EventJournalContainer from "./components/14EventJournal/EventJournalContainer";
+import AuthContext from "./components/00Services/AuthContext";
+import http from "./components/00Services/httpService";
+import CommonErrorHandler from "./components/00Services/CommonErrorHandler";
+import apiEndpoint from "./components/00Services/endpoint";
+import UserHomeContainer from "./components/04UserComponents/02ApplicationList/UserHomeContainer";
+import KindergartenStatContainer from "./components/01CommonComponents/04KindergartenStatistics/KindergartenStatContainer";
+import QueueContainer from "./components/03ManagerComponents/02AdmissionApplications/QueueContainer";
+import UserDocumentContainer from "./components/04UserComponents/04Documents/UserDocumentContainer";
+import { ApplicationStatusContainer } from './components/02AdminComponents/ApplicationStatusContainer';
+import EventJournalContainer from "./components/02AdminComponents/03EventJournal/EventJournalContainer";
 
 import Testing from "./components/99DeleteThis/Testing";
-import ApplicationReviewContainer from "./components/15ApplicationReview/ApplicationReviewContainer";
-import CompensationReviewContainer from "./components/15ApplicationReview/CompensationReviewContainer";
-import CompensationListContainer from "./components/16CompensationList/CompensationListContainer";
-import ReviewContainer from "./components/16CompensationList/ReviewContainer";
-import ReviewApplicationContainer from "./components/12Queue/ReviewApplicationContainer";
+import ApplicationReviewContainer from "./components/04UserComponents/03ApplicationReview/ApplicationReviewContainer";
+import CompensationReviewContainer from "./components/04UserComponents/03ApplicationReview/CompensationReviewContainer";
+import CompensationListContainer from "./components/03ManagerComponents/03CompensationApplications/CompensationListContainer";
+import ReviewContainer from "./components/03ManagerComponents/03CompensationApplications/ReviewContainer";
+import ReviewApplicationContainer from "./components/03ManagerComponents/02AdmissionApplications/ReviewApplicationContainer";
 
 var initState = {
   isAuthenticated: null,

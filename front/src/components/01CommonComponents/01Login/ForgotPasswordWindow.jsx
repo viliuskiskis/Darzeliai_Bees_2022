@@ -2,8 +2,8 @@ import swal from "sweetalert";
 
 import '../../../App.css';
 
-import http from '../../10Services/httpService';
-import apiEndpoint from '../../10Services/endpoint';
+import http from '../../00Services/httpService';
+import apiEndpoint from '../../00Services/endpoint';
 
 export default function ForgotPasswordWindow() {
     swal({

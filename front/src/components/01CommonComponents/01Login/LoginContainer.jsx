@@ -4,8 +4,8 @@ import { useHistory } from "react-router-dom";
 
 import "../../../App.css";
 
-import apiEndpoint from "../../10Services/endpoint";
-import AuthContext from "../../11Context/AuthContext";
+import apiEndpoint from "../../00Services/endpoint";
+import AuthContext from "../../00Services/AuthContext";
 import logo from "../../../images/logo.png";
 import swal from "sweetalert";
 
