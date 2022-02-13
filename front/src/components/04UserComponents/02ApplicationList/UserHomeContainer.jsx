@@ -82,11 +82,11 @@ export default class UserHomeContainer extends Component {
     }
 
     handleApplicationReview = (applicationId) => {
-        this.props.history.push(`/prasymas/d/${applicationId}`)
+        this.props.history.push(`/prasymas/priimti/${applicationId}`)
     }
 
     handleCompensationReview = (compensationId) => {
-        this.props.history.push(`/prasymas/k/${compensationId}`)
+        this.props.history.push(`/prasymas/kompensuoti/${compensationId}`)
     }
 
     render() {

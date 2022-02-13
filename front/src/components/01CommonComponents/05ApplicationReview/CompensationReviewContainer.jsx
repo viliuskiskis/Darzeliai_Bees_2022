@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router";
 import apiEndpoint from "../../00Services/endpoint";
 import http from "../../00Services/httpService";
 import swal from "sweetalert";
 import inputValidator from "../../00Services/InputValidator";
 import CompensationReviewComponent from "./CompensationReviewComponent";
-import CompensationEditComponent from "./CompensationEditComponent";
+import CompensationEditComponent from "../../04UserComponents/03ApplicationReview/CompensationEditComponent";
 import childDataUrl from "../../00Services/childDataUrl";
+import AuthContext from "../../00Services/AuthContext";
 
-class CompensationReviewContainer extends Component {
+export default class CompensationReviewContainer extends Component {
+  static contextType = AuthContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -60,7 +62,8 @@ class CompensationReviewContainer extends Component {
   }
 
   getUserCompensation() {
-    http.get(`${apiEndpoint}/api/kompensacijos/user/${this.props.match.params.id}`)
+    let role = this.context.state.role.toLowerCase();
+    http.get(`${apiEndpoint}/api/kompensacijos/${role}/${this.props.match.params.id}`)
       .then(response => {
         this.setState({
           id: response.data.id,
@@ -111,7 +114,8 @@ class CompensationReviewContainer extends Component {
   }
 
   handleReturn() {
-    this.props.history.push("/prasymai")
+    let route = this.context.state.role === "USER" ? "/prasymai" : "/kompensacijos";
+    this.props.history.push(route);
   }
 
   handleEdit(e) {
@@ -241,6 +245,7 @@ class CompensationReviewContainer extends Component {
       return (
         <CompensationReviewComponent
           state={this.state}
+          role={this.context.state.role}
           activateEdit={this.activateEdit}
           handleDelete={this.handleDelete}
           handleReturn={this.handleReturn}
@@ -249,5 +254,3 @@ class CompensationReviewContainer extends Component {
     }
   }
 }
-
-export default withRouter(CompensationReviewContainer);

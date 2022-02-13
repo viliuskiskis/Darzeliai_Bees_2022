@@ -39,16 +39,23 @@ export default function CompensationReviewComponent(props) {
               <span>El. paštas:<b> {props.state.mainGuardian.email}</b></span><br />
               <span>Adresas:<b> {props.state.mainGuardian.address}</b></span><br />
             </div>
-            <button
-              id="CompensationReviewEdit"
-              className="btn btn-primary me-2"
-              onClick={props.activateEdit}
-            >Keisti</button>
-            <button
-              id="CompensationReviewDelete"
-              className="btn btn-danger me-2"
-              onClick={props.handleDelete}
-            >Ištrinti</button>
+
+            {/* Show these buttons only for USER */}
+            {props.role === "USER" &&
+              <span>
+                <button
+                  id="CompensationReviewEdit"
+                  className="btn btn-primary me-2"
+                  onClick={props.activateEdit}
+                >Keisti</button>
+                <button
+                  id="CompensationReviewDelete"
+                  className="btn btn-danger me-2"
+                  onClick={props.handleDelete}
+                >Ištrinti</button>
+              </span>
+            }
+
             <button
               id="CompensationReviewReturn"
               className="btn btn-success me-2"

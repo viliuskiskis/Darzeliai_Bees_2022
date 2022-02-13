@@ -1,22 +1,7 @@
 {
-  "id": 12,
-  "submitedAt": "2022-02-08",
-  "status": "Pateiktas",
-  "childName": "Sandijus",
-  "childSurname": "Kututis",
-  "childPersonalCode": "51609260014",
-  "approvalDate": null,
-  "birthdate": "2016-09-26",
-  "mainGuardian": {
-    "userId": 2,
-    "role": null,
-    "name": "user",
-    "surname": "user",
-    "personalCode": "12345678987",
-    "address": "Address 1",
-    "phone": "+37061398876",
-    "email": "user@user.lt",
-    "username": "user@user.lt"
-  },
-  "kindergartenInfo": null
+  "state": {
+    "isAuthenticated": true,
+    "role": "USER",
+    "error": null
+  }
 }

@@ -241,7 +241,7 @@ export default class QueueContainer extends Component {
     }
 
     handleApplicationReview(id) {
-        this.props.history.push(`/prasymas/d/${id}`)
+        this.props.history.push(`/prasymas/priimti/${id}`);
     }
 
     handlePageChange = (page) => {

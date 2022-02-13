@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router";
 import apiEndpoint from "../../00Services/endpoint";
 import http from "../../00Services/httpService";
 import swal from "sweetalert";
-import ManagerAdmissionReviewComponent from "./ManagerAdmissionReviewComponent";
+import AdmissionReviewComponent from "./AdmissionReviewComponent";
+import AuthContext from "../../00Services/AuthContext";
 
-class ManagerAdmissionReviewContainer extends Component {
+export default class AdmissionReviewContainer extends Component {
+  static contextType = AuthContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -36,7 +38,8 @@ class ManagerAdmissionReviewContainer extends Component {
   }
 
   getUserApplication() {
-    http.get(`${apiEndpoint}/api/prasymai/manager/${this.props.match.params.id}`)
+    let role = this.context.state.role.toLowerCase();
+    http.get(`${apiEndpoint}/api/prasymai/${role}/${this.props.match.params.id}`)
       .then(response => {
         this.setState({
           id: response.data.id,
@@ -59,17 +62,17 @@ class ManagerAdmissionReviewContainer extends Component {
   }
 
   handleReturn() {
-    this.props.history.push("/eile");
+    let route = this.context.state.role === "USER" ? "/prasymai" : "/eile";
+    this.props.history.push(route);
   }
 
   render() {
     return (
-      <ManagerAdmissionReviewComponent
+      <AdmissionReviewComponent
         state={this.state}
+        role={this.context.state.role}
         handleReturn={this.handleReturn}
       />
     )
   }
 }
-
-export default withRouter(ManagerAdmissionReviewContainer);

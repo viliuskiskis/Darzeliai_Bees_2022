@@ -7,8 +7,8 @@ import KindergartenContainer from "../03ManagerComponents/01KindergartenList/Kin
 import KindergartenStatContainer from "../01CommonComponents/04KindergartenStatistics/KindergartenStatContainer";
 import QueueContainer from "../03ManagerComponents/02AdmissionApplications/QueueContainer";
 import CompensationListContainer from "../03ManagerComponents/03CompensationApplications/CompensationListContainer";
-import ReviewContainer from "../03ManagerComponents/03CompensationApplications/ReviewContainer";
-import ManagerAdmissionReviewContainer from "../03ManagerComponents/02AdmissionApplications/ManagerAdmissionReviewContainer";
+import CompensationReviewContainer from "../01CommonComponents/05ApplicationReview/CompensationReviewContainer";
+import AdmissionReviewContainer from "../01CommonComponents/05ApplicationReview/AdmissionReviewContainer";
 import UpdateProfileFormContainer from "../01CommonComponents/03UpdateProfile/UpdateProfileFormContainer";
 import NotFound from "../01CommonComponents/02NotFound/NotFound";
 
@@ -41,12 +41,12 @@ export default function ManagerRoutes() {
               component={CompensationListContainer}
             />
             <Route
-              path="/prasymas/k/:id"
-              component={ReviewContainer}
+              path="/prasymas/kompensuoti/:id"
+              component={CompensationReviewContainer}
             />
             <Route
-              path="/prasymas/d/:id"
-              component={ManagerAdmissionReviewContainer}
+              path="/prasymas/priimti/:id"
+              component={AdmissionReviewContainer}
             />
             <Route
               exact

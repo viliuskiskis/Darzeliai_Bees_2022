@@ -57,9 +57,12 @@ class QueueTable extends Component {
             key: 'review',
             label: 'Peržiūrėti prašymą',
             content: application =>
-                <button onClick={() => this.props.handleApplicationReview(application.id)}
+                <button
                     id="btnReviewApplicationManager"
-                    className="btn btn-outline-primary btn-sm btn-block">Peržiūrėti</button>
+                    className="btn btn-outline-primary btn-sm btn-block"
+                    onClick={() => this.props.handleApplicationReview(application.id)}
+                >Peržiūrėti
+                </button>
         },
     ]
 

@@ -51,7 +51,7 @@ export default class CompensationListContainer extends Component {
   }
 
   handleCompensationReview(id) {
-    this.props.history.push(`/prasymas/k/${id}`)
+    this.props.history.push(`/prasymas/kompensuoti/${id}`)
   }
 
   handleCompensationDeactivate(id) {
