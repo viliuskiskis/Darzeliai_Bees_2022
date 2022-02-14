@@ -33,9 +33,7 @@ public class GeneralMethods extends BaseTest {
 	private String changedUserSurname = "Pakeistas";
 	private String changedUserEmail = "pakeistas@email.lt";
 	private String expectedErrorMessage= "Neteisingas prisijungimo vardas ir/arba slaptažodis!";
-	private String pdfFileLocation = "C:\\Users\\Tomas\\Desktop\\VilniausDarzeliuSistema\\Bees_projektas" +
-			"\\Projektas_DarzeliuIS_BEES_po_migracijos\\Projektas_DarzeliuIS_v2\\testai\\src\\test\\resources\\Testas" +
-			".pdf";
+	private String pdfFileLocation = "C:\\Users\\Tomas\\Desktop\\VilniausDarzeliuSistema\\Bees_projektas\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
 
 	// LOGIN/ LOGOUT METHODS
 
@@ -55,12 +53,30 @@ public class GeneralMethods extends BaseTest {
 		loginPage.clickLoginButton();
 	 }
 
-	public void doLogout() {
-		  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-		  WebElement logoutElement = wait.until(
-				  ExpectedConditions.elementToBeClickable(By.id("btnLogout")));
-		  logoutElement.click();
-	 }
+//	public void doLogout() {
+//		  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+//		  WebElement logoutElement = wait.until(
+//				  ExpectedConditions.elementToBeClickable(By.id("btnLogout")));
+//		  logoutElement.click();
+//	 }
+	public void doLogout(){
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+		WebElement logoutElement = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnLogout")));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,-400)");
+		js.executeScript("arguments[0].scrollIntoView()", logoutElement);
+		js.executeScript("arguments[0].click();", logoutElement);
+	}
+
+	public void doLogoutSubmitApplication() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+		WebElement logoutElement = wait.until(
+				ExpectedConditions.elementToBeClickable(By.id("btnLogout")));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,-400)");
+		js.executeScript("arguments[0].scrollIntoView()", logoutElement);
+		js.executeScript("arguments[0].click();", logoutElement);
+	}
 
 	public Boolean verifyIfAdminIsLoggedIn() {
 		  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -300,7 +316,7 @@ public class GeneralMethods extends BaseTest {
 	    }
 	}
 
-	public void fillInTheApplication () throws IOException {
+	public void fillInTheApplication () throws IOException, InterruptedException {
 		SubmitNewApplicationPage newApplication = new SubmitNewApplicationPage(driver);
 		clickNavButtonNewApplication();
 
@@ -342,17 +358,13 @@ public class GeneralMethods extends BaseTest {
 	public void applicationFormChildDetails () throws IOException {
 		SubmitNewApplicationPage newApplication = new SubmitNewApplicationPage(driver);
 		List<String> formData = FileReaderUtils.getTestData("src/test/resources/parentAndChildDetails.txt");
-		String childName = formData.get(6);
 		String childSurname = formData.get(7);
 		String childPersonalCode = formData.get(8);
-		String childDateOfBirth = formData.get(9);
-		newApplication.inputChildName(childName);
 		newApplication.inputChildSurname(childSurname);
 		newApplication.inputChildPersonalCode(childPersonalCode);
-		newApplication.inputChildDateOfBirth(childDateOfBirth);
 	}
 
-	public void checkPrioritiesAndChooseAKindergarten () throws IOException {
+	public void checkPrioritiesAndChooseAKindergarten () throws IOException, InterruptedException {
 		SubmitNewApplicationPage newApplication = new SubmitNewApplicationPage(driver);
 
 		// check priorities
@@ -361,13 +373,14 @@ public class GeneralMethods extends BaseTest {
 		newApplication.clickPriorityThree();
 		newApplication.clickPriorityFour();
 		newApplication.clickPriorityFive();
+		newApplication.clickPrioritySix();
 
 		// choose a kindergarten from the list
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		newApplication.openKindergartenListDropdownPriorityOne();
 	}
 
-	// UPLOAD USER MEDICAL DOCUMENTS (PDF)
+	// UPLOAD/DELETE USER MEDICAL DOCUMENTS (PDF)
 
 	public void uploadPDF() {
 		UploadMedicalDocumentPDFPage uploadDocument = new UploadMedicalDocumentPDFPage(driver);
@@ -384,7 +397,6 @@ public class GeneralMethods extends BaseTest {
 		waitToPressOKPopUp();
 	}
 
-
 	// WAIT FOR PAGES TO LOAD
 
 	public Boolean waitForLoginToLoad() {
@@ -392,12 +404,13 @@ public class GeneralMethods extends BaseTest {
 		  	return wait.until(ExpectedConditions.textToBe(By.xpath("//h3"), "Prisijungti"));
 	}
 
+
+	// WAIT TO ASSERT MESSAGE
+
 	public Boolean assertThatMyAccountPageHasLoaded() {
 		  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 		  	return wait.until(ExpectedConditions.textToBe(By.xpath("//div[2]//h6"), "Naudotojo prisijungimo informacija"));
 	}
-
-	// WAIT TO ASSERT MESSAGE
 
 	public Boolean applicationSuccessful() {
 		  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -435,7 +448,7 @@ public class GeneralMethods extends BaseTest {
 
 	// TODO reminder: xpath has been changed
 	public void waitToClickSubmitButton () {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 			WebElement clickButton = wait.until(
 //					ExpectedConditions.elementToBeClickable(By.xpath("//button[@type='submit']")));
 			ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'confirm')]")));
@@ -546,12 +559,12 @@ public class GeneralMethods extends BaseTest {
 			ExpectedConditions.presenceOfElementLocated(By.id("navManagerApplicationQueue")));
 		navApplicationQueue.click();
 	}
-//	public void clickNavButtonOpenRegistrationToKindergarten(){
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-//		WebElement navOpenRegistration = wait.until(
-//				ExpectedConditions.presenceOfElementLocated(By.id("btnStartRegistration")));
-//		navOpenRegistration.click();
-//	}
+	public void clickNavButtonOpenRegistrationToKindergarten(){
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+		WebElement navOpenRegistration = wait.until(
+				ExpectedConditions.presenceOfElementLocated(By.id("btnStartRegistration")));
+		navOpenRegistration.click();
+	}
 
 
 	// WAIT TO ENTER USER EMAIL WHILE RESETTING PASSWORD

@@ -5,8 +5,8 @@
   <testcase classname="adminTests.CreateAndDeleteNewUser" name="successfullyCreateAndDeleteNewAdmin" time="2.487"/>
   <testcase classname="adminTests.CreateAndDeleteNewUser" name="successfullyCreateAndDeleteNewKindergartenSpecialist" time="3.901"/>
   <testcase classname="adminTests.CreateAndDeleteNewUser" name="successfullyCreateAndDeleteNewParent" time="3.082"/>
-  <testcase classname="parentTests.SubmitNewApplication" name="successfullySubmitNewApplication" time="8.701"/>
-  <testcase classname="parentTests.SubmitNewApplication" name="deleteApplication" time="3.914"/>
+  <testcase classname="parentTests.SubmitNewKindergartensApplication" name="successfullySubmitNewApplication" time="8.701"/>
+  <testcase classname="parentTests.SubmitNewKindergartensApplication" name="deleteApplication" time="3.914"/>
   <testcase classname="adminTests.UpdateAdminDetails" name="successfullyChangeAdminDetails" time="4.007"/>
   <testcase classname="adminTests.UpdateAdminDetails" name="successfullyChangeAdminPassword" time="2.194"/>
   <testcase classname="adminTests.UpdateAdminDetails" name="successfullyResetAdminPasswordToOriginal" time="4.923"/>

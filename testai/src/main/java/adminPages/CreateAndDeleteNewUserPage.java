@@ -40,6 +40,9 @@ public class CreateAndDeleteNewUserPage extends AbstractObjectPage {
 	@FindBy (xpath = "/html/body/div[2]/div/div[2]/div/button")
 	public WebElement userNotLoggedInButton;
 
+	@FindBy(id = "btnDeleteUser")
+	public WebElement buttonDeleteUser;
+
 	public void clickCreateButton() {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("arguments[0].click();", createButton);
