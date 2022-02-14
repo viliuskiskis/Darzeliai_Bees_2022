@@ -11,14 +11,28 @@ public class CompensationApplicationInfoUser {
 	private LocalDate submitedAt;
     private String childName;
     private String childSurname;
-    private String entityName;    
+    private String childPersonalCode;
+    private String entityName; 
     
-	public CompensationApplicationInfoUser(Long id, 
-				ApplicationStatus applicationStatus, 
-				LocalDate submitedAt, 
-				String childName, 
-				String childSurname, 
-				String entityName) {
+	public CompensationApplicationInfoUser() {
+		super();
+	}
+
+	public CompensationApplicationInfoUser(Long id, ApplicationStatus applicationStatus, LocalDate submitedAt,
+			String childName, String childSurname, String childPersonalCode, String entityName) {
+		super();
+		this.id = id;
+		this.applicationStatus = applicationStatus;
+		this.submitedAt = submitedAt;
+		this.childName = childName;
+		this.childSurname = childSurname;
+		this.childPersonalCode = childPersonalCode;
+		this.entityName = entityName;
+	}
+
+	
+	public CompensationApplicationInfoUser(Long id, ApplicationStatus applicationStatus, LocalDate submitedAt,
+			String childName, String childSurname, String entityName) {
 		super();
 		this.id = id;
 		this.applicationStatus = applicationStatus;
@@ -76,4 +90,13 @@ public class CompensationApplicationInfoUser {
 		this.submitedAt = submitedAt;
 	}
 
+	public String getChildPersonalCode() {
+		return childPersonalCode;
+	}
+
+	public void setChildPersonalCode(String childPersonalCode) {
+		this.childPersonalCode = childPersonalCode;
+	}
+
+	
 }

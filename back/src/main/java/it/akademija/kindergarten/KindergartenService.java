@@ -310,4 +310,9 @@ public class KindergartenService {
 		return gartenDao.getKindergartenInfoByApplicationId(id);
 	}
 
+	public Kindergarten getKindergartenByApplicationId(String id) {
+		return gartenDao.getById(id);
+	}
+
+
 }

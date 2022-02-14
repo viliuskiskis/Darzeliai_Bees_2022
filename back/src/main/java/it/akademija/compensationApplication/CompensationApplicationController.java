@@ -41,6 +41,7 @@ public class CompensationApplicationController {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(CompensationApplicationController.class);
 
+
 	@Autowired
 	private JournalService journalService;
 	
@@ -256,11 +257,16 @@ public class CompensationApplicationController {
 	public Page<CompensationApplicationInfoUser>  getAllUserCompensationApplicationsInfoUser(
 			@RequestParam(defaultValue = "0") Integer pageNumber, 
             @RequestParam(defaultValue = "20") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy) {
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam String filter) {
 		
 		Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
 		
-		return compensationApplicationService.getPageFromCompensationApplications(pageable);
+		
+		return compensationApplicationService
+				.getPageFromCompensationApplications(pageable, filter);
+		
+		
 	}
 	
 	/**
@@ -295,8 +301,7 @@ public class CompensationApplicationController {
 			compensationApplicationService
 					.deactivateCompensationApplication(compensationApplication);
 			
-			return new ResponseEntity<String>
-					("Kompensacijos prašymas deaktyvuotas", HttpStatus.OK);
+			return new ResponseEntity<> (HttpStatus.OK);
 		}
 		
 		return new ResponseEntity<String>

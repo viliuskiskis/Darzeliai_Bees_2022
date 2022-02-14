@@ -1,5 +1,6 @@
 package it.akademija.kindergartenchoise;
 
+
 public class KindergartenChoiseDTO {
 
 	private String kindergartenId1;
