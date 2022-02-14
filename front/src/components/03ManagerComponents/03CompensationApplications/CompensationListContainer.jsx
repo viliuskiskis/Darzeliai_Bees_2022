@@ -55,22 +55,31 @@ export default class CompensationListContainer extends Component {
   }
 
   handleCompensationDeactivate(id) {
-    http.post(`${apiEndpoint}/api/kompensacijos/manager/deactivate/${id}`)
-      .then(response => {
-        swal({
-          text: response.data,
-          button: "Gerai"
-        })
-      })
-      .then(setTimeout(() => {
-        this.getCompensations(this.state.currentPage);
-      }, 1000))
-      .catch(error => {
-        swal({
-          text: "Įvyko klaida",
-          button: "Gerai"
-        })
-      })
+    swal({
+      text: "DĖMESIO! Šio veiksmo negalėsite atšaukti!\n\nAr tikrai norite deaktyvuoti prašymą?",
+      buttons: ["Ne", "Taip"],
+      dangerMode: true,
+    }).then((actionConfirmed) => {
+      if (actionConfirmed) {
+        http.post(`${apiEndpoint}/api/kompensacijos/manager/deactivate/${id}`)
+          .then(response => {
+            swal({
+              text: response.data,
+              button: "Gerai"
+            })
+          })
+          .then(setTimeout(() => {
+            this.getCompensations(this.state.currentPage);
+          }, 1000))
+          .catch(error => {
+            swal({
+              text: "Įvyko klaida",
+              button: "Gerai"
+            })
+          })
+      }
+    })
+
   }
 
   render() {

@@ -1,9 +1,17 @@
 import React from "react";
+import { useHistory } from "react-router";
 import MainGuardianFormComponent from "../01ApplicationForms/MainGuardianFormComponent";
 import KindergartenFormComponent from "../01ApplicationForms/KindergartenFormComponent";
 import ChildFormComponent from "../01ApplicationForms/ChildFormComponent";
 
 export default function CompensationEditComponent(props) {
+  const history = useHistory();
+
+  function handleReturn(e) {
+    e.preventDefault();
+    history.goBack();
+  }
+
   return (
     <div className="container pt-4">
       <div className="form">
@@ -43,8 +51,17 @@ export default function CompensationEditComponent(props) {
               <button
                 id="editCompensationButton"
                 type="submit"
-                className="btn btn-primary mt-3">
+                className="btn btn-primary me-2"
+              >
                 Keisti prašymą
+              </button>
+
+              <button
+                id="cancelCompensationEdit"
+                className="btn btn-success"
+                onClick={(e) => handleReturn(e)}
+              >
+                Grįžti
               </button>
 
             </div>
