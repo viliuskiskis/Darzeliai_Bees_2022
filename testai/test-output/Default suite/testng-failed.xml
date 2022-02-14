@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="parentTests.SubmitNewApplication">
+      <class name="parentTests.SubmitNewKindergartensApplication">
         <methods>
           <include name="setUp"/>
           <include name="deleteApplication"/>
           <include name="successfullySubmitNewApplication"/>
           <include name="closeBrowser"/>
         </methods>
-      </class> <!-- parentTests.SubmitNewApplication -->
+      </class> <!-- parentTests.SubmitNewKindergartensApplication -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -19,18 +19,6 @@ public class ChangeAndResetUserAccountFieldsAndPasswordPage extends AbstractObje
 	@FindBy (id="txtEmail")
 	public WebElement userEmail;
 
-//	buttons
-	@FindBy (xpath = "//div[4]/div/button")
-//	@FindBy (id = "btnRestoreUserPassword")
-	public WebElement okResetPasswordButton;
-	
-	@FindBy (xpath = "//div[2]/button")
-	public WebElement agreeToResetUserPasswordButton;
-	
-	@FindBy (xpath = "//div[2]/div/button")
-	public WebElement okButtonPasswordIsReset;
-
-	// input fields
 	@FindBy (id = "txtOldPassword")
 	public WebElement oldPassword;
 	
@@ -39,8 +27,19 @@ public class ChangeAndResetUserAccountFieldsAndPasswordPage extends AbstractObje
 	
 	@FindBy (id = "txtNewPasswordRepeat")
 	public WebElement repeatNewPassword;
-	
-	// buttons
+
+	//	check buttons
+
+	@FindBy (xpath = "//div[2]/button")
+	public WebElement agreeToResetUserPasswordButton;
+
+	@FindBy (xpath = "//div[4]/div/button")
+//	@FindBy (id = "btnRestoreUserPassword")
+	public WebElement okResetPasswordButton;
+
+	@FindBy (xpath = "//div[2]/div/button")
+	public WebElement okButtonPasswordIsReset;
+
 	@FindBy (id="btnSubmit")
 	public WebElement buttonUpdateUserDetails;
 	
@@ -48,6 +47,7 @@ public class ChangeAndResetUserAccountFieldsAndPasswordPage extends AbstractObje
 	public WebElement okButtonUserDetailsUpdated;
 	
 	@FindBy (xpath = "//button[@class='btn btn-primary'][text()='Keisti']")
+//	@FindBy (xpath = "//*//div[3]//button")
 	public WebElement changeUserPasswordButton;
 	
 	@FindBy (xpath = "//*/div[5]/button")

@@ -76,10 +76,7 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
 	public void inputcapacityAgeGroup3to6 (String value) {
 		capacityAgeGroup3to6.sendKeys(value);
 	}
-	
-//	public void clickButtonSaveKindergarten () {
-//		buttonSaveKindergarten.click();
-//	}
+
 	public void clickButtonSaveKindergarten() {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("arguments[0].click();", buttonSaveKindergarten);
