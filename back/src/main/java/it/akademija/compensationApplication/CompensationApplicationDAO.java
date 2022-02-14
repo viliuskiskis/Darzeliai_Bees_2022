@@ -17,6 +17,7 @@ public interface CompensationApplicationDAO extends JpaRepository<CompensationAp
 			+ "ca.submitedAt, "
 			+ "cd.childName, "
 			+ "cd.childSurname, "
+			+ "cd.childPersonalCode, "
 			+ "kd.entityName) "
 			+ "FROM CompensationApplication ca "
 			+ "JOIN ChildData cd "
@@ -63,6 +64,7 @@ public interface CompensationApplicationDAO extends JpaRepository<CompensationAp
 			+ "ca.submitedAt, "
 			+ "cd.childName, "
 			+ "cd.childSurname, "
+			+ "cd.childPersonalCode, "
 			+ "kd.entityName) "
 			+ "FROM CompensationApplication ca "
 			+ "JOIN ChildData cd "
@@ -85,9 +87,10 @@ public interface CompensationApplicationDAO extends JpaRepository<CompensationAp
 			+ "ON ca.id = cd.compensationApplication.id "
 			+ "JOIN KindergartenData kd "
 			+ "ON ca.id = kd.compensationApplication.id "
-			+ "WHERE cd.childPersonalCode=?1 ",
+			+ "WHERE cd.childPersonalCode "
+			+ "LIKE(concat(?1, '%'))",
 			nativeQuery = false)
-	Page<CompensationApplicationInfoUser> findAllCompensationsByChildPersonalCode(Pageable pageable, String filter);
+	Page<CompensationApplicationInfoUser> findAllCompensationsByChildPersonalCode(String filter, Pageable pageable);
 	
 	@Query(value ="SELECT new it.akademija.compensationApplication.CompensationApplicationInfoUser("
 			+ "ca.id, "

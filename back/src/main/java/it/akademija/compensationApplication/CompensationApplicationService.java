@@ -255,15 +255,16 @@ public class CompensationApplicationService {
 	
 	public Page<CompensationApplicationInfoUser> getPageFromCompensationApplications(Pageable pageable, String filter) {
 		
-		if(filter.equals("childPersonalCode")) {
-			return compensationApplicationDAO
-					.findAllCompensationsByChildPersonalCode(pageable, filter);
-		}
-		else if(filter.equals("entityName")) {
-			return compensationApplicationDAO
-					.findAllCompensationsByEntityName(pageable, filter);
-		}
-		return compensationApplicationDAO.findAllCompensationApplicationInfoUser(pageable);
+//		if(filter.equals("childPersonalCode")) {
+//			return compensationApplicationDAO
+//					.findAllCompensationsByChildPersonalCode(pageable, filter);
+//		}
+//		else if(filter.equals("entityName")) {
+//			return compensationApplicationDAO
+//					.findAllCompensationsByEntityName(pageable, filter);
+//		}
+//		return compensationApplicationDAO.findAllCompensationApplicationInfoUser(pageable);
+	    	return compensationApplicationDAO.findAllCompensationsByChildPersonalCode(filter, pageable);
 		
 	}
 	

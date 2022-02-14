@@ -33,7 +33,7 @@ export default class UserHomeContainer extends Component {
     getUserCompensations() {
         http.get(`${apiEndpoint}/api/kompensacijos/user`)
             .then(response => {
-                this.setState({ compensations: response.data })
+                this.setState({ compensations: response.data });
             }).catch(() => { });
     }
 

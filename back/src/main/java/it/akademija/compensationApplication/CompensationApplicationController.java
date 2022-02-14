@@ -247,13 +247,13 @@ public class CompensationApplicationController {
 	}
 	
 	/**
-	 * Get list of all compensation applications for manager
+	 * Get page from compensation applications for manager
 	 * 
 	 * @return set compensation applications info
 	 */
 	@Secured({ "ROLE_MANAGER" })
 	@GetMapping("/manager")
-	@ApiOperation(value = "Get all compensations applications list")
+	@ApiOperation(value = "Get page from compensations applications list")
 	public Page<CompensationApplicationInfoUser>  getAllUserCompensationApplicationsInfoUser(
 			@RequestParam(defaultValue = "0") Integer pageNumber, 
             @RequestParam(defaultValue = "20") Integer pageSize,

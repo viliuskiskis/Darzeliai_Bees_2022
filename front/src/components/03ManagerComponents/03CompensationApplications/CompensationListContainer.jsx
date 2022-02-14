@@ -4,6 +4,7 @@ import http from "../../00Services/httpService";
 import apiEndpoint from "../../00Services/endpoint";
 import swal from "sweetalert";
 import Pagination from '../../05ReusableComponents/Pagination';
+import SearchBox from "../../05ReusableComponents/SeachBox";
 
 import CompensationListTable from "./CompensationListTable";
 
@@ -17,18 +18,20 @@ export default class CompensationListContainer extends Component {
       totalPages: 0,
       totalElements: 0,
       numberOfElements: 0,
+      searchQuery: ""
     }
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleCompensationReview = this.handleCompensationReview.bind(this);
     this.handleCompensationDeactivate = this.handleCompensationDeactivate.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
-    this.getCompensations(this.state.currentPage);
+    this.getCompensations(this.state.currentPage, this.state.searchQuery);
   }
 
-  getCompensations(page) {
-    http.get(`${apiEndpoint}/api/kompensacijos/manager?pageNumber=${page - 1}&pageSize=10`)
+  getCompensations(page, filter) {
+    http.get(`${apiEndpoint}/api/kompensacijos/manager?pageNumber=${page - 1}&pageSize=10&filter=${filter}`)
       .then(response => {
         this.setState({
           compensations: response.data.content,
@@ -45,9 +48,14 @@ export default class CompensationListContainer extends Component {
       })
   }
 
+  handleSearch(e) {
+    this.setState({ searchQuery: e.currentTarget.value });
+    this.getCompensations(1, e.currentTarget.value);
+  }
+
   handlePageChange(page) {
     this.setState({ currentPage: page });
-    this.getCompensations(page);
+    this.getCompensations(page, this.state.searchQuery);
   }
 
   handleCompensationReview(id) {
@@ -83,9 +91,21 @@ export default class CompensationListContainer extends Component {
   }
 
   render() {
+    let size = 0;
+    if (this.state.compensations !== undefined) size = this.state.compensations.length;
+
     return (
       <div className="container pt-4">
         <h6 className="ps-2 pt-3">Prašymai gauti kompensaciją</h6>
+
+        {(size > 0 || this.state.searchQuery !== "") &&
+          <SearchBox
+            value={this.state.searchQuery}
+            onSearch={this.handleSearch}
+            placeholder={"Ieškoti pagal vaiko asmens kodą..."}
+          />
+        }
+
         <CompensationListTable
           compensations={this.state.compensations}
           handleCompensationReview={this.handleCompensationReview}

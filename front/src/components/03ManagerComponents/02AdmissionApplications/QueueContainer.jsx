@@ -264,7 +264,7 @@ export default class QueueContainer extends Component {
 
             <div className="container pt-4" >
 
-                <h6 className="ps-2 pt-3">Prašymų eilė</h6>
+                <h6 className="ps-2 pt-3">Prašymai registruotis į valstybinius darželius</h6>
                 {isActive && <p className="ps-2 pt-3">Registracija vykdoma</p>}
                 {!isActive && <p className="ps-2 pt-3">Šiuo metu registracija nevykdoma</p>}
 
