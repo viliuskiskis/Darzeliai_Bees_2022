@@ -75,7 +75,6 @@ public class Application {
 	private ParentDetails additionalGuardian;
 
 	@OneToMany(mappedBy = "application", cascade = CascadeType.ALL)
-
 	@JsonIgnore
 	private Set<KindergartenChoise> kindergartenChoises;
 

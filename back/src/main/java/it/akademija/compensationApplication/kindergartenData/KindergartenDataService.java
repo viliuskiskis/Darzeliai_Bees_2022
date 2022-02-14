@@ -34,7 +34,7 @@ public class KindergartenDataService {
 		return kindergartenDataDAO.getByCompensationApplication(id);
 	}
 
-	public void updateKindergartenData(KindergartenDataDTO kindergartenDataDTO, Long id) {
+	public KindergartenData updateKindergartenData(KindergartenDataDTO kindergartenDataDTO, Long id) {
 		
 		KindergartenData kindergartenData = kindergartenDataDAO.getById(id);
 		
@@ -47,7 +47,7 @@ public class KindergartenDataService {
 		kindergartenData.setAccount(kindergartenDataDTO.getAccount());
 		kindergartenData.setCode(kindergartenDataDTO.getCode());
 		
-		kindergartenDataDAO.save(kindergartenData);
+		return kindergartenDataDAO.save(kindergartenData);
 	}
 
 }

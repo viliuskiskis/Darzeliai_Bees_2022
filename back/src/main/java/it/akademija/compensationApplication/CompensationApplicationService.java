@@ -206,10 +206,7 @@ public class CompensationApplicationService {
 		return childDataService.childExistsByPersonalCode(childPersonalCode);
 	}
 
-	public Page<CompensationApplicationInfoUser> getPageFromCompensationApplications(Pageable pageable) {
-		return compensationApplicationDAO.findAllCompensationApplicationInfoUser(pageable);
-		
-	}
+	
 
 	public boolean existsCompensationApplicationById(Long id) {
 		return compensationApplicationDAO.existsById(id);
@@ -253,7 +250,22 @@ public class CompensationApplicationService {
 		
 		compensationApplicationDAO.save(compensationApplication);
 	}
+
 	
 	
+	public Page<CompensationApplicationInfoUser> getPageFromCompensationApplications(Pageable pageable, String filter) {
+		
+		if(filter.equals("childPersonalCode")) {
+			return compensationApplicationDAO
+					.findAllCompensationsByChildPersonalCode(pageable, filter);
+		}
+		else if(filter.equals("entityName")) {
+			return compensationApplicationDAO
+					.findAllCompensationsByEntityName(pageable, filter);
+		}
+		return compensationApplicationDAO.findAllCompensationApplicationInfoUser(pageable);
+		
+	}
 	
+		
 }
