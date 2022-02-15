@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -26,7 +27,7 @@ public class ParentDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long parentDetailsId;
 
-	@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{11}$|")
+	@Pattern(regexp = "[0-9]{11}")
 	@Column
 	private String personalCode;
 
@@ -35,25 +36,27 @@ public class ParentDetails {
 
 	@NotEmpty(message = "Vardas privalomas!")
 	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
+	@Pattern(regexp = "[A-zÀ-ž\\s-]{2,32}")
 	@Column
 	private String name;
 
 	@NotEmpty(message = "Pavardė privaloma!")
 	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
+	@Pattern(regexp = "[A-zÀ-ž\\s-]{2,32}")
 	@Column
 	private String surname;
 
 	@Email
 	@NotEmpty(message = "El. paštas privalomas!")
+	@Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
 	@Column
 	private String email;
 
 	@Column
+	@NotBlank(message = "Adresas privalomas")
 	private String address;
 
-	@Pattern(regexp = "^\\+(?!\\s*$)[0-9\\s]{5,20}$|")
+	@Pattern(regexp = "[+]?[0-9]{4,17}")
 	@Column
 	private String phone;
 

@@ -52,6 +52,8 @@ public class User {
 
 	@Email
 	@NotEmpty(message = "El. paštas privalomas!")
+	@Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", 
+	message = "Elektroninis paštas privalomas")
 	@Column
 	private String email;
 

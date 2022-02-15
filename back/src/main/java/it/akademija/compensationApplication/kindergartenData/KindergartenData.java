@@ -26,24 +26,24 @@ public class KindergartenData {
 	private CompensationApplication compensationApplication;
 	
 	@NotBlank(message = "Pavadinimas privalomas")
-	@Pattern(regexp = "\\S[\\s\\S]{2,49}")
+	@Pattern(regexp = "\\S[\\s\\S]{2,50}")
 	private String entityName;
 	
-	@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{9}$|", 
+	@Pattern(regexp = "[0-9]{9}", 
 			message = "Įstaigos kodas turi būti sudarytas iš 9 skaitmenų")
 	private String code;
-	// !!!!!!!
+	
 	@Pattern(regexp = "[+]?[0-9]{4,17}", 
 			message = "Telefono numeris gali būti sudarytas iš 4-17 skaitmenų")
 	private String phone;
-	// !!!!!!!
+	
 	@Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", 
 			message = "Įstaigos elektroninis paštas privalomas")
 	private String email;
 	
 	@NotBlank(message = "Adresas privalomas")
 	private String address;
-	// !!!!!!!
+
 	@Pattern(regexp = "[A-Za-z]{2}[0-9]{2}[A-z0-9]{11,30}", 
 			message = "Įstaigos banko sąskaita privaloma")
 	private String account;

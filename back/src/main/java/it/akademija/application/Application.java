@@ -45,15 +45,15 @@ public class Application {
 
 	@NotEmpty(message = "Vardas privalomas!")
 	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
+	@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
 	private String childName;
 
 	@NotEmpty(message = "Pavardė privaloma!")
 	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
+	@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
 	private String childSurname;
 
-	@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{11}$|")
+	@Pattern(regexp = "[56][12][0-9][01][0-9][0-3][0-9]{5}")
 	private String childPersonalCode;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
