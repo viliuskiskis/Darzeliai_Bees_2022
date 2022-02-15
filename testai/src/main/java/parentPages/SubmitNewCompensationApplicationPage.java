@@ -130,8 +130,8 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
     public void clickButtonReviewCompensationApplication() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         driver.findElement(By.tagName("body")).sendKeys(Keys.END);
-        Thread.sleep(160);
-        buttonReviewCompensation.click();
+//        Thread.sleep(200);
+//        buttonReviewCompensation.click();
         WebElement button = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("btnReviewCompensationUser")));
         button.click();
