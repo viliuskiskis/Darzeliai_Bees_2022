@@ -87,6 +87,5 @@ public class UpdateAdminDetails extends GeneralMethods{
 	  // delete user after successful user details change
 	  doLoginAsAdmin();
 	  deleteNewUser();
-	  doLogout();
   }
 }

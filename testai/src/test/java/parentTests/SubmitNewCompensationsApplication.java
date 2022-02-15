@@ -79,7 +79,8 @@ public class SubmitNewCompensationsApplication extends GeneralMethods {
         // compensations application edited and saved
         compensationApplication.clickButtonEditCompenstaionsApplication();
         compensationApplication.clickButtonEditCompensationButton();
-        clickOkButton();
+//        clickOkButton();
+        waitAndClickOkButton();
         doLogout();
 
     }
@@ -93,7 +94,8 @@ public class SubmitNewCompensationsApplication extends GeneralMethods {
 
         compensationApplication.clickDeleteCompensationsApplication();
         waitToAgreePopUp();
-        clickOkButton();
+//        clickOkButton();
+          waitAndClickOkButton();
         doLogout();
 
         // delete test user

@@ -53,7 +53,7 @@ public class SubmitNewApplication extends GeneralMethods {
 
 
         @Test (groups = "regression", priority = 2)
-        public void deleteApplication () {
+        public void deleteApplication () throws InterruptedException {
 
             waitForLoginToLoad();
             doLogin(createNewUserParentEmail, createNewUserParentEmail);

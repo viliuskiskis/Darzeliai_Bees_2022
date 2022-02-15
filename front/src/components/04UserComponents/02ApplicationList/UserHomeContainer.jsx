@@ -51,9 +51,7 @@ export default class UserHomeContainer extends Component {
                             button: "Gerai"
                         })
                     }).then(
-                        setTimeout(() => {
-                            this.getUserApplications()
-                        }, 1000)
+                        this.getUserApplications()
                     ).catch(() => { });
             }
         });
@@ -73,9 +71,7 @@ export default class UserHomeContainer extends Component {
                             button: "Gerai"
                         })
                     }).then(
-                        setTimeout(() => {
-                            this.getUserCompensations()
-                        }, 1000)
+                        this.getUserCompensations()
                     ).catch(() => { });
             }
         });
