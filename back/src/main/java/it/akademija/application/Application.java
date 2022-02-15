@@ -44,12 +44,10 @@ public class Application {
 	private ApplicationStatus status;
 
 	@NotEmpty(message = "Vardas privalomas!")
-	@Size(min = 2, max = 70)
 	@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
 	private String childName;
 
 	@NotEmpty(message = "Pavardė privaloma!")
-	@Size(min = 2, max = 70)
 	@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
 	private String childSurname;
 
