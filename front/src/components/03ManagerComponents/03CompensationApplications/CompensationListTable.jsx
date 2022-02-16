@@ -56,7 +56,7 @@ export default class CompensationListTable extends Component {
           className="btn btn-outline-danger btn-sm btn-block"
           onClick={() => this.props.handleCompensationDeactivate(compensation.id)}
           disabled={compensation.applicationStatus !== "Pateiktas"}
-        >Deaktyvuoti
+        >Atmesti
         </button>
     }
   ]
