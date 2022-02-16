@@ -6,6 +6,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import it.akademija.application.ApplicationController;
 import it.akademija.journal.JournalService;
@@ -45,58 +50,136 @@ public class DocumentController {
 
 	@Secured("ROLE_USER")
 	@GetMapping(path = "/get/{id}")
-	public byte[] getDocumentFileById(@ApiParam(value = "id") @PathVariable Long id) {
+	public byte[] getDocumentFileById(
+			@ApiParam(value = "id") 
+			@PathVariable Long id) {
+		
+		journalService.newJournalEntry(
+			OperationType.MEDICAL_RECORD_DOWNLOADED, 
+			id, 
+			ObjectType.MEDICAL_RECORD,
+			"Atsisiųsta medicininė pažyma");
 
-		journalService.newJournalEntry(OperationType.MEDICAL_RECORD_DOWNLOADED, id, ObjectType.MEDICAL_RECORD,
-				"Atsisiųsta medicininė pažyma");
-
-		return documentService.getDocumentById(id).getData();
+		return documentService
+				.getDocumentById(id)
+				.getData();
 	}
 
+	
+	
+	
+	
+	
 	@Secured("ROLE_USER")
 	@PostMapping(path = "/upload")
-	public ResponseEntity<String> UploadDocument(@RequestParam("file") MultipartFile file,
-			@RequestParam("name") String name) {
+	public ResponseEntity<String> UploadDocument(
+			@RequestParam("file") MultipartFile file,
+			@RequestParam("name") String fileName) {
+		
+		Long userId = userService
+				.findByUsername(SecurityContextHolder
+						.getContext()
+						.getAuthentication()
+						.getName())
+						.getUserId();
+		
+		if (documentService.uploadDocument(file, fileName, userId)) {
 
-		if (documentService.uploadDocument(file, name, userService
-				.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).getUserId())) {
+			journalService.newJournalEntry(
+					OperationType.MEDICAL_RECORD_SUBMITED, 
+					userId,
+					ObjectType.MEDICAL_RECORD, 
+					"Įkelta medicininė pažyma");
 
-			journalService.newJournalEntry(OperationType.MEDICAL_RECORD_SUBMITED, userService
-					.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).getUserId(),
-					ObjectType.MEDICAL_RECORD, "Įkelta medicininė pažyma");
-
-			return new ResponseEntity<String>("Dokumentas buvo įkeltas sėkmingai", HttpStatus.CREATED);
+			return new ResponseEntity<String>(
+					"Dokumentas buvo įkeltas sėkmingai", 
+					HttpStatus.CREATED);
 
 		} else {
 
 			LOG.warn("Įvyko klaida įkeliant dokumentą");
-			return new ResponseEntity<String>("Įvyko klaida", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>(
+					"Įvyko klaida", 
+					HttpStatus.BAD_REQUEST);
 		}
 	}
 
+	
+	
+	
+	
+	
 	@Secured("ROLE_USER")
 	@DeleteMapping(path = "/delete/{id}")
-	public ResponseEntity<String> deleteDocument(@ApiParam(value = "id") @PathVariable final long id) {
+	public ResponseEntity<String> deleteDocument(
+			@ApiParam(value = "id") 
+			@PathVariable final long id) {
 
 		documentService.deleteDocument(id);
 
-		return new ResponseEntity<String>("Dokumentas su tokiu id buvo ištrintas.", HttpStatus.OK);
+		return new ResponseEntity<String>(
+				"Dokumentas su tokiu id buvo ištrintas.",
+				HttpStatus.OK);
 	}
 
 	@Secured("ROLE_USER")
 	@GetMapping(path = "/documents")
 	public List<DocumentViewmodel> getLoggedUserDocuments() {
 
-		List<DocumentEntity> docEntityList = documentService.getDocumentsByUploaderId(userService
-				.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).getUserId());
+		List<DocumentEntity> docEntityList = documentService
+				.getDocumentsByUploaderId(
+						userService
+						.findByUsername(SecurityContextHolder
+								.getContext()
+								.getAuthentication()
+								.getName())
+								.getUserId());
 
 		List<DocumentViewmodel> docViewmodelList = new ArrayList<>();
 
 		for (DocumentEntity doc : docEntityList) {
 
-			docViewmodelList.add(new DocumentViewmodel(doc.getId(), doc.getName(), doc.getUploadDate()));
+			docViewmodelList.add(
+					new DocumentViewmodel(
+							doc.getId(), 
+							doc.getName(), 
+							doc.getUploadDate()));
 		}
 		return docViewmodelList;
 	}
 
+	@Secured("ROLE_MANAGER")
+	@GetMapping(path = "manager/get/{id}")
+	@ApiOperation("Get document by id")
+	public byte[] getForManagerDocumentFileById(
+			@ApiParam(value = "id", required = true) 
+			@PathVariable Long id) {
+
+		journalService.newJournalEntry(
+				OperationType.MEDICAL_RECORD_DOWNLOADED, 
+				id, 
+				ObjectType.MEDICAL_RECORD,
+				"Specialistas atsisiuntė medicininė pažymą");
+
+		return documentService
+				.getDocumentById(id)
+				.getData();
+	}
+	
+	@Secured("ROLE_MANAGER")
+	@GetMapping(path = "manager/get")
+	@ApiOperation(value = "Get page from documents list")
+	public Page<DocumentViewmodel> getDocumentsPage(
+			@RequestParam(defaultValue = "0") Integer pageNumber, 
+            @RequestParam(defaultValue = "20") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy) {
+
+		Pageable pageable =
+				PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
+
+		return documentService.getPageDocuments(pageable);
+	}
+	
+	
+	
 }
