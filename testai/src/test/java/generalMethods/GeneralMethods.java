@@ -53,20 +53,20 @@ public class GeneralMethods extends BaseTest {
 		loginPage.clickLoginButton();
 	 }
 
-//	public void doLogout() {
-//		  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-//		  WebElement logoutElement = wait.until(
-//				  ExpectedConditions.elementToBeClickable(By.id("btnLogout")));
-//		  logoutElement.click();
-//	 }
-	public void doLogout(){
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-		WebElement logoutElement = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnLogout")));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,-400)");
-		js.executeScript("arguments[0].scrollIntoView()", logoutElement);
-		js.executeScript("arguments[0].click();", logoutElement);
-	}
+	public void doLogout() {
+		  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+		  WebElement logoutElement = wait.until(
+				  ExpectedConditions.elementToBeClickable(By.id("btnLogout")));
+		  logoutElement.click();
+	 }
+//	public void doLogout(){
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+//		WebElement logoutElement = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnLogout")));
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+//		js.executeScript("window.scrollBy(0,-400)");
+//		js.executeScript("arguments[0].scrollIntoView()", logoutElement);
+//		js.executeScript("arguments[0].click();", logoutElement);
+//	}
 
 	public void doLogoutSubmitApplication() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -505,11 +505,17 @@ public class GeneralMethods extends BaseTest {
 		  popUpClickOK.click();
 	}
 
+//	public void clickOkButton() {
+//		JavascriptExecutor js = (JavascriptExecutor)driver;
+//		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//button[@class='swal-button swal-button--confirm']")));
+//	}
+
 	public void clickOkButton() {
-		JavascriptExecutor js = (JavascriptExecutor)driver;
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,600)");
+		js.executeScript("arguments[0].scrollIntoView()", driver.findElement(By.xpath("//button[@class='swal-button swal-button--confirm']")));
 		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//button[@class='swal-button swal-button--confirm']")));
 	}
-
 	public void clickUserForgotPasswordButton () {
 		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 		  WebElement forgotPassword = wait.until(

@@ -65,7 +65,6 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
 
 
     //elements
-//    @FindBy (xpath = "//*[text()='Mano prašymai dėl kompensacijos']")
     @FindBy (xpath = "//h6[text()='Mano prašymai dėl kompensacijos'][@class='ps-2 pt-3']")
     public WebElement compensationsApplicationsListName;
 
@@ -131,7 +130,7 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         driver.findElement(By.tagName("body")).sendKeys(Keys.END);
         Thread.sleep(160);
-        buttonReviewCompensation.click();
+//        buttonReviewCompensation.click();
         WebElement button = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("btnReviewCompensationUser")));
         button.click();
@@ -209,14 +208,12 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
         return wait.until(ExpectedConditions.textToBe(By.xpath("/html/body/div[2]/div/div[1]"), "Kompensacijos prašymas sukuras sėkmingai"));
     }
 
-//    public void assertEquals(String actual, String expected) {
-//        String expectedCompensationApplicationTableTitle = "Mano prašymai dėl kompensacijos";
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-//        String actualCompensationApplicationTableTitle =  driver.findElement(By.partialLinkText("Mano prašymai dėl " +
-//                "kompensacijos")).getText();
-//        assertEquals(actualCompensationApplicationTableTitle, expectedCompensationApplicationTableTitle);
-//
-//    }
+    public Boolean verifyIfCompensationsApplicationsListNameIsShowen() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        return wait.until(ExpectedConditions.textToBe(By.xpath("//h6[text()='Mano prašymai dėl " +
+                "kompensacijos'][@class='ps-2 pt-3']"), "Mano prašymai dėl kompensacijos"));
+    }
+
 
     public Boolean verifyIfApplicationIsShowen(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
