@@ -10,7 +10,7 @@
     "pragma": "no-cache"
   },
   "config": {
-    "url": "http://localhost:8080/api/documents/manager/get/60",
+    "url": "http://localhost:8080/api/documents/get/8",
     "method": "get",
     "headers": {
       "Accept": "application/json, text/plain, */*"
