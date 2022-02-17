@@ -6,7 +6,7 @@ export default class ManagerDocumentsTable extends Component {
   columns = [
     {
       key: "uploadDate",
-      label: "Įkelimo data",
+      label: "Įkėlimo data",
       content: document => <span>{document.uploadDate}</span>
     },
     {

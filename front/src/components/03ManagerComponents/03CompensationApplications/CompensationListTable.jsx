@@ -54,7 +54,7 @@ export default class CompensationListTable extends Component {
         <button
           id="btnDeactivateCompensationManager"
           className="btn btn-outline-danger btn-sm btn-block"
-          onClick={() => this.props.handleCompensationDeactivate(compensation.id)}
+          onClick={() => this.props.handleCompensationDeactivate(compensation)}
           disabled={compensation.applicationStatus !== "Pateiktas"}
         >Atmesti
         </button>

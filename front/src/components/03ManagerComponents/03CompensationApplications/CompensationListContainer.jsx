@@ -62,24 +62,24 @@ export default class CompensationListContainer extends Component {
     this.props.history.push(`/prasymas/kompensuoti/${id}`)
   }
 
-  handleCompensationDeactivate(id) {
+  handleCompensationDeactivate(item) {
     swal({
       text: "DĖMESIO! Šio veiksmo negalėsite atšaukti!\n\nAr tikrai norite deaktyvuoti prašymą?",
       buttons: ["Ne", "Taip"],
       dangerMode: true,
     }).then((actionConfirmed) => {
       if (actionConfirmed) {
-        http.post(`${apiEndpoint}/api/kompensacijos/manager/deactivate/${id}`)
+        const { currentPage, numberOfElements } = this.state;
+        const page = numberOfElements === 1 ? (currentPage - 1) : currentPage;
+        http.post(`${apiEndpoint}/api/kompensacijos/manager/deactivate/${item.id}`)
           .then(response => {
             swal({
               text: response.data,
               button: "Gerai"
-            })
-          })
-          .then(setTimeout(() => {
-            this.getCompensations(this.state.currentPage);
-          }, 1000))
-          .catch(error => {
+            });
+          }).then(() => {
+            this.getCompensations(page, "");
+          }).catch(error => {
             swal({
               text: "Įvyko klaida",
               button: "Gerai"

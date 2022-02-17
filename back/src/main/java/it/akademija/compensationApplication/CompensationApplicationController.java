@@ -301,7 +301,7 @@ public class CompensationApplicationController {
 			compensationApplicationService
 					.deactivateCompensationApplication(compensationApplication);
 			
-			return new ResponseEntity<> (HttpStatus.OK);
+			return new ResponseEntity<String> ("Statusas pakeistas sėkmingai", HttpStatus.OK);
 		}
 		
 		return new ResponseEntity<String>

@@ -104,11 +104,9 @@ export default class CompensationReviewContainer extends Component {
               text: response.data,
               button: "Gerai"
             })
-          }).then(
-            setTimeout(() => {
-              this.props.history.push("/prasymai")
-            }, 1000)
-          ).catch(() => { });
+          }).then(() => {
+            this.props.history.push("/prasymai")
+          }).catch(() => { });
       }
     });
   }
