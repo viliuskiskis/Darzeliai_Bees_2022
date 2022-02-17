@@ -7,7 +7,18 @@ public class DocumentViewmodel {
 	private long documentId;
 	private String name;
 	private LocalDate uploadDate;
+	
+	public DocumentViewmodel() {
+		super();
+	}
 
+	public DocumentViewmodel(Long documentId, String name, LocalDate uploadDate) {
+		super();
+		this.documentId = documentId;
+		this.name = name;
+		this.uploadDate = uploadDate;
+	}
+	
 	public long getDocumentId() {
 		return documentId;
 	}
@@ -32,15 +43,5 @@ public class DocumentViewmodel {
 		this.uploadDate = uploadDate;
 	}
 
-	public DocumentViewmodel(long documentId, String name, LocalDate uploadDate) {
-		super();
-		this.documentId = documentId;
-		this.name = name;
-		this.uploadDate = uploadDate;
-	}
-
-	public DocumentViewmodel() {
-		super();
-	}
-
+	
 }

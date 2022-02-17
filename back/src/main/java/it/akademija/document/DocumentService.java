@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,34 +30,64 @@ public class DocumentService {
 			return null;
 		}
 	}
+	
 
 	@Transactional
 	public List<DocumentEntity> getDocumentsByUploaderId(long id) {
 
-		return documentDao.findAll().stream().filter(x -> x.getUploaderId() == id).collect(Collectors.toList());
+		return documentDao.findAll().stream()
+				.filter(x -> x.getUploaderId() == id)
+				.collect(Collectors.toList());
 	}
 
 	@Transactional
-	public Boolean uploadDocument(MultipartFile file, String name, long uploaderId) {
+	public Boolean uploadDocument(MultipartFile file, 
+			String name, 
+			long uploaderId) {
 
-		if (file.getSize() <= 1024000 && file.getContentType().equals("application/pdf")) {
+		if (file.getSize() <= 1024000 && 
+				file.getContentType().equals("application/pdf")) {
 
 			try {
-				DocumentEntity doc = new DocumentEntity(name, file.getContentType(), file.getBytes(), file.getSize(),
-						uploaderId, LocalDate.now());
+				DocumentEntity doc = new DocumentEntity(
+						name, 
+						file.getContentType(), 
+						file.getBytes(), 
+						file.getSize(),
+						uploaderId, 
+						LocalDate.now());
+				
 				documentDao.save(doc);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 			return true;
-		} else {
-			return false;
-		}
+			
+		} 
+		
+		else { return false; }
 	}
 
 	@Transactional
 	public void deleteDocument(long id) {
 		documentDao.delete(getDocumentById(id));
+	}
+
+	@Transactional
+	public boolean isUserIdMatchDocument(Long userId, Long documentId) {
+		DocumentEntity documentEntity = documentDao.getById(documentId);
+		
+		if(documentEntity.getUploaderId() == userId) {
+			return true;
+		}
+		
+		return false;
+	}
+
+
+	public Page<DocumentViewmodel> getPageDocuments(Pageable pageable) {
+		return documentDao.findAllDocumentViewModel(pageable);
 	}
 
 }
