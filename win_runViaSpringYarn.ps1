@@ -1,4 +1,4 @@
-# powershell script
+# powershell script - window sterminal needs to be installed
 #	Save as *.ps1, edit variables so suit you
 #	run script from Terminal (powershell should be v7.x) for git operations
 
@@ -8,7 +8,7 @@ $LOC = "$home\Desktop"
 # Edit to change remot repository
 $GIT = "git@github.com:viliuskiskis/Darzeliai_Bees_2022.git"
 # Edit to change active branch
-$BRANCH = "master"
+$BRANCH = "sprint-2"
 # Repo name
 $NAME = "Darzeliai_Bees_2022"
 # Edit to change active commit - if needed - uncomment necessary code below
@@ -32,28 +32,30 @@ if (Test-Path -Path $LOC'\'$NAME) {
 
 # BACKEND
 	# launch separate backend terminal in location and keep it open
-	Start-Process pwsh.exe -ArgumentList "-noexit", "-WindowStyle Maximized", "-c &{
+	wt --window 0 -d . pwsh.exe -c  {
 		echo 'starting backend'
 		cd back
 		mvn spring-boot:run
-	}"
-
+	}
+# and to wait for it to start
 	# wait for backend to start - while url return status not in [200...299]
-	$res = Invoke-WebRequest -Uri http://localhost:8080 -UseBasicParsing | Select-Object -Expand StatusCode
-			
+
 	do {
-		echo '...waiting for backend to start'
-		sleep 2
+		#ensure we get a response even if an error's returned
+		$response = Invoke-WebRequest -Uri http://localhost:8080 -UseBasicParsing | Select-Object -Expand StatusCode
+
+		echo '...waiting for backend to start; resp code now is: '$response
+		sleep 5
 		}
-	until ([int]$res -match '2\d\d')
+	until ($response -match '2\d\d')
 	
 	echo '...Hooray! Backend alive'
 	sleep 1
 
 # FRONTEND
-	Start-Process pwsh.exe -ArgumentList "-c", {
+	wt --window 0 -d . pwsh.exe -c {
 		echo 'starting frontend'
 		cd front
 		yarn install
 		yarn start
-	}, -noexit -WindowStyle Maximized
+	}
