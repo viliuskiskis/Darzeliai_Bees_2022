@@ -49,21 +49,21 @@ export default class ManagerDocumentsContainer extends Component {
     this.getDocuments(page);
   }
 
-  handleDocumentDownload(document) {
+  handleDocumentDownload(doc) {
     http.request({
-      url: `${apiEndpoint}/api/documents/manager/get/${document.documentId}`,
+      url: `${apiEndpoint}/api/documents/manager/get/${doc.id}`,
       method: "GET",
       responseType: "blob"
     }).then(response => {
-      // const url = window.URL.createObjectURL(new Blob([response.data]));
-      // const link = document.createElement('a');
-      // link.href = url;
-      // link.setAttribute('download', `${document.name}`);
-      // document.body.appendChild(link);
-      // link.click();
-      // link.remove();
-      alert(JSON.stringify(response));
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${doc.name}`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
     }).catch(error => {
+      alert("error: " + JSON.stringify(error));
       swal({
         text: "Įvyko klaida atsisiunčiant pažymą.",
         button: "Gerai"
@@ -78,7 +78,7 @@ export default class ManagerDocumentsContainer extends Component {
 
     return (
       <div className="container pt-4">
-        <h6 className="ps-2 pt-3">Globėjų pažymos</h6>
+        <h6 className="ps-2 pt-3">Prašymų registruotis į valstybinius darželius pažymos</h6>
 
         <ManagerDocumentsTable
           documentList={this.state.documentList}

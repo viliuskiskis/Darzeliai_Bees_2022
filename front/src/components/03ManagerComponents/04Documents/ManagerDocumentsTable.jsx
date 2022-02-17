@@ -10,8 +10,18 @@ export default class ManagerDocumentsTable extends Component {
       content: document => <span>{document.uploadDate}</span>
     },
     {
+      key: "userPersonalCode",
+      label: "Vartotojo a.k.",
+      content: document => <span>{document.userPersonalCode}</span>
+    },
+    {
+      key: "userLastName",
+      label: "Vartotojo pavardė, vardas",
+      content: document => <span>{document.userLastName}, {document.userFirstName}</span>
+    },
+    {
       key: "name",
-      label: "Pavadinimas",
+      label: "Dokumento pavadinimas",
       content: document => <span>{document.name}</span>
     },
     {

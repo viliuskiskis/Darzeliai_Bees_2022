@@ -45,11 +45,11 @@ class DocumentServiceTest {
 	void getDocumentById() {
 
 		DocumentViewmodel newDocument = new DocumentViewmodel();
-		newDocument.setDocumentId(123L);
+		newDocument.setId(123L);
 		newDocument.setName("pazyma");
 		newDocument.setUploadDate(LocalDate.of(2019, 5, 5));
 
-		assertEquals(123L, newDocument.getDocumentId());
+		assertEquals(123L, newDocument.getId());
 		assertEquals("pazyma", newDocument.getName());
 		assertEquals(LocalDate.of(2019, 5, 5), newDocument.getUploadDate());
 
