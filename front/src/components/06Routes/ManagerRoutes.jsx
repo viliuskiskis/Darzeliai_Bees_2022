@@ -11,6 +11,7 @@ import CompensationReviewContainer from "../01CommonComponents/05ApplicationRevi
 import AdmissionReviewContainer from "../01CommonComponents/05ApplicationReview/AdmissionReviewContainer";
 import UpdateProfileFormContainer from "../01CommonComponents/03UpdateProfile/UpdateProfileFormContainer";
 import NotFound from "../01CommonComponents/02NotFound/NotFound";
+import ManagerDocumentsContainer from "../03ManagerComponents/04Documents/ManagerDocumentsContainer";
 
 export default function ManagerRoutes() {
   return (
@@ -47,6 +48,11 @@ export default function ManagerRoutes() {
             <Route
               path="/prasymas/priimti/:id"
               component={AdmissionReviewContainer}
+            />
+            <Route
+              exact
+              path="/pazymos"
+              component={ManagerDocumentsContainer}
             />
             <Route
               exact

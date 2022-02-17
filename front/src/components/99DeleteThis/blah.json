@@ -1,7 +1,33 @@
 {
-  "state": {
-    "isAuthenticated": true,
-    "role": "USER",
-    "error": null
-  }
+  "data": {},
+  "status": 200,
+  "statusText": "",
+  "headers": {
+    "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+    "content-length": "29688",
+    "content-type": "application/json;charset=UTF-8",
+    "expires": "0",
+    "pragma": "no-cache"
+  },
+  "config": {
+    "url": "http://localhost:8080/api/documents/manager/get/60",
+    "method": "get",
+    "headers": {
+      "Accept": "application/json, text/plain, */*"
+    },
+    "transformRequest": [
+      null
+    ],
+    "transformResponse": [
+      null
+    ],
+    "timeout": 0,
+    "withCredentials": true,
+    "responseType": "blob",
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+    "maxContentLength": -1,
+    "maxBodyLength": -1
+  },
+  "request": {}
 }
