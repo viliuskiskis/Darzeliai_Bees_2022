@@ -14,8 +14,16 @@ public interface DocumentDAO extends JpaRepository<DocumentEntity, Long> {
 	@Query("SELECT new it.akademija.document.DocumentViewmodel("
 			+ "de.id, "
 			+ "de.name, "
-			+ "de.uploadDate) "
-			+ "FROM DocumentEntity de")
+			+ "de.uploadDate, "
+			+ "u.name, "
+			+ "u.surname, "
+			+ "pd.personalCode, "
+			+ "u.userId) "
+			+ "FROM DocumentEntity de "
+			+ "JOIN User u "
+			+ "ON de.uploaderId=u.userId "
+			+ "JOIN ParentDetails pd "
+			+ "ON u.userId=pd.user.id")
 	Page<DocumentViewmodel> findAllDocumentViewModel(Pageable pageable);
 	
 }
