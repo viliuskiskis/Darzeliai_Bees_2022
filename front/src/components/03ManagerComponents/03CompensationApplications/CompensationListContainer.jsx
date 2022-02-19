@@ -90,7 +90,7 @@ export default class CompensationListContainer extends Component {
 
   handleCompensationConfirm(item) {
     swal({
-      text: "DĖMESIO! Šio veiksmo negalėsite atšaukti!\n\nAr tikrai norite deaktyvuoti prašymą?",
+      text: "DĖMESIO! Šio veiksmo negalėsite atšaukti!\n\nAr tikrai norite patvirtinti prašymą?",
       buttons: ["Ne", "Taip"],
       dangerMode: true,
     }).then((actionConfirmed) => {
