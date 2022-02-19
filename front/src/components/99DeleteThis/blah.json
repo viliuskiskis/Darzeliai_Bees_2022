@@ -1,16 +1,9 @@
 {
-  "data": {},
-  "status": 200,
-  "statusText": "",
-  "headers": {
-    "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
-    "content-length": "29688",
-    "content-type": "application/json;charset=UTF-8",
-    "expires": "0",
-    "pragma": "no-cache"
-  },
+  "message": "Request failed with status code 400",
+  "name": "Error",
+  "stack": "Error: Request failed with status code 400\n at createError (http://localhost:3000/darzelis/static/js/2.chunk.js:15620:15)\n at settle (http://localhost:3000/darzelis/static/js/2.chunk.js:15854:12)\n at XMLHttpRequest.handleLoad (http://localhost:3000/darzelis/static/js/2.chunk.js:15096:7)",
   "config": {
-    "url": "http://localhost:8080/api/documents/manager/get/60",
+    "url": "http://localhost:8080/api/kompensacijos/manager?pageNumber=NaN&pageSize=10&filter=",
     "method": "get",
     "headers": {
       "Accept": "application/json, text/plain, */*"
@@ -23,11 +16,9 @@
     ],
     "timeout": 0,
     "withCredentials": true,
-    "responseType": "blob",
     "xsrfCookieName": "XSRF-TOKEN",
     "xsrfHeaderName": "X-XSRF-TOKEN",
     "maxContentLength": -1,
     "maxBodyLength": -1
-  },
-  "request": {}
+  }
 }

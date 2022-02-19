@@ -55,7 +55,7 @@ export default class CompensationListTable extends Component {
     },
     {
       key: 'deactivate',
-      label: 'Deaktyvuoti prašymą',
+      label: 'Atmesti prašymą',
       content: compensation =>
         <button
           id="btnDeactivateCompensationManager"
@@ -63,6 +63,18 @@ export default class CompensationListTable extends Component {
           onClick={() => this.props.handleCompensationDeactivate(compensation)}
           disabled={compensation.applicationStatus !== "Pateiktas"}
         >Atmesti
+        </button>
+    },
+    {
+      key: 'confirm',
+      label: 'Patvirtinti prašymą',
+      content: compensation =>
+        <button
+          id="btnConfirmCompensationManager"
+          className="btn btn-outline-success btn-sm btn-block"
+          onClick={() => this.props.handleCompensationConfirm(compensation)}
+          disabled={compensation.applicationStatus !== "Pateiktas"}
+        >Patvirtinti
         </button>
     }
   ]
