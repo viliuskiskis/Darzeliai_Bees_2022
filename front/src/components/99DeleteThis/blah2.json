@@ -1,33 +1,38 @@
 {
-  "data": {},
-  "status": 200,
-  "statusText": "",
-  "headers": {
-    "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
-    "content-length": "29688",
-    "content-type": "application/json;charset=UTF-8",
-    "expires": "0",
-    "pragma": "no-cache"
+  "id": 66,
+  "submitedAt": "2022-02-19",
+  "status": "Pateiktas",
+  "childName": "Minijus",
+  "childSurname": "Jaskulevičius",
+  "childPersonalCode": "51612262217",
+  "approvalDate": null,
+  "birthdate": "2016-12-26",
+  "numberInWaitingList": 0,
+  "mainGuardian": {
+    "userId": 2,
+    "role": null,
+    "name": "user",
+    "surname": "user",
+    "personalCode": "12345678987",
+    "address": "Address 1",
+    "phone": "+37061398876",
+    "email": "user@user.lt",
+    "username": "user@user.lt"
   },
-  "config": {
-    "url": "http://localhost:8080/api/documents/get/8",
-    "method": "get",
-    "headers": {
-      "Accept": "application/json, text/plain, */*"
-    },
-    "transformRequest": [
-      null
-    ],
-    "transformResponse": [
-      null
-    ],
-    "timeout": 0,
-    "withCredentials": true,
-    "responseType": "blob",
-    "xsrfCookieName": "XSRF-TOKEN",
-    "xsrfHeaderName": "X-XSRF-TOKEN",
-    "maxContentLength": -1,
-    "maxBodyLength": -1
+  "additionalGuardian": {
+    "personalCode": "32132123212",
+    "name": "Jonas",
+    "surname": "Jonaitis",
+    "email": "user2@user2.lt",
+    "address": "asfd",
+    "phone": "321654"
   },
-  "request": {}
+  "approvedKindergaren": null,
+  "kindergartenChoices": {
+    "kindergarten1": "Aitvaras (Pašilaičių g. 10)",
+    "kindergarten2": null,
+    "kindergarten3": "Ąžuolas (Žirmūnų g. 32)",
+    "kindergarten4": null,
+    "kindergarten5": null
+  }
 }

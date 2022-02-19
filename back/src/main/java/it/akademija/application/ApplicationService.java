@@ -353,19 +353,25 @@ public class ApplicationService {
 	 * @param id
 	 * @return application details
 	 */
-	public ApplicationDetails getUserApplicationDetails(String currentUsername, Long id) {
-		
-		ApplicationDetails applicationDetails = 
-				applicationDao.getUserApplicationDetails(currentUsername, id);
-		
-		applicationDetails.setMainGuardian(
-				userService.getUserInfoByUsername(currentUsername));
-	
-		applicationDetails.setKindergartenInfo(
-				gartenService.getKindergartenInfoByApplicationId(id));
-		
-		
-		return applicationDetails;
+	public ResponseEntity<ApplicationDetails> getUserApplicationDetails(Long id) {
+
+	    String currentUsername = SecurityContextHolder.getContext()
+							  .getAuthentication()
+							  .getName();
+	    String applicationUsername = "";
+
+	    if (applicationDao.findById(id).isPresent()) {
+		applicationUsername = applicationDao.findById(id)
+						    .get()
+						    .getMainGuardian()
+						    .getUsername();
+	    }
+
+	    if (currentUsername.equals(applicationUsername)) {
+		return getApplicationDetails(id);
+	    } else {
+		return new ResponseEntity<ApplicationDetails>(new ApplicationDetails(), HttpStatus.BAD_REQUEST);
+	    }
 	}
 
 	/**
@@ -374,19 +380,13 @@ public class ApplicationService {
 	 * @param id
 	 * @return application details
 	 */
-	public ApplicationDetails getApplicationDetails(Long id) {
-		
-		ApplicationDetails applicationDetails = 
-				applicationDao.getApplicationDetails(id);
-		
-		applicationDetails.setMainGuardian(
-				userService.getUserInfoByApplicationId(id));
-	
-		applicationDetails.setKindergartenInfo(
-				gartenService.getKindergartenInfoByApplicationId(id));
-		
-		
-		return applicationDetails;
+	public ResponseEntity<ApplicationDetails> getApplicationDetails(Long id) {
+	    
+	    ApplicationDetails applicationDetails = applicationDao.getApplicationDetails(id);
+	    applicationDetails.setMainGuardian(userService.getUserInfoByApplicationId(id));
+	    applicationDetails.setAdditionalGuardian(parentDetailsDao.getParentDetailsByApplicationId(id));
+	    applicationDetails.setKindergartenChoices(applicationDao.getKindergartenChoicesByApplicationId(id));
+	    return new ResponseEntity<ApplicationDetails>(applicationDetails, HttpStatus.OK);
 	}
 
 	/**

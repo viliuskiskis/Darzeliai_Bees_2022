@@ -53,6 +53,7 @@ export default class AdmissionReviewContainer extends Component {
           mainGuardian: response.data.mainGuardian,
           kindergartenInfo: response.data.kindergartenInfo
         })
+        alert(JSON.stringify(response.data))
       }).catch(error => {
         swal({
           text: "Įvyko klaida perduodant duomenis iš serverio: " + JSON.stringify(error),

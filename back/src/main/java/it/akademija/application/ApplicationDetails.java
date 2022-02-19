@@ -2,132 +2,148 @@ package it.akademija.application;
 
 import java.time.LocalDate;
 
-import it.akademija.kindergarten.KindergartenInfo;
+import it.akademija.kindergartenchoise.KindergartenChoicesDTO;
+import it.akademija.user.ParentDetailsDTO;
 import it.akademija.user.UserInfo;
 
-
 public class ApplicationDetails {
-	
-	private Long id;
 
-	private LocalDate submitedAt;
+    private Long id;
+    private LocalDate submitedAt;
+    private ApplicationStatus status;
+    private String childName;
+    private String childSurname;
+    private String childPersonalCode;
+    private LocalDate approvalDate;
+    private LocalDate birthdate;
+    private Integer numberInWaitingList;
+    private UserInfo mainGuardian;
+    private ParentDetailsDTO additionalGuardian;
+    private String approvedKindergaren;
+    private KindergartenChoicesDTO kindergartenChoices;
 
-	private ApplicationStatus status;
+    public ApplicationDetails() {
+	super();
+    }
 
-	private String childName;
-	
-	private String childSurname;
+    public ApplicationDetails(Long id, LocalDate submitedAt, ApplicationStatus status, String childName,
+	    String childSurname, String childPersonalCode, LocalDate approvalDate, LocalDate birthdate,
+	    Integer numberInWaitingList, String approvedKindergarten) {
+	super();
+	this.id = id;
+	this.submitedAt = submitedAt;
+	this.status = status;
+	this.childName = childName;
+	this.childSurname = childSurname;
+	this.childPersonalCode = childPersonalCode;
+	this.approvalDate = approvalDate;
+	this.birthdate = birthdate;
+	this.numberInWaitingList = numberInWaitingList;
+	this.approvedKindergaren = approvedKindergarten;
+    }
 
-	private String childPersonalCode;
-	
-	private LocalDate approvalDate;
-	
-	private LocalDate birthdate;
-	
-	private UserInfo mainGuardian;
-	
-	private KindergartenInfo kindergartenInfo;
-	
-	
+    public Long getId() {
+	return id;
+    }
 
-	public ApplicationDetails() {
-		super();
-	}
+    public void setId(Long id) {
+	this.id = id;
+    }
 
-	public ApplicationDetails(Long id, LocalDate submitedAt, ApplicationStatus status, String childName,
-			String childSurname, String childPersonalCode, LocalDate approvalDate, LocalDate birthdate) {
-		super();
-		this.id = id;
-		this.submitedAt = submitedAt;
-		this.status = status;
-		this.childName = childName;
-		this.childSurname = childSurname;
-		this.childPersonalCode = childPersonalCode;
-		this.approvalDate = approvalDate;
-		this.birthdate = birthdate;
-	}
+    public LocalDate getSubmitedAt() {
+	return submitedAt;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setSubmitedAt(LocalDate submitedAt) {
+	this.submitedAt = submitedAt;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public ApplicationStatus getStatus() {
+	return status;
+    }
 
-	public LocalDate getSubmitedAt() {
-		return submitedAt;
-	}
+    public void setStatus(ApplicationStatus status) {
+	this.status = status;
+    }
 
-	public void setSubmitedAt(LocalDate submitedAt) {
-		this.submitedAt = submitedAt;
-	}
+    public String getChildName() {
+	return childName;
+    }
 
-	public ApplicationStatus getStatus() {
-		return status;
-	}
+    public void setChildName(String childName) {
+	this.childName = childName;
+    }
 
-	public void setStatus(ApplicationStatus status) {
-		this.status = status;
-	}
+    public String getChildSurname() {
+	return childSurname;
+    }
 
-	public String getChildName() {
-		return childName;
-	}
+    public void setChildSurname(String childSurname) {
+	this.childSurname = childSurname;
+    }
 
-	public void setChildName(String childName) {
-		this.childName = childName;
-	}
+    public String getChildPersonalCode() {
+	return childPersonalCode;
+    }
 
-	public String getChildSurname() {
-		return childSurname;
-	}
+    public void setChildPersonalCode(String childPersonalCode) {
+	this.childPersonalCode = childPersonalCode;
+    }
 
-	public void setChildSurname(String childSurname) {
-		this.childSurname = childSurname;
-	}
+    public LocalDate getApprovalDate() {
+	return approvalDate;
+    }
 
-	public String getChildPersonalCode() {
-		return childPersonalCode;
-	}
+    public void setApprovalDate(LocalDate approvalDate) {
+	this.approvalDate = approvalDate;
+    }
 
-	public void setChildPersonalCode(String childPersonalCode) {
-		this.childPersonalCode = childPersonalCode;
-	}
+    public LocalDate getBirthdate() {
+	return birthdate;
+    }
 
-	public LocalDate getApprovalDate() {
-		return approvalDate;
-	}
+    public void setBirthdate(LocalDate birthdate) {
+	this.birthdate = birthdate;
+    }
 
-	public void setApprovalDate(LocalDate approvalDate) {
-		this.approvalDate = approvalDate;
-	}
+    public Integer getNumberInWaitingList() {
+	return numberInWaitingList;
+    }
 
-	public LocalDate getBirthdate() {
-		return birthdate;
-	}
+    public void setNumberInWaitingList(Integer numberInWaitingList) {
+	this.numberInWaitingList = numberInWaitingList;
+    }
 
-	public void setBirthdate(LocalDate birthdate) {
-		this.birthdate = birthdate;
-	}
+    public UserInfo getMainGuardian() {
+	return mainGuardian;
+    }
 
-	public UserInfo getMainGuardian() {
-		return mainGuardian;
-	}
+    public void setMainGuardian(UserInfo mainGuardian) {
+	this.mainGuardian = mainGuardian;
+    }
 
-	public void setMainGuardian(UserInfo mainGuardian) {
-		this.mainGuardian = mainGuardian;
-	}
+    public ParentDetailsDTO getAdditionalGuardian() {
+	return additionalGuardian;
+    }
 
-	public KindergartenInfo getKindergartenInfo() {
-		return kindergartenInfo;
-	}
+    public void setAdditionalGuardian(ParentDetailsDTO additionalGuardian) {
+	this.additionalGuardian = additionalGuardian;
+    }
 
-	public void setKindergartenInfo(KindergartenInfo kindergartenInfo) {
-		this.kindergartenInfo = kindergartenInfo;
-	}
+    public String getApprovedKindergaren() {
+	return approvedKindergaren;
+    }
 
-	
-	
-	
+    public void setApprovedKindergaren(String approvedKindergaren) {
+	this.approvedKindergaren = approvedKindergaren;
+    }
+
+    public KindergartenChoicesDTO getKindergartenChoices() {
+	return kindergartenChoices;
+    }
+
+    public void setKindergartenChoices(KindergartenChoicesDTO kindergartenChoices) {
+	this.kindergartenChoices = kindergartenChoices;
+    }
+
 }

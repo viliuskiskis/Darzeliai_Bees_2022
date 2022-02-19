@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import it.akademija.application.queue.ApplicationQueueInfo;
+import it.akademija.kindergartenchoise.KindergartenChoicesDTO;
 
 public interface ApplicationDAO extends JpaRepository<Application, Long> {
 
@@ -83,23 +84,22 @@ public interface ApplicationDAO extends JpaRepository<Application, Long> {
 			+ "a.childSurname, "
 			+ "a.childPersonalCode, "
 			+ "a.approvalDate, "
-			+ "a.birthdate) "
+			+ "a.birthdate, "
+			+ "a.numberInWaitingList, "
+			+ "concat(k.name, ' (', k.address, ')')) "
 			+ "FROM Application a "
-			+ "WHERE a.mainGuardian.username=?1 "
-			+ "AND a.id=?2")
-	ApplicationDetails getUserApplicationDetails(String currentUsername, Long id);
-	
-	@Query("SELECT new it.akademija.application.ApplicationDetails("
-			+ "a.id, "
-			+ "a.submitedAt, "
-			+ "a.status, "
-			+ "a.childName, "
-			+ "a.childSurname, "
-			+ "a.childPersonalCode, "
-			+ "a.approvalDate, "
-			+ "a.birthdate) "
-			+ "FROM Application a "
+			+ "LEFT JOIN Kindergarten k "
+			+ "ON a.approvedKindergarten.id = k.id "
 			+ "WHERE a.id=?1")
 	ApplicationDetails getApplicationDetails(Long id);
+	
+	@Query("SELECT new it.akademija.kindergartenchoise.KindergartenChoicesDTO("
+		+ "max(case when c.kindergartenChoisePriority = '1' then concat(c.kindergarten.name, ' (', c.kindergarten.address, ')') end) as kindergarten1, "
+		+ "max(case when c.kindergartenChoisePriority = '2' then concat(c.kindergarten.name, ' (', c.kindergarten.address, ')') end) as kindergarten2, "
+		+ "max(case when c.kindergartenChoisePriority = '3' then concat(c.kindergarten.name, ' (', c.kindergarten.address, ')') end) as kindergarten3, "
+		+ "max(case when c.kindergartenChoisePriority = '4' then concat(c.kindergarten.name, ' (', c.kindergarten.address, ')') end) as kindergarten4, "
+		+ "max(case when c.kindergartenChoisePriority = '5' then concat(c.kindergarten.name, ' (', c.kindergarten.address, ')') end) as kindergarten5) "
+		+ "FROM Application a LEFT JOIN KindergartenChoise c ON a.id = c.application.id WHERE a.id=?1")
+	KindergartenChoicesDTO getKindergartenChoicesByApplicationId(Long id);
 
 }

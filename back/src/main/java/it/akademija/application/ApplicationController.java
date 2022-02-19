@@ -132,18 +132,7 @@ public class ApplicationController {
 			@ApiParam(value = "Application id", required = true) @PathVariable Long id){
 		
 		if(id != null) {
-			String currentUsername = SecurityContextHolder
-				.getContext()
-				.getAuthentication()
-				.getName();
-
-				ApplicationDetails applicationDetails = 
-					applicationService
-					.getUserApplicationDetails(currentUsername, id);
-			
-				return new ResponseEntity<ApplicationDetails>
-					(applicationDetails, HttpStatus.OK );
-			
+		    return applicationService.getUserApplicationDetails(id);
 		}
 		return new ResponseEntity<ApplicationDetails>
 					(new ApplicationDetails(), HttpStatus.BAD_REQUEST);
@@ -277,19 +266,12 @@ public class ApplicationController {
 	@GetMapping("/manager/{id}")
 	@ApiOperation(value = "Get application by id")
 	public ResponseEntity<ApplicationDetails> getApplication(
-			@ApiParam(value = "CompensationApplication id", required = true) @PathVariable Long id){
-		
-		if(id != null) {
-			
-			ApplicationDetails applicationDetails = 
-					applicationService
-					.getApplicationDetails(id);
-			
-			return new ResponseEntity<ApplicationDetails>
-					(applicationDetails, HttpStatus.OK );
-		}
-		return new ResponseEntity<ApplicationDetails>
-					(new ApplicationDetails(), HttpStatus.BAD_REQUEST);
+		@ApiParam(value = "CompensationApplication id", required = true) @PathVariable Long id) {
+
+	    if (id != null) {
+		return applicationService.getApplicationDetails(id);
+	    }
+	    return new ResponseEntity<ApplicationDetails>(new ApplicationDetails(), HttpStatus.BAD_REQUEST);
 	}
 
 }
