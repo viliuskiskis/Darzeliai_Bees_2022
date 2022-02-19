@@ -252,7 +252,7 @@ export default class QueueContainer extends Component {
 
   render() {
 
-    const { applications, totalPages, searchQuery, isActive, isLocked, currentButtonValue } = this.state;
+    const { applications, totalPages, searchQuery, isActive, currentButtonValue } = this.state;
 
     let size = 0;
 
@@ -290,7 +290,6 @@ export default class QueueContainer extends Component {
           {isActive &&
             <QueueTable
               applications={applications}
-              isLocked={isLocked}
               onDeactivate={this.handleDeactivate}
               handleApplicationReview={this.handleApplicationReview}
             />
@@ -299,8 +298,8 @@ export default class QueueContainer extends Component {
           {!isActive &&
             <QueueProcessedTable
               applications={applications}
-              isLocked={isLocked}
               onDeactivate={this.handleDeactivate}
+              handleApplicationReview={this.handleApplicationReview}
             />
           }
 

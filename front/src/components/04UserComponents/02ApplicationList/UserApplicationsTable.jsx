@@ -2,22 +2,15 @@ import React, { Component } from 'react';
 
 import Table from '../../05ReusableComponents/Table';
 
-class UserApplicationsTable extends Component {
+export default class UserApplicationsTable extends Component {
 
   columns = [
-    {
-      key: 'id',
-      path: 'id',
-      label: '#',
-      content: compensation => <span>{compensation.id}</span>
-    },
     {
       key: 'date',
       path: 'date',
       label: 'Pateikimo data',
       content: application => <span>{application.submitedAt}</span>
     },
-
     {
       key: 'childSurname',
       path: 'childSurname',
@@ -49,41 +42,32 @@ class UserApplicationsTable extends Component {
         </span>
     },
     {
-      key: 'review',
-      label: 'Peržiūrėti prašymą',
-      content: compensation =>
-        <button
-          onClick={() => this.props.handleApplicationReview(compensation.id)}
-          id="btnReviewCompensation"
-          className="btn btn-outline-primary btn-sm btn-block"
-        >Peržiūrėti</button>
-    },
-    {
-      key: 'delete',
-      label: 'Ištrinti prašymą',
+      key: 'veiksmai',
+      label: 'veiksmai',
       content: application =>
-        <button onClick={() => this.props.handleApplicationDelete(application.id)}
-          id="btnDeleteApplication"
-          className="btn btn-outline-danger btn-sm btn-block"
-        >Ištrinti</button>
-
+        <div className="d-flex justify-content-center">
+          <button
+            onClick={() => this.props.handleApplicationReview(application.id)}
+            id="btnReviewCompensation"
+            className="btn btn-primary btn-sm btn-block me-2"
+          >Peržiūrėti
+          </button>
+          <button onClick={() => this.props.handleApplicationDelete(application.id)}
+            id="btnDeleteApplication"
+            className="btn btn-danger btn-block btn-sm"
+          >Ištrinti
+          </button>
+        </div>
     }
-
   ]
 
 
   render() {
-    const { applications } = this.props;
-
     return (
       <Table
         columns={this.columns}
-        data={applications}
-
+        data={this.props.applications}
       />
     );
   }
 }
-
-
-export default UserApplicationsTable;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Table from "../../05ReusableComponents/Table";
 
-class UserCompensationsTable extends Component {
+export default class UserCompensationsTable extends Component {
 
   columns = [
     {
@@ -42,41 +42,32 @@ class UserCompensationsTable extends Component {
       content: compensation => <span>{compensation.entityName}</span>
     },
     {
-      key: 'review',
-      label: 'Peržiūrėti prašymą',
+      key: 'veiksmai',
+      label: 'Veiksmai',
       content: compensation =>
-        <button
-          id="btnReviewCompensationUser"
-          className="btn btn-outline-primary btn-sm btn-block"
-          onClick={() => this.props.handleCompensationReview(compensation.id)}
-        >Peržiūrėti
-        </button>
-    },
-    {
-      key: 'delete',
-      label: 'Ištrinti prašymą',
-      content: compensation =>
-        <button
-          id="btnDeleteCompensation"
-          className="btn btn-outline-danger btn-sm btn-block"
-          onClick={() => this.props.handleCompensationDelete(compensation.id)}
-        >Ištrinti
-        </button>
+        <div className="d-flex justify-content-center">
+          <button
+            id="btnReviewCompensationUser"
+            className="btn btn-primary btn-sm btn-block me-2"
+            onClick={() => this.props.handleCompensationReview(compensation.id)}
+          >Peržiūrėti
+          </button>
+          <button
+            id="btnDeleteCompensation"
+            className="btn btn-danger btn-block btn-sm"
+            onClick={() => this.props.handleCompensationDelete(compensation.id)}
+          >Ištrinti
+          </button>
+        </div>
     }
   ]
 
-
   render() {
-    const { compensations } = this.props;
-
     return (
       <Table
         columns={this.columns}
-        data={compensations}
+        data={this.props.compensations}
       />
     );
   }
 }
-
-
-export default UserCompensationsTable;

@@ -38,38 +38,35 @@ class QueueProcessedTable extends Component {
       path: 'numberInWaitingList',
       label: 'Laukiančiųjų eilės numeris',
       content: application => <span> {application.numberInWaitingList ? application.numberInWaitingList : "-"} </span>
+    },
+    {
+      key: 'veiksmai',
+      label: 'Veiksmai',
+      content: application =>
+        <div className="d-flex justify-content-center">
+          <button
+            id="btnReviewApplicationManager"
+            className="btn btn-primary btn-sm btn-block me-2"
+            onClick={() => this.props.handleApplicationReview(application.id)}
+          >Peržiūrėti
+          </button>
+          <button
+            id="btnDeactivateApplication"
+            className="btn btn-danger btn-sm btn-block"
+            onClick={() => this.props.onDeactivate(application)}
+            disabled={application.status === 'Neaktualus' || application.status === 'Patvirtintas'}
+          >Atmesti
+          </button>
+        </div>
     }
   ]
 
-  additionalColumn = {
-    key: 'deactivate',
-    label: 'Veiksmai',
-    content: application =>
-      <span>
-        {application.status === 'Neaktualus' || application.status === 'Patvirtintas' ? <span>-</span> : <button onClick={() => this.props.onDeactivate(application)} id="btnDeactivateApplication" className="btn btn-outline-danger btn-sm btn-block">Deaktyvuoti</button>}
-      </span>
-  }
-
-
-
-
   render() {
-    const { applications, isLocked } = this.props;
-
-    let columns = [];
-
-    if (isLocked) {
-      columns = this.columns;
-    } else {
-      columns = [...this.columns, this.additionalColumn]
-    }
 
     return (
       <Table
-        columns={columns}
-        data={applications}
-        isLocked={isLocked}
-
+        columns={this.columns}
+        data={this.props.applications}
       />
     );
   }
