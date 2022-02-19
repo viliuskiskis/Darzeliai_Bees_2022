@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import it.akademija.application.priorities.PrioritiesDTO;
 import it.akademija.application.queue.ApplicationQueueInfo;
 import it.akademija.kindergartenchoise.KindergartenChoicesDTO;
 
@@ -101,5 +102,16 @@ public interface ApplicationDAO extends JpaRepository<Application, Long> {
 		+ "max(case when c.kindergartenChoisePriority = '5' then concat(c.kindergarten.name, ' (', c.kindergarten.address, ')') end) as kindergarten5) "
 		+ "FROM Application a LEFT JOIN KindergartenChoise c ON a.id = c.application.id WHERE a.id=?1")
 	KindergartenChoicesDTO getKindergartenChoicesByApplicationId(Long id);
+	
+	@Query("SELECT new it.akademija.application.priorities.PrioritiesDTO("
+		+ "p.livesInVilnius, "
+		+ "p.childIsAdopted, "
+		+ "p.familyHasThreeOrMoreChildrenInSchools, "
+		+ "p.guardianInSchool, "
+		+ "p.guardianDisability, "
+		+ "p.livesMoreThanTwoYears) "
+		+ "FROM Application a LEFT JOIN Priorities p ON a.priorities.priorityId = p.priorityId "
+		+ "WHERE a.id=?1")
+	PrioritiesDTO getPrioritiesByApplicationId(Long id);
 
 }

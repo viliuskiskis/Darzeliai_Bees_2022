@@ -386,6 +386,7 @@ public class ApplicationService {
 	    applicationDetails.setMainGuardian(userService.getUserInfoByApplicationId(id));
 	    applicationDetails.setAdditionalGuardian(parentDetailsDao.getParentDetailsByApplicationId(id));
 	    applicationDetails.setKindergartenChoices(applicationDao.getKindergartenChoicesByApplicationId(id));
+	    applicationDetails.setPriorities(applicationDao.getPrioritiesByApplicationId(id));
 	    return new ResponseEntity<ApplicationDetails>(applicationDetails, HttpStatus.OK);
 	}
 

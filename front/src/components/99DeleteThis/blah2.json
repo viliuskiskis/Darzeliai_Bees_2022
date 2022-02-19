@@ -1,12 +1,12 @@
 {
-  "id": 66,
+  "id": 38,
   "submitedAt": "2022-02-19",
-  "status": "Pateiktas",
-  "childName": "Minijus",
-  "childSurname": "Jaskulevičius",
-  "childPersonalCode": "51612262217",
-  "approvalDate": null,
-  "birthdate": "2016-12-26",
+  "status": "Patvirtintas",
+  "childName": "Jeronima",
+  "childSurname": "Pitkaitytė",
+  "childPersonalCode": "61609260015",
+  "approvalDate": "2022-02-19",
+  "birthdate": "2016-09-26",
   "numberInWaitingList": 0,
   "mainGuardian": {
     "userId": 2,
@@ -20,19 +20,27 @@
     "username": "user@user.lt"
   },
   "additionalGuardian": {
-    "personalCode": "32132123212",
-    "name": "Jonas",
-    "surname": "Jonaitis",
-    "email": "user2@user2.lt",
-    "address": "asfd",
-    "phone": "321654"
+    "personalCode": null,
+    "name": null,
+    "surname": null,
+    "email": null,
+    "address": null,
+    "phone": null
   },
-  "approvedKindergaren": null,
+  "approvedKindergaren": "Aitvaras (Pašilaičių g. 10)",
   "kindergartenChoices": {
     "kindergarten1": "Aitvaras (Pašilaičių g. 10)",
-    "kindergarten2": null,
-    "kindergarten3": "Ąžuolas (Žirmūnų g. 32)",
+    "kindergarten2": "Atžalėlės (Antakalnio g. 74)",
+    "kindergarten3": null,
     "kindergarten4": null,
     "kindergarten5": null
+  },
+  "priorities": {
+    "livesInVilnius": false,
+    "childIsAdopted": false,
+    "familyHasThreeOrMoreChildrenInSchools": false,
+    "guardianInSchool": false,
+    "guardianDisability": false,
+    "livesMoreThanTwoYears": true
   }
 }

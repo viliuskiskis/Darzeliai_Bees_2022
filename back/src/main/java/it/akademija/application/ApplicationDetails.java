@@ -2,6 +2,7 @@ package it.akademija.application;
 
 import java.time.LocalDate;
 
+import it.akademija.application.priorities.PrioritiesDTO;
 import it.akademija.kindergartenchoise.KindergartenChoicesDTO;
 import it.akademija.user.ParentDetailsDTO;
 import it.akademija.user.UserInfo;
@@ -19,8 +20,9 @@ public class ApplicationDetails {
     private Integer numberInWaitingList;
     private UserInfo mainGuardian;
     private ParentDetailsDTO additionalGuardian;
-    private String approvedKindergaren;
+    private String approvedKindergarten;
     private KindergartenChoicesDTO kindergartenChoices;
+    private PrioritiesDTO priorities;
 
     public ApplicationDetails() {
 	super();
@@ -39,7 +41,7 @@ public class ApplicationDetails {
 	this.approvalDate = approvalDate;
 	this.birthdate = birthdate;
 	this.numberInWaitingList = numberInWaitingList;
-	this.approvedKindergaren = approvedKindergarten;
+	this.approvedKindergarten = approvedKindergarten;
     }
 
     public Long getId() {
@@ -130,12 +132,12 @@ public class ApplicationDetails {
 	this.additionalGuardian = additionalGuardian;
     }
 
-    public String getApprovedKindergaren() {
-	return approvedKindergaren;
+    public String getApprovedKindergarten() {
+	return approvedKindergarten;
     }
 
-    public void setApprovedKindergaren(String approvedKindergaren) {
-	this.approvedKindergaren = approvedKindergaren;
+    public void setApprovedKindergarten(String approvedKindergarten) {
+	this.approvedKindergarten = approvedKindergarten;
     }
 
     public KindergartenChoicesDTO getKindergartenChoices() {
@@ -146,4 +148,12 @@ public class ApplicationDetails {
 	this.kindergartenChoices = kindergartenChoices;
     }
 
+    public PrioritiesDTO getPriorities() {
+        return priorities;
+    }
+
+    public void setPriorities(PrioritiesDTO priorities) {
+        this.priorities = priorities;
+    }
+  
 }

@@ -19,16 +19,12 @@ export default class AdmissionReviewContainer extends Component {
       childPersonalCode: "",
       approvalDate: null,
       birthdate: "",
-      mainGuardian: {
-        name: "",
-        surname: "",
-        personalCode: "",
-        address: "",
-        phone: "",
-        email: "",
-        username: ""
-      },
-      kindergartenInfo: {}
+      numberInWaitingList: "",
+      mainGuardian: null,
+      additionalGuardian: null,
+      approvedKindergarten: "",
+      kindergartenChoices: null,
+      priorities: null
     };
     this.handleReturn = this.handleReturn.bind(this);
   };
@@ -50,10 +46,14 @@ export default class AdmissionReviewContainer extends Component {
           childPersonalCode: response.data.childPersonalCode,
           approvalDate: response.data.approvalDate,
           birthdate: response.data.birthdate,
+          numberInWaitingList: response.data.numberInWaitingList,
           mainGuardian: response.data.mainGuardian,
-          kindergartenInfo: response.data.kindergartenInfo
+          additionalGuardian: response.data.additionalGuardian,
+          approvedKindergarten: response.data.approvedKindergarten,
+          kindergartenChoices: response.data.kindergartenChoices,
+          priorities: response.data.priorities
         })
-        alert(JSON.stringify(response.data))
+        // alert(JSON.stringify(response.data))
       }).catch(error => {
         swal({
           text: "Įvyko klaida perduodant duomenis iš serverio: " + JSON.stringify(error),
