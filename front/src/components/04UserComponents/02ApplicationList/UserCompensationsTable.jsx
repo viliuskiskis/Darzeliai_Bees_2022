@@ -6,6 +6,12 @@ class UserCompensationsTable extends Component {
 
   columns = [
     {
+      key: 'id',
+      path: 'id',
+      label: '#',
+      content: compensation => <span>{compensation.id}</span>
+    },
+    {
       key: 'submitedAt',
       path: 'submitedAt',
       label: 'Pateikimo data',

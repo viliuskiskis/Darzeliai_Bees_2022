@@ -4,6 +4,12 @@ import Table from "../../05ReusableComponents/Table";
 export default class CompensationListTable extends Component {
   columns = [
     {
+      key: 'id',
+      path: 'id',
+      label: '#',
+      content: application => <span> {application.id}</span>
+    },
+    {
       key: 'applicationStatus',
       path: 'applicationStatus',
       label: 'Prašymo statusas',
