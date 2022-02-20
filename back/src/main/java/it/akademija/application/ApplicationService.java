@@ -82,16 +82,26 @@ public class ApplicationService {
 	 * @return application or null if no kindergarten are chosen
 	 */
 	@Transactional
-	public Application createNewApplication(String currentUsername, ApplicationDTO data) {
+	public Application createNewApplication(
+			String currentUsername, 
+			ApplicationDTO data) {
 
 		Application application = new Application();
 
-		User firstParent = userService.updateUserData(data.getMainGuardian(), currentUsername);
+		User firstParent = userService
+				.updateUserData(data.getMainGuardian(), currentUsername);
 
-		ParentDetailsDTO detailsDto = data.getAdditionalGuardian();
+		ParentDetailsDTO detailsDto = data
+				.getAdditionalGuardian();
 
-		if (detailsDto!=null && detailsDto.getPersonalCode() != null && detailsDto.getPersonalCode() != "") {
-			ParentDetails secondParent = parentDetailsDao.findByPersonalCode(detailsDto.getPersonalCode());
+		if (detailsDto!=null && 
+				detailsDto.getPersonalCode() != null &&
+				detailsDto.getPersonalCode() != "") {
+			
+			
+			ParentDetails secondParent = parentDetailsDao
+					.findByPersonalCode(detailsDto
+					.getPersonalCode());
 
 			if (secondParent == null) {
 				secondParent = parentDetailsDao.save(
@@ -133,9 +143,8 @@ public class ApplicationService {
 				if (kindergarten != null) {
 					
 					KindergartenChoise kindergartenChoise = 
-							new KindergartenChoise(kindergarten, application, i);
-					
-					kindergartenChoiseService.saveKindergartenChoise(kindergartenChoise);
+							kindergartenChoiseService.saveKindergartenChoise(
+							new KindergartenChoise(kindergarten, application, i));
 					
 					kindergartenChoises.add(kindergartenChoise);
 				}

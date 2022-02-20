@@ -53,7 +53,6 @@ public class ParentDetails {
 	private String email;
 
 	@Column
-	@NotBlank(message = "Adresas privalomas")
 	private String address;
 
 	@Pattern(regexp = "[+]?[0-9]{4,17}")

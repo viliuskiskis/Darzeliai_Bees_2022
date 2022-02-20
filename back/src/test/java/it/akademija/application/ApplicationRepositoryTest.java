@@ -71,7 +71,7 @@ public class ApplicationRepositoryTest {
 		application1.setStatus(ApplicationStatus.Patvirtintas);
 		application1.setChildName("Test");
 		application1.setChildSurname("Test");
-		application1.setChildPersonalCode("49902256547");
+		application1.setChildPersonalCode("51202365479");
 		application1.setBirthdate(LocalDate.of(2019, 5, 5));
 		application1.setMainGuardian(mainGuardian);
 		application1.setKindergartenChoises(choices);
@@ -108,7 +108,7 @@ public class ApplicationRepositoryTest {
 		application2.setStatus(ApplicationStatus.Pateiktas);
 		application2.setChildName("Test");
 		application2.setChildSurname("Test");
-		application2.setChildPersonalCode("49903256547");
+		application2.setChildPersonalCode("51202365479");
 		application2.setBirthdate(LocalDate.of(2019, 5, 5));
 		application2.setMainGuardian(mainGuardian2);
 		application2.setKindergartenChoises(choices2);
@@ -117,7 +117,7 @@ public class ApplicationRepositoryTest {
 
 		assertEquals(application1.getChildName(), applicationDAO.findById(application1.getId()).get().getChildName());
 		assertTrue(application1.getApprovedKindergarten().getId().equals("123456789"));
-		assertTrue(applicationDAO.existsApplicationByChildPersonalCode("49903256547"));
+		assertTrue(applicationDAO.existsApplicationByChildPersonalCode("51202365479"));
 		assertEquals(1, applicationDAO.findNumberOfUnprocessedApplications());
 		assertEquals(1, applicationDAO.findAllApplicationsWithStatusSubmitted().size());
 		applicationDAO.deleteById(application1.getId());
