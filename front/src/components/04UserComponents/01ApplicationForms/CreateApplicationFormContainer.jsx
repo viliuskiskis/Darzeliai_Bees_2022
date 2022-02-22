@@ -449,7 +449,6 @@ class CreateApplicationFormContainer extends Component {
             text: response.data,
             button: "Gerai",
           });
-          alert(JSON.stringify(data));
           this.props.history.push("/prasymai");
         })
         .catch((error) => {
@@ -489,7 +488,6 @@ class CreateApplicationFormContainer extends Component {
             text: response.data,
             button: "Gerai",
           });
-          alert(JSON.stringify(data));
           this.props.history.push("/prasymai");
         })
         .catch((error) => {

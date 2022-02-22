@@ -3,6 +3,7 @@ package it.akademija.compensationApplication.childData;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,12 +34,14 @@ public class ChildData {
 	
 	@NotEmpty(message = "Vardas privalomas!")
 	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
+	@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
+	@Column
 	private String childName;
 	
 	@NotEmpty(message = "Pavardė privaloma!")
 	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
+	@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
+	@Column
 	private String childSurname;
 	
 	@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{11}$|")

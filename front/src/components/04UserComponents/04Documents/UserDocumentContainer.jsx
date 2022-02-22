@@ -55,6 +55,8 @@ export default class UserDocumentContainer extends Component {
     const formData = new FormData();
     formData.append('name', document.name);
     formData.append('file', document);
+    alert(document);
+
     const config = {
       headers: {
         'content-type': 'multipart/form-data'
@@ -70,7 +72,6 @@ export default class UserDocumentContainer extends Component {
         this.setState({ showUploadForm: false, documentToUpload: "", documentValid: false })
       })
       .catch((error) => {
-        //console.log(error);
         swal({
           text: "Įvyko klaida įkeliant pažymą",
           buttons: "Gerai"
@@ -201,7 +202,6 @@ export default class UserDocumentContainer extends Component {
       link.click();
       link.remove();
     }).catch((error) => {
-      alert(JSON.stringify(error));
       swal({
         text: "Įvyko klaida atsisiunčiant pažymą.",
         buttons: "Gerai",
