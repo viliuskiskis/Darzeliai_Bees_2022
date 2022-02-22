@@ -449,8 +449,8 @@ class CreateApplicationFormContainer extends Component {
             text: response.data,
             button: "Gerai",
           });
-
-          this.props.history.push("/prasymai")
+          alert(JSON.stringify(data));
+          this.props.history.push("/prasymai");
         })
         .catch((error) => {
           swal({
@@ -489,8 +489,8 @@ class CreateApplicationFormContainer extends Component {
             text: response.data,
             button: "Gerai",
           });
-
-          this.props.history.push("/prasymai")
+          alert(JSON.stringify(data));
+          this.props.history.push("/prasymai");
         })
         .catch((error) => {
           swal({

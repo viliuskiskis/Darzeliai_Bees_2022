@@ -40,13 +40,13 @@ public class User {
 
 	@NotEmpty(message = "Vardas privalomas!")
 	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
+	@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
 	@Column
 	private String name;
 
 	@NotEmpty(message = "Pavardė privaloma!")
 	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$")
+	@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
 	@Column
 	private String surname;
 
