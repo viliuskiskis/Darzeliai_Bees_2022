@@ -85,6 +85,10 @@ export default class UserHomeContainer extends Component {
     this.props.history.push(`/prasymas/kompensuoti/${compensationId}`)
   }
 
+  handleCompensationContractReview = (compensationId) => {
+    this.props.history.push(`prasymas/kompensuoti_sutartis/${compensationId}`)
+  }
+
   render() {
     const { length: ApplicationCount } = this.state.applications;
     const { length: CompensationCount } = this.state.compensations;
