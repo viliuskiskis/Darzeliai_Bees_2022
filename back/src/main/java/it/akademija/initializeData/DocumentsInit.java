@@ -64,7 +64,7 @@ public class DocumentsInit {
 		while ((line = reader.readLine()) != null) {
 		    String[] data = line.split(";");
 		    long uploaderId = userDAO.findByUsername(data[5]).getUserId();
-		    String documentName = data[6] + " " + data[1] + ", pažyma";
+		    String documentName = data[6] + " " + data[1] + ", pažyma.pdf";
 		    documentService.uploadDocument(multipartFile, documentName, uploaderId);
 		}
 	    }
