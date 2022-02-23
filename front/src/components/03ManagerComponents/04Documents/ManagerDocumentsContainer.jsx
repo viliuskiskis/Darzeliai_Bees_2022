@@ -63,7 +63,6 @@ export default class ManagerDocumentsContainer extends Component {
       link.click();
       link.remove();
     }).catch(error => {
-      alert("error: " + JSON.stringify(error));
       swal({
         text: "Įvyko klaida atsisiunčiant pažymą.",
         button: "Gerai"

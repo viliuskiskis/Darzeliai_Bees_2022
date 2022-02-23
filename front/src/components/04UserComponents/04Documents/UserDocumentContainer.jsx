@@ -38,7 +38,6 @@ export default class UserDocumentContainer extends Component {
           text: "Įvyko klaida perduodant duomenis iš serverio.",
           button: "Gerai",
         });
-        //console.log(error);
       })
   }
 
@@ -55,8 +54,6 @@ export default class UserDocumentContainer extends Component {
     const formData = new FormData();
     formData.append('name', document.name);
     formData.append('file', document);
-    alert(document);
-
     const config = {
       headers: {
         'content-type': 'multipart/form-data'
