@@ -40,8 +40,8 @@ export default function UserRoutes() {
               component={CompensationReviewContainer}
             />
             <Route
-              path="prasymas/kompensuoti_sutartis/:id"
-              component={CompensationReviewContainer}
+              path="/prasymas/kompensuoti_sutartis/:id"
+              component={CompensationContractContainer}
             />
             <Route
               exact

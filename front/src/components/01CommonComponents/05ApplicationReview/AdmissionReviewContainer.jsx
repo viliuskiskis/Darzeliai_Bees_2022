@@ -27,6 +27,7 @@ export default class AdmissionReviewContainer extends Component {
       priorities: null
     };
     this.handleReturn = this.handleReturn.bind(this);
+    this.handleDownloadContract = this.handleDownloadContract.bind(this);
   };
 
   componentDidMount() {
@@ -61,6 +62,15 @@ export default class AdmissionReviewContainer extends Component {
       });
   }
 
+  handleDownloadContract(id) {
+    http.get(`${apiEndpoint}/api/contract/user/${id}`)
+      .then(response => {
+        alert(response.data);
+      }).catch(error => {
+        alert(error);
+      })
+  }
+
   handleReturn() {
     let route = this.context.state.role === "USER" ? "/prasymai" : "/eile";
     this.props.history.push(route);
@@ -71,6 +81,7 @@ export default class AdmissionReviewContainer extends Component {
       <AdmissionReviewComponent
         state={this.state}
         role={this.context.state.role}
+        handleDownloadContract={this.handleDownloadContract}
         handleReturn={this.handleReturn}
       />
     )

@@ -68,8 +68,15 @@ export default function AdmissionReviewComponent(props) {
             <button
               id="CompensationReviewReturn"
               className="btn btn-success me-2"
+              onClick={() => props.handleDownloadContract(props.state.id)}
+            >Parsisiųsti dokumentą pasirašymui
+            </button>
+            <button
+              id="CompensationReviewReturn"
+              className="btn btn-success me-2"
               onClick={props.handleReturn}
-            >Grįžti</button>
+            >Grįžti
+            </button>
           </div>
         </div>
       </div>

@@ -86,7 +86,7 @@ export default class UserHomeContainer extends Component {
   }
 
   handleCompensationContractReview = (compensationId) => {
-    this.props.history.push(`prasymas/kompensuoti_sutartis/${compensationId}`)
+    this.props.history.push(`/prasymas/kompensuoti_sutartis/${compensationId}`)
   }
 
   render() {
@@ -131,6 +131,7 @@ export default class UserHomeContainer extends Component {
                     compensations={this.state.compensations}
                     handleCompensationDelete={this.handleCompensationDelete}
                     handleCompensationReview={this.handleCompensationReview}
+                    handleCompensationContractReview={this.handleCompensationContractReview}
                   />
                 </div>
               </div>
