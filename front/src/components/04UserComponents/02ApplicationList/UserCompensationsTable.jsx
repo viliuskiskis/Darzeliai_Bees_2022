@@ -45,7 +45,7 @@ export default class UserCompensationsTable extends Component {
       key: 'veiksmai',
       label: 'Veiksmai',
       content: compensation =>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-around">
           <button
             id="btnReviewCompensationUser"
             className="btn btn-primary btn-sm btn-block me-2"
@@ -53,8 +53,14 @@ export default class UserCompensationsTable extends Component {
           >Peržiūrėti
           </button>
           <button
+            id="btnReviewCompensationContract"
+            className="btn btn-primary btn-block btn-sm me-2"
+            onClick={() => this.props.handleCompensationContractReview(compensation.id)}
+          >Pasirašymui
+          </button>
+          <button
             id="btnDeleteCompensation"
-            className="btn btn-danger btn-block btn-sm"
+            className="btn btn-danger btn-block btn-sm me-2"
             onClick={() => this.props.handleCompensationDelete(compensation.id)}
           >Ištrinti
           </button>

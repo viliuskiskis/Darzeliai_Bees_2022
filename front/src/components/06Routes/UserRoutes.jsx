@@ -6,6 +6,7 @@ import UserNavBar from "../04UserComponents/00NavBar/UserNavBar";
 import UserHomeContainer from "../04UserComponents/02ApplicationList/UserHomeContainer";
 import AdmissionReviewContainer from "../01CommonComponents/05ApplicationReview/AdmissionReviewContainer";
 import CompensationReviewContainer from "../01CommonComponents/05ApplicationReview/CompensationReviewContainer";
+import CompensationContractContainer from "../01CommonComponents/05ApplicationReview/CompensationContractContainer";
 import KindergartenStatContainer from "../01CommonComponents/04KindergartenStatistics/KindergartenStatContainer";
 import CreateApplicationFormContainer from "../04UserComponents/01ApplicationForms/CreateApplicationFormContainer";
 import UpdateProfileFormContainer from "../01CommonComponents/03UpdateProfile/UpdateProfileFormContainer";
@@ -13,6 +14,7 @@ import UserDocumentContainer from "../04UserComponents/04Documents/UserDocumentC
 import NotFound from "../01CommonComponents/02NotFound/NotFound";
 
 import Testing from "../99DeleteThis/Testing";
+
 
 export default function UserRoutes() {
   return (
@@ -35,6 +37,10 @@ export default function UserRoutes() {
             />
             <Route
               path="/prasymas/kompensuoti/:id"
+              component={CompensationReviewContainer}
+            />
+            <Route
+              path="prasymas/kompensuoti_sutartis/:id"
               component={CompensationReviewContainer}
             />
             <Route
