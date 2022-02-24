@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itextpdf.text.pdf.AcroFields;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 
@@ -16,14 +17,18 @@ public class ContractsService {
     @Transactional
     public void generateContractPDF(Long applicationId) {
 	System.out.println(">>>>>>>>> Application id: " + applicationId);
+	
+	String FONT = "times.ttf";
 
 	try {
 	    InputStream inputStream = getClass().getClassLoader().getResourceAsStream("sutartis1.pdf");
 	    PdfReader reader = new PdfReader(inputStream);
 	    PdfStamper stamper = new PdfStamper(reader, new FileOutputStream("uzpildyta sutartis.pdf"));
 	    AcroFields form = stamper.getAcroFields();
+	    BaseFont baseFont = BaseFont.createFont(FONT, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+	    form.addSubstitutionFont(baseFont);
 	    form.setField("fill_1", "Vardenis Pavardenis");
-	    form.setField("fill_2", "Vardenytė Pavardenytė");
+	    form.setField("fill_2", "Vardenytė Pavardenytė Pavardenytė ąčęėįšųū90-ž ĄČĘĖĮŠŲŪ90-Ž");
 	    stamper.setFormFlattening(true);
 	    stamper.close();
 
