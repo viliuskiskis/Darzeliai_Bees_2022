@@ -33,9 +33,10 @@ public class ContractsService {
 	ContractDetails contractDetails = applicationDAO.getContractDetailsByApplicationId(applicationId);
 
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
-							       .withLocale(Locale.forLanguageTag("lt_LT"));
+							       .withLocale(Locale.forLanguageTag("lt-LT"));
 	String approvalDate = contractDetails.getApprovalDate()
 					     .format(dateTimeFormatter);
+	System.out.println(approvalDate);
 	String kindergartenName = contractDetails.getKindergartenName();
 	String kindergartenManagerName = contractDetails.getKindergartenManagerName();
 	String mainGuardianName = contractDetails.getMainGuardianName();
