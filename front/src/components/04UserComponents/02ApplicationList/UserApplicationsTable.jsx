@@ -52,6 +52,17 @@ export default class UserApplicationsTable extends Component {
             className="btn btn-primary btn-sm btn-block me-2"
           >Peržiūrėti
           </button>
+
+          {/* Show this button, if application status is "Parvirtintas" */}
+          {application.status === "Patvirtintas" &&
+            <button
+              id="btnDownloadContractUser"
+              className="btn btn-success btn-block btn-sm me-2"
+              onClick={() => this.props.handleContractDownload(application)}
+            >Parsisiųsti
+            </button>
+          }
+
           <button onClick={() => this.props.handleApplicationDelete(application.id)}
             id="btnDeleteApplication"
             className="btn btn-danger btn-block btn-sm"

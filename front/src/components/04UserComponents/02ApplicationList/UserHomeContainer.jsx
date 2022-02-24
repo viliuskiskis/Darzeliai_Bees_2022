@@ -17,6 +17,7 @@ export default class UserHomeContainer extends Component {
       applications: [],
       compensations: []
     }
+    this.handleContractDownload = this.handleContractDownload.bind(this);
   }
   componentDidMount() {
     this.getUserApplications();
@@ -89,6 +90,28 @@ export default class UserHomeContainer extends Component {
     this.props.history.push(`/prasymas/kompensuoti_sutartis/${compensationId}`)
   }
 
+  handleContractDownload(data) {
+    http.request({
+      url: `${apiEndpoint}/api/contract/user/${data.id}`,
+      method: "GET",
+      responseType: "blob"
+    }).then(response => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download',
+        `Ikimokyklinio ugdymo sutartis, ${data.childName} ${data.childSurname}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }).catch(error => {
+      swal({
+        text: "Įvyko klaida atsisiunčiant sutartį.",
+        button: "Gerai"
+      })
+    })
+  }
+
   render() {
     const { length: ApplicationCount } = this.state.applications;
     const { length: CompensationCount } = this.state.compensations;
@@ -103,7 +126,7 @@ export default class UserHomeContainer extends Component {
 
           {this.state.applications.filter(item => item.status === "Patvirtintas").length > 0 &&
             <div className="alert alert-warning p-1" role="alert">
-              <h6>Jūs turite patvirtintų prašymų, kuriuos galite peržiūrėti ir pasirašyti.</h6>
+              <h6>Jūs turite patvirtintų prašymų, kuriuos galite peržiūrėti ir parsisiųsti sutartį.</h6>
             </div>
           }
 
@@ -116,6 +139,7 @@ export default class UserHomeContainer extends Component {
                     applications={this.state.applications}
                     handleApplicationDelete={this.handleApplicationDelete}
                     handleApplicationReview={this.handleApplicationReview}
+                    handleContractDownload={this.handleContractDownload}
                   />
                 </div>
               </div>

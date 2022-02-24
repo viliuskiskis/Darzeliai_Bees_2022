@@ -65,12 +65,16 @@ export default function AdmissionReviewComponent(props) {
                 {props.state.priorities.livesMoreThanTwoYears && <span>Vienas iš tėvų (globėjų) gyvena Vilniuje ne mažiau nei 2 mtus<br /></span>}
               </div>
             }
-            <button
-              id="CompensationReviewReturn"
-              className="btn btn-success me-2"
-              onClick={() => props.handleDownloadContract(props.state.id)}
-            >Parsisiųsti dokumentą pasirašymui
-            </button>
+
+            {props.state.status === "Patvirtintas" &&
+              <button
+                id="CompensationReviewDownloadPDF"
+                className="btn btn-success me-2"
+                onClick={() => props.handleDownloadContract(props.state.id)}
+              >Parsisiųsti dokumentą pasirašymui
+              </button>
+            }
+
             <button
               id="CompensationReviewReturn"
               className="btn btn-success me-2"
