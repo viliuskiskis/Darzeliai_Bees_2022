@@ -40,7 +40,7 @@ public class UsersInit {
 	
 	if (userDAO.findAll().size() < 10) {
 	    ClassLoader classLoader = getClass().getClassLoader();
-	    InputStream inputStream = classLoader.getResourceAsStream("users_data.txt");
+	    InputStream inputStream = classLoader.getResourceAsStream("initial_data/users_data.txt");
 
 	    try (BufferedReader reader = new BufferedReader(
 		    new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {

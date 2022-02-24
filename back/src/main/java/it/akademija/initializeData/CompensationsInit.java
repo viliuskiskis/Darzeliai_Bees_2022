@@ -42,7 +42,7 @@ public class CompensationsInit {
 
 	if (compensationApplicationDAO.findAll().size() < 10) {
 	    ClassLoader classLoader = getClass().getClassLoader();
-	    InputStream inputStream = classLoader.getResourceAsStream("compensations_data.txt");
+	    InputStream inputStream = classLoader.getResourceAsStream("initial_data/compensations_data.txt");
 
 	    try (BufferedReader reader = new BufferedReader(
 		    new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {

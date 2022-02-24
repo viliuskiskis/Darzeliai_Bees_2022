@@ -29,6 +29,7 @@ export default class QueueContainer extends Component {
       currentButtonValue: ""
     }
     this.handleApplicationReview = this.handleApplicationReview.bind(this);
+    this.handleContractDownload = this.handleContractDownload.bind(this);
   }
   componentDidMount() {
     this.getApplicationState();
@@ -210,7 +211,7 @@ export default class QueueContainer extends Component {
   handleDeactivate = (item) => {
 
     swal({
-      text: "DĖMESIO! Šio veiksmo negalėsite atšaukti!\n\nAr tikrai norite deaktyvuoti prašymą?",
+      text: "DĖMESIO! Šio veiksmo negalėsite atšaukti!\n\nAr tikrai norite atmesti prašymą?",
       buttons: ["Ne", "Taip"],
       dangerMode: true,
     }).then((actionConfirmed) => {
@@ -248,6 +249,28 @@ export default class QueueContainer extends Component {
     this.setState({ currentPage: page });
     this.getApplications(page, this.state.searchQuery);
   };
+
+  handleContractDownload(data) {
+    http.request({
+      url: `${apiEndpoint}/api/contract/manager/${data.id}`,
+      method: "GET",
+      responseType: "blob"
+    }).then(response => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download',
+        `Ikimokyklinio ugdymo sutartis, ${data.childName} ${data.childSurname}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }).catch(error => {
+      swal({
+        text: "Įvyko klaida atsisiunčiant sutartį.",
+        button: "Gerai"
+      })
+    })
+  }
 
 
   render() {
@@ -292,6 +315,7 @@ export default class QueueContainer extends Component {
               applications={applications}
               onDeactivate={this.handleDeactivate}
               handleApplicationReview={this.handleApplicationReview}
+              handleContractDownload={this.handleContractDownload}
             />
           }
 
@@ -300,6 +324,7 @@ export default class QueueContainer extends Component {
               applications={applications}
               onDeactivate={this.handleDeactivate}
               handleApplicationReview={this.handleApplicationReview}
+              handleContractDownload={this.handleContractDownload}
             />
           }
 

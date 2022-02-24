@@ -70,7 +70,7 @@ export default function AdmissionReviewComponent(props) {
               <button
                 id="CompensationReviewDownloadPDF"
                 className="btn btn-success me-2"
-                onClick={() => props.handleDownloadContract(props.state.id)}
+                onClick={() => props.handleDownloadContract(props.state)}
               >Parsisiųsti dokumentą pasirašymui
               </button>
             }

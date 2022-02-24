@@ -48,7 +48,7 @@ public class ApplicationsInit {
 
 	if (applicationDAO.findAll().size() < 10) {
 	    ClassLoader classLoader = getClass().getClassLoader();
-	    InputStream inputStream = classLoader.getResourceAsStream("applications_data.txt");
+	    InputStream inputStream = classLoader.getResourceAsStream("initial_data/applications_data.txt");
 
 	    try (BufferedReader reader = new BufferedReader(
 		    new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {

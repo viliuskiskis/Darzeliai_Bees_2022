@@ -370,7 +370,7 @@ public class ApplicationService {
 	    if (currentUsername.equals(applicationUsername)) {
 		return getApplicationDetails(id);
 	    } else {
-		return new ResponseEntity<ApplicationDetails>(new ApplicationDetails(), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<ApplicationDetails>(new ApplicationDetails(), HttpStatus.FORBIDDEN);
 	    }
 	}
 

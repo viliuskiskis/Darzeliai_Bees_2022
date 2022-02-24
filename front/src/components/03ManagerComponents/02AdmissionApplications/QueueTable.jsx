@@ -70,13 +70,24 @@ export default class QueueTable extends Component {
             onClick={() => this.props.handleApplicationReview(application.id)}
           >Peržiūrėti
           </button>
-          <button
-            id="btnDeactivateApplication"
-            className="btn btn-danger btn-sm btn-block"
-            onClick={() => this.props.onDeactivate(application)}
-            disabled={application.status === "Neaktualus" || application.status === "Patvirtintas"}
-          >Atmesti
-          </button>
+
+          {application.status === "Patvirtintas" &&
+            <button
+              id="btnDownloadContractManager"
+              className="btn btn-success btn-sm btn-block"
+              onClick={() => this.props.handleContractDownload(application)}
+            >Parsisiųsti
+            </button>
+          }
+          {(application.status === "Laukiantis" || application.status === "Pateiktas") &&
+            <button
+              id="btnDeactivateApplication"
+              className="btn btn-danger btn-sm btn-block"
+              onClick={() => this.props.onDeactivate(application)}
+              disabled={application.status === "Neaktualus" || application.status === "Patvirtintas"}
+            >Atmesti
+            </button>
+          }
         </div>
     },
   ]
