@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import it.akademija.application.priorities.PrioritiesDTO;
 import it.akademija.application.queue.ApplicationQueueInfo;
+import it.akademija.contracts.ContractDetails;
 import it.akademija.kindergartenchoise.KindergartenChoicesDTO;
 
 public interface ApplicationDAO extends JpaRepository<Application, Long> {
@@ -113,5 +114,26 @@ public interface ApplicationDAO extends JpaRepository<Application, Long> {
 		+ "FROM Application a LEFT JOIN Priorities p ON a.priorities.priorityId = p.priorityId "
 		+ "WHERE a.id=?1")
 	PrioritiesDTO getPrioritiesByApplicationId(Long id);
+	
+	@Query("SELECT new it.akademija.contracts.ContractDetails("
+		+ "a.approvalDate, "
+		+ "k.name, "
+		+ "CONCAT(k.address, ' ', k.elderate), "
+		+ "CONCAT(mg.name, ' ', mg.surname), "
+		+ "pd.address, "
+		+ "pd.phone, "
+		+ "mg.email, "
+		+ "CONCAT(ag.name, ' ', ag.surname), "
+		+ "ag.address, "
+		+ "ag.phone, "
+		+ "ag.email, "
+		+ "CONCAT(a.childName, ' ', a.childSurname)) "
+		+ "FROM Application a "
+		+ "LEFT JOIN Kindergarten k ON a.approvedKindergarten.id = k.id "
+		+ "LEFT JOIN User mg ON a.mainGuardian.userId = mg.userId "
+		+ "LEFT JOIN ParentDetails pd ON mg.parentDetails.parentDetailsId = pd.parentDetailsId "
+		+ "LEFT JOIN ParentDetails ag ON a.additionalGuardian.parentDetailsId = ag.parentDetailsId "
+		+ "WHERE a.id=?1")
+	ContractDetails getContractDetailsByApplicationId(Long id);
 
 }
