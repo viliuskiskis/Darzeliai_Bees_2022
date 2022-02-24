@@ -41,13 +41,13 @@ public class ContractsController {
     @Secured({"ROLE_USER"})
     @GetMapping("/user/{id}")
     @ApiOperation(value = "Get contract by application id and username")
-    public ResponseEntity<String> getUserContract(
+    public ResponseEntity<byte[]> getUserContract(
 	    @ApiParam(value = "Application id", required = true) @PathVariable Long id) {
 	
 		if(id != null) {
 		    return contractsService.generateContractPDF(id);
 		}
-		return new ResponseEntity<String>("Trūksta prašymo id", HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<byte[]>(new byte[0], HttpStatus.BAD_REQUEST);
 	    }
     
     /**

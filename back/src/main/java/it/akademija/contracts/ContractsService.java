@@ -1,6 +1,6 @@
 package it.akademija.contracts;
 
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -26,9 +26,10 @@ public class ContractsService {
     private ApplicationDAO applicationDAO;
 
     @Transactional
-    public ResponseEntity<String> generateContractPDF(Long applicationId) {
+    public ResponseEntity<byte[]> generateContractPDF(Long applicationId) {
 	String FONT = "times.ttf";
 	String DOCUMENT = "Ikimokyklinio-ugdymo-sutartis.pdf";
+	ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
 	ContractDetails contractDetails = applicationDAO.getContractDetailsByApplicationId(applicationId);
 
@@ -36,7 +37,6 @@ public class ContractsService {
 							       .withLocale(Locale.forLanguageTag("lt-LT"));
 	String approvalDate = contractDetails.getApprovalDate()
 					     .format(dateTimeFormatter);
-	System.out.println(approvalDate);
 	String kindergartenName = contractDetails.getKindergartenName();
 	String kindergartenManagerName = contractDetails.getKindergartenManagerName();
 	String mainGuardianName = contractDetails.getMainGuardianName();
@@ -53,7 +53,7 @@ public class ContractsService {
 	    InputStream inputStream = getClass().getClassLoader()
 						.getResourceAsStream(DOCUMENT);
 	    PdfReader reader = new PdfReader(inputStream);
-	    PdfStamper stamper = new PdfStamper(reader, new FileOutputStream("uzpildyta sutartis.pdf"));
+	    PdfStamper stamper = new PdfStamper(reader, byteArrayOutputStream);
 	    AcroFields form = stamper.getAcroFields();
 	    BaseFont baseFont = BaseFont.createFont(FONT, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 	    form.addSubstitutionFont(baseFont);
@@ -72,10 +72,12 @@ public class ContractsService {
 	    form.setField("childName", childName);
 	    stamper.setFormFlattening(true);
 	    stamper.close();
+	    
+	    byte[] pdfBytes = byteArrayOutputStream.toByteArray();
 
-	    return new ResponseEntity<String>("Success", HttpStatus.OK);
+	    return new ResponseEntity<byte[]>(pdfBytes, HttpStatus.OK);
 	} catch (Exception e) {
-	    return new ResponseEntity<String>("Error", HttpStatus.FAILED_DEPENDENCY);
+	    return new ResponseEntity<byte[]>( new byte[0] , HttpStatus.FAILED_DEPENDENCY);
 	}
 
     }

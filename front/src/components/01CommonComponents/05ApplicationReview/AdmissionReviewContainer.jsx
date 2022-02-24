@@ -63,12 +63,24 @@ export default class AdmissionReviewContainer extends Component {
   }
 
   handleDownloadContract(id) {
-    http.get(`${apiEndpoint}/api/contract/user/${id}`)
-      .then(response => {
-        alert(response.data);
-      }).catch(error => {
-        alert(error);
+    http.request({
+      url: `${apiEndpoint}/api/contract/user/${id}`,
+      method: "GET",
+      responseType: "blob"
+    }).then(response => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', "Ikimokyklinio-ugdymo-sutartis.pdf");
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }).catch(error => {
+      swal({
+        text: "Įvyko klaida atsisiunčiant sutartį.",
+        button: "Gerai"
       })
+    })
   }
 
   handleReturn() {
