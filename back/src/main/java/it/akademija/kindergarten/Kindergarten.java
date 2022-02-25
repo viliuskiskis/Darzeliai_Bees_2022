@@ -1,5 +1,6 @@
 package it.akademija.kindergarten;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -37,6 +38,14 @@ public class Kindergarten {
 	@Pattern(regexp = "^[\\p{L}\\s]{3,20}$")
 	@NotBlank(message = "Seniūnija privaloma")
 	private String elderate;
+	
+	@Column
+	@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
+	private String managerName;
+	
+	@Column
+	@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
+	private String managerSurname;	
 
 	@Min(value = 0, message = "Laisvų vietų skaičius negali būti mažesnis už 0")
 	@Max(value=999, message = "Laisvų vietų skaičius negali būti didesnis už 999")
@@ -70,6 +79,33 @@ public class Kindergarten {
 		this.capacityAgeGroup2to3 = capacityAgeGroup2to3;
 		this.capacityAgeGroup3to6 = capacityAgeGroup3to6;
 	}	
+	
+	public Kindergarten(
+		@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{9}$|", message = "Įstaigos kodas turi būti sudarytas iš 9 skaitmenų") String id,
+		@NotBlank(message = "Pavadinimas privalomas") @Pattern(regexp = "\\S[\\s\\S]{2,49}") String name,
+		@NotBlank(message = "Adresas privalomas") String address,
+		@Pattern(regexp = "^[\\p{L}\\s]{3,20}$") @NotBlank(message = "Seniūnija privaloma") String elderate,
+		@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}") String managerName,
+		@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}") String managerSurname,
+		@Min(value = 0, message = "Laisvų vietų skaičius negali būti mažesnis už 0") @Max(value = 999, message = "Laisvų vietų skaičius negali būti didesnis už 999") int capacityAgeGroup2to3,
+		int placesTakenAgeGroup2to3,
+		@Min(value = 0, message = "Laisvų vietų skaičius negali būti mažesnis už 0") @Max(value = 999, message = "Laisvų vietų skaičius negali būti didesnis už 999") int capacityAgeGroup3to6,
+		int placesTakenAgeGroup3to6, Set<KindergartenChoise> kindergartenChoises,
+		Set<Application> approvedApplications) {
+	    super();
+	    this.id = id;
+	    this.name = name;
+	    this.address = address;
+	    this.elderate = elderate;
+	    this.managerName = managerName;
+	    this.managerSurname = managerSurname;
+	    this.capacityAgeGroup2to3 = capacityAgeGroup2to3;
+	    this.placesTakenAgeGroup2to3 = placesTakenAgeGroup2to3;
+	    this.capacityAgeGroup3to6 = capacityAgeGroup3to6;
+	    this.placesTakenAgeGroup3to6 = placesTakenAgeGroup3to6;
+	    this.kindergartenChoises = kindergartenChoises;
+	    this.approvedApplications = approvedApplications;
+	}
 
 	public String getId() {
 		return id;
@@ -96,15 +132,31 @@ public class Kindergarten {
 	}
 
 	public String getElderate() {
-		return elderate;
+	    return elderate;
+	}
+
+	public String getManagerName() {
+	    return managerName;
+	}
+
+	public void setManagerName(String managerName) {
+	    this.managerName = managerName;
+	}
+
+	public String getManagerSurname() {
+	    return managerSurname;
+	}
+
+	public void setManagerSurname(String managerSurname) {
+	    this.managerSurname = managerSurname;
 	}
 
 	public void setElderate(String elderate) {
-		this.elderate = elderate;
+	    this.elderate = elderate;
 	}
 
 	public int getCapacityAgeGroup2to3() {
-		return capacityAgeGroup2to3;
+	    return capacityAgeGroup2to3;
 	}
 
 	public void setCapacityAgeGroup2to3(int capacityAgeGroup2to3) {
@@ -155,29 +207,29 @@ public class Kindergarten {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+	    return Objects.hash(address, approvedApplications, capacityAgeGroup2to3, capacityAgeGroup3to6, elderate, id,
+		    kindergartenChoises, managerName, managerSurname, name, placesTakenAgeGroup2to3,
+		    placesTakenAgeGroup3to6);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Kindergarten other = (Kindergarten) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
+	    if (this == obj)
 		return true;
+	    if (obj == null)
+		return false;
+	    if (getClass() != obj.getClass())
+		return false;
+	    Kindergarten other = (Kindergarten) obj;
+	    return Objects.equals(address, other.address)
+		    && Objects.equals(approvedApplications, other.approvedApplications)
+		    && capacityAgeGroup2to3 == other.capacityAgeGroup2to3
+		    && capacityAgeGroup3to6 == other.capacityAgeGroup3to6 && Objects.equals(elderate, other.elderate)
+		    && Objects.equals(id, other.id) && Objects.equals(kindergartenChoises, other.kindergartenChoises)
+		    && Objects.equals(managerName, other.managerName)
+		    && Objects.equals(managerSurname, other.managerSurname) && Objects.equals(name, other.name)
+		    && placesTakenAgeGroup2to3 == other.placesTakenAgeGroup2to3
+		    && placesTakenAgeGroup3to6 == other.placesTakenAgeGroup3to6;
 	}
-
-	
 
 }

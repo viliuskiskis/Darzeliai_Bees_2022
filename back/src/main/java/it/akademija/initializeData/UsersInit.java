@@ -9,20 +9,14 @@ import java.nio.charset.StandardCharsets;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
-import it.akademija.kindergarten.KindergartenInit;
 import it.akademija.user.UserDAO;
 import it.akademija.user.UserDTO;
 import it.akademija.user.UserService;
 
 @Component
-@DependsOn("kindergartenInit")
 public class UsersInit {
-
-    @Autowired
-    KindergartenInit kindergartenInit;
 
     @Autowired
     UserService userService;

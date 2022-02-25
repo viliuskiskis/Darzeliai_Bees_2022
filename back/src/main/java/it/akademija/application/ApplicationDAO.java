@@ -118,7 +118,7 @@ public interface ApplicationDAO extends JpaRepository<Application, Long> {
 	@Query("SELECT new it.akademija.contracts.ContractDetails("
 		+ "a.approvalDate, "
 		+ "k.name, "
-		+ "CONCAT(k.address, ' ', k.elderate), "
+		+ "CONCAT(k.managerName, ' ', k.managerSurname), "
 		+ "CONCAT(mg.name, ' ', mg.surname), "
 		+ "pd.address, "
 		+ "pd.phone, "

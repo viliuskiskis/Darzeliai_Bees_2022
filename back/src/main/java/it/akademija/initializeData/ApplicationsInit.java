@@ -17,20 +17,19 @@ import it.akademija.application.ApplicationDAO;
 import it.akademija.application.ApplicationDTO;
 import it.akademija.application.ApplicationService;
 import it.akademija.application.priorities.PrioritiesDTO;
-import it.akademija.kindergarten.KindergartenInit;
 import it.akademija.kindergartenchoise.KindergartenChoiseDTO;
 import it.akademija.user.ParentDetailsDTO;
 import it.akademija.user.UserDTO;
 
 @Component
-@DependsOn({ "usersInit", "kindergartenInit" })
+@DependsOn({ "usersInit", "kindergartensInit" })
 public class ApplicationsInit {
 
     @Autowired
     UsersInit usersInit;
 
     @Autowired
-    KindergartenInit kindergartenInit;
+    KindergartensInit kindergartensInit;
 
     @Autowired
     ApplicationService applicationService;
