@@ -126,7 +126,7 @@ export default class UserHomeContainer extends Component {
 
           {this.state.applications.filter(item => item.status === "Patvirtintas").length > 0 &&
             <div className="alert alert-warning p-1" role="alert">
-              <h6>Jūs turite patvirtintų prašymų, kuriuos galite peržiūrėti ir parsisiųsti sutartį.</h6>
+              <h6>Jūs turite patvirtintų prašymų, kuriuos galite peržiūrėti ir parsisiųsti sutartį pasirašymui.</h6>
             </div>
           }
 

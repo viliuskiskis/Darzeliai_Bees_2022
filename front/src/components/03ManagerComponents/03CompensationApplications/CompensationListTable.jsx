@@ -47,7 +47,7 @@ export default class CompensationListTable extends Component {
     },
     {
       key: 'veiksmai',
-      label: 'veiksmai',
+      label: 'Veiksmai',
       content: compensation =>
         <div className="d-flex justify-content-center">
           <button onClick={() => this.props.handleCompensationReview(compensation.id)}

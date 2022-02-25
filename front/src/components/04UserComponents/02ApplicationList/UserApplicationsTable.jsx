@@ -43,7 +43,7 @@ export default class UserApplicationsTable extends Component {
     },
     {
       key: 'veiksmai',
-      label: 'veiksmai',
+      label: 'Veiksmai',
       content: application =>
         <div className="d-flex justify-content-center">
           <button

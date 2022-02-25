@@ -6,12 +6,6 @@ export default class UserCompensationsTable extends Component {
 
   columns = [
     {
-      key: 'id',
-      path: 'id',
-      label: '#',
-      content: compensation => <span>{compensation.id}</span>
-    },
-    {
       key: 'submitedAt',
       path: 'submitedAt',
       label: 'Pateikimo data',
@@ -53,14 +47,8 @@ export default class UserCompensationsTable extends Component {
           >Peržiūrėti
           </button>
           <button
-            id="btnReviewCompensationContract"
-            className="btn btn-primary btn-block btn-sm me-2"
-            onClick={() => this.props.handleCompensationContractReview(compensation.id)}
-          >Pasirašymui
-          </button>
-          <button
             id="btnDeleteCompensation"
-            className="btn btn-danger btn-block btn-sm me-2"
+            className="btn btn-danger btn-block btn-sm"
             onClick={() => this.props.handleCompensationDelete(compensation.id)}
           >Ištrinti
           </button>
