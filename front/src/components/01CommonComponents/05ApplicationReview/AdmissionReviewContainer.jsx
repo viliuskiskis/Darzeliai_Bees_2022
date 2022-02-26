@@ -23,6 +23,7 @@ export default class AdmissionReviewContainer extends Component {
       mainGuardian: null,
       additionalGuardian: null,
       approvedKindergarten: "",
+      approvedKindergartenManager: "",
       kindergartenChoices: null,
       priorities: null
     };
@@ -51,6 +52,7 @@ export default class AdmissionReviewContainer extends Component {
           mainGuardian: response.data.mainGuardian,
           additionalGuardian: response.data.additionalGuardian,
           approvedKindergarten: response.data.approvedKindergarten,
+          approvedKindergartenManager: response.data.approvedKindergartenManager,
           kindergartenChoices: response.data.kindergartenChoices,
           priorities: response.data.priorities
         })

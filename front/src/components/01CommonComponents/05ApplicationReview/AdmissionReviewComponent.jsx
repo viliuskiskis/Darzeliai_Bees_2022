@@ -12,7 +12,7 @@ export default function AdmissionReviewComponent(props) {
               <span>Prašymo statusas:<b> {props.state.status}</b></span><br />
               <span>Pateikimo data:<b> {props.state.submitedAt}</b></span><br />
               <span>Patvirtinimo data:<b> {props.state.approvalDate}</b></span><br />
-              <span>Priimta į darželį:<b> {props.state.approvedKindergarten}</b></span><br />
+              <span>Priimta į darželį:<b> {props.state.approvedKindergarten}, direktorius: {props.state.approvedKindergartenManager}</b></span><br />
               <span>Numeris laukiančiųjų eilėje:<b> {props.state.numberInWaitingList}</b></span><br />
             </div>
             <h6>Vaiko duomenys</h6>
