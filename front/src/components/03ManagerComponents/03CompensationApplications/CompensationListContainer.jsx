@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import "../../../App.css";
 import http from "../../00Services/httpService";
 import apiEndpoint from "../../00Services/endpoint";
 import swal from "sweetalert";
-import Pagination from '../../05ReusableComponents/Pagination';
+import Pagination from "react-js-pagination";
 import SearchBox from "../../05ReusableComponents/SeachBox";
 
 import CompensationListTable from "./CompensationListTable";
@@ -28,11 +27,11 @@ export default class CompensationListContainer extends Component {
   }
 
   componentDidMount() {
-    this.getCompensations(this.state.currentPage, this.state.searchQuery);
+    this.getCompensations(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
   }
 
-  getCompensations(page, filter) {
-    http.get(`${apiEndpoint}/api/kompensacijos/manager?pageNumber=${page - 1}&pageSize=10&filter=${filter}`)
+  getCompensations(page, size, filter) {
+    http.get(`${apiEndpoint}/api/kompensacijos/manager?pageNumber=${page - 1}&pageSize=${size}&filter=${filter}`)
       .then(response => {
         this.setState({
           compensations: response.data.content,
@@ -56,7 +55,7 @@ export default class CompensationListContainer extends Component {
 
   handlePageChange(page) {
     this.setState({ currentPage: page });
-    this.getCompensations(page, this.state.searchQuery);
+    this.getCompensations(page, this.state.pageSize, this.state.searchQuery);
   }
 
   handleCompensationReview(id) {
@@ -136,14 +135,18 @@ export default class CompensationListContainer extends Component {
           handleCompensationConfirm={this.handleCompensationConfirm}
         />
 
-        {this.state.totalPages > 1 && <div className="d-flex justify-content-center">
-          <Pagination
-            itemsCount={this.state.totalElements}
-            pageSize={this.state.pageSize}
-            onPageChange={this.handlePageChange}
-            currentPage={this.state.currentPage}
-          />
-        </div>
+        {this.state.totalPages > 1 &&
+          <div className="d-flex justify-content-center">
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={this.state.currentPage}
+              itemsCountPerPage={this.state.pageSize}
+              totalItemsCount={this.state.totalElements}
+              pageRangeDisplayed={15}
+              onChange={this.handlePageChange}
+            />
+          </div>
         }
 
       </div>

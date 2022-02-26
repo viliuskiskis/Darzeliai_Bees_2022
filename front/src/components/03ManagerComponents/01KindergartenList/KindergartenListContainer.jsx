@@ -3,10 +3,9 @@ import swal from 'sweetalert';
 
 import http from '../../00Services/httpService';
 import apiEndpoint from '../../00Services/endpoint';
-import '../../../App.css';
 
 import KindergartenListTable from './KindergartenListTable';
-import Pagination from '../../05ReusableComponents/Pagination';
+import Pagination from "react-js-pagination";
 import SearchBox from '../../05ReusableComponents/SeachBox';
 export class KindergartenListContainer extends Component {
 
@@ -15,7 +14,7 @@ export class KindergartenListContainer extends Component {
     this.state = {
       darzeliai: [],
       elderates: [],
-      pageSize: 10,
+      pageSize: 10, // FUNCTIONALITY NOT YET IMPLEMENTED
       currentPage: 1,
       totalPages: 0,
       totalElements: 0,
@@ -190,7 +189,7 @@ export class KindergartenListContainer extends Component {
 
     const placeholder = "Ieškoti pagal pavadinimą...";
 
-    const { darzeliai, elderates, totalElements, pageSize, searchQuery, inEditMode, editRowId, errorMessages } = this.state;
+    const { darzeliai, elderates, searchQuery, inEditMode, editRowId, errorMessages } = this.state;
 
     const hasErrors = Object.keys(errorMessages).length === 0 ? false : true;
 
@@ -217,13 +216,19 @@ export class KindergartenListContainer extends Component {
           onSave={this.handleSaveEdited}
         />
 
-        <Pagination
-          itemsCount={totalElements}
-          pageSize={pageSize}
-          onPageChange={this.handlePageChange}
-          currentPage={this.state.currentPage}
-        />
-
+        {this.state.totalPages > 1 &&
+          <div className="d-flex justify-content-center">
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={this.state.currentPage}
+              itemsCountPerPage={this.state.pageSize}
+              totalItemsCount={this.state.totalElements}
+              pageRangeDisplayed={15}
+              onChange={this.handlePageChange}
+            />
+          </div>
+        }
 
       </React.Fragment>
     )

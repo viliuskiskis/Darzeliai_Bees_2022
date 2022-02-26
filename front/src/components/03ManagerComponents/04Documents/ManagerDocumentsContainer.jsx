@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import apiEndpoint from "../../00Services/endpoint";
 import http from '../../00Services/httpService';
 import swal from "sweetalert";
-import Pagination from "../../05ReusableComponents/Pagination";
+import Pagination from "react-js-pagination";
 import ManagerDocumentsTable from "./ManagerDocumentsTable";
 
 export default class ManagerDocumentsContainer extends Component {
@@ -23,11 +23,11 @@ export default class ManagerDocumentsContainer extends Component {
   }
 
   componentDidMount() {
-    this.getDocuments(this.state.currentPage);
+    this.getDocuments(this.state.currentPage, this.state.pageSize);
   }
 
-  getDocuments(page) {
-    http.get(`${apiEndpoint}/api/documents/manager/get?pageNumber=${page - 1}`)
+  getDocuments(page, size) {
+    http.get(`${apiEndpoint}/api/documents/manager/get?pageNumber=${page - 1}&pageSize=${size}`)
       .then(response => {
         this.setState({
           documentList: response.data.content,
@@ -46,7 +46,7 @@ export default class ManagerDocumentsContainer extends Component {
 
   handlePageChange(page) {
     this.setState({ currentPage: page });
-    this.getDocuments(page);
+    this.getDocuments(page, this.state.pageSize);
   }
 
   handleDocumentDownload(doc) {
@@ -84,14 +84,18 @@ export default class ManagerDocumentsContainer extends Component {
           handleDocumentDownload={this.handleDocumentDownload}
         />
 
-        {this.state.totalPages > 1 && <div className="d-flex justify-content-center">
-          <Pagination
-            itemsCount={this.state.totalElements}
-            pageSize={this.state.pageSize}
-            onPageChange={this.handlePageChange}
-            currentPage={this.state.currentPage}
-          />
-        </div>
+        {this.state.totalPages > 1 &&
+          <div className="d-flex justify-content-center">
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={this.state.currentPage}
+              itemsCountPerPage={this.state.pageSize}
+              totalItemsCount={this.state.totalElements}
+              pageRangeDisplayed={15}
+              onChange={this.handlePageChange}
+            />
+          </div>
         }
 
       </div>
