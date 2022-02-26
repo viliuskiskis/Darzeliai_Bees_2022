@@ -159,7 +159,6 @@ export class KindergartenListContainer extends Component {
 
   handleSaveEdited = () => {
     const { editedKindergarten, editRowId, errorMessages } = this.state;
-
     if (Object.keys(errorMessages).length === 0) {
       http.put(`${apiEndpoint}/api/darzeliai/manager/update/${editRowId}`, editedKindergarten)
         .then(() => {

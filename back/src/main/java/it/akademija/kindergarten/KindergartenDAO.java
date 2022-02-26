@@ -15,10 +15,10 @@ public interface KindergartenDAO extends JpaRepository<Kindergarten, String> {
 
 	Kindergarten findByName(String name);
 
-	@Query("SELECT new Kindergarten(k.id, k.name , k.address, k.elderate, k.capacityAgeGroup2to3, k.capacityAgeGroup3to6) FROM Kindergarten k WHERE LOWER(k.name) LIKE LOWER(concat('%', ?1,'%'))")
+	@Query("SELECT new Kindergarten(k.id, k.name , k.address, k.elderate, k.managerName, k.managerSurname, k.capacityAgeGroup2to3, k.capacityAgeGroup3to6) FROM Kindergarten k WHERE LOWER(k.name) LIKE LOWER(concat('%', ?1,'%'))")
 	Page<Kindergarten> findByNameContainingIgnoreCase(String name, Pageable pageable);
 
-	@Query("SELECT new Kindergarten(k.id, k.name , k.address, k.elderate, k.capacityAgeGroup2to3, k.capacityAgeGroup3to6) FROM Kindergarten k")
+	@Query("SELECT new Kindergarten(k.id, k.name , k.address, k.elderate, k.managerName, k.managerSurname, k.capacityAgeGroup2to3, k.capacityAgeGroup3to6) FROM Kindergarten k")
 	Page<Kindergarten> findAllKindergarten(Pageable pageable);
 
 	@Query("SELECT DISTINCT(k.elderate) FROM Kindergarten k")
