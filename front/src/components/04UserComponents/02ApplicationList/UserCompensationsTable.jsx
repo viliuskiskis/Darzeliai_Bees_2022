@@ -46,6 +46,15 @@ export default class UserCompensationsTable extends Component {
             onClick={() => this.props.handleCompensationReview(compensation.id)}
           >Peržiūrėti
           </button>
+          {/* Show this button, if application status is "Parvirtintas" */}
+          {compensation.applicationStatus === "Patvirtintas" &&
+            <button
+              id="btnReviewContractUser"
+              className="btn btn-success btn-block btn-sm me-2"
+              onClick={() => this.props.handleCompensationContractReview(compensation.id)}
+            >Pasirašymui
+            </button>
+          }
           <button
             id="btnDeleteCompensation"
             className="btn btn-danger btn-block btn-sm"
