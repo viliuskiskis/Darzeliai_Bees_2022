@@ -3,7 +3,7 @@ import apiEndpoint from "../../00Services/endpoint";
 import http from "../../00Services/httpService";
 import swal from "sweetalert";
 import inputValidator from "../../00Services/InputValidator";
-import CompensationReviewComponent from "./CompensationReviewComponent";
+import CompensationContractComponent from "./CompensationContractComponent";
 import CompensationEditComponent from "../../04UserComponents/03ApplicationReview/CompensationEditComponent";
 import childDataUrl from "../../00Services/childDataUrl";
 import AuthContext from "../../00Services/AuthContext";
@@ -241,7 +241,7 @@ export default class CompensationContractContainer extends Component {
       )
     } else {
       return (
-        <CompensationReviewComponent
+        <CompensationContractComponent
           state={this.state}
           role={this.context.state.role}
           activateEdit={this.activateEdit}

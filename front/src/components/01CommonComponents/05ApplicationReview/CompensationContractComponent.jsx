@@ -2,35 +2,60 @@ import React from "react";
 
 //Modal function
 export default function CompensationContractComponent
-    (props) {
+  (props) {
 
-    return (
+  return (
+    <div className="container pt-4" >
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-10 col-lg-6">
+          <h5>Prašymas į valstybinius darželius sutarties preview</h5>
+          {props.state.applicationStatus === "Patvirtintas" &&
+            <button
+              id="CompensationReviewDownloadPDF"
+              className="btn btn-success me-2"
+              onClick={() => props.handleDownloadContract(props.state)}
+            >Parsisiųsti dokumentą pasirašymui
+            </button>
+          }
 
-        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div className="col-12 col-md-10 col-lg-6">
-                            <h5>Prašymas skirti kompensaciją privačiam darželiui</h5>
-                            <div>
-                                <p>"test kestrtrsdfg"</p>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>)
+          <button
+            id="CompensationReviewReturn"
+            className="btn btn-success me-2"
+            onClick={props.handleReturn}
+          >Grįžti
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+
 }
+        /*
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div className="col-12 col-md-10 col-lg-6">
+            <h5>Prašymas skirti kompensaciją privačiam darželiui</h5>
+            <div>
+                <p>"test kestrtrsdfg"</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
+</div>
+</div>
+</div>)
+*/
 /*
       { <div className="container pt-4" >
         <div className="row justify-content-center">
