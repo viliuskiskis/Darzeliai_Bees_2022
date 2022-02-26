@@ -40,7 +40,7 @@ public class ContractsService {
 	String kindergartenName = contractDetails.getKindergartenName();
 	String kindergartenManagerName = contractDetails.getKindergartenManagerName();
 	String mainGuardianName = contractDetails.getMainGuardianName();
-	String mainGuardianAddress = contractDetails.getAdditionalGuardianAddress();
+	String mainGuardianAddress = contractDetails.getMainGuardianAddress();
 	String mainGuardianPhone = contractDetails.getMainGuardianPhone();
 	String mainGuardianEmail = contractDetails.getMainGuardianEmail();
 	String additionalGuardianName = contractDetails.getAdditionalGuardianName();
