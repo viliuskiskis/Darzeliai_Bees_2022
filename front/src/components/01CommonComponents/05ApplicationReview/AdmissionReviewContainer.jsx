@@ -63,8 +63,9 @@ export default class AdmissionReviewContainer extends Component {
   }
 
   handleDownloadContract(data) {
+    let role = this.context.state.role.toLowerCase();
     http.request({
-      url: `${apiEndpoint}/api/contract/user/${data.id}`,
+      url: `${apiEndpoint}/api/contract/${role}/${data.id}`,
       method: "GET",
       responseType: "blob"
     }).then(response => {
