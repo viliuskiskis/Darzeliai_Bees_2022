@@ -54,12 +54,22 @@ export default class UserApplicationsTable extends Component {
           </button>
 
           {/* Show this button, if application status is "Parvirtintas" */}
-          {application.status === "Patvirtintas" &&
+          {/*application.status === "Patvirtintas" &&
             <button
               id="btnDownloadContractUser"
               className="btn btn-success btn-block btn-sm me-2"
               onClick={() => this.props.handleContractDownload(application)}
             >Parsisiųsti
+            </button>
+           */}
+
+          {/* Show this button, if application status is "Parvirtintas" */}
+          {application.status === "Patvirtintas" &&
+            <button
+              id="btnReviewContractUser"
+              className="btn btn-success btn-block btn-sm me-2"
+              onClick={() => this.props.handleKindergartenContract(application.id)}
+            >Pasirašymui
             </button>
           }
 

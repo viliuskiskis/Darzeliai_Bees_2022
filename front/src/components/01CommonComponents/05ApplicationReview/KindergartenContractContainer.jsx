@@ -2,18 +2,17 @@ import React, { Component } from "react";
 import apiEndpoint from "../../00Services/endpoint";
 import http from "../../00Services/httpService";
 import swal from "sweetalert";
-import AdmissionReviewComponent from "./AdmissionReviewComponent";
-
-//import KindergartenContractComponent from "./KindergartenContractComponent";
+import KindergartenContractComponent from "./KindergartenContractComponent";
+//import AdmissionReviewComponent from "./AdmissionReviewComponent";
 import AuthContext from "../../00Services/AuthContext";
 
-export default class AdmissionReviewContainer extends Component {
+export default class KindergartenContractContainer extends Component {
   static contextType = AuthContext;
 
   constructor(props) {
     super(props);
     this.state = {
-      id: 0,
+      id: 41,
       submitedAt: "",
       status: "",
       childName: "",
@@ -25,12 +24,11 @@ export default class AdmissionReviewContainer extends Component {
       mainGuardian: null,
       additionalGuardian: null,
       approvedKindergarten: "",
-      approvedKindergartenManager: "",
       kindergartenChoices: null,
       priorities: null
     };
     this.handleReturn = this.handleReturn.bind(this);
-    //this.handleDownloadContract = this.handleDownloadContract.bind(this);
+    this.handleDownloadContract = this.handleDownloadContract.bind(this);
   };
 
   componentDidMount() {
@@ -54,7 +52,6 @@ export default class AdmissionReviewContainer extends Component {
           mainGuardian: response.data.mainGuardian,
           additionalGuardian: response.data.additionalGuardian,
           approvedKindergarten: response.data.approvedKindergarten,
-          approvedKindergartenManager: response.data.approvedKindergartenManager,
           kindergartenChoices: response.data.kindergartenChoices,
           priorities: response.data.priorities
         })
@@ -66,11 +63,10 @@ export default class AdmissionReviewContainer extends Component {
       });
   }
 
-  /* 
+
   handleDownloadContract(data) {
-    let role = this.context.state.role.toLowerCase();
     http.request({
-      url: `${apiEndpoint}/api/contract/${role}/${data.id}`,
+      url: `${apiEndpoint}/api/contract/user/${data.id}`,
       method: "GET",
       responseType: "blob"
     }).then(response => {
@@ -89,7 +85,7 @@ export default class AdmissionReviewContainer extends Component {
       })
     })
   }
-  */
+
 
   handleReturn() {
     let route = this.context.state.role === "USER" ? "/prasymai" : "/eile";
@@ -98,10 +94,10 @@ export default class AdmissionReviewContainer extends Component {
 
   render() {
     return (
-      <AdmissionReviewComponent
+      <KindergartenContractComponent
         state={this.state}
         role={this.context.state.role}
-        //handleDownloadContract={this.handleDownloadContract}
+        handleDownloadContract={this.handleDownloadContract}
         handleReturn={this.handleReturn}
       />
     )
