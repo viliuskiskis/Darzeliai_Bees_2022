@@ -4,39 +4,38 @@ import React from "react";
 export default function KindergartenContractComponent(props) {
 
   return (
-    <div className="container pt-4" >
+    <div className="container pt-4">
 
       <div className="container pb-2">
-        <p>IKIMOKYKLINIO UGDYMO PASLAUGŲ SUTARTIS&nbsp;</p>
+        <h4>IKIMOKYKLINIO UGDYMO PASLAUGŲ SUTARTIS</h4>
+        <p> Nr.{props.state.id} </p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data: {props.state.approvalDate} &nbsp;</p>
         <p>&nbsp;</p>
-        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Nr. {props.state.id} &nbsp;</p>
-        {/*
-        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ({response.data.approvalDate}) &nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;Ikimokyklinio ugdymo paslaugų sutartis sudaroma tarp darželio  {props.state.approvedKindergarten}, kurį atstovauja _________________________________,&nbsp;</p>
-        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Darželio pavadinimas) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Darželio direktorius)&nbsp;</p>
+
+        <p>&nbsp; Ikimokyklinio ugdymo paslaugų sutartis sudaroma tarp darželio  {props.state.approvedKindergarten}, kurį atstovauja _________________________________</p>
+
+        <p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Darželio pavadinimas) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Darželio direktorius)&nbsp;</p>
+
         <p>veikiančio pagal Darželio nuostatus ir Tėvų/Globėjų (toliau - Tėvai), atstovaujančių vaiko interesus. &nbsp;</p>
-        <p> {props.state.mainGuardian.name} {props.state.mainGuardian.surname} &nbsp; &nbsp; {props.state.additionalGuardian.name} {props.state.additionalGuardian.surname} &nbsp;</p>
+        <p> {props.state.mainGuardianName} {props.state.mainGuardianSurname} &nbsp; &nbsp; {props.state.additionalGuardianName} {props.state.additionalGuardianSurname} &nbsp;</p>
         <p> {props.state.additionalGuardian.phone} &nbsp; &nbsp; {props.state.additionalGuardian.phone} &nbsp;</p>
         <p> {props.state.additionalGuardian.email} &nbsp; &nbsp; {props.state.additionalGuardian.email} &nbsp;</p>
         <p> {props.state.additionalGuardian.address} &nbsp; &nbsp; {props.state.additionalGuardian.address} &nbsp;</p>
         <p>&nbsp;(Sutartį pasira&scaron;ius vienam i&scaron; Tėvų, kitas i&scaron; Tėvų neatleidžiamas nuo &scaron;ios sutarties įsipareigojimų vykdymo).&nbsp;</p>
         <p>&nbsp;</p>
-       */}
+        {/*
+        
       </div>
-
-      {/*
+      
       <div className="container pb-2">
         <p>I. SUTARTIES OBJEKTAS&nbsp;</p>
         <p>&nbsp;</p>
-        <p>&nbsp;Ikimokyklinio ugdymo paslaugų sutartimi (toliau &ndash; Sutartis) Darželis įsipareigoja teikti &nbsp;ugdymo paslaugas, kurių gavėjas {props.state.childName} {props.state.childSurname} toliau &ndash; Ugdytinis,&nbsp;</p>
+        <p>&nbsp; Ikimokyklinio ugdymo paslaugų sutartimi (toliau &ndash; Sutartis) Darželis įsipareigoja teikti &nbsp; ugdymo paslaugas, kurių gavėjas {props.state.childName} {props.state.childSurname} toliau &ndash; Ugdytinis,&nbsp;</p>
         <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(vaiko vardas, pavardė)&nbsp;</p>
         <p>o Tėvai įsipareigoja apmokėti už &scaron;ias paslaugas bei vykdyti visus įsipareigojimus, prisiimtus Sutartimi.&nbsp;</p>
         <p>&nbsp;Ugdymo paslaugos apima sisteminį neformalaus ugdymų plano(-ų), ugdymo programos(-ų) sudarymą ir įgyvendinimą atitinkamoms amžiaus grupėms pagal LR &Scaron;vietimo ir mokslo ministerijos bei Klaipėdos rajono savivaldybės (toliau &ndash; Savivaldybė) patvirtintas programas, rekomendacijas, tvarkos apra&scaron;us ir kitus norminius teisės aktus. &nbsp;</p>
         <p>&nbsp;</p>
-      </div>
-
-      <div className="container pb-2">
+      </div><div className="container pb-2">
         <p>II. SUTARTIES &Scaron;ALIŲ ĮSIPAREIGOJIMAI&nbsp;</p>
         <p>&nbsp;</p>
         <p>1. Darželis įsipareigoja:&nbsp;</p>
@@ -82,7 +81,6 @@ export default function KindergartenContractComponent(props) {
         <p>&nbsp; &nbsp; &nbsp; &nbsp;4.3. teikti siūlymus dėl ugdymo darbo organizavimo, ugdymo kokybės gerinimo, dalyvauti Tėvams skirtuose renginiuose, susirinkimuose, savivaldoje.&nbsp;</p>
         <p>&nbsp;</p>
       </div>
-
       <div className="container pb-2">
         <p>III. SUTARTIES ĮSIGALIOJIMAS, GALIOJIMAS, KEITIMAS IR NUTRAUKIMAS&nbsp;</p>
         <p>&nbsp; &nbsp;</p>
@@ -96,17 +94,12 @@ export default function KindergartenContractComponent(props) {
         <p>&nbsp; &nbsp; &nbsp; &nbsp; 6.3.3. Tėvai vėluoja atsiskaityti už teikiamas paslaugas 2 mėnesius. Sutarties nutraukimas neatleidžia nuo prievolės sumokėti už suteiktas paslaugas.&nbsp;</p>
         <p>&nbsp; &nbsp; &nbsp; &nbsp; 7. Visi Sutarties pakeitimai, priedai ir papildymai &nbsp;sudaromi tik ra&scaron;tu, Sutartis turi būti registruota teisės aktų nustatyta tvarka.&nbsp;</p>
         <p>&nbsp;</p>
-      </div>
-
-      <div className="container pb-2">
+      </div><div className="container pb-2">
         <p>IV. GINČŲ SPRENDIMAS&nbsp;</p>
         <p>&nbsp;</p>
         <p>&nbsp; &nbsp; &nbsp; &nbsp; 8. Ginčytini ugdymo proceso organizavimo, Darželio veiklos, sutarties pažeidimo klausimai sprendžiami &scaron;alims geranori&scaron;kai bendradarbiaujant. Ginčytini klausimai pirmiausiai aptariami su grupės mokytoju, direktoriaus pavaduotoju ugdymui, kitais specialistais. Neradus sprendimo, kreipiamasi į Darželio direktorių.&nbsp;</p>
         <p>&nbsp; &nbsp; &nbsp; &nbsp;9. Tėvų pra&scaron;ymus dėl ginčų objektyvumo nagrinėja direktoriaus įsakymu sudaryta komisija, kurią sudaro administracijos, pedagogų ir ugdytinio atstovai.&nbsp;</p>
-      </div>
-
-
-      <div className="container pb-2"><p>&nbsp;</p>
+      </div><div className="container pb-2"><p>&nbsp;</p>
         <p>&nbsp;</p>
         <p>Sutarties &scaron;alių para&scaron;ai:&nbsp;</p>
         <p>&nbsp;</p>
@@ -119,23 +112,27 @@ export default function KindergartenContractComponent(props) {
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p>Tėvas/Globėjas &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {props.state.mainGuardian.name} {props.state.mainGuardian.surname} </p>
-      </div>
-*/}
-      {props.state.status === "Patvirtintas" &&
-        <button
-          id="CompensationReviewDownloadPDF"
-          className="btn btn-success me-2"
-          onClick={() => props.handleDownloadContract(props.state)}
-        >Parsisiųsti dokumentą pasirašymui
-        </button>
-      }
+        
+        */}
 
-      <button
-        id="CompensationReviewReturn"
-        className="btn btn-success me-2"
-        onClick={props.handleReturn}
-      >Grįžti
-      </button>
-    </div>
+
+        {
+          props.state.status === "Patvirtintas" &&
+          <button
+            id="CompensationReviewDownloadPDF"
+            className="btn btn-success me-2"
+            onClick={() => props.handleDownloadContract(props.state)}
+          >Parsisiųsti dokumentą pasirašymui
+          </button>
+        }
+
+        <button
+          id="CompensationReviewReturn"
+          className="btn btn-success me-2"
+          onClick={props.handleReturn}
+        >Grįžti
+        </button>
+      </div>
+    </div >
   )
 }

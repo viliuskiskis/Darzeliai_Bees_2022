@@ -4,25 +4,15 @@ export default function KindergartenContractTemplateComponent(props) {
 
     return (
         <div className="container pt-4" >
-            <h6>Globėjo duomenys</h6>
-            {props.state.mainGuardian !== null &&
-                <div className="container pb-2">
-                    <span>Vardas:<b> </b></span><br />
-                    <span>Pavardė:<b> {props.state.mainGuardian.surname}</b></span><br />
-                    <span>Asmens kodas:<b> {props.state.mainGuardian.personalCode}</b></span><br />
-                    <span>Telefonas:<b> {props.state.mainGuardian.phone}</b></span><br />
-                    <span>El. paštas:<b> {props.state.mainGuardian.email}</b></span><br />
-                    <span>Adresas:<b> {props.state.mainGuardian.address}</b></span><br />
-                </div>
-            }
+            <div className="container pb-2">
+                <h6>Sutartis peržiūrai:</h6>
+            </div>
 
             <div className="container pb-2">
-                <p>IKIMOKYKLINIO UGDYMO PASLAUGŲ SUTARTIS&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Nr. {props.state.id} &nbsp;</p>
-                <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ({response.data.approvalDate})&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;Ikimokyklinio ugdymo paslaugų sutartis sudaroma tarp darželio  {props.state.approvedKindergarten}, kurį atstovauja _________________________________,&nbsp;</p>
+                <p>IKIMOKYKLINIO UGDYMO PASLAUGŲ SUTARTIS</p>
+                <p>Nr. {this.state.id}</p>
+                <p>({response.data.approvalDate});</p>
+                <p>Ikimokyklinio ugdymo paslaugų sutartis sudaroma tarp darželio  {props.state.approvedKindergarten}, kurį atstovauja _________________________________,&nbsp;</p>
                 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Darželio pavadinimas) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Darželio direktorius)&nbsp;</p>
                 <p>veikiančio pagal Darželio nuostatus ir Tėvų/Globėjų (toliau - Tėvai), atstovaujančių vaiko interesus. &nbsp;</p>
                 <p> {props.state.mainGuardian.name} {props.state.mainGuardian.surname} &nbsp; &nbsp; {props.state.additionalGuardian.name} {props.state.additionalGuardian.surname} &nbsp;</p>

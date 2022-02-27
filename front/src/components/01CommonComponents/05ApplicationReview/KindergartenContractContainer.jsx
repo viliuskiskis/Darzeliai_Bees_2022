@@ -12,7 +12,7 @@ export default class KindergartenContractContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 41,
+      id: 0,
       submitedAt: "",
       status: "",
       childName: "",
