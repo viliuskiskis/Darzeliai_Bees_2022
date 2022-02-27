@@ -16,9 +16,9 @@ export default function KindergartenContractComponent(props) {
         <p>Ikimokyklinio ugdymo paslaugų sutartis sudaroma tarp darželio  <b>{props.state.approvedKindergarten}</b>, kurį atstovauja <b>{props.state.approvedKindergartenManager} </b></p>
         <p>veikiančio pagal Darželio nuostatus ir Tėvų/Globėjų (toliau - Tėvai)*, atstovaujančių vaiko interesus.</p>
         <p> <b>{props.state.mainGuardianName} {props.state.mainGuardianSurname} &nbsp; &nbsp; {props.state.additionalGuardianName} {props.state.additionalGuardianSurname} </b></p>
-        <p>tel.:<b> {props.state.additionalGuardianPhone} &nbsp; &nbsp; tel.:{props.state.additionalGuardianPhone} </b></p>
-        <p><b> {props.state.additionalGuardianEmail} &nbsp; &nbsp; {props.state.additionalGuardianEmail} </b></p>
-        <p><b> {props.state.additionalGuardianAddress} &nbsp; &nbsp; {props.state.additionalGuardianAddress} </b></p>
+        <p>tel.:<b> {props.state.mainGuardianPhone} &nbsp; &nbsp; tel.:{props.state.additionalGuardianPhone} </b></p>
+        <p><b> {props.state.mainGuardianEmail} &nbsp; &nbsp; {props.state.additionalGuardianEmail} </b></p>
+        <p><b> {props.state.mainGuardianAddress} &nbsp; &nbsp; {props.state.additionalGuardianAddress} </b></p>
         <p><sub>*(Sutartį pasira&scaron;ius vienam i&scaron; Tėvų, kitas i&scaron; Tėvų neatleidžiamas nuo &scaron;ios sutarties įsipareigojimų vykdymo).</sub></p>
       </div>
 
