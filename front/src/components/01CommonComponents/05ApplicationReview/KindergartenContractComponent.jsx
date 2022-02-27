@@ -7,13 +7,13 @@ export default function KindergartenContractComponent(props) {
     <div className="container pt-4">
 
       <div className="container pb-2">
+        <p><i>// Sutarties tekstas peržiūrai //</i></p>
+        <p></p>
         <h4>IKIMOKYKLINIO UGDYMO PASLAUGŲ SUTARTIS</h4>
         <p>Nr.{props.state.id} </p>
         <p>Data: {props.state.approvalDate}</p>
-        <p>&nbsp;</p>
 
         <p>Ikimokyklinio ugdymo paslaugų sutartis sudaroma tarp darželio  <b>{props.state.approvedKindergarten}</b>, kurį atstovauja _________________________________</p>
-
         <p>veikiančio pagal Darželio nuostatus ir Tėvų/Globėjų (toliau - Tėvai)*, atstovaujančių vaiko interesus.</p>
         <p> <b>{props.state.mainGuardianName} {props.state.mainGuardianSurname} &nbsp; &nbsp; {props.state.additionalGuardianName} {props.state.additionalGuardianSurname} </b></p>
         <p>tel.:<b> {props.state.additionalGuardianPhone} &nbsp; &nbsp; tel.:{props.state.additionalGuardianPhone} </b></p>
@@ -26,7 +26,6 @@ export default function KindergartenContractComponent(props) {
         <h6>I. SUTARTIES OBJEKTAS</h6>
         <p>Ikimokyklinio ugdymo paslaugų sutartimi (toliau &ndash; Sutartis) Darželis įsipareigoja teikti ugdymo paslaugas, kurių gavėjas <b> {props.state.childName} {props.state.childSurname}</b>, toliau &ndash; Ugdytinis, o Tėvai įsipareigoja apmokėti už &scaron;ias paslaugas bei vykdyti visus įsipareigojimus, prisiimtus Sutartimi.</p>
         <p>Ugdymo paslaugos apima sisteminį neformalaus ugdymų plano(-ų), ugdymo programos(-ų) sudarymą ir įgyvendinimą atitinkamoms amžiaus grupėms pagal LR &Scaron;vietimo ir mokslo ministerijos bei Klaipėdos rajono savivaldybės (toliau &ndash; Savivaldybė) patvirtintas programas, rekomendacijas, tvarkos apra&scaron;us ir kitus norminius teisės aktus.</p>
-        <p>&nbsp;</p>
       </div>
 
       <div className="container pb-2">
@@ -78,7 +77,7 @@ export default function KindergartenContractComponent(props) {
           <p>4.3. teikti siūlymus dėl ugdymo darbo organizavimo, ugdymo kokybės gerinimo, dalyvauti Tėvams skirtuose renginiuose, susirinkimuose, savivaldoje.</p></div>
       </div>
       <div className="container pb-2">
-        <p>III. SUTARTIES ĮSIGALIOJIMAS, GALIOJIMAS, KEITIMAS IR NUTRAUKIMAS</p>
+        <h6>III. SUTARTIES ĮSIGALIOJIMAS, GALIOJIMAS, KEITIMAS IR NUTRAUKIMAS</h6>
         <p>5. Sutartis įsigalioja nuo jos pasira&scaron;ymo dienos ir galioja iki Ugdytinis baigs ikimokyklinio ugdymo programą.</p>
         <p>6. Sutartis gali būti nutraukta:</p>
         <div>
@@ -92,7 +91,7 @@ export default function KindergartenContractComponent(props) {
         <p>7. Visi Sutarties pakeitimai, priedai ir papildymai sudaromi tik ra&scaron;tu, Sutartis turi būti registruota teisės aktų nustatyta tvarka.</p>
       </div>
       <div className="container pb-2">
-        <p>IV. GINČŲ SPRENDIMAS&nbsp;</p>
+        <h6>IV. GINČŲ SPRENDIMAS&nbsp;</h6>
         <p>8. Ginčytini ugdymo proceso organizavimo, Darželio veiklos, sutarties pažeidimo klausimai sprendžiami &scaron;alims geranori&scaron;kai bendradarbiaujant. Ginčytini klausimai pirmiausiai aptariami su grupės mokytoju, direktoriaus pavaduotoju ugdymui, kitais specialistais. Neradus sprendimo, kreipiamasi į Darželio direktorių.</p>
         <p>9. Tėvų pra&scaron;ymus dėl ginčų objektyvumo nagrinėja direktoriaus įsakymu sudaryta komisija, kurią sudaro administracijos, pedagogų ir ugdytinio atstovai.</p>
       </div><div className="container pb-2"><p></p>
@@ -101,13 +100,16 @@ export default function KindergartenContractComponent(props) {
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p>&nbsp;</p>
-        <p>Ugdymo įstaigos atstovas &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; __________________________&nbsp;</p>
-        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (para&scaron;as) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (vardas, pavardė)&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>Tėvas/Globėjas &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {props.state.mainGuardianName} {props.state.mainGuardianSurname} </p>
+        <p>Ugdymo įstaigos atstovas __________________________</p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p>Tėvas/Globėjas: <b>{props.state.mainGuardianName} {props.state.mainGuardianSurname} </b></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
         {/*
         */}
 
