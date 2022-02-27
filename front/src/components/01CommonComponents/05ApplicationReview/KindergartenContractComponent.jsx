@@ -37,7 +37,8 @@ export default function KindergartenContractComponent(props) {
           <p>1.3. užtikrinti, kad paslaugos atitiktų ugdytinio poreikius, individualizuoti ir diferencijuoti ugdymo turinį, skiriant visoms vaiko raidos sritims: sveikatos, socialinei, kalbos, pažinimo, meninei &ndash; vienodą dėmesį, pritaikyti jį specialiųjų poreikių vaikams;</p>
           <p>1.4. teikti pedagoginę, specialiąją pedagoginę pagalbą, kineziterapeuto, masažuotojo, regos korekcijos specialisto paslaugas, bendrauti ir bendradarbiauti su specialiųjų poreikių vaikų individualios korekcinės pagalbos institucijomis;</p>
           <p>1.5. organizuoti medicininę pagalbą Ugdytiniui nelaimės atveju. Ugdytiniui susirgus ar susižeidus informuoti Tėvus;</p>
-          <p>1.6. organizuoti papildomo ugdymo veiklą atsižvelgiant į vaiko poreikius ir įstaigos galimybes*;(* Už papildomos, &Scaron;vietimo įstatymu nereglamentuotos, bet Tėvų pageidavimu vykdomos mokamos veiklos (būrelių, užsiėmimų, studijų ir kt.) kokybę Darželis neatsako.)</p>
+          <p>1.6. organizuoti papildomo ugdymo veiklą atsižvelgiant į vaiko poreikius ir įstaigos galimybes*;</p>
+          <p><sub>* Už papildomos, &Scaron;vietimo įstatymu nereglamentuotos, bet Tėvų pageidavimu vykdomos mokamos veiklos (būrelių, užsiėmimų, studijų ir kt.) kokybę Darželis neatsako.)</sub></p>
           <p>1.7. ugdymosi pasiekimus vertinti objektyviai ir ne&scaron;ali&scaron;kai, vadovaujantis individualios pažangos principu;</p>
           <p>1.8. teikti informaciją apie Ugdytinio pasiekimus, elgesį Tėvams ir saugoti &scaron;ios informacijos konfidencialumą.</p>
           <p>1.9. bendradarbiauti su Tėvais sprendžiant ugdymo proceso organizavimo, vaikų ugdymo(si) klausimus, inicijuoti Tėvų dalyvavimą Darželio savivaldoje;</p>
@@ -54,19 +55,19 @@ export default function KindergartenContractComponent(props) {
         <div>
           <p>3.1. ugdyti vaiko pagarbą mokytojams, bendraamžiams bei Darželio bendruomenės nariams;</p>
           <p>3.2. leisti patikrinti vaiko sveikatą, bei asmens higieną Darželio sveikatos priežiūros specialistams ir pedagogams, siekiant užkirsti kelią pedikuliozei ir kitų užkrečiamųjų ligų plitimui;</p>
-          <p>3.3. leisti kineziterapeutui atlikti skeleto ir raumenų būklės tyrimą, siekiant pagerinti biomechaninių padėčių vystymąsi;&nbsp;</p>
-          <p>3.4. &nbsp;leisti regos korekcijos specialistui, esant poreikiui, įvertinti regos a&scaron;trumą, siekiant gerinti vaikų regėjimą;&nbsp;</p>
-          <p>3.5. gavę prane&scaron;imą apie skirtą vietą Įstaigoje, per 10 kalendorinių dienų turi kreiptis į Įstaigą, patvirtinti vaiko atvykimą ir pateikti visus reikalingus dokumentus (vaiko gimimo liudijimo kopiją, elektroninį sveikatos pažymėjimą ir vėliau kiekvienais metais (forma Nr. E027-1) bei pažymą, patvirtinančią, kad deklaracijoje gyvenamoji vieta nurodyta Klaipėdos rajono savivaldybė;&nbsp;</p>
-          <p>3.6. pasiimti Ugdytinį i&scaron; Darželio per 2 valandas po to, kai Tėvams buvo prane&scaron;ta apie įtariamą Ugdytinio ligą ar susižeidimą;&nbsp;</p>
+          <p>3.3. leisti kineziterapeutui atlikti skeleto ir raumenų būklės tyrimą, siekiant pagerinti biomechaninių padėčių vystymąsi;</p>
+          <p>3.4. leisti regos korekcijos specialistui, esant poreikiui, įvertinti regos a&scaron;trumą, siekiant gerinti vaikų regėjimą;</p>
+          <p>3.5. gavę prane&scaron;imą apie skirtą vietą Įstaigoje, per 10 kalendorinių dienų turi kreiptis į Įstaigą, patvirtinti vaiko atvykimą ir pateikti visus reikalingus dokumentus (vaiko gimimo liudijimo kopiją, elektroninį sveikatos pažymėjimą ir vėliau kiekvienais metais (forma Nr. E027-1) bei pažymą, patvirtinančią, kad deklaracijoje gyvenamoji vieta nurodyta Klaipėdos rajono savivaldybė;</p>
+          <p>3.6. pasiimti Ugdytinį i&scaron; Darželio per 2 valandas po to, kai Tėvams buvo prane&scaron;ta apie įtariamą Ugdytinio ligą ar susižeidimą;</p>
           <p>3.7. pirmą Ugdytinio neatvykimo dieną informuoti telefonu ar atvykus apie Ugdytinio ligą (pedikuliozę) ar kitą Darželio nelankymo priežastį iki 8.15 val. ryto grupės arba bendruoju telefonu;</p>
           <p>3.8. ligos atveju nevesti Ugdytinio į Darželį;</p>
-          <p>3.9. informuoti &nbsp;apie bet kokius specialius Ugdytinio poreikius (ugdymosi, maisto, alergijos ir pan.);</p>
+          <p>3.9. informuoti apie bet kokius specialius Ugdytinio poreikius (ugdymosi, maisto, alergijos ir pan.);</p>
           <p>3.10. atlyginti Ugdytino padarytą materialinę žalą Darželiui ar kitiems asmenims, kurią vaikas padaro būdamas Darželyje;</p>
           <p>3.11. atvesti Ugdytinį į Darželį &scaron;varų, aprengtą tvarkingais, &scaron;variais drabužiais, esant tinkamoms oro sąlygoms, neprie&scaron;tarauti jo i&scaron;vedimui į lauką, pasirūpinti atsarginiais drabužiais vaikui perrengti;</p>
           <p>3.12. laiku, nustatyta tvarka ir terminais sumokėti Savivaldybės nustatyto dydžio mokestį už teikiamas paslaugas;</p>
-          <p>3.13. laiku, numatyta tvarka ir terminais, sumokėti už Tėvų pageidavimu Ugdytiniui teikiamas papildomas paslaugas Darželyje;&nbsp;</p>
-          <p>3.14. Ugdytinį privalo atlydėti į Darželį ir pasiimti i&scaron; Darželio suaugę asmenys. &nbsp;</p>
-          <p>3.15. neleisti Ugdytiniui ne&scaron;tis į Darželį vertingų ir pavojingų daiktų ( mobiliųjų telefonų, fotoaparatų, elektroninių žaidimų, pinigų, a&scaron;trių daiktų, vaistų ir pan.) bei maisto produktų, galinčių sukelti pavojų vaikų sveikatai ir saugumui (saldumynų su kremu ar &scaron;okoladu, gėrimų su dažikliais, konservantais, saldikliais, bulvių tra&scaron;kučių ir pan.);&nbsp;</p>
+          <p>3.13. laiku, numatyta tvarka ir terminais, sumokėti už Tėvų pageidavimu Ugdytiniui teikiamas papildomas paslaugas Darželyje;</p>
+          <p>3.14. Ugdytinį privalo atlydėti į Darželį ir pasiimti i&scaron; Darželio suaugę asmenys. </p>
+          <p>3.15. neleisti Ugdytiniui ne&scaron;tis į Darželį vertingų ir pavojingų daiktų ( mobiliųjų telefonų, fotoaparatų, elektroninių žaidimų, pinigų, a&scaron;trių daiktų, vaistų ir pan.) bei maisto produktų, galinčių sukelti pavojų vaikų sveikatai ir saugumui (saldumynų su kremu ar &scaron;okoladu, gėrimų su dažikliais, konservantais, saldikliais, bulvių tra&scaron;kučių ir pan.);</p>
           <p>3.16. sutikti, kad Ugdytinio asmens ir kiti teisės aktuose nustatyti duomenys bus tvarkomi teisės aktuose nustatytuose registruose;</p>
           <p>3.17. aprūpinti Ugdytinį individualiomis higienos ir ugdymosi priemonėmis. </p>
         </div>
@@ -82,25 +83,21 @@ export default function KindergartenContractComponent(props) {
         <p>6. Sutartis gali būti nutraukta:</p>
         <div>
           <p>6.1. &scaron;alių susitarimu;</p>
-          <p>6.2. Tėvams viena&scaron;ali&scaron;kai parei&scaron;kus apie Sutarties nutraukimą prie&scaron; 10 darbo dienų;&nbsp;</p>
-          <p>6.3. Darželis viena&scaron;ali&scaron;kai gali nutraukti Sutartį:&nbsp;</p>
-          <p>6.3.1 kai Ugdytinio elgesys kelia realią ir akivaizdžią grėsmę Darželio vaikų arba Darželio darbuotojų saugumui;&nbsp;</p>
-          <p>6.3.2. Tėvai nuolat pažeidinėja Sutarties 3.14 punkto reikalavimą &nbsp;laiku atvesti ir pasiimti ugdytinį;&nbsp;</p>
-          <p>6.3.3. Tėvai vėluoja atsiskaityti už teikiamas paslaugas 2 mėnesius. Sutarties nutraukimas neatleidžia nuo prievolės sumokėti už suteiktas paslaugas.&nbsp;</p>
+          <p>6.2. Tėvams viena&scaron;ali&scaron;kai parei&scaron;kus apie Sutarties nutraukimą prie&scaron; 10 darbo dienų;</p>
+          <p>6.3. Darželis viena&scaron;ali&scaron;kai gali nutraukti Sutartį:</p>
+          <p>6.3.1 kai Ugdytinio elgesys kelia realią ir akivaizdžią grėsmę Darželio vaikų arba Darželio darbuotojų saugumui;</p>
+          <p>6.3.2. Tėvai nuolat pažeidinėja Sutarties 3.14 punkto reikalavimą laiku atvesti ir pasiimti ugdytinį;</p>
+          <p>6.3.3. Tėvai vėluoja atsiskaityti už teikiamas paslaugas 2 mėnesius. Sutarties nutraukimas neatleidžia nuo prievolės sumokėti už suteiktas paslaugas.</p>
         </div>
         <p>7. Visi Sutarties pakeitimai, priedai ir papildymai sudaromi tik ra&scaron;tu, Sutartis turi būti registruota teisės aktų nustatyta tvarka.</p>
       </div>
       <div className="container pb-2">
-        <h6>IV. GINČŲ SPRENDIMAS&nbsp;</h6>
+        <h6>IV. GINČŲ SPRENDIMAS</h6>
         <p>8. Ginčytini ugdymo proceso organizavimo, Darželio veiklos, sutarties pažeidimo klausimai sprendžiami &scaron;alims geranori&scaron;kai bendradarbiaujant. Ginčytini klausimai pirmiausiai aptariami su grupės mokytoju, direktoriaus pavaduotoju ugdymui, kitais specialistais. Neradus sprendimo, kreipiamasi į Darželio direktorių.</p>
         <p>9. Tėvų pra&scaron;ymus dėl ginčų objektyvumo nagrinėja direktoriaus įsakymu sudaryta komisija, kurią sudaro administracijos, pedagogų ir ugdytinio atstovai.</p>
       </div><div className="container pb-2"><p></p>
-        <p>&nbsp;</p>
-        <p>Sutarties &scaron;alių para&scaron;ai:&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>Ugdymo įstaigos atstovas <b>{props.state.approvedKindergartenManager}</b> Tėvas/Globėjas: <b>{props.state.mainGuardianName} {props.state.mainGuardianSurname} </b></p>
+        <p>Sutarties &scaron;alių para&scaron;ai:</p>
+        <p>Ugdymo įstaigos atstovas: <b>{props.state.approvedKindergartenManager}</b> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Tėvas/Globėjas: <b>{props.state.mainGuardianName} {props.state.mainGuardianSurname} </b></p>
         {/*
         */}
 
