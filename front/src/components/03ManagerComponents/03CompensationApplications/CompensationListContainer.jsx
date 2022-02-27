@@ -76,7 +76,7 @@ export default class CompensationListContainer extends Component {
               button: "Gerai"
             });
           }).then(() => {
-            this.getCompensations(this.state.currentPage, "");
+            this.getCompensations(this.state.currentPage, this.state.pageSize, "");
           }).catch(error => {
             swal({
               text: "Įvyko klaida" + error.response.data,
@@ -101,7 +101,7 @@ export default class CompensationListContainer extends Component {
               button: "Gerai"
             });
           }).then(() => {
-            this.getCompensations(this.state.currentPage, "");
+            this.getCompensations(this.state.currentPage, this.state.pageSize, "");
           }).catch(error => {
             swal({
               text: "Įvyko klaida" + error.response.data,
