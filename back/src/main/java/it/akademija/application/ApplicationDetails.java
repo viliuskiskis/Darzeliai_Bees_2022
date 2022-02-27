@@ -21,6 +21,7 @@ public class ApplicationDetails {
     private UserInfo mainGuardian;
     private ParentDetailsDTO additionalGuardian;
     private String approvedKindergarten;
+    private String approvedKindergartenManager;
     private KindergartenChoicesDTO kindergartenChoices;
     private PrioritiesDTO priorities;
 
@@ -30,7 +31,7 @@ public class ApplicationDetails {
 
     public ApplicationDetails(Long id, LocalDate submitedAt, ApplicationStatus status, String childName,
 	    String childSurname, String childPersonalCode, LocalDate approvalDate, LocalDate birthdate,
-	    Integer numberInWaitingList, String approvedKindergarten) {
+	    Integer numberInWaitingList, String approvedKindergarten, String approvedKindergartenManager) {
 	super();
 	this.id = id;
 	this.submitedAt = submitedAt;
@@ -42,6 +43,7 @@ public class ApplicationDetails {
 	this.birthdate = birthdate;
 	this.numberInWaitingList = numberInWaitingList;
 	this.approvedKindergarten = approvedKindergarten;
+	this.approvedKindergartenManager = approvedKindergartenManager;
     }
 
     public Long getId() {
@@ -149,11 +151,19 @@ public class ApplicationDetails {
     }
 
     public PrioritiesDTO getPriorities() {
-        return priorities;
+	return priorities;
     }
 
     public void setPriorities(PrioritiesDTO priorities) {
-        this.priorities = priorities;
+	this.priorities = priorities;
     }
-  
+
+    public String getApprovedKindergartenManager() {
+	return approvedKindergartenManager;
+    }
+
+    public void setApprovedKindergartenManager(String approvedKindergartenManager) {
+	this.approvedKindergartenManager = approvedKindergartenManager;
+    }
+
 }

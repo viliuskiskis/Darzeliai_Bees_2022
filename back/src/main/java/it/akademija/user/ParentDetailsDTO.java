@@ -77,6 +77,10 @@ public class ParentDetailsDTO {
 		this.phone = phone;
 	}
 
-
+	@Override
+	public String toString() {
+	    return "ParentDetailsDTO [personalCode=" + personalCode + ", name=" + name + ", surname=" + surname
+		    + ", email=" + email + ", address=" + address + ", phone=" + phone + "]";
+	}
 
 }

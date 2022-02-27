@@ -88,10 +88,7 @@ public class Kindergarten {
 		@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}") String managerName,
 		@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}") String managerSurname,
 		@Min(value = 0, message = "Laisvų vietų skaičius negali būti mažesnis už 0") @Max(value = 999, message = "Laisvų vietų skaičius negali būti didesnis už 999") int capacityAgeGroup2to3,
-		int placesTakenAgeGroup2to3,
-		@Min(value = 0, message = "Laisvų vietų skaičius negali būti mažesnis už 0") @Max(value = 999, message = "Laisvų vietų skaičius negali būti didesnis už 999") int capacityAgeGroup3to6,
-		int placesTakenAgeGroup3to6, Set<KindergartenChoise> kindergartenChoises,
-		Set<Application> approvedApplications) {
+		@Min(value = 0, message = "Laisvų vietų skaičius negali būti mažesnis už 0") @Max(value = 999, message = "Laisvų vietų skaičius negali būti didesnis už 999") int capacityAgeGroup3to6) {
 	    super();
 	    this.id = id;
 	    this.name = name;
@@ -100,11 +97,7 @@ public class Kindergarten {
 	    this.managerName = managerName;
 	    this.managerSurname = managerSurname;
 	    this.capacityAgeGroup2to3 = capacityAgeGroup2to3;
-	    this.placesTakenAgeGroup2to3 = placesTakenAgeGroup2to3;
 	    this.capacityAgeGroup3to6 = capacityAgeGroup3to6;
-	    this.placesTakenAgeGroup3to6 = placesTakenAgeGroup3to6;
-	    this.kindergartenChoises = kindergartenChoises;
-	    this.approvedApplications = approvedApplications;
 	}
 
 	public String getId() {

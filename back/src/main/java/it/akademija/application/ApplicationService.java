@@ -90,7 +90,7 @@ public class ApplicationService {
 
 		ParentDetailsDTO detailsDto = data.getAdditionalGuardian();
 
-		if (detailsDto!=null && detailsDto.getPersonalCode() != null && detailsDto.getPersonalCode() != "") {
+		if (detailsDto!=null && detailsDto.getPersonalCode() != null && !detailsDto.getPersonalCode().isEmpty()) {
 			ParentDetails secondParent = parentDetailsDao.findByPersonalCode(detailsDto.getPersonalCode());
 
 			if (secondParent == null) {

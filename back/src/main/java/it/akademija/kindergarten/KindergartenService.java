@@ -95,7 +95,7 @@ public class KindergartenService {
 	public void createNewKindergarten(KindergartenDTO kindergarten) {
 
 		gartenDao.save(new Kindergarten(kindergarten.getId(), kindergarten.getName(), kindergarten.getAddress(),
-				kindergarten.getElderate(), kindergarten.getCapacityAgeGroup2to3(),
+				kindergarten.getElderate(), kindergarten.getManagerName(), kindergarten.getManagerSurname(), kindergarten.getCapacityAgeGroup2to3(),
 				kindergarten.getCapacityAgeGroup3to6()));
 
 	}
@@ -183,6 +183,8 @@ public class KindergartenService {
 		current.setName(updatedInfo.getName());
 		current.setAddress(updatedInfo.getAddress());
 		current.setElderate(updatedInfo.getElderate());
+		current.setManagerName(updatedInfo.getManagerName());
+		current.setManagerSurname(updatedInfo.getManagerSurname());
 		current.setCapacityAgeGroup2to3(updatedInfo.getCapacityAgeGroup2to3());
 		current.setCapacityAgeGroup3to6(updatedInfo.getCapacityAgeGroup3to6());
 

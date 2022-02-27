@@ -108,8 +108,13 @@ public class ApplicationDTO {
 	public void setPriorities(PrioritiesDTO priorities) {
 		this.priorities = priorities;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+	    return "ApplicationDTO [childName=" + childName + ", childSurname=" + childSurname + ", childPersonalCode="
+		    + childPersonalCode + ", birthdate=" + birthdate + ", priorities=" + priorities + ", mainGuardian="
+		    + mainGuardian + ", additionalGuardian=" + additionalGuardian + ", kindergartenChoises="
+		    + kindergartenChoises + "]";
+	}
 	
 }
