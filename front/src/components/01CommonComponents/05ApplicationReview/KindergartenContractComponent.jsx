@@ -7,7 +7,6 @@ export default function KindergartenContractComponent(props) {
     <div className="container pt-4">
 
       <div className="container pb-2">
-<<<<<<< HEAD
         <p><i>// Sutarties tekstas peržiūrai //</i></p>
         <p></p>
         <h4>IKIMOKYKLINIO UGDYMO PASLAUGŲ SUTARTIS</h4>
