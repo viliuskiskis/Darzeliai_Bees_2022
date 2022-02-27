@@ -98,6 +98,10 @@ a:hover, .btn-link:hover {
   width: 100%;
 }
 
+.pdf-container {
+  height: 80vh;
+}
+
 /* Table row background color */
 
 .background-green {

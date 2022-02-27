@@ -7,6 +7,7 @@ export default function KindergartenContractComponent(props) {
     <div className="container pt-4">
 
       <div className="container pb-2">
+<<<<<<< HEAD
         <p><i>// Sutarties tekstas peržiūrai //</i></p>
         <p></p>
         <h4>IKIMOKYKLINIO UGDYMO PASLAUGŲ SUTARTIS</h4>
@@ -20,7 +21,7 @@ export default function KindergartenContractComponent(props) {
         <p><b> {props.state.mainGuardianEmail} &nbsp; &nbsp; {props.state.additionalGuardianEmail} </b></p>
         <p><b> {props.state.mainGuardianAddress} &nbsp; &nbsp; {props.state.additionalGuardianAddress} </b></p>
         <p><sub>*(Sutartį pasira&scaron;ius vienam i&scaron; Tėvų, kitas i&scaron; Tėvų neatleidžiamas nuo &scaron;ios sutarties įsipareigojimų vykdymo).</sub></p>
-      </div>
+      </div >
 
       <div className="container pb-2">
         <h6>I. SUTARTIES OBJEKTAS</h6>
@@ -111,7 +112,6 @@ export default function KindergartenContractComponent(props) {
           >Parsisiųsti dokumentą pasirašymui
           </button>
         }
-
         <button
           id="CompensationReviewReturn"
           className="btn btn-success me-2"

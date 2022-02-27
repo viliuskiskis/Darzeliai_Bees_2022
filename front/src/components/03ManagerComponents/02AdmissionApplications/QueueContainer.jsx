@@ -18,7 +18,7 @@ export default class QueueContainer extends Component {
     super(props);
     this.state = {
       applications: [],
-      pageSize: 12,
+      pageSize: 10, // FUNCTIONALITY NOT YET IMPLEMENTED
       currentPage: 1,
       totalPages: 0,
       totalElements: 0,

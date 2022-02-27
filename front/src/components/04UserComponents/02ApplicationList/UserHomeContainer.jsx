@@ -18,6 +18,7 @@ export default class UserHomeContainer extends Component {
       compensations: []
     }
     this.handleContractDownload = this.handleContractDownload.bind(this);
+    this.handleKindergartenContract = this.handleKindergartenContract.bind(this);
   }
   componentDidMount() {
     this.getUserApplications();
@@ -78,8 +79,12 @@ export default class UserHomeContainer extends Component {
     });
   }
 
-  handleApplicationReview = (applicationId) => {
-    this.props.history.push(`/prasymas/priimti/${applicationId}`)
+  handleApplicationReview = (application) => {
+    application.status === "Patvirtintas" ?
+      // this.props.history.push(`/prasymas/pasirasymui/${application.id}`)
+      this.props.history.push(`/sutartis/${application.id}`)
+      : this.props.history.push(`/prasymas/priimti/${application.id}`)
+
   }
 
   handleKindergartenContract = (applicationId) => {
