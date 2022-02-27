@@ -82,6 +82,10 @@ export default class UserHomeContainer extends Component {
     this.props.history.push(`/prasymas/priimti/${applicationId}`)
   }
 
+  handleKindergartenContract = (applicationId) => {
+    this.props.history.push(`/prasymas/pasirasymui/:id${applicationId}`)
+  }
+
   handleCompensationReview = (compensationId) => {
     this.props.history.push(`/prasymas/kompensuoti/${compensationId}`)
   }
@@ -140,6 +144,7 @@ export default class UserHomeContainer extends Component {
                     handleApplicationDelete={this.handleApplicationDelete}
                     handleApplicationReview={this.handleApplicationReview}
                     handleContractDownload={this.handleContractDownload}
+                    handleKindergartenContract={this.handleKindergartenContract}
                   />
                 </div>
               </div>
