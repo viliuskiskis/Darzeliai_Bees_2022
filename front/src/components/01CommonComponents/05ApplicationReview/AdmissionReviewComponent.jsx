@@ -66,6 +66,7 @@ export default function AdmissionReviewComponent(props) {
               </div>
             }
 
+            {/*
             {props.state.status === "Patvirtintas" &&
               <button
                 id="CompensationReviewDownloadPDF"
@@ -74,6 +75,7 @@ export default function AdmissionReviewComponent(props) {
               >Parsisiųsti dokumentą pasirašymui
               </button>
             }
+            */}
 
             <button
               id="CompensationReviewReturn"

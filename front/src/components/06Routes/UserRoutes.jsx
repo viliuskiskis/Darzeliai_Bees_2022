@@ -5,6 +5,7 @@ import CommonErrorHandler from "../00Services/CommonErrorHandler";
 import UserNavBar from "../04UserComponents/00NavBar/UserNavBar";
 import UserHomeContainer from "../04UserComponents/02ApplicationList/UserHomeContainer";
 import AdmissionReviewContainer from "../01CommonComponents/05ApplicationReview/AdmissionReviewContainer";
+import KindergartenContractContainer from "../01CommonComponents/05ApplicationReview/KindergartenContractContainer";
 import CompensationReviewContainer from "../01CommonComponents/05ApplicationReview/CompensationReviewContainer";
 import CompensationContractContainer from "../01CommonComponents/05ApplicationReview/CompensationContractContainer";
 import KindergartenStatContainer from "../01CommonComponents/04KindergartenStatistics/KindergartenStatContainer";
@@ -34,6 +35,10 @@ export default function UserRoutes() {
             <Route
               path="/prasymas/priimti/:id"
               component={AdmissionReviewContainer}
+            />
+            <Route
+              path="/prasymas/pasirasymui/:id"
+              component={KindergartenContractContainer}
             />
             <Route
               path="/prasymas/kompensuoti/:id"

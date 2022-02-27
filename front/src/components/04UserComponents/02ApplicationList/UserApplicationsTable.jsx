@@ -46,20 +46,32 @@ export default class UserApplicationsTable extends Component {
       label: 'Veiksmai',
       content: application =>
         <div className="d-flex justify-content-center">
-          <button
-            onClick={() => this.props.handleApplicationReview(application.id)}
-            id="btnReviewCompensation"
-            className="btn btn-primary btn-sm btn-block me-2"
-          >Peržiūrėti
-          </button>
+          {application.status !== "Patvirtintas" &&
+            <button
+              onClick={() => this.props.handleApplicationReview(application.id)}
+              id="btnReviewCompensation"
+              className="btn btn-primary btn-sm btn-block me-2"
+            >Peržiūrėti
+            </button>
+          }
 
           {/* Show this button, if application status is "Parvirtintas" */}
-          {application.status === "Patvirtintas" &&
+          {/*application.status === "Patvirtintas" &&
             <button
               id="btnDownloadContractUser"
               className="btn btn-success btn-block btn-sm me-2"
               onClick={() => this.props.handleContractDownload(application)}
             >Parsisiųsti
+            </button>
+           */}
+
+          {/* Show this button, if application status is "Parvirtintas" */}
+          {application.status === "Patvirtintas" &&
+            <button
+              id="btnReviewContractUser"
+              className="btn btn-success btn-block btn-sm me-2"
+              onClick={() => this.props.handleKindergartenContract(application.id)}
+            >Pasirašymui
             </button>
           }
 

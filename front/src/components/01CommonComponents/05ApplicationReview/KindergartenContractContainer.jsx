@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import apiEndpoint from "../../00Services/endpoint";
 import http from "../../00Services/httpService";
 import swal from "sweetalert";
-import AdmissionReviewComponent from "./AdmissionReviewComponent";
-
-//import KindergartenContractComponent from "./KindergartenContractComponent";
+import KindergartenContractComponent from "./KindergartenContractComponent";
+//import AdmissionReviewComponent from "./AdmissionReviewComponent";
 import AuthContext from "../../00Services/AuthContext";
 
-export default class AdmissionReviewContainer extends Component {
+export default class KindergartenContractContainer extends Component {
   static contextType = AuthContext;
 
   constructor(props) {
@@ -28,9 +27,10 @@ export default class AdmissionReviewContainer extends Component {
       approvedKindergartenManager: "",
       kindergartenChoices: null,
       priorities: null
+
     };
     this.handleReturn = this.handleReturn.bind(this);
-    //this.handleDownloadContract = this.handleDownloadContract.bind(this);
+    this.handleDownloadContract = this.handleDownloadContract.bind(this);
   };
 
   componentDidMount() {
@@ -52,12 +52,24 @@ export default class AdmissionReviewContainer extends Component {
           birthdate: response.data.birthdate,
           numberInWaitingList: response.data.numberInWaitingList,
           mainGuardian: response.data.mainGuardian,
+          mainGuardianName: response.data.mainGuardian.name,
+          mainGuardianSurname: response.data.mainGuardian.surname,
+          mainGuardianPhone: response.data.mainGuardian.phone,
+          mainGuardianEmail: response.data.mainGuardian.email,
+          mainGuardianAddress: response.data.mainGuardian.address,
           additionalGuardian: response.data.additionalGuardian,
+          additionalGuardianName: response.data.additionalGuardian.name,
+          additionalGuardianSurname: response.data.additionalGuardian.surname,
+          additionalGuardianPhone: response.data.additionalGuardian.phone,
+          additionalGuardianEmail: response.data.additionalGuardian.email,
+          additionalGuardianAddress: response.data.additionalGuardian.address,
           approvedKindergarten: response.data.approvedKindergarten,
           approvedKindergartenManager: response.data.approvedKindergartenManager,
           kindergartenChoices: response.data.kindergartenChoices,
           priorities: response.data.priorities
         })
+        // test what data comes from backend
+        //alert(JSON.stringify(response.data))
       }).catch(error => {
         swal({
           text: "Įvyko klaida perduodant duomenis iš serverio: " + JSON.stringify(error),
@@ -66,11 +78,10 @@ export default class AdmissionReviewContainer extends Component {
       });
   }
 
-  /* 
+
   handleDownloadContract(data) {
-    let role = this.context.state.role.toLowerCase();
     http.request({
-      url: `${apiEndpoint}/api/contract/${role}/${data.id}`,
+      url: `${apiEndpoint}/api/contract/user/${data.id}`,
       method: "GET",
       responseType: "blob"
     }).then(response => {
@@ -89,7 +100,7 @@ export default class AdmissionReviewContainer extends Component {
       })
     })
   }
-  */
+
 
   handleReturn() {
     let route = this.context.state.role === "USER" ? "/prasymai" : "/eile";
@@ -98,10 +109,10 @@ export default class AdmissionReviewContainer extends Component {
 
   render() {
     return (
-      <AdmissionReviewComponent
+      <KindergartenContractComponent
         state={this.state}
         role={this.context.state.role}
-        //handleDownloadContract={this.handleDownloadContract}
+        handleDownloadContract={this.handleDownloadContract}
         handleReturn={this.handleReturn}
       />
     )
