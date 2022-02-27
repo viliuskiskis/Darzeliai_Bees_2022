@@ -24,8 +24,10 @@ export default class KindergartenContractContainer extends Component {
       mainGuardian: null,
       additionalGuardian: null,
       approvedKindergarten: "",
+      approvedKindergartenManager: "",
       kindergartenChoices: null,
       priorities: null
+
     };
     this.handleReturn = this.handleReturn.bind(this);
     this.handleDownloadContract = this.handleDownloadContract.bind(this);
@@ -62,9 +64,12 @@ export default class KindergartenContractContainer extends Component {
           additionalGuardianEmail: response.data.additionalGuardian.email,
           additionalGuardianAddress: response.data.additionalGuardian.address,
           approvedKindergarten: response.data.approvedKindergarten,
+          approvedKindergartenManager: response.data.approvedKindergartenManager,
           kindergartenChoices: response.data.kindergartenChoices,
           priorities: response.data.priorities
         })
+        // test what data comes from backend
+        //alert(JSON.stringify(response.data))
       }).catch(error => {
         swal({
           text: "Įvyko klaida perduodant duomenis iš serverio: " + JSON.stringify(error),
