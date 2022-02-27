@@ -15,6 +15,7 @@ import UserDocumentContainer from "../04UserComponents/04Documents/UserDocumentC
 import NotFound from "../01CommonComponents/02NotFound/NotFound";
 
 import Testing from "../99DeleteThis/Testing";
+import ContractReviewContainer from "../04UserComponents/03ApplicationReview/ContractReviewContainer";
 
 
 export default function UserRoutes() {
@@ -39,6 +40,10 @@ export default function UserRoutes() {
             <Route
               path="/prasymas/pasirasymui/:id"
               component={KindergartenContractContainer}
+            />
+            <Route
+              path="/sutartis/:id"
+              component={ContractReviewContainer}
             />
             <Route
               path="/prasymas/kompensuoti/:id"

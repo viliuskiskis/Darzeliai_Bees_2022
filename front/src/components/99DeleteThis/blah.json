@@ -1,0 +1,47 @@
+{
+  "id": 246,
+  "submitedAt": "2022-02-26",
+  "status": "Patvirtintas",
+  "childName": "Rusnis",
+  "childSurname": "Riekašius",
+  "childPersonalCode": "51601150093",
+  "approvalDate": "2022-02-27",
+  "birthdate": "2016-01-15",
+  "numberInWaitingList": 0,
+  "mainGuardian": {
+    "userId": 1,
+    "role": null,
+    "name": "Vidymantas",
+    "surname": "Riekašius",
+    "personalCode": "38601150093",
+    "address": "\"Ilgiausia g. 1, Vilnius\"",
+    "phone": "+37060000001",
+    "email": "user1@user.lt",
+    "username": "user1@user.lt"
+  },
+  "additionalGuardian": {
+    "personalCode": "49104120001",
+    "name": "Adolaida",
+    "surname": "Riekašė",
+    "email": "parent1@parent.lt",
+    "address": "\"Ilgiausia g. 1, Vilnius\"",
+    "phone": "862000001"
+  },
+  "approvedKindergarten": "Lokiuko giraitė (Kovo 11-osios g. 54)",
+  "approvedKindergartenManager": "Nendris Janševskis",
+  "kindergartenChoices": {
+    "kindergarten1": "Lokiuko giraitė (Kovo 11-osios g. 54)",
+    "kindergarten2": "Žiogelis (J. Kolaso g. 15)",
+    "kindergarten3": "Skroblinukas (Skroblų g. 13)",
+    "kindergarten4": "Sakalėlis (S. Stanevičiaus g. 86)",
+    "kindergarten5": "Voveraitė (Jūratės g. 4A)"
+  },
+  "priorities": {
+    "livesInVilnius": true,
+    "childIsAdopted": false,
+    "familyHasThreeOrMoreChildrenInSchools": true,
+    "guardianInSchool": true,
+    "guardianDisability": false,
+    "livesMoreThanTwoYears": false
+  }
+}

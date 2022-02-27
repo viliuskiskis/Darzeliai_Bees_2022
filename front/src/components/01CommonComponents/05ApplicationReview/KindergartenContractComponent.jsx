@@ -10,8 +10,8 @@ export default function KindergartenContractComponent(props) {
         <p>IKIMOKYKLINIO UGDYMO PASLAUGŲ SUTARTIS&nbsp;</p>
         <p>&nbsp;</p>
         <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Nr. {props.state.id} &nbsp;</p>
-        {/*
-        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ({response.data.approvalDate}) &nbsp;</p>
+
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ({props.state.approvalDate}) &nbsp;</p>
         <p>&nbsp;</p>
         <p>&nbsp;Ikimokyklinio ugdymo paslaugų sutartis sudaroma tarp darželio  {props.state.approvedKindergarten}, kurį atstovauja _________________________________,&nbsp;</p>
         <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Darželio pavadinimas) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Darželio direktorius)&nbsp;</p>
@@ -22,10 +22,10 @@ export default function KindergartenContractComponent(props) {
         <p> {props.state.additionalGuardian.address} &nbsp; &nbsp; {props.state.additionalGuardian.address} &nbsp;</p>
         <p>&nbsp;(Sutartį pasira&scaron;ius vienam i&scaron; Tėvų, kitas i&scaron; Tėvų neatleidžiamas nuo &scaron;ios sutarties įsipareigojimų vykdymo).&nbsp;</p>
         <p>&nbsp;</p>
-       */}
+
       </div>
 
-      {/*
+
       <div className="container pb-2">
         <p>I. SUTARTIES OBJEKTAS&nbsp;</p>
         <p>&nbsp;</p>
@@ -120,7 +120,7 @@ export default function KindergartenContractComponent(props) {
         <p>&nbsp;</p>
         <p>Tėvas/Globėjas &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {props.state.mainGuardian.name} {props.state.mainGuardian.surname} </p>
       </div>
-*/}
+
       {props.state.status === "Patvirtintas" &&
         <button
           id="CompensationReviewDownloadPDF"

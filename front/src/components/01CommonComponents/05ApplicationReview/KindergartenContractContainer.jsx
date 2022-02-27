@@ -18,14 +18,45 @@ export default class KindergartenContractContainer extends Component {
       childName: "",
       childSurname: "",
       childPersonalCode: "",
-      approvalDate: null,
+      approvalDate: "",
       birthdate: "",
       numberInWaitingList: "",
-      mainGuardian: null,
-      additionalGuardian: null,
+      mainGuardian: {
+        userId: 0,
+        role: "",
+        name: "",
+        surname: "",
+        personalCode: "",
+        address: "",
+        phone: "",
+        email: "",
+        username: ""
+      },
+      additionalGuardian: {
+        personalCode: "",
+        name: "",
+        surname: "",
+        email: "",
+        address: "",
+        phone: ""
+      },
       approvedKindergarten: "",
-      kindergartenChoices: null,
-      priorities: null
+      approvedKindergartenManager: "",
+      kindergartenChoices: {
+        kindergarten1: "",
+        kindergarten2: "",
+        kindergarten3: "",
+        kindergarten4: "",
+        kindergarten5: ""
+      },
+      priorities: {
+        livesInVilnius: false,
+        childIsAdopted: false,
+        familyHasThreeOrMoreChildrenInSchools: false,
+        guardianInSchool: false,
+        guardianDisability: false,
+        livesMoreThanTwoYears: false
+      }
     };
     this.handleReturn = this.handleReturn.bind(this);
     this.handleDownloadContract = this.handleDownloadContract.bind(this);
@@ -52,6 +83,7 @@ export default class KindergartenContractContainer extends Component {
           mainGuardian: response.data.mainGuardian,
           additionalGuardian: response.data.additionalGuardian,
           approvedKindergarten: response.data.approvedKindergarten,
+          approvedKindergartenManager: response.data.approvedKindergartenManager,
           kindergartenChoices: response.data.kindergartenChoices,
           priorities: response.data.priorities
         })
