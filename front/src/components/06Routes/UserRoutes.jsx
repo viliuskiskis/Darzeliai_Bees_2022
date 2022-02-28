@@ -7,7 +7,6 @@ import UserHomeContainer from "../04UserComponents/02ApplicationList/UserHomeCon
 import AdmissionReviewContainer from "../01CommonComponents/05ApplicationReview/AdmissionReviewContainer";
 import KindergartenContractContainer from "../01CommonComponents/05ApplicationReview/KindergartenContractContainer";
 import CompensationReviewContainer from "../01CommonComponents/05ApplicationReview/CompensationReviewContainer";
-import CompensationContractContainer from "../01CommonComponents/05ApplicationReview/CompensationContractContainer";
 import KindergartenStatContainer from "../01CommonComponents/04KindergartenStatistics/KindergartenStatContainer";
 import CreateApplicationFormContainer from "../04UserComponents/01ApplicationForms/CreateApplicationFormContainer";
 import UpdateProfileFormContainer from "../01CommonComponents/03UpdateProfile/UpdateProfileFormContainer";
@@ -48,10 +47,6 @@ export default function UserRoutes() {
             <Route
               path="/prasymas/kompensuoti/:id"
               component={CompensationReviewContainer}
-            />
-            <Route
-              path="/prasymas/kompensuoti_sutartis/:id"
-              component={CompensationContractContainer}
             />
             <Route
               exact
