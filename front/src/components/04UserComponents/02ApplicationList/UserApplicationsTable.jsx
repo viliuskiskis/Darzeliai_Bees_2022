@@ -48,7 +48,7 @@ export default class UserApplicationsTable extends Component {
         <div className="d-flex justify-content-center">
           {application.status !== "Patvirtintas" &&
             <button
-              onClick={() => this.props.handleApplicationReview(application.id)}
+              onClick={() => this.props.handleApplicationReview(application)}
               id="btnReviewCompensation"
               className="btn btn-primary btn-sm btn-block me-2"
             >Peržiūrėti
