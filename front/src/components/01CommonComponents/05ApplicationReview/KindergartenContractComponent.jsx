@@ -13,7 +13,7 @@ export default function KindergartenContractComponent(props) {
         <p>Nr.{props.state.id} </p>
         <p>Data: {props.state.approvalDate}</p>
 
-        <p>Ikimokyklinio ugdymo paslaugų sutartis sudaroma tarp darželio  <b>{props.state.approvedKindergarten}</b>, kurį atstovauja <b>{props.state.approvedKindergartenManager} </b></p>
+        <p>Ikimokyklinio ugdymo paslaugų sutartis sudaroma tarp darželio  <b>{props.state.approvedKindergarten}</b>, kurį atstovauja <b>{props.state.approvedKindergartenManager}, </b></p>
         <p>veikiančio pagal Darželio nuostatus ir Tėvų/Globėjų (toliau - Tėvai)*, atstovaujančių vaiko interesus.</p>
         <p> <b>{props.state.mainGuardianName} {props.state.mainGuardianSurname} &nbsp; &nbsp; {props.state.additionalGuardianName} {props.state.additionalGuardianSurname} </b></p>
         <p>tel.:<b> {props.state.mainGuardianPhone} &nbsp; &nbsp; tel.:{props.state.additionalGuardianPhone} </b></p>
