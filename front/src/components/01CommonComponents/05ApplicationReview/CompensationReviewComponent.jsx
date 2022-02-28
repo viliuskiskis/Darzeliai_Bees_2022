@@ -40,17 +40,6 @@ export default function CompensationReviewComponent(props) {
               <span>Adresas:<b> {props.state.mainGuardian.address}</b></span><br />
             </div>
 
-            {/* Show this button only for USER when status is "Pateiktas" */}
-            {props.role === "USER" && props.state.applicationStatus === "Pateiktas" &&
-              <span>
-                <button
-                  id="CompensationReviewEdit"
-                  className="btn btn-primary me-2"
-                  onClick={props.activateEdit}
-                >Keisti</button>
-              </span>
-            }
-
             {/* Show this button only for USER */}
             {props.role === "USER" &&
               <span>
