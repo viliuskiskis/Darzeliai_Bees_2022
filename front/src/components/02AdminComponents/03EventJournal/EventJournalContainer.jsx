@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Pagination from "react-js-pagination";
-
 import http from '../../00Services/httpService';
 import apiEndpoint from '../../00Services/endpoint';
-import '../../../App.css';
 import Spinner from '../../05ReusableComponents/Spinner'
-
+import SearchBox from "../../05ReusableComponents/SeachBox";
 import EventJournalTable from './EventJournalTable';
 
 export default class EventJournalContainer extends Component {
@@ -20,20 +18,19 @@ export default class EventJournalContainer extends Component {
       totalElements: 0,
       numberOfElements: 0,
       entriesLoaded: false,
-    }
-  }
+      searchQuery: ""
+    };
+    this.getJournalEntries = this.getJournalEntries.bind(this);
+    this.handlePageChange = this.handlePageChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+  };
+
   componentDidMount() {
-    this.getJournalEntries(this.state.currentPage);
+    this.getJournalEntries(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
   }
 
-  getJournalEntries(currentPage) {
-
-    const { pageSize } = this.state;
-    let page = currentPage - 1;
-
-    if (page < 0) page = 0;
-
-    var uri = `${apiEndpoint}/admin/getjournal/page?page=${page}&size=${pageSize}`;
+  getJournalEntries(page, size, filter) {
+    var uri = `${apiEndpoint}/admin/getjournal/page?page=${page - 1}&size=${size}&filter=${filter}`;
 
     http
       .get(uri)
@@ -53,33 +50,45 @@ export default class EventJournalContainer extends Component {
       .catch(() => { });
   }
 
-  handlePageChange = (page) => {
+  handleSearch(e) {
+    this.setState({ searchQuery: e.currentTarget.value });
+    this.getJournalEntries(1, this.state.pageSize, e.currentTarget.value);
+  }
 
+  handlePageChange = (page) => {
     this.setState({ currentPage: page });
-    this.getJournalEntries(page);
+    this.getJournalEntries(page, this.state.pageSize, this.state.searchQuery);
   };
 
   render() {
     return (
-
       <div className="container pt-4" >
-
         <h6 className="ps-2 pt-3">Sistemos įvykių žurnalas</h6>
         {this.state.entriesLoaded ? (
-          <EventJournalTable entries={this.state.entries} />
+          <div>
+            <SearchBox
+              value={this.state.searchQuery}
+              onSearch={this.handleSearch}
+              placeholder={"Search by username..."}
+            />
+
+            <EventJournalTable entries={this.state.entries} />
+          </div>
         ) : (<Spinner />)}
 
-        <div className="d-flex justify-content-center">
-          <Pagination
-            itemClass="page-item"
-            linkClass="page-link"
-            activePage={this.state.currentPage}
-            itemsCountPerPage={this.state.pageSize}
-            totalItemsCount={this.state.totalElements}
-            pageRangeDisplayed={15}
-            onChange={this.handlePageChange.bind(this)}
-          />
-        </div>
+        {this.state.totalPages > 1 &&
+          <div className="d-flex justify-content-center">
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={this.state.currentPage}
+              itemsCountPerPage={this.state.pageSize}
+              totalItemsCount={this.state.totalElements}
+              pageRangeDisplayed={15}
+              onChange={this.handlePageChange.bind(this)}
+            />
+          </div>
+        }
 
       </div>
     )

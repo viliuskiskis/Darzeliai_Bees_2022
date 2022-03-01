@@ -53,7 +53,7 @@ export default class ManagerDocumentsContainer extends Component {
 
   handlePageChange(page) {
     this.setState({ currentPage: page });
-    this.getDocuments(page, this.state.pageSize);
+    this.getDocuments(page, this.state.pageSize, this.state.searchQuery);
   }
 
   handleDocumentDownload(doc) {
