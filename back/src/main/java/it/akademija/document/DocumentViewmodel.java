@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class DocumentViewmodel {
 
-	private long documentId;
+	private long id;
 	private String name;
 	private LocalDate uploadDate;
 	private String userFirstName;
@@ -18,18 +18,18 @@ public class DocumentViewmodel {
 		super();
 	}
 
-	public DocumentViewmodel(Long documentId, 
+	public DocumentViewmodel(Long id, 
 			String name, 
 			LocalDate uploadDate) {
 		super();
-		this.documentId = documentId;
+		this.id = id;
 		this.name = name;
 		this.uploadDate = uploadDate;
 	}
 	
 	
 	
-	public DocumentViewmodel(long documentId, 
+	public DocumentViewmodel(long id, 
 			String name, 
 			LocalDate uploadDate, 
 			String userFirstName,
@@ -37,7 +37,7 @@ public class DocumentViewmodel {
 			String userPersonalCode, 
 			Long userId) {
 		super();
-		this.documentId = documentId;
+		this.id = id;
 		this.name = name;
 		this.uploadDate = uploadDate;
 		this.userFirstName = userFirstName;
@@ -46,62 +46,60 @@ public class DocumentViewmodel {
 		this.userId = userId;
 	}
 
-	
-	public String getUserFirstName() {
-		return userFirstName;
+	public long getId() {
+	    return id;
 	}
 
-	public void setUserFirstName(String userFirstName) {
-		this.userFirstName = userFirstName;
-	}
-
-	public String getUserLastName() {
-		return userLastName;
-	}
-
-	public void setUserLastName(String userLastName) {
-		this.userLastName = userLastName;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
-	public String getUserPersonalCode() {
-		return userPersonalCode;
-	}
-
-	public void setUserPersonalCode(String userPersonalCode) {
-		this.userPersonalCode = userPersonalCode;
-	}
-
-	public long getDocumentId() {
-		return documentId;
-	}
-
-	public void setDocumentId(long documentId) {
-		this.documentId = documentId;
+	public void setId(long id) {
+	    this.id = id;
 	}
 
 	public String getName() {
-		return name;
+	    return name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+	    this.name = name;
 	}
 
 	public LocalDate getUploadDate() {
-		return uploadDate;
+	    return uploadDate;
 	}
 
 	public void setUploadDate(LocalDate uploadDate) {
-		this.uploadDate = uploadDate;
+	    this.uploadDate = uploadDate;
 	}
 
-	
+	public String getUserFirstName() {
+	    return userFirstName;
+	}
+
+	public void setUserFirstName(String userFirstName) {
+	    this.userFirstName = userFirstName;
+	}
+
+	public String getUserLastName() {
+	    return userLastName;
+	}
+
+	public void setUserLastName(String userLastName) {
+	    this.userLastName = userLastName;
+	}
+
+	public String getUserPersonalCode() {
+	    return userPersonalCode;
+	}
+
+	public void setUserPersonalCode(String userPersonalCode) {
+	    this.userPersonalCode = userPersonalCode;
+	}
+
+	public Long getUserId() {
+	    return userId;
+	}
+
+	public void setUserId(Long userId) {
+	    this.userId = userId;
+	}
+
 }

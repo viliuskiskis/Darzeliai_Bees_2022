@@ -74,7 +74,7 @@ public class CheckIfAllUsersPagesLoad extends AbstractObjectPage {
 	
 	public Boolean assertPrasymuEilePageTitle () {
 		  WebDriverWait wait = new WebDriverWait(driver, 10);
-		  return wait.until(ExpectedConditions.textToBe(By.xpath("//*/h6"), "Prašymų eilė"));
+		  return wait.until(ExpectedConditions.textToBe(By.xpath("//*/h6"), "Prašymai registruotis į valstybinius darželius"));
 		}
 	
 	public Boolean assertManoPrasymaiPageTitle () {

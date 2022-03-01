@@ -4,26 +4,35 @@
 
 # CONFIG:
 # Edit to select local location for repository
-LOC="$HOME/Desktop"
+LOC = "$HOME/Desktop"
 # Edit to change remot repository
-GIT="git@github.com:viliuskiskis/Darzeliai_Bees_2022.git"
+GIT = "git@github.com:viliuskiskis/Darzeliai_Bees_2022.git"
 # Edit to change active branch
-BRANCH="master"
+BRANCH = "master"
+# Repo name
+NAME = "Darzeliai_Bees_2022"
 # Edit to change active commit - if needed - uncomment necessary code below
-COMMIT="891f7fd48ee88106ed033319cf79b5eb1b2a0dd1"
+#COMMIT="891f7fd48ee88106ed033319cf79b5eb1b2a0dd1"
 
 cd $LOC &&
-# implement if folder exists then ask and do->
 
-# clone repository to selected location
-git clone git@github.com:viliuskiskis/Darzeliai_Bees_2022.git
+if [ -d $LOC+'/'+$NAME] 
+then
+    echo "Path exists!" &&
+	cd $NAME &&
+	git fetch &&
+	git switch $BRANCH &&
+	git pull
+else
+    echo "cloning repo to selected location" &&
+	git clone $GIT &&
+	cd $NAME	
+} &&
 
 # BACKEND
 # launch separate backend terminal in location and keep it open
-xfce4-terminal --hold --working-directory $LOC -e "bash -c '
-echo debug1 &&
-cd Darzeliai_Bees_2022/back || return &&
 # run spring boot
+xfce4-terminal --hold --working-directory $LOC/$NAME/back -e "bash -c '
 mvn spring-boot:run;
 exec bash'" &&
 
@@ -37,7 +46,6 @@ echo ...Hooray! Backend alive &&
 sleep 1 &&
 
 # launch separate frontend terminal in location and keep it open
-xfce4-terminal --hold --working-directory $LOC/Darzeliai_Bees_2022/front -e 'bash -c "
-yarn install &&
-yarn start;
+xfce4-terminal --hold --working-directory $LOC/$NAME/front -e 'bash -c "
+yarn install && yarn start;
 exec bash"'

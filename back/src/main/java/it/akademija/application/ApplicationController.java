@@ -132,18 +132,7 @@ public class ApplicationController {
 			@ApiParam(value = "Application id", required = true) @PathVariable Long id){
 		
 		if(id != null) {
-			String currentUsername = SecurityContextHolder
-				.getContext()
-				.getAuthentication()
-				.getName();
-
-				ApplicationDetails applicationDetails = 
-					applicationService
-					.getUserApplicationDetails(currentUsername, id);
-			
-				return new ResponseEntity<ApplicationDetails>
-					(applicationDetails, HttpStatus.OK );
-			
+		    return applicationService.getUserApplicationDetails(id);
 		}
 		return new ResponseEntity<ApplicationDetails>
 					(new ApplicationDetails(), HttpStatus.BAD_REQUEST);
@@ -216,7 +205,8 @@ public class ApplicationController {
 	@ApiOperation(value = "Get a page from all submitted applications")
 	public Page<ApplicationInfo> getPageFromSubmittedApplications(
 			@RequestParam("page") int page,
-			@RequestParam("size") int size) {
+			@RequestParam("size") int size,
+			@RequestParam("filter") String filter) {
 
 		List<Order> orders = new ArrayList<>();
 		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
@@ -224,34 +214,34 @@ public class ApplicationController {
 
 		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
 
-		return applicationService.getPageFromSubmittedApplications(pageable);
+		return applicationService.getPageFromSubmittedApplications(pageable, filter);
 	}
 	
-		/**
-	 * Get page of unsorted applications filtered by child personal code
-	 * 
-	 * @param childPersonalCode
-	 * @param page
-	 * @param size
-	 * @return page of applications
-	 */
-	@Secured({ "ROLE_MANAGER" })
-	@GetMapping("/manager/page/{childPersonalCode}")
-	@ApiOperation(value = "Get a page from all submitted applications with specified child personal code")
-	public ResponseEntity<Page<ApplicationInfo>> getApplicationnPageFilteredById(
-			@PathVariable String childPersonalCode,
-			@RequestParam("page") int page, 
-			@RequestParam("size") int size) {
-
-		List<Order> orders = new ArrayList<>();
-		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
-		orders.add(new Order(Direction.ASC, "childName").ignoreCase());
-
-		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
-
-		return new ResponseEntity<>(applicationService.getApplicationnPageFilteredById(childPersonalCode, pageable),
-				HttpStatus.OK);
-	}
+//		/**
+//	 * Get page of unsorted applications filtered by child personal code
+//	 * 
+//	 * @param childPersonalCode
+//	 * @param page
+//	 * @param size
+//	 * @return page of applications
+//	 */
+//	@Secured({ "ROLE_MANAGER" })
+//	@GetMapping("/manager/page/{childPersonalCode}")
+//	@ApiOperation(value = "Get a page from all submitted applications with specified child personal code")
+//	public ResponseEntity<Page<ApplicationInfo>> getApplicationnPageFilteredById(
+//			@PathVariable String childPersonalCode,
+//			@RequestParam("page") int page, 
+//			@RequestParam("size") int size) {
+//
+//		List<Order> orders = new ArrayList<>();
+//		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
+//		orders.add(new Order(Direction.ASC, "childName").ignoreCase());
+//
+//		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
+//
+//		return new ResponseEntity<>(applicationService.getApplicationnPageFilteredById(childPersonalCode, pageable),
+//				HttpStatus.OK);
+//	}
 	
 	/**
 	 * 
@@ -277,19 +267,12 @@ public class ApplicationController {
 	@GetMapping("/manager/{id}")
 	@ApiOperation(value = "Get application by id")
 	public ResponseEntity<ApplicationDetails> getApplication(
-			@ApiParam(value = "CompensationApplication id", required = true) @PathVariable Long id){
-		
-		if(id != null) {
-			
-			ApplicationDetails applicationDetails = 
-					applicationService
-					.getApplicationDetails(id);
-			
-			return new ResponseEntity<ApplicationDetails>
-					(applicationDetails, HttpStatus.OK );
-		}
-		return new ResponseEntity<ApplicationDetails>
-					(new ApplicationDetails(), HttpStatus.BAD_REQUEST);
+		@ApiParam(value = "CompensationApplication id", required = true) @PathVariable Long id) {
+
+	    if (id != null) {
+		return applicationService.getApplicationDetails(id);
+	    }
+	    return new ResponseEntity<ApplicationDetails>(new ApplicationDetails(), HttpStatus.BAD_REQUEST);
 	}
 
 }

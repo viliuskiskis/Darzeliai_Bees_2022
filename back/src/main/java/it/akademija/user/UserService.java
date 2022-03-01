@@ -2,7 +2,6 @@ package it.akademija.user;
 
 import java.util.List;
 import java.util.Set;
-import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -180,17 +179,18 @@ public class UserService implements UserDetailsService {
 	 * @return list of user details for ADMIN
 	 */
 	@Transactional(readOnly = true)
-	public Page<UserInfo> getAllUsers(Pageable pageable) {
-		Page<User> users = userDao.findAll(pageable);
-		Page<UserInfo> dtoPage = users.map(new Function<User, UserInfo>() {
-			@Override
-			public UserInfo apply(User user) {
-				UserInfo dto = new UserInfo(user.getUserId(), user.getRole().name(), user.getUsername());
-				return dto;
-			}
-
-		});
-		return dtoPage;
+	public Page<UserInfo> getAllUsers(Pageable pageable, String filter) {
+//		Page<User> users = userDao.findAll(pageable);
+//		Page<UserInfo> dtoPage = users.map(new Function<User, UserInfo>() {
+//			@Override
+//			public UserInfo apply(User user) {
+//				UserInfo dto = new UserInfo(user.getUserId(), user.getRole().name(), user.getUsername());
+//				return dto;
+//			}
+//
+//		});
+//		return dtoPage;
+	    return userDao.getPageOfUsers(pageable, filter);
 	}
 
 	/**

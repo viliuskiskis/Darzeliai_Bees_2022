@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -40,8 +39,10 @@ public class ApplicationQueueController {
 	@GetMapping("/manager/queue")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "Get application queue processed")
-	public ResponseEntity<Page<ApplicationQueueInfo>> getApplicationQueueInformation(@RequestParam("page") int page,
-			@RequestParam("size") int size) {
+	public ResponseEntity<Page<ApplicationQueueInfo>> getApplicationQueueInformation(
+		@RequestParam("page") int page,
+		@RequestParam("size") int size,
+		@RequestParam("filter") String filter) {
 
 		List<Order> orders = new ArrayList<>();
 		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
@@ -49,31 +50,31 @@ public class ApplicationQueueController {
 
 		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
 
-		return new ResponseEntity<>(queueService.getApplicationQueueInformation(pageable), HttpStatus.OK);
+		return new ResponseEntity<>(queueService.getApplicationQueueInformation(pageable, filter), HttpStatus.OK);
 	}
 
-	/**
-	 * Get application queue filtered by Child personal code
-	 * 
-	 * @return filtered list of sorted applications
-	 */
-	@Secured({ "ROLE_MANAGER" })
-	@GetMapping("/manager/queue/{childPersonalCode}")
-	@ResponseStatus(HttpStatus.OK)
-	@ApiOperation(value = "Get application queue processed")
-	public ResponseEntity<Page<ApplicationQueueInfo>> getApplicationQueueInformationFilteredByChildId(
-			@PathVariable String childPersonalCode, @RequestParam("page") int page, @RequestParam("size") int size) {
-
-		List<Order> orders = new ArrayList<>();
-		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
-		orders.add(new Order(Direction.ASC, "childName").ignoreCase());
-		
-		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
-
-		return new ResponseEntity<>(
-				queueService.getApplicationQueueInformationFilteredByChildId(childPersonalCode, pageable),
-				HttpStatus.OK);
-	}
+//	/**
+//	 * Get application queue filtered by Child personal code
+//	 * 
+//	 * @return filtered list of sorted applications
+//	 */
+//	@Secured({ "ROLE_MANAGER" })
+//	@GetMapping("/manager/queue/{childPersonalCode}")
+//	@ResponseStatus(HttpStatus.OK)
+//	@ApiOperation(value = "Get application queue processed")
+//	public ResponseEntity<Page<ApplicationQueueInfo>> getApplicationQueueInformationFilteredByChildId(
+//			@PathVariable String childPersonalCode, @RequestParam("page") int page, @RequestParam("size") int size) {
+//
+//		List<Order> orders = new ArrayList<>();
+//		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
+//		orders.add(new Order(Direction.ASC, "childName").ignoreCase());
+//		
+//		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
+//
+//		return new ResponseEntity<>(
+//				queueService.getApplicationQueueInformationFilteredByChildId(childPersonalCode, pageable),
+//				HttpStatus.OK);
+//	}
 
 	public ApplicationQueueService getQueueService() {
 		return queueService;

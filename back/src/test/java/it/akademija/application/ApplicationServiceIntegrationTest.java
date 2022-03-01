@@ -1,3 +1,4 @@
+
 package it.akademija.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,13 +55,14 @@ public class ApplicationServiceIntegrationTest {
 		PageRequest page = PageRequest.of(1, 10);
 		
 		Page<ApplicationQueueInfo> info = queueService
-				.getApplicationQueueInformation(page);
+				.getApplicationQueueInformation(page, null);
 		
 		assertTrue(info.getSize() != 0);
 		
 		assertEquals(123L, queueInfo.getId());
 
 	}
+
 
 //	@Test
 //	@Order(2)
@@ -180,3 +182,4 @@ public class ApplicationServiceIntegrationTest {
 	}
 
 }
+

@@ -4,6 +4,12 @@ import Table from "../../05ReusableComponents/Table";
 export default class CompensationListTable extends Component {
   columns = [
     {
+      key: 'id',
+      path: 'id',
+      label: '#',
+      content: application => <span> {application.id}</span>
+    },
+    {
       key: 'applicationStatus',
       path: 'applicationStatus',
       label: 'Prašymo statusas',
@@ -40,24 +46,30 @@ export default class CompensationListTable extends Component {
       content: compensation => <span> {compensation.entityName} </span>
     },
     {
-      key: 'review',
-      label: 'Peržiūrėti prašymą',
+      key: 'veiksmai',
+      label: 'Veiksmai',
       content: compensation =>
-        <button onClick={() => this.props.handleCompensationReview(compensation.id)}
-          id="btnReviewCompensationManager"
-          className="btn btn-outline-primary btn-sm btn-block">Peržiūrėti</button>
-    },
-    {
-      key: 'deactivate',
-      label: 'Deaktyvuoti prašymą',
-      content: compensation =>
-        <button
-          id="btnDeactivateCompensationManager"
-          className="btn btn-outline-danger btn-sm btn-block"
-          onClick={() => this.props.handleCompensationDeactivate(compensation.id)}
-          disabled={compensation.applicationStatus !== "Pateiktas"}
-        >Deaktyvuoti
-        </button>
+        <div className="d-flex justify-content-center">
+          <button onClick={() => this.props.handleCompensationReview(compensation.id)}
+            id="btnReviewCompensationManager"
+            className="btn btn-primary btn-sm btn-block me-2"
+          >Peržiūrėti
+          </button>
+          <button
+            id="btnDeactivateCompensationManager"
+            className="btn btn-danger btn-sm btn-block me-2"
+            onClick={() => this.props.handleCompensationDeactivate(compensation)}
+            disabled={compensation.applicationStatus !== "Pateiktas"}
+          >Atmesti
+          </button>
+          <button
+            id="btnConfirmCompensationManager"
+            className="btn btn-success btn-sm btn-block"
+            onClick={() => this.props.handleCompensationConfirm(compensation)}
+            disabled={compensation.applicationStatus !== "Pateiktas"}
+          >Patvirtinti
+          </button>
+        </div>
     }
   ]
 

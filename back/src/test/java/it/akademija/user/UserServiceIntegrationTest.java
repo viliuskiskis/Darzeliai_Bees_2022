@@ -44,7 +44,7 @@ public class UserServiceIntegrationTest {
 	public void testGetAllUsers() {
 
 		PageRequest page = PageRequest.of(1, 10);
-		Page<UserInfo> users = service.getAllUsers(page);
+		Page<UserInfo> users = service.getAllUsers(page, "");
 		assertTrue(users.getSize() != 0);
 
 	}
@@ -109,7 +109,7 @@ public class UserServiceIntegrationTest {
 
 		PageRequest page = PageRequest.of(1, 10);
 
-		assertTrue(journalService.getAllJournalEntries(page).getSize() != 0);
+		assertTrue(journalService.getAllJournalEntries(page, "").getSize() != 0);
 
 		UserDTO newUser = new UserDTO("USER", "stest", "stest", "12345898987", "Address 1", "+37061398876",
 				"stest@test.lt", "stest@test.lt", "stest@test.lt");
@@ -119,7 +119,7 @@ public class UserServiceIntegrationTest {
 		journalService.depersonalizeUserLogs("stest");
 
 		PageRequest page2 = PageRequest.of(1, 10);
-		assertTrue(journalDAO.getAllJournalEntries(page2).getSize() != 0);
+		assertTrue(journalDAO.getAllJournalEntries("", page2).getSize() != 0);
 
 		service.deleteUser("stest@test.lt");
 		assertNull(service.findByUsername("stest@test.lt"));

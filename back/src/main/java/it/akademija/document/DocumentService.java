@@ -86,8 +86,8 @@ public class DocumentService {
 	}
 
 
-	public Page<DocumentViewmodel> getPageDocuments(Pageable pageable) {
-		return documentDao.findAllDocumentViewModel(pageable);
+	public Page<DocumentViewmodel> getPageDocuments(Pageable pageable, String filter) {
+		return documentDao.findAllDocumentViewModel(filter, pageable);
 	}
 
 }

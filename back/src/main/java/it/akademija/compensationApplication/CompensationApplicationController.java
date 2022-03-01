@@ -301,7 +301,47 @@ public class CompensationApplicationController {
 			compensationApplicationService
 					.deactivateCompensationApplication(compensationApplication);
 			
-			return new ResponseEntity<> (HttpStatus.OK);
+			return new ResponseEntity<String> ("Statusas pakeistas sėkmingai", HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<String>
+				("Kompensacijos prašymas nerastas", HttpStatus.BAD_REQUEST);
+	}
+	
+	/**
+	 * Confirm compensation application
+	 * 
+	 * @param id
+	 * @return message
+	 */
+	@Secured({ "ROLE_MANAGER" })
+	@PostMapping("/manager/confirm/{id}")
+	@ApiOperation(value = "Confirm compensation application")
+	public ResponseEntity<String> confirmCompensationApplication(
+			@ApiParam(value = "CompensationApplication id", required = true)
+			@PathVariable Long id) {
+		
+		if(id != null && compensationApplicationService
+				.existsCompensationApplicationById(id)) {
+			
+			CompensationApplication compensationApplication = 
+					compensationApplicationService.getCompensationApplicationById(id);
+			
+			if(compensationApplication.getApplicationStatus()
+					.equals(ApplicationStatus.Neaktualus)) {
+				
+				return new ResponseEntity<String>
+						("Veiksmas negalimas. Prašymas jau atmestas.",
+						HttpStatus.METHOD_NOT_ALLOWED);
+				
+			}
+			
+			LOG.info("**CompensationApplicationController: patvirtinamas prasymas [{}] **", id);
+			
+			compensationApplicationService
+					.confirmCompensationApplication(compensationApplication);
+			
+			return new ResponseEntity<String> ("Statusas pakeistas sėkmingai", HttpStatus.OK);
 		}
 		
 		return new ResponseEntity<String>

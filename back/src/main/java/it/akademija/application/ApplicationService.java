@@ -94,14 +94,8 @@ public class ApplicationService {
 		ParentDetailsDTO detailsDto = data
 				.getAdditionalGuardian();
 
-		if (detailsDto!=null && 
-				detailsDto.getPersonalCode() != null &&
-				detailsDto.getPersonalCode() != "") {
-			
-			
-			ParentDetails secondParent = parentDetailsDao
-					.findByPersonalCode(detailsDto
-					.getPersonalCode());
+		if (detailsDto!=null && detailsDto.getPersonalCode() != null && !detailsDto.getPersonalCode().isEmpty()) {
+			ParentDetails secondParent = parentDetailsDao.findByPersonalCode(detailsDto.getPersonalCode());
 
 			if (secondParent == null) {
 				secondParent = parentDetailsDao.save(
@@ -336,9 +330,9 @@ public class ApplicationService {
 	 * @param pageable
 	 * @return page from Application database
 	 */
-	public Page<ApplicationInfo> getPageFromSubmittedApplications(Pageable pageable) {
+	public Page<ApplicationInfo> getPageFromSubmittedApplications(Pageable pageable, String filter) {
 
-		return applicationDao.findAllApplications(pageable);
+		return applicationDao.findAllApplications(pageable, filter);
 
 	}
 
@@ -362,19 +356,25 @@ public class ApplicationService {
 	 * @param id
 	 * @return application details
 	 */
-	public ApplicationDetails getUserApplicationDetails(String currentUsername, Long id) {
-		
-		ApplicationDetails applicationDetails = 
-				applicationDao.getUserApplicationDetails(currentUsername, id);
-		
-		applicationDetails.setMainGuardian(
-				userService.getUserInfoByUsername(currentUsername));
-	
-		applicationDetails.setKindergartenInfo(
-				gartenService.getKindergartenInfoByApplicationId(id));
-		
-		
-		return applicationDetails;
+	public ResponseEntity<ApplicationDetails> getUserApplicationDetails(Long id) {
+
+	    String currentUsername = SecurityContextHolder.getContext()
+							  .getAuthentication()
+							  .getName();
+	    String applicationUsername = "";
+
+	    if (applicationDao.findById(id).isPresent()) {
+		applicationUsername = applicationDao.findById(id)
+						    .get()
+						    .getMainGuardian()
+						    .getUsername();
+	    }
+
+	    if (currentUsername.equals(applicationUsername)) {
+		return getApplicationDetails(id);
+	    } else {
+		return new ResponseEntity<ApplicationDetails>(new ApplicationDetails(), HttpStatus.FORBIDDEN);
+	    }
 	}
 
 	/**
@@ -383,19 +383,14 @@ public class ApplicationService {
 	 * @param id
 	 * @return application details
 	 */
-	public ApplicationDetails getApplicationDetails(Long id) {
-		
-		ApplicationDetails applicationDetails = 
-				applicationDao.getApplicationDetails(id);
-		
-		applicationDetails.setMainGuardian(
-				userService.getUserInfoByApplicationId(id));
-	
-		applicationDetails.setKindergartenInfo(
-				gartenService.getKindergartenInfoByApplicationId(id));
-		
-		
-		return applicationDetails;
+	public ResponseEntity<ApplicationDetails> getApplicationDetails(Long id) {
+	    
+	    ApplicationDetails applicationDetails = applicationDao.getApplicationDetails(id);
+	    applicationDetails.setMainGuardian(userService.getUserInfoByApplicationId(id));
+	    applicationDetails.setAdditionalGuardian(parentDetailsDao.getParentDetailsByApplicationId(id));
+	    applicationDetails.setKindergartenChoices(applicationDao.getKindergartenChoicesByApplicationId(id));
+	    applicationDetails.setPriorities(applicationDao.getPrioritiesByApplicationId(id));
+	    return new ResponseEntity<ApplicationDetails>(applicationDetails, HttpStatus.OK);
 	}
 
 	/**

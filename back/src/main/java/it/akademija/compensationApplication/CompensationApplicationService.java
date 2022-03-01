@@ -216,6 +216,11 @@ public class CompensationApplicationService {
 		compensationApplication.setApplicationStatus(ApplicationStatus.Neaktualus);
 		compensationApplicationDAO.save(compensationApplication);
 	}
+	
+	public void confirmCompensationApplication(CompensationApplication compensationApplication) {
+		compensationApplication.setApplicationStatus(ApplicationStatus.Patvirtintas);
+		compensationApplicationDAO.save(compensationApplication);
+	}
 
 	public CompensationApplication getCompensationApplicationById(Long id) {
 		return compensationApplicationDAO.getById(id);

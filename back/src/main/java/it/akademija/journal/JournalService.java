@@ -23,8 +23,8 @@ public class JournalService {
 	private UserDAO userDAO;
 
 	@Transactional(readOnly = true)
-	public Page<JournalEntry> getAllJournalEntries(Pageable pageable) {
-		return journalEntryDAO.getAllJournalEntries(pageable);
+	public Page<JournalEntry> getAllJournalEntries(Pageable pageable, String filter) {
+		return journalEntryDAO.getAllJournalEntries(filter, pageable);
 	}
 
 	/**

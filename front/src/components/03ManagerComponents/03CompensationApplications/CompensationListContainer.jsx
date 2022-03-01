@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import "../../../App.css";
 import http from "../../00Services/httpService";
 import apiEndpoint from "../../00Services/endpoint";
 import swal from "sweetalert";
-import Pagination from '../../05ReusableComponents/Pagination';
+import Pagination from "react-js-pagination";
 import SearchBox from "../../05ReusableComponents/SeachBox";
 
 import CompensationListTable from "./CompensationListTable";
@@ -24,14 +23,15 @@ export default class CompensationListContainer extends Component {
     this.handleCompensationReview = this.handleCompensationReview.bind(this);
     this.handleCompensationDeactivate = this.handleCompensationDeactivate.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleCompensationConfirm = this.handleCompensationConfirm.bind(this);
   }
 
   componentDidMount() {
-    this.getCompensations(this.state.currentPage, this.state.searchQuery);
+    this.getCompensations(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
   }
 
-  getCompensations(page, filter) {
-    http.get(`${apiEndpoint}/api/kompensacijos/manager?pageNumber=${page - 1}&pageSize=10&filter=${filter}`)
+  getCompensations(page, size, filter) {
+    http.get(`${apiEndpoint}/api/kompensacijos/manager?pageNumber=${page - 1}&pageSize=${size}&filter=${filter}`)
       .then(response => {
         this.setState({
           compensations: response.data.content,
@@ -50,44 +50,66 @@ export default class CompensationListContainer extends Component {
 
   handleSearch(e) {
     this.setState({ searchQuery: e.currentTarget.value });
-    this.getCompensations(1, e.currentTarget.value);
+    this.getCompensations(1, this.state.pageSize, e.currentTarget.value);
   }
 
   handlePageChange(page) {
     this.setState({ currentPage: page });
-    this.getCompensations(page, this.state.searchQuery);
+    this.getCompensations(page, this.state.pageSize, this.state.searchQuery);
   }
 
   handleCompensationReview(id) {
     this.props.history.push(`/prasymas/kompensuoti/${id}`)
   }
 
-  handleCompensationDeactivate(id) {
+  handleCompensationDeactivate(item) {
     swal({
-      text: "DĖMESIO! Šio veiksmo negalėsite atšaukti!\n\nAr tikrai norite deaktyvuoti prašymą?",
+      text: "DĖMESIO! Šio veiksmo negalėsite atšaukti!\n\nAr tikrai norite atmesti prašymą?",
       buttons: ["Ne", "Taip"],
       dangerMode: true,
     }).then((actionConfirmed) => {
       if (actionConfirmed) {
-        http.post(`${apiEndpoint}/api/kompensacijos/manager/deactivate/${id}`)
+        http.post(`${apiEndpoint}/api/kompensacijos/manager/deactivate/${item.id}`)
           .then(response => {
             swal({
               text: response.data,
               button: "Gerai"
-            })
-          })
-          .then(setTimeout(() => {
-            this.getCompensations(this.state.currentPage);
-          }, 1000))
-          .catch(error => {
+            });
+          }).then(() => {
+            this.getCompensations(this.state.currentPage, this.state.pageSize, "");
+          }).catch(error => {
             swal({
-              text: "Įvyko klaida",
+              text: "Įvyko klaida" + error.response.data,
               button: "Gerai"
             })
           })
       }
     })
+  }
 
+  handleCompensationConfirm(item) {
+    swal({
+      text: "DĖMESIO! Šio veiksmo negalėsite atšaukti!\n\nAr tikrai norite patvirtinti prašymą?",
+      buttons: ["Ne", "Taip"],
+      dangerMode: true,
+    }).then((actionConfirmed) => {
+      if (actionConfirmed) {
+        http.post(`${apiEndpoint}/api/kompensacijos/manager/confirm/${item.id}`)
+          .then(response => {
+            swal({
+              text: response.data,
+              button: "Gerai"
+            });
+          }).then(() => {
+            this.getCompensations(this.state.currentPage, this.state.pageSize, "");
+          }).catch(error => {
+            swal({
+              text: "Įvyko klaida" + error.response.data,
+              button: "Gerai"
+            })
+          })
+      }
+    })
   }
 
   render() {
@@ -110,16 +132,21 @@ export default class CompensationListContainer extends Component {
           compensations={this.state.compensations}
           handleCompensationReview={this.handleCompensationReview}
           handleCompensationDeactivate={this.handleCompensationDeactivate}
+          handleCompensationConfirm={this.handleCompensationConfirm}
         />
 
-        {this.state.totalPages > 1 && <div className="d-flex justify-content-center">
-          <Pagination
-            itemsCount={this.state.totalElements}
-            pageSize={this.state.pageSize}
-            onPageChange={this.handlePageChange}
-            currentPage={this.state.currentPage}
-          />
-        </div>
+        {this.state.totalPages > 1 &&
+          <div className="d-flex justify-content-center">
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={this.state.currentPage}
+              itemsCountPerPage={this.state.pageSize}
+              totalItemsCount={this.state.totalElements}
+              pageRangeDisplayed={15}
+              onChange={this.handlePageChange}
+            />
+          </div>
         }
 
       </div>

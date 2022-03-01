@@ -1,7 +1,139 @@
 {
-  "state": {
-    "isAuthenticated": true,
-    "role": "USER",
-    "error": null
-  }
+  "content": [
+    {
+      "userId": 3103,
+      "role": "MANAGER",
+      "name": "manager",
+      "surname": "manager",
+      "personalCode": null,
+      "address": null,
+      "phone": null,
+      "email": "manager@manager.lt",
+      "username": "manager@manager.lt"
+    },
+    {
+      "userId": 3101,
+      "role": "USER",
+      "name": "user",
+      "surname": "user",
+      "personalCode": null,
+      "address": null,
+      "phone": null,
+      "email": "user@user.lt",
+      "username": "user@user.lt"
+    },
+    {
+      "userId": 3100,
+      "role": "ADMIN",
+      "name": "admin",
+      "surname": "admin",
+      "personalCode": null,
+      "address": null,
+      "phone": null,
+      "email": "admin@admin.lt",
+      "username": "admin@admin.lt"
+    },
+    {
+      "userId": 237,
+      "role": "USER",
+      "name": "Erna",
+      "surname": "Kubaitė",
+      "personalCode": null,
+      "address": null,
+      "phone": null,
+      "email": "user119@user.lt",
+      "username": "user119@user.lt"
+    },
+    {
+      "userId": 235,
+      "role": "USER",
+      "name": "Alvida",
+      "surname": "Brunytė",
+      "personalCode": null,
+      "address": null,
+      "phone": null,
+      "email": "user118@user.lt",
+      "username": "user118@user.lt"
+    },
+    {
+      "userId": 233,
+      "role": "USER",
+      "name": "Virgailė",
+      "surname": "Tumiūtė",
+      "personalCode": null,
+      "address": null,
+      "phone": null,
+      "email": "user117@user.lt",
+      "username": "user117@user.lt"
+    },
+    {
+      "userId": 231,
+      "role": "USER",
+      "name": "Norgilė",
+      "surname": "Paresčiūtė",
+      "personalCode": null,
+      "address": null,
+      "phone": null,
+      "email": "user116@user.lt",
+      "username": "user116@user.lt"
+    },
+    {
+      "userId": 229,
+      "role": "USER",
+      "name": "Juozapė",
+      "surname": "Grakovičaitė",
+      "personalCode": null,
+      "address": null,
+      "phone": null,
+      "email": "user115@user.lt",
+      "username": "user115@user.lt"
+    },
+    {
+      "userId": 227,
+      "role": "USER",
+      "name": "Birutėlė",
+      "surname": "Šmeigauskaitė",
+      "personalCode": null,
+      "address": null,
+      "phone": null,
+      "email": "user114@user.lt",
+      "username": "user114@user.lt"
+    },
+    {
+      "userId": 225,
+      "role": "USER",
+      "name": "Ala",
+      "surname": "Muntrimaitė",
+      "personalCode": null,
+      "address": null,
+      "phone": null,
+      "email": "user113@user.lt",
+      "username": "user113@user.lt"
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "empty": false,
+      "sorted": true,
+      "unsorted": false
+    },
+    "offset": 0,
+    "pageSize": 10,
+    "pageNumber": 0,
+    "unpaged": false,
+    "paged": true
+  },
+  "last": false,
+  "totalPages": 13,
+  "totalElements": 122,
+  "size": 10,
+  "number": 0,
+  "sort": {
+    "empty": false,
+    "sorted": true,
+    "unsorted": false
+  },
+  "first": true,
+  "numberOfElements": 10,
+  "empty": false
 }

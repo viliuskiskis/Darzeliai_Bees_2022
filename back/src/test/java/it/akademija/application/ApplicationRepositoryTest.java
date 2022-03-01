@@ -1,3 +1,4 @@
+
 package it.akademija.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -127,3 +128,4 @@ public class ApplicationRepositoryTest {
 	}
 
 }
+

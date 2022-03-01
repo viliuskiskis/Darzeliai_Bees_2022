@@ -97,3 +97,17 @@ a:hover, .btn-link:hover {
   display: block;
   width: 100%;
 }
+
+.pdf-container {
+  height: 80vh;
+}
+
+/* Table row background color */
+
+.background-green {
+  background-color: lightgreen;
+}
+
+.background-red {
+  background-color: lightcoral;
+}

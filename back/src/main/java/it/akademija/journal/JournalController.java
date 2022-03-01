@@ -25,13 +25,14 @@ public class JournalController {
 	@ApiOperation(value = "Show all journal entries", notes = "Showing all journal entries")
 	public ResponseEntity<Page<JournalEntry>> getJournalEntriesPage(
 			@RequestParam("page") int page, 
-			  @RequestParam("size") int size) {	
+			  @RequestParam("size") int size,
+			  @RequestParam("filter") String filter) {	
 		
 		Sort.Order order = new Sort.Order(Sort.Direction.DESC, "eventTime");
 						
 		Pageable pageable = PageRequest.of(page, size, Sort.by(order));
 
-		return new ResponseEntity<>(journalService.getAllJournalEntries(pageable), HttpStatus.OK);
+		return new ResponseEntity<>(journalService.getAllJournalEntries(pageable, filter), HttpStatus.OK);
 	}
 
 	public JournalService getJournalService() {

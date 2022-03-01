@@ -34,6 +34,7 @@ public class GeneralMethods extends BaseTest {
 	private String changedUserEmail = "pakeistas@email.lt";
 	private String expectedErrorMessage= "Neteisingas prisijungimo vardas ir/arba slaptažodis!";
 	private String pdfFileLocation = "C:\\Users\\Tomas\\Desktop\\VilniausDarzeliuSistema\\Bees_projektas\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
+//	private String pdfFileLocation = "C:\\Users\\Modestas\\Desktop\\Project GIT Repository\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
 
 	// LOGIN/ LOGOUT METHODS
 
@@ -503,6 +504,13 @@ public class GeneralMethods extends BaseTest {
 		  WebElement popUpClickOK = wait.until(
 				  ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'confirm') and contains(text(), 'Gerai')]")));
 		  popUpClickOK.click();
+	}
+
+	public void waitAndClickOkButton() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		WebElement okButton = wait.until(
+				ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='swal-button swal-button--confirm']")));
+		okButton.click();
 	}
 
 	public void clickOkButton() {

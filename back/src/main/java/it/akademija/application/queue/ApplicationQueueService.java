@@ -174,9 +174,9 @@ public class ApplicationQueueService {
 	 * @return
 	 */
 	@Transactional(readOnly = true)
-	public Page<ApplicationQueueInfo> getApplicationQueueInformation(Pageable pageable) {
+	public Page<ApplicationQueueInfo> getApplicationQueueInformation(Pageable pageable, String filter) {
 
-		return applicationDao.findQueuedApplications(pageable);
+		return applicationDao.findQueuedApplications(pageable, filter);
 	}
 
 	/**
