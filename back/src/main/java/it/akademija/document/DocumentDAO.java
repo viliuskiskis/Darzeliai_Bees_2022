@@ -23,7 +23,9 @@ public interface DocumentDAO extends JpaRepository<DocumentEntity, Long> {
 			+ "JOIN User u "
 			+ "ON de.uploaderId=u.userId "
 			+ "JOIN ParentDetails pd "
-			+ "ON u.userId=pd.user.id")
-	Page<DocumentViewmodel> findAllDocumentViewModel(Pageable pageable);
+			+ "ON u.userId=pd.user.id "
+			+ "WHERE UPPER(CONCAT(u.surname, ', ', u.name)) "
+			+ "LIKE(UPPER(CONCAT(?1, '%')))")
+	Page<DocumentViewmodel> findAllDocumentViewModel(String filter, Pageable pageable);
 	
 }

@@ -4,6 +4,7 @@ import http from '../../00Services/httpService';
 import swal from "sweetalert";
 import Pagination from "react-js-pagination";
 import ManagerDocumentsTable from "./ManagerDocumentsTable";
+import SearchBox from "../../05ReusableComponents/SeachBox";
 
 export default class ManagerDocumentsContainer extends Component {
   constructor(props) {
@@ -20,14 +21,15 @@ export default class ManagerDocumentsContainer extends Component {
     this.getDocuments = this.getDocuments.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleDocumentDownload = this.handleDocumentDownload.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
-    this.getDocuments(this.state.currentPage, this.state.pageSize);
+    this.getDocuments(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
   }
 
-  getDocuments(page, size) {
-    http.get(`${apiEndpoint}/api/documents/manager/get?pageNumber=${page - 1}&pageSize=${size}`)
+  getDocuments(page, size, filter) {
+    http.get(`${apiEndpoint}/api/documents/manager/get?pageNumber=${page - 1}&pageSize=${size}&filter=${filter}`)
       .then(response => {
         this.setState({
           documentList: response.data.content,
@@ -42,6 +44,11 @@ export default class ManagerDocumentsContainer extends Component {
           button: "Gerai"
         });
       })
+  }
+
+  handleSearch(e) {
+    this.setState({ searchQuery: e.currentTarget.value });
+    this.getDocuments(1, this.state.pageSize, e.currentTarget.value);
   }
 
   handlePageChange(page) {
@@ -71,13 +78,20 @@ export default class ManagerDocumentsContainer extends Component {
   }
 
   render() {
-    // THIS IS FOR FUTURE searchBox IMPLEMENTATION:
-    // let size = 0;
-    // if (this.state.documentList !== undefined) size = this.state.documentList.length;
+    let size = 0;
+    if (this.state.documentList !== undefined) size = this.state.documentList.length;
 
     return (
       <div className="container pt-4">
         <h6 className="ps-2 pt-3">Prašymų registruotis į valstybinius darželius pažymos</h6>
+
+        {(size > 0 || this.state.searchQuery !== "") &&
+          <SearchBox
+            value={this.state.searchQuery}
+            onSearch={this.handleSearch}
+            placeholder={"Pavardė, Vardas"}
+          />
+        }
 
         <ManagerDocumentsTable
           documentList={this.state.documentList}

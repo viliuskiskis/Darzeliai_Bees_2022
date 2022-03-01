@@ -1,5 +1,4 @@
 import React from "react";
-//import KindergartenContractTemplateComponent from "./KindergartenContractTemplateComponent"
 
 export default function KindergartenContractComponent(props) {
 
@@ -7,7 +6,7 @@ export default function KindergartenContractComponent(props) {
     <div className="container pt-4">
 
       <div className="container pb-2">
-        <p><i>// Sutarties tekstas peržiūrai //</i></p>
+        <p><i>{'//'} Sutarties tekstas peržiūrai {'//'}</i></p>
         <p></p>
         <h4>IKIMOKYKLINIO UGDYMO PASLAUGŲ SUTARTIS</h4>
         <p>Nr.{props.state.id} </p>
@@ -98,8 +97,7 @@ export default function KindergartenContractComponent(props) {
       </div><div className="container pb-2"><p></p>
         <p>Sutarties &scaron;alių para&scaron;ai:</p>
         <p>Ugdymo įstaigos atstovas: <b>{props.state.approvedKindergartenManager}</b> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Tėvas/Globėjas: <b>{props.state.mainGuardianName} {props.state.mainGuardianSurname} </b></p>
-        {/*
-        */}
+
 
 
         {
