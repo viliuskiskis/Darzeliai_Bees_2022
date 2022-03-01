@@ -7,7 +7,7 @@ export default class UsersListTable extends Component {
     {
       key: 'username',
       path: 'username',
-      label: 'Naudotojo vardas',
+      label: 'Vartotojo vardas',
       content: naudotojas => <span>{naudotojas.username}</span>
     },
     {

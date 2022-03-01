@@ -89,7 +89,7 @@ export default class ManagerDocumentsContainer extends Component {
           <SearchBox
             value={this.state.searchQuery}
             onSearch={this.handleSearch}
-            placeholder={"Pavardė, Vardas"}
+            placeholder={"Ieškoti pagal vartotojo vardą ir pavardę..."}
           />
         }
 

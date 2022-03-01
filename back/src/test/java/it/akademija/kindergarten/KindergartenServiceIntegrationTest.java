@@ -29,7 +29,7 @@ public class KindergartenServiceIntegrationTest {
 		PageRequest page = PageRequest.of(1, 10);
 		assertEquals(10, service.getKindergartenPageFilteredByName("Gudrutis", page).getSize());
 
-		assertTrue(service.getKindergartenPage(page).getSize() != 0);
+		assertTrue(service.getKindergartenPage(page, "").getSize() != 0);
 
 		assertTrue(service.getKindergartenStatistics(page).getSize() != 0);
 

@@ -66,9 +66,9 @@ public class KindergartenService {
 	 * @return page from kindergarten database
 	 */
 	@Transactional(readOnly = true)
-	public Page<Kindergarten> getKindergartenPage(Pageable pageable) {
+	public Page<Kindergarten> getKindergartenPage(Pageable pageable, String filter) {
 
-		return gartenDao.findAllKindergarten(pageable);
+		return gartenDao.findAllKindergarten(pageable, filter);
 	}
 
 	/**
