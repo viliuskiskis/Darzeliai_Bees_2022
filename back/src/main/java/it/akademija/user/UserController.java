@@ -129,13 +129,16 @@ public class UserController {
 	@Secured({ "ROLE_ADMIN" })
 	@GetMapping(path = "/admin/allusers")
 	@ApiOperation(value = "Show all users", notes = "Showing all users")
-	public Page<UserInfo> getAllUsers(@RequestParam("page") int page, @RequestParam("size") int size) {
+	public Page<UserInfo> getAllUsers(
+		@RequestParam("page") int page, 
+		@RequestParam("size") int size,
+		@RequestParam("filter") String filter) {
 
 		Sort.Order order = new Sort.Order(Sort.Direction.DESC, "userId");
 
 		Pageable pageable = PageRequest.of(page, size, Sort.by(order));
 
-		return userService.getAllUsers(pageable);
+		return userService.getAllUsers(pageable, filter);
 	}
 
 	/**

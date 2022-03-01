@@ -4,13 +4,9 @@ export default function AdmissionReviewComponent(props) {
 
   return (
     <div className="container pt-4" >
-      <div className="alert alert-warning p-1" role="alert">
-        <h6>Kai jūsų prašymas bus patvirtintas, čia galėsite matyti ikimokyklinio ugdymo paslaugų sutartį.</h6>
-      </div>
-
       <div className="row">
 
-        <div className="col-12 col-md-6 col-lg-4 pb-2">
+        <div className="col-12 col-md-6 col-lg-4 pb-4">
           <h6>Prašymas į valstybinius darželius</h6>
           <div>
             <span>Prašymo statusas:<b> {props.state.status}</b></span><br />
@@ -19,7 +15,7 @@ export default function AdmissionReviewComponent(props) {
           </div>
         </div>
 
-        <div className="col-12 col-md-6 col-lg-4 pb-2">
+        <div className="col-12 col-md-6 col-lg-4 pb-4">
           <h6>Vaiko duomenys</h6>
           <div>
             <span>Vardas:<b> {props.state.childName}</b></span><br />
@@ -29,7 +25,7 @@ export default function AdmissionReviewComponent(props) {
           </div>
         </div>
 
-        <div className="col-12 col-md-6 col-lg-4 pb-2">
+        <div className="col-12 col-md-6 col-lg-4 pb-4">
           <h6>Pasirinkti darželiai</h6>
           {props.state.kindergartenChoices !== null &&
             <div>
@@ -42,7 +38,7 @@ export default function AdmissionReviewComponent(props) {
           }
         </div>
 
-        <div className="col-12 col-md-6 col-lg-4 pb-2">
+        <div className="col-12 col-md-6 col-lg-4 pb-4">
           <h6>Globėjo duomenys</h6>
           {props.state.mainGuardian !== null &&
             <div>
@@ -57,7 +53,7 @@ export default function AdmissionReviewComponent(props) {
         </div>
 
         {props.state.additionalGuardian !== null && props.state.additionalGuardian.personalCode !== null &&
-          <div className="col-12 col-md-6 col-lg-4 pb-2">
+          <div className="col-12 col-md-6 col-lg-4 pb-4">
             <h6>Kito globėjo duomenys</h6>
             <div>
               <span>Vardas:<b> {props.state.additionalGuardian.name}</b></span><br />
@@ -70,7 +66,7 @@ export default function AdmissionReviewComponent(props) {
           </div>
         }
 
-        <div className="col-12 col-md-6 col-lg-6 pb-2">
+        <div className="col-12 col-lg-6 pb-4">
           <h6>Vaiko priėmimo tvarkos prioritetai</h6>
           {props.state.priorities !== null &&
             <div>

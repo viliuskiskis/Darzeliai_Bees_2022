@@ -327,9 +327,9 @@ public class ApplicationService {
 	 * @param pageable
 	 * @return page from Application database
 	 */
-	public Page<ApplicationInfo> getPageFromSubmittedApplications(Pageable pageable) {
+	public Page<ApplicationInfo> getPageFromSubmittedApplications(Pageable pageable, String filter) {
 
-		return applicationDao.findAllApplications(pageable);
+		return applicationDao.findAllApplications(pageable, filter);
 
 	}
 

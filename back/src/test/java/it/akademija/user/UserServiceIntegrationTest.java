@@ -44,7 +44,7 @@ public class UserServiceIntegrationTest {
 	public void testGetAllUsers() {
 
 		PageRequest page = PageRequest.of(1, 10);
-		Page<UserInfo> users = service.getAllUsers(page);
+		Page<UserInfo> users = service.getAllUsers(page, "");
 		assertTrue(users.getSize() != 0);
 
 	}

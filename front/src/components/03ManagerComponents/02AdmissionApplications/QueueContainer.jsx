@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 import Pagination from "react-js-pagination";
-
-import '../../../App.css';
-
 import http from '../../00Services/httpService';
 import apiEndpoint from '../../00Services/endpoint';
-
 import QueueTable from './QueueTable';
 import QueueProcessedTable from './QueueProcessedTable';
-
 import SearchBox from '../../05ReusableComponents/SeachBox';
 import Buttons from './Buttons';
-export default class QueueContainer extends Component {
 
+export default class QueueContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,71 +28,37 @@ export default class QueueContainer extends Component {
   }
   componentDidMount() {
     this.getApplicationState();
-
+    this.getApplications(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
   }
 
   getApplicationState() {
-    http
-      .get(`${apiEndpoint}/api/status`)
+    http.get(`${apiEndpoint}/api/status`)
       .then((response) => {
-
         let buttonValue = response.data.registrationActive ? "On" : "Off"
-
-        this.setState(
-          {
-            isActive: response.data.registrationActive,
-            isLocked: response.data.queueEditingLocked,
-            currentButtonValue: buttonValue
-          },
-          function () {
-            this.getApplications(this.state.currentPage, "");
-          }
-        );
+        this.setState({
+          isActive: response.data.registrationActive,
+          isLocked: response.data.queueEditingLocked,
+          currentButtonValue: buttonValue
+        });
       }).catch(() => { });
   }
 
-  getApplications(currentPage, personalCode) {
-
-    const { pageSize, isActive } = this.state;
-
-    let page = currentPage - 1;
-
-    if (page < 0) page = 0;
-
-    if (isActive) {
-      var uri = `${apiEndpoint}/api/prasymai/manager?page=${page}&size=${pageSize}`;
-
-      if (personalCode !== "") {
-        uri = `${apiEndpoint}/api/prasymai/manager/page/${personalCode}?page=${page}&size=${pageSize}`;
-
-      }
-    } else {
-      uri = `${apiEndpoint}/api/eile/manager/queue?page=${page}&size=${pageSize}`;
-
-      if (personalCode !== "") {
-        uri = `${apiEndpoint}/api/eile/manager/queue/${personalCode}?page=${page}&size=${pageSize}`;
-
-      }
-
+  getApplications(page, size, filter) {
+    // FIX GET METHOD FOR THIS:
+    let uri = `${apiEndpoint}/api/eile/manager/queue?page=${page - 1}&size=${size}&filter=${filter}`;
+    if (this.state.isActive) {
+      uri = `${apiEndpoint}/api/prasymai/manager?page=${page - 1}&size=${size}&filter=${filter}`;
     }
-
-    if (uri) {
-      http
-        .get(uri)
-        .then((response) => {
-
-          this.setState({
-            applications: response.data.content,
-            totalPages: response.data.totalPages,
-            totalElements: response.data.totalElements,
-            numberOfElements: response.data.numberOfElements,
-            currentPage: response.data.number + 1
-          });
-
-        }).catch(() => { });
-
-    }
-
+    http.get(uri)
+      .then((response) => {
+        this.setState({
+          applications: response.data.content,
+          totalPages: response.data.totalPages,
+          totalElements: response.data.totalElements,
+          numberOfElements: response.data.numberOfElements,
+          currentPage: response.data.number + 1
+        });
+      }).catch(() => { });
   }
 
   resetState() {
@@ -124,7 +85,7 @@ export default class QueueContainer extends Component {
               isActive: true,
               currentButtonValue: buttonValue
             }, function () {
-              this.getApplications(1, "");
+              this.getApplications(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
             });
           }).catch(() => { });
 
@@ -135,7 +96,7 @@ export default class QueueContainer extends Component {
               isActive: false,
               currentButtonValue: buttonValue
             }, function () {
-              this.getApplications(1, "");
+              this.getApplications(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
             });
           }).catch(() => { });
       }
@@ -157,7 +118,7 @@ export default class QueueContainer extends Component {
           this.setState({
             currentButtonValue: buttonValue
           }, function () {
-            this.getApplications(1, "");
+            this.getApplications(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
           });
         }).catch(() => { });
     }
@@ -184,7 +145,7 @@ export default class QueueContainer extends Component {
               this.setState({
                 currentButtonValue: buttonValue
               }, function () {
-                this.getApplications(1, "");
+                this.getApplications(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
               });
             }).catch((error) => {
               if (error && error.response.status === 405) {
@@ -192,9 +153,8 @@ export default class QueueContainer extends Component {
                   text: error.response.data,
                   button: "Gerai"
                 });
-                this.getApplications(1, "");
+                this.getApplications(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
               }
-
             });
         }
       })
@@ -202,33 +162,25 @@ export default class QueueContainer extends Component {
   }
 
   handleSearch = (e) => {
-
-    const personalCode = e.currentTarget.value;
-    this.setState({ searchQuery: personalCode });
-    this.getApplications(1, personalCode);
+    this.setState({ searchQuery: e.currentTarget.value });
+    this.getApplications(1, this.state.pageSize, e.currentTarget.value);
   }
 
   handleDeactivate = (item) => {
-
     swal({
       text: "DĖMESIO! Šio veiksmo negalėsite atšaukti!\n\nAr tikrai norite atmesti prašymą?",
       buttons: ["Ne", "Taip"],
       dangerMode: true,
     }).then((actionConfirmed) => {
       if (actionConfirmed) {
-        const id = item.id;
-        const { currentPage, numberOfElements } = this.state;
-        const page = numberOfElements === 1 ? (currentPage - 1) : currentPage;
-
-        http
-          .post(`${apiEndpoint}/api/prasymai/manager/deactivate/${id}`)
+        http.post(`${apiEndpoint}/api/prasymai/manager/deactivate/${item.id}`)
           .then((response) => {
             swal({
               text: response.data,
               button: "Gerai"
             });
           }).then(() => {
-            this.getApplications(page, "");
+            this.getApplications(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
           }).catch(error => {
             if (error && error.response.status === 405) {
               swal({
@@ -247,7 +199,7 @@ export default class QueueContainer extends Component {
 
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
-    this.getApplications(page, this.state.searchQuery);
+    this.getApplications(page, this.state.pageSize, this.state.searchQuery);
   };
 
   handleContractDownload(data) {
