@@ -45,7 +45,6 @@ export default class QueueContainer extends Component {
   }
 
   getApplications(page, size, filter) {
-    // FIX GET METHOD FOR THIS:
     let uri = `${apiEndpoint}/api/eile/manager/queue?page=${page - 1}&size=${size}&filter=${filter}`;
     if (this.state.isActive) {
       uri = `${apiEndpoint}/api/prasymai/manager?page=${page - 1}&size=${size}&filter=${filter}`;
