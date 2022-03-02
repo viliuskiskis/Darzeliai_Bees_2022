@@ -47,6 +47,7 @@ export default class KindergartenListContainer extends Component {
   getKindergartenInfo(page, size, filter) {
     http.get(`${apiEndpoint}/api/darzeliai/manager/page?page=${page - 1}&size=${size}&filter=${filter}`)
       .then((response) => {
+        // alert(JSON.stringify(response.data)) // DELETE THIS
         this.setState({
           darzeliai: response.data.content,
           totalPages: response.data.totalPages,
@@ -70,24 +71,24 @@ export default class KindergartenListContainer extends Component {
   }
 
   handleDelete = (item) => {
+    alert(item.id)
     swal({
       text: "Ar tikrai norite ištrinti darželį?",
       buttons: ["Ne", "Taip"],
       dangerMode: true,
     }).then((actionConfirmed) => {
       if (actionConfirmed) {
-        const id = item.id;
         const { currentPage, numberOfElements } = this.state;
-        const page = numberOfElements === 1 ? (currentPage - 1) : currentPage;
-
-        http.delete(`${apiEndpoint}/api/darzeliai/manager/delete/${id}`)
+        let page = numberOfElements === 1 ? (currentPage - 1) : currentPage;
+        page = page < 1 ? 1 : page;
+        http.delete(`${apiEndpoint}/api/darzeliai/manager/delete/${item.id}`)
           .then((response) => {
             swal({
               text: response.data,
               button: "Gerai"
             });
-            this.setState({ searchQuery: "" });
-            this.getKindergartenInfo(page, "");
+          }).then(() => {
+            this.getKindergartenInfo(page, this.state.pageSize, this.state.searchQuery);
           }).catch(() => { });
       }
     });

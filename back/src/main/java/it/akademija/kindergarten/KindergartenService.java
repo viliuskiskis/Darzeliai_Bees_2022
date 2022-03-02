@@ -68,23 +68,23 @@ public class KindergartenService {
 	@Transactional(readOnly = true)
 	public Page<Kindergarten> getKindergartenPage(Pageable pageable, String filter) {
 
-		return gartenDao.findAllKindergarten(pageable, filter);
+		return gartenDao.findByNameContainingIgnoreCase(filter, pageable);
 	}
 
-	/**
-	 * 
-	 * Returns a page of Kindergarten filtered by name containing text with
-	 * specified page number and page size
-	 * 
-	 * @param pageable
-	 * @return filtered page from kindergarten database
-	 */
-	@Transactional(readOnly = true)
-	public Page<Kindergarten> getKindergartenPageFilteredByName(String name, Pageable pageable) {
-
-		return gartenDao.findByNameContainingIgnoreCase(name, pageable);
-
-	}
+//	/**
+//	 * 
+//	 * Returns a page of Kindergarten filtered by name containing text with
+//	 * specified page number and page size
+//	 * 
+//	 * @param pageable
+//	 * @return filtered page from kindergarten database
+//	 */
+//	@Transactional(readOnly = true)
+//	public Page<Kindergarten> getKindergartenPageFilteredByName(String name, Pageable pageable) {
+//
+//		return gartenDao.findByNameContainingIgnoreCase(name, pageable);
+//
+//	}
 
 	/**
 	 * Save new kindergarten to database

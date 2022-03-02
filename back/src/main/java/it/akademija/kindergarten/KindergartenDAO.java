@@ -37,9 +37,8 @@ public interface KindergartenDAO extends JpaRepository<Kindergarten, String> {
 	    + "k.managerSurname, "
 	    + "k.capacityAgeGroup2to3, "
 	    + "k.capacityAgeGroup3to6) "
-	    + "FROM Kindergarten k "
-	    + "WHERE LOWER(k.name) LIKE LOWER(CONCAT('%', ?1, '%'))")
-    Page<Kindergarten> findAllKindergarten(Pageable pageable, String filter);
+	    + "FROM Kindergarten k")
+    Page<Kindergarten> findAllKindergarten(Pageable pageable);
 
     @Query("SELECT DISTINCT(k.elderate) FROM Kindergarten k")
     Set<String> findDistinctElderates();
