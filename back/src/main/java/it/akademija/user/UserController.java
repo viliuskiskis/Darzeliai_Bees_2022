@@ -130,9 +130,9 @@ public class UserController {
 	@GetMapping(path = "/admin/allusers")
 	@ApiOperation(value = "Show all users", notes = "Showing all users")
 	public Page<UserInfo> getAllUsers(
-		@RequestParam("page") int page, 
-		@RequestParam("size") int size,
-		@RequestParam("filter") String filter) {
+		@RequestParam(value = "page", required = false, defaultValue = "0") int page, 
+		@RequestParam(value = "size", required = false, defaultValue = "10") int size,
+		@RequestParam(value = "filter", required = false, defaultValue = "") String filter) {
 
 		Sort.Order order = new Sort.Order(Sort.Direction.DESC, "userId");
 
