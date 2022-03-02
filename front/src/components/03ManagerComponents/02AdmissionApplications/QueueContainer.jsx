@@ -28,7 +28,6 @@ export default class QueueContainer extends Component {
   }
   componentDidMount() {
     this.getApplicationState();
-    this.getApplications(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
   }
 
   getApplicationState() {
@@ -40,6 +39,8 @@ export default class QueueContainer extends Component {
           isLocked: response.data.queueEditingLocked,
           currentButtonValue: buttonValue
         });
+      }).then(() => {
+        this.getApplications(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
       }).catch(() => { });
   }
 
