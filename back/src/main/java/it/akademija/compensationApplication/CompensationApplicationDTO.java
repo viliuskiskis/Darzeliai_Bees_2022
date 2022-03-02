@@ -21,21 +21,33 @@ public class CompensationApplicationDTO {
 		super();
 	}
 	
-	public CompensationApplicationDTO(LocalDate birthdate, String childName, 
-										String childPersonalCode, 
-										String childSurname,
-										KindergartenDataDTO kindergartenData, 
-										UserDTO mainGuardian) {
+	public CompensationApplicationDTO(
+			LocalDate birthdate, 
+			String childName, 
+			String childPersonalCode, 
+			String childSurname,
+			KindergartenDataDTO kindergartenData, 
+			UserDTO mainGuardian) {
 		super();
+		this.birthdate = birthdate;
+		this.childName = childName;
+		this.childPersonalCode = childPersonalCode;
+		this.childSurname = childSurname;
 		this.kindergartenData = kindergartenData;
 		this.mainGuardian = mainGuardian;
 	}
 	
 	
 
-	public CompensationApplicationDTO(LocalDate birthdate, String childName, String childPersonalCode,
-			String childSurname, KindergartenDataDTO kindergartenData, UserDTO mainGuardian,
-			ApplicationStatus applicationStatus, LocalDate approvalDate) {
+	public CompensationApplicationDTO(
+			LocalDate birthdate, 
+			String childName, 
+			String childPersonalCode,
+			String childSurname, 
+			KindergartenDataDTO kindergartenData, 
+			UserDTO mainGuardian,
+			ApplicationStatus applicationStatus, 
+			LocalDate approvalDate) {
 		super();
 		this.birthdate = birthdate;
 		this.childName = childName;
