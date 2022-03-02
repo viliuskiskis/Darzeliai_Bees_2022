@@ -204,9 +204,9 @@ public class ApplicationController {
 	@GetMapping("/manager")
 	@ApiOperation(value = "Get a page from all submitted applications")
 	public Page<ApplicationInfo> getPageFromSubmittedApplications(
-			@RequestParam("page") int page,
-			@RequestParam("size") int size,
-			@RequestParam("filter") String filter) {
+		@RequestParam(value = "page", required = false, defaultValue = "0") int page,
+		@RequestParam(value = "size", required = false, defaultValue = "10") int size,
+		@RequestParam(value = "filter", required = false, defaultValue = "") String filter) {
 
 		List<Order> orders = new ArrayList<>();
 		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());

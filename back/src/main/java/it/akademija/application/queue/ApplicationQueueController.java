@@ -40,9 +40,9 @@ public class ApplicationQueueController {
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "Get application queue processed")
 	public ResponseEntity<Page<ApplicationQueueInfo>> getApplicationQueueInformation(
-		@RequestParam("page") int page,
-		@RequestParam("size") int size,
-		@RequestParam("filter") String filter) {
+		@RequestParam(value = "page", required = false, defaultValue = "0") int page,
+		@RequestParam(value = "size", required = false, defaultValue = "10") int size,
+		@RequestParam(value = "filter", required = false, defaultValue = "") String filter) {
 
 		List<Order> orders = new ArrayList<>();
 		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());

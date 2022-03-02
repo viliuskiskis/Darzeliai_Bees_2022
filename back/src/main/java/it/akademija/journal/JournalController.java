@@ -24,9 +24,9 @@ public class JournalController {
 	@GetMapping(path = "/admin/getjournal/page")
 	@ApiOperation(value = "Show all journal entries", notes = "Showing all journal entries")
 	public ResponseEntity<Page<JournalEntry>> getJournalEntriesPage(
-			@RequestParam("page") int page, 
-			  @RequestParam("size") int size,
-			  @RequestParam("filter") String filter) {	
+		@RequestParam(value = "page", required = false, defaultValue = "0") int page,
+		@RequestParam(value = "size", required = false, defaultValue = "10") int size,
+		@RequestParam(value = "filter", required = false, defaultValue = "") String filter) {
 		
 		Sort.Order order = new Sort.Order(Sort.Direction.DESC, "eventTime");
 						

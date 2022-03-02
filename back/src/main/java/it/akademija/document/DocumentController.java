@@ -170,10 +170,10 @@ public class DocumentController {
 	@GetMapping(path = "manager/get")
 	@ApiOperation(value = "Get page from documents list with specified user surname, name")
 	public Page<DocumentViewmodel> getDocumentsPage(
-			@RequestParam(defaultValue = "0") Integer pageNumber, 
-            @RequestParam(defaultValue = "20") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy,
-            @RequestParam String filter) {
+		@RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber,
+		@RequestParam(value = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+		@RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
+		@RequestParam(value = "filter", required = false, defaultValue = "") String filter) {
 
 		Pageable pageable =
 				PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
