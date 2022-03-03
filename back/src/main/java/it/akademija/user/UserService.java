@@ -203,7 +203,7 @@ public class UserService implements UserDetailsService {
 	public UserInfo getUserDetails(String username) {
 		User user = userDao.findByUsername(username);
 		if (user.getRole().equals(Role.USER)) {
-			return new UserInfo(user.getRole().name(), user.getName(), user.getSurname(),
+			return new UserInfo(user.getUserId(), user.getRole().name(), user.getName(), user.getSurname(),
 					user.getParentDetails().getPersonalCode(), user.getParentDetails().getAddress(),
 					user.getParentDetails().getPhone(), user.getEmail(), user.getUsername());
 

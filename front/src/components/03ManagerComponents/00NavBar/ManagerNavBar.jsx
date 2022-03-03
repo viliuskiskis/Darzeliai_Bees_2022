@@ -61,7 +61,7 @@ export default function ManagerNavBar(props) {
               <li className="nav-item me-2">
                 <NavLink
                   className="nav-link"
-                  id="navManagerApplicationStats"
+                  id="navManagerDocuments"
                   to={"/pazymos"}>Prašymų pažymos</NavLink>
               </li>
 

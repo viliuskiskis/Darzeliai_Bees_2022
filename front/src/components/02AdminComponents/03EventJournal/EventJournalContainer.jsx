@@ -69,7 +69,7 @@ export default class EventJournalContainer extends Component {
             <SearchBox
               value={this.state.searchQuery}
               onSearch={this.handleSearch}
-              placeholder={"Search by username..."}
+              placeholder={"Ieškoti pagal naudotojo vardą..."}
             />
 
             <EventJournalTable entries={this.state.entries} />

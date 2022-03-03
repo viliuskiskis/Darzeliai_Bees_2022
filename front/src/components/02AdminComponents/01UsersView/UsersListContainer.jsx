@@ -139,7 +139,7 @@ export default class UsersListContainer extends Component {
         <SearchBox
           value={this.state.searchQuery}
           onSearch={this.handleSearch}
-          placeholder={"Search by username..."}
+          placeholder={"Ieškoti pagal naudotojo vardą..."}
         />
 
         <UserListTable

@@ -79,7 +79,7 @@ public interface UserDAO extends JpaRepository<User, Long> {
 		+ "u.surname, "
 		+ "u.username, "
 		+ "u.email) "
-		+ "FROM User u WHERE u.username LIKE(CONCAT(?1, '%'))")
+		+ "FROM User u WHERE u.username LIKE(CONCAT('%', ?1, '%'))")
 	Page<UserInfo> getPageOfUsers(Pageable pageable, String filter);
 
 }

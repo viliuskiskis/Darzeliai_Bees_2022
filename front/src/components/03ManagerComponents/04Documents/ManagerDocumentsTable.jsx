@@ -11,7 +11,7 @@ export default class ManagerDocumentsTable extends Component {
     },
     {
       key: "userPersonalCode",
-      label: "Vartotojo a.k.",
+      label: "Naudotojo a.k.",
       content: document => <span>{document.userPersonalCode}</span>
     },
     {

@@ -55,6 +55,20 @@ public class UserInfo {
 		this.email = email;
 		this.username = username;
 	}
+	
+	public UserInfo(Long userId, String role, String name, String surname, String personalCode, String address, String phone,
+		String email, String username) {
+	super();
+	this.userId = userId;
+	this.role = role;
+	this.name = name;
+	this.surname = surname;
+	this.address = address;
+	this.personalCode = personalCode;
+	this.phone = phone;
+	this.email = email;
+	this.username = username;
+}
 		
 	public UserInfo(Long userId, String name, String surname, String personalCode, String address, String phone,
 			String email, String username) {

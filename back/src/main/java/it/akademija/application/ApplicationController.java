@@ -127,7 +127,7 @@ public class ApplicationController {
 	 */
 	@Secured({ "ROLE_USER" })
 	@GetMapping("/user/{id}")
-	@ApiOperation(value = "Get compensation application by id and username")
+	@ApiOperation(value = "Get application by id and username")
 	public ResponseEntity<ApplicationDetails> getUserApplicationDetails(
 			@ApiParam(value = "Application id", required = true) @PathVariable Long id){
 		

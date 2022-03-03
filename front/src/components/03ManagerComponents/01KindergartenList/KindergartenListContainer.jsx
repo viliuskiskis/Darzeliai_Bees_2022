@@ -47,7 +47,6 @@ export default class KindergartenListContainer extends Component {
   getKindergartenInfo(page, size, filter) {
     http.get(`${apiEndpoint}/api/darzeliai/manager/page?page=${page - 1}&size=${size}&filter=${filter}`)
       .then((response) => {
-        // alert(JSON.stringify(response.data)) // DELETE THIS
         this.setState({
           darzeliai: response.data.content,
           totalPages: response.data.totalPages,
@@ -71,7 +70,6 @@ export default class KindergartenListContainer extends Component {
   }
 
   handleDelete = (item) => {
-    alert(item.id)
     swal({
       text: "Ar tikrai norite ištrinti darželį?",
       buttons: ["Ne", "Taip"],
