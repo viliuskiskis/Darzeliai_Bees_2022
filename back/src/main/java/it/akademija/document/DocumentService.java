@@ -41,7 +41,7 @@ public class DocumentService {
 	}
 
 	@Transactional
-	public long uploadDocument(MultipartFile file, String name, long uploaderId) {
+	public Long uploadDocument(MultipartFile file, String name, long uploaderId) {
 
 	    if (file.getSize() <= 1024000 && 
 		    file.getContentType().equals("application/pdf")) {
@@ -64,7 +64,7 @@ public class DocumentService {
 		return documentEntity.getId();
 
 	    } else {
-		return 0;
+		return 0L;
 	    }
 	}
 
