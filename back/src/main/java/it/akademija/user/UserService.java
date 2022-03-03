@@ -173,23 +173,14 @@ public class UserService implements UserDetailsService {
 	}
 
 	/**
-	 * Returns a page of registered Users info with specified page number and page
-	 * size
+	 * Returns a page of registered Users info with specified page number,
+	 * page size and username
 	 * 
 	 * @return list of user details for ADMIN
 	 */
 	@Transactional(readOnly = true)
 	public Page<UserInfo> getAllUsers(Pageable pageable, String filter) {
-//		Page<User> users = userDao.findAll(pageable);
-//		Page<UserInfo> dtoPage = users.map(new Function<User, UserInfo>() {
-//			@Override
-//			public UserInfo apply(User user) {
-//				UserInfo dto = new UserInfo(user.getUserId(), user.getRole().name(), user.getUsername());
-//				return dto;
-//			}
-//
-//		});
-//		return dtoPage;
+	    
 	    return userDao.getPageOfUsers(pageable, filter);
 	}
 

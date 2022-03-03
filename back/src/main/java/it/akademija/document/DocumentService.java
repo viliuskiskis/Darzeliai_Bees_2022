@@ -41,32 +41,31 @@ public class DocumentService {
 	}
 
 	@Transactional
-	public Boolean uploadDocument(MultipartFile file, 
-			String name, 
-			long uploaderId) {
+	public long uploadDocument(MultipartFile file, String name, long uploaderId) {
 
-		if (file.getSize() <= 1024000 && 
-				file.getContentType().equals("application/pdf")) {
-
-			try {
-				DocumentEntity doc = new DocumentEntity(
-						name, 
-						file.getContentType(), 
-						file.getBytes(), 
-						file.getSize(),
-						uploaderId, 
-						LocalDate.now());
-				
-				documentDao.save(doc);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			return true;
-			
-		} 
+	    if (file.getSize() <= 1024000 && 
+		    file.getContentType().equals("application/pdf")) {
 		
-		else { return false; }
+		DocumentEntity documentEntity = new DocumentEntity();
+
+		try {
+		    documentEntity.setName(name);
+		    documentEntity.setType(file.getContentType());
+		    documentEntity.setData(file.getBytes());
+		    documentEntity.setSize(file.getSize());
+		    documentEntity.setUploaderId(uploaderId);
+		    documentEntity.setUploadDate(LocalDate.now());
+
+		    documentDao.save(documentEntity);
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+
+		return documentEntity.getId();
+
+	    } else {
+		return 0;
+	    }
 	}
 
 	@Transactional

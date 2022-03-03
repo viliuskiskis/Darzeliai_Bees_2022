@@ -2,8 +2,6 @@ package it.akademija.contracts;
 
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,24 +17,14 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import it.akademija.application.Application;
 import it.akademija.application.ApplicationDAO;
-import it.akademija.application.management.RegistrationStatusService;
-import it.akademija.journal.JournalService;
 
 @RestController
 @Api(value = "contractsBlah")
 @RequestMapping(path = "/api/contract")
 public class ContractsController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ContractsController.class);
-
     @Autowired
     private ContractsService contractsService;
-
-    @Autowired
-    private RegistrationStatusService registrationStatusService;
-
-    @Autowired
-    private JournalService journalService;
 
     @Autowired
     private ApplicationDAO applicationDAO;

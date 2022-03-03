@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '../../../App.css';
 import http from '../../00Services/httpService';
 import apiEndpoint from '../../00Services/endpoint';
 import swal from 'sweetalert';

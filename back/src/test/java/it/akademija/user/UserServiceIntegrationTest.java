@@ -119,7 +119,7 @@ public class UserServiceIntegrationTest {
 		journalService.depersonalizeUserLogs("stest");
 
 		PageRequest page2 = PageRequest.of(1, 10);
-		assertTrue(journalDAO.getAllJournalEntries("", page2).getSize() != 0);
+		assertTrue(journalDAO.getAllJournalEntries(page2).getSize() != 0);
 
 		service.deleteUser("stest@test.lt");
 		assertNull(service.findByUsername("stest@test.lt"));

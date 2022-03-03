@@ -9,8 +9,11 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface JournalEntryDAO extends JpaRepository<JournalEntry, Long>{
 	
+	@Query("SELECT j FROM JournalEntry j")
+	Page<JournalEntry> getAllJournalEntries(Pageable pageable);
+	
 	@Query("SELECT j FROM JournalEntry j WHERE j.userName LIKE(CONCAT(?1, '%'))")
-	Page<JournalEntry> getAllJournalEntries(String filter, Pageable pageable);
+	Page<JournalEntry> getAllJournalEntriesByUsername(String filter, Pageable pageable);
 	
 	List<JournalEntry> findByUserName(String username);
 }

@@ -16,33 +16,40 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 public class JournalController {
-	
-	@Autowired
-	private JournalService journalService;
-	
-	@Secured({ "ROLE_ADMIN" })
-	@GetMapping(path = "/admin/getjournal/page")
-	@ApiOperation(value = "Show all journal entries", notes = "Showing all journal entries")
-	public ResponseEntity<Page<JournalEntry>> getJournalEntriesPage(
-		@RequestParam(value = "page", required = false, defaultValue = "0") int page,
-		@RequestParam(value = "size", required = false, defaultValue = "10") int size,
-		@RequestParam(value = "filter", required = false, defaultValue = "") String filter) {
-		
-		Sort.Order order = new Sort.Order(Sort.Direction.DESC, "eventTime");
-						
-		Pageable pageable = PageRequest.of(page, size, Sort.by(order));
 
-		return new ResponseEntity<>(journalService.getAllJournalEntries(pageable, filter), HttpStatus.OK);
-	}
+    @Autowired
+    private JournalService journalService;
 
-	public JournalService getJournalService() {
-		return journalService;
-	}
+    /**
+     * Get page of journal entries filtered by part of username
+     * 
+     * @param page - page number
+     * @param size - number of entries in a page
+     * @param filter - part of username
+     * @return page of journal entries
+     */
+    @Secured({ "ROLE_ADMIN" })
+    @GetMapping(path = "/admin/getjournal/page")
+    @ApiOperation(value = "Show all journal entries",
+    		notes = "Showing all journal entries filtered by part of username")
+    public ResponseEntity<Page<JournalEntry>> getJournalEntriesPage(
+	    @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+	    @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+	    @RequestParam(value = "filter", required = false, defaultValue = "") String filter) {
 
-	public void setJournalService(JournalService journalService) {
-		this.journalService = journalService;
-	}
-	
-	
-	
+	Sort.Order order = new Sort.Order(Sort.Direction.DESC, "eventTime");
+
+	Pageable pageable = PageRequest.of(page, size, Sort.by(order));
+
+	return new ResponseEntity<>(journalService.getAllJournalEntries(pageable, filter), HttpStatus.OK);
+    }
+
+    public JournalService getJournalService() {
+	return journalService;
+    }
+
+    public void setJournalService(JournalService journalService) {
+	this.journalService = journalService;
+    }
+
 }

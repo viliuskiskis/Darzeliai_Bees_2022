@@ -37,7 +37,7 @@ class DocumentServiceTest {
 		MockMultipartFile file = new MockMultipartFile("file", "file.pdf", MediaType.APPLICATION_PDF_VALUE,
 				"Hello, World!".getBytes());
 
-		assertTrue(documentService.uploadDocument(file, "file.pdf", 1L));
+		assertTrue(documentService.uploadDocument(file, "file.pdf", 1L) != 0);
 
 	}
 
