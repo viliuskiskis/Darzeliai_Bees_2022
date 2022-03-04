@@ -55,7 +55,7 @@ public class ApplicationQueueController {
 
 	Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
 
-	return new ResponseEntity<>(queueService.getApplicationQueueInformation(pageable, filter),
+	return new ResponseEntity<>(queueService.getApplicationQueueInformation(pageable, filter.trim()),
 		HttpStatus.OK);
     }
 

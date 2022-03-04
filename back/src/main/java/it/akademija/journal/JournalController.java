@@ -41,7 +41,7 @@ public class JournalController {
 
 	Pageable pageable = PageRequest.of(page, size, Sort.by(order));
 
-	return new ResponseEntity<>(journalService.getAllJournalEntries(pageable, filter), HttpStatus.OK);
+	return new ResponseEntity<>(journalService.getAllJournalEntries(pageable, filter.trim()), HttpStatus.OK);
     }
 
     public JournalService getJournalService() {

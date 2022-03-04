@@ -92,7 +92,7 @@ public class KindergartenController {
 	Pageable pageable = PageRequest.of(page, size, Sort.by(order));
 
 	return new ResponseEntity<Page<Kindergarten>>(
-		kindergartenService.getKindergartenPage(pageable, filter),HttpStatus.OK);
+		kindergartenService.getKindergartenPage(pageable, filter.trim()),HttpStatus.OK);
     }
 
 // WHEN DELETING THIS, ALSO DELETE UNUSED METHODS IN kindergartenService AND kindergartenDAO...

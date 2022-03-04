@@ -192,7 +192,7 @@ public class ApplicationController {
 
 	Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
 
-	return applicationService.getPageFromSubmittedApplications(pageable, filter);
+	return applicationService.getPageFromSubmittedApplications(pageable, filter.trim());
     }
 
 // WHEN DELETING THIS, ALSO DELETE UNUSED METHODS IN applicationService AND applicationDAO...

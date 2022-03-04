@@ -194,7 +194,7 @@ public class DocumentController {
 
 	Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
 
-	return documentService.getPageDocuments(pageable, filter);
+	return documentService.getPageDocuments(pageable, filter.trim());
     }
 	
 }

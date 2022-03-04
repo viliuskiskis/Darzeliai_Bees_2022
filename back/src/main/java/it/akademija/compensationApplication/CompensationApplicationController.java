@@ -268,7 +268,7 @@ public class CompensationApplicationController {
 
 	Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
 
-	return compensationApplicationService.getPageFromCompensationApplications(pageable, filter);
+	return compensationApplicationService.getPageFromCompensationApplications(pageable, filter.trim());
     }
 	
     /**
