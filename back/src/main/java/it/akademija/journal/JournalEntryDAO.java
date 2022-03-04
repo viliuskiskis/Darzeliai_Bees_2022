@@ -12,7 +12,7 @@ public interface JournalEntryDAO extends JpaRepository<JournalEntry, Long>{
 	@Query("SELECT j FROM JournalEntry j")
 	Page<JournalEntry> getAllJournalEntries(Pageable pageable);
 	
-	@Query("SELECT j FROM JournalEntry j WHERE j.userName LIKE(CONCAT(?1, '%'))")
+	@Query("SELECT j FROM JournalEntry j WHERE j.userName LIKE(CONCAT('%', ?1, '%'))")
 	Page<JournalEntry> getAllJournalEntriesByUsername(String filter, Pageable pageable);
 	
 	List<JournalEntry> findByUserName(String username);

@@ -45,7 +45,7 @@ public interface ApplicationDAO extends JpaRepository<Application, Long> {
 	    + "LEFT JOIN KindergartenChoise c ON a.id = c.application.id "
 	    + "GROUP BY a.id "
 	    + "HAVING a.childPersonalCode "
-	    + "LIKE(concat(?1, '%'))")
+	    + "LIKE(concat('%', ?1, '%'))")
     Page<ApplicationInfo> findByIdContaining(String childPersonalCode, Pageable pageable);
 
     @Query("SELECT new it.akademija.application.ApplicationInfo("
@@ -60,7 +60,7 @@ public interface ApplicationDAO extends JpaRepository<Application, Long> {
 	    + "max(case when c.kindergartenChoisePriority ='4' then c.kindergarten.name end) as choise4, "
 	    + "max(case when c.kindergartenChoisePriority ='5' then c.kindergarten.name end) as choise5) "
 	    + "FROM Application a LEFT JOIN KindergartenChoise c on a.id = c.application.id "
-	    + "WHERE a.childPersonalCode LIKE(CONCAT(?1, '%')) "
+	    + "WHERE a.childPersonalCode LIKE(CONCAT('%', ?1, '%')) "
 	    + "GROUP BY a.id")
     Page<ApplicationInfo> findAllApplications(Pageable pageable, String filter);
 
@@ -75,7 +75,7 @@ public interface ApplicationDAO extends JpaRepository<Application, Long> {
 	    + "k.name, a.status, "
 	    + "a.numberInWaitingList) "
 	    + "FROM Application a LEFT JOIN Kindergarten k ON a.approvedKindergarten.id=k.id "
-	    + "WHERE a.childPersonalCode LIKE(CONCAT(?1, '%'))")
+	    + "WHERE a.childPersonalCode LIKE(CONCAT('%', ?1, '%'))")
     Page<ApplicationQueueInfo> findQueuedApplications(Pageable pageable, String filter);
 
     @Query("SELECT new it.akademija.application.queue.ApplicationQueueInfo("

@@ -156,7 +156,7 @@ public class UserController {
 
 	Pageable pageable = PageRequest.of(page, size, Sort.by(order));
 
-	return userService.getAllUsers(pageable, filter);
+	return userService.getAllUsers(pageable, filter.trim());
     }
 
     /**
