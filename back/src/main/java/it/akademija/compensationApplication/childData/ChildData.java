@@ -33,14 +33,12 @@ public class ChildData {
 	private LocalDate birthdate;
 	
 	@NotEmpty(message = "Vardas privalomas!")
-	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
+	//@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
 	@Column
 	private String childName;
 	
 	@NotEmpty(message = "Pavardė privaloma!")
-	@Size(min = 2, max = 70)
-	@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
+	//@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}")
 	@Column
 	private String childSurname;
 	

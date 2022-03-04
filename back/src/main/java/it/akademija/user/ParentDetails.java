@@ -53,7 +53,6 @@ public class ParentDetails {
 	private String email;
 
 	@Column
-	@NotBlank(message = "Adresas privalomas")
 	private String address;
 
 	@Pattern(regexp = "[+]?[0-9]{4,17}")
@@ -67,7 +66,8 @@ public class ParentDetails {
 
 	}
 
-	public ParentDetails(@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{11}$|") String personalCode,
+	public ParentDetails(
+			@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{11}$|") String personalCode,
 			@NotEmpty(message = "Vardas privalomas!") @Size(min = 2, max = 70) @Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$") String name,
 			@NotEmpty(message = "Pavardė privaloma!") @Size(min = 2, max = 70) @Pattern(regexp = "^\\p{L}+(?: \\p{L}+)*$") String surname,
 			@Email @NotEmpty(message = "El. paštas privalomas!") String email, String address,

@@ -55,6 +55,16 @@ public class CompensationApplication {
 		this.kindergartenData = kindergartenData;
 	}
 
+	public CompensationApplication(
+			Long id,
+			ChildData childData,
+			KindergartenData kindergartenData) {
+		super();
+		this.id = id;
+		this.childData = childData;
+		this.kindergartenData = kindergartenData;
+	}
+	
 	public Long getId() {
 		return id;
 	}

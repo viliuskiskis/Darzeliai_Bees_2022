@@ -46,7 +46,7 @@ public class CompensationApplicationService {
 	 * @param data
 	 */
 	@Transactional
-	public Long createNewCompensationApplication(CompensationApplicationDTO compensationApplicationDTO) {
+	public CompensationApplication createNewCompensationApplication(CompensationApplicationDTO compensationApplicationDTO) {
 		
 		CompensationApplication compensationApplication = new CompensationApplication();
 		
@@ -73,7 +73,7 @@ public class CompensationApplicationService {
 		childData.setCompensationApplication(compensationApplication);
 		kindergartenData.setCompensationApplication(compensationApplication);
 		
-		return compensationApplication.getId();
+		return compensationApplication;
 	}
 	
 	/**
