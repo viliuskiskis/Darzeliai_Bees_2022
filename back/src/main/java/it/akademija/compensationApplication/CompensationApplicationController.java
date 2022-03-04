@@ -81,7 +81,7 @@ public class CompensationApplicationController {
 	    } else {
 
 		Long compensationId = compensationApplicationService
-			.createNewCompensationApplication(compensationApplicationDTO);
+			.createNewCompensationApplication(compensationApplicationDTO).getId();
 
 		journalService.newJournalEntry(OperationType.APPLICATION_SUBMITED, compensationId,
 			ObjectType.COMPENSATIONAPPLICATION, "Sukurtas naujas kompensacijos prašymas");
