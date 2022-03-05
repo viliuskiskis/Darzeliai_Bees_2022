@@ -60,8 +60,8 @@ public class DocumentController {
 	    @ApiParam(value = "id", required = true)
 	    @PathVariable Long id) {
 
-	journalService.newJournalEntry(OperationType.MEDICAL_RECORD_DOWNLOADED, id,
-		ObjectType.MEDICAL_RECORD, "Atsisiųsta medicininė pažyma");
+//	journalService.newJournalEntry(OperationType.MEDICAL_RECORD_DOWNLOADED, id,
+//		ObjectType.MEDICAL_RECORD, "Atsisiųsta medicininė pažyma");
 	
 	LOG.info("** DocumentController: pažyma [{}] parsiųsta**", id);
 
@@ -168,8 +168,8 @@ public class DocumentController {
 	    @ApiParam(value = "id", required = true)
 	    @PathVariable Long id) {
 
-	journalService.newJournalEntry(OperationType.MEDICAL_RECORD_DOWNLOADED, id, ObjectType.MEDICAL_RECORD,
-		"Specialistas atsisiuntė medicininę pažymą");
+//	journalService.newJournalEntry(OperationType.MEDICAL_RECORD_DOWNLOADED, id, ObjectType.MEDICAL_RECORD,
+//		"Specialistas atsisiuntė medicininę pažymą");
 
 	return documentService.getDocumentById(id).getData();
     }

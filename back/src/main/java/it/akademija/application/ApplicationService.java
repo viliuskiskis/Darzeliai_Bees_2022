@@ -18,8 +18,6 @@ import it.akademija.application.priorities.Priorities;
 import it.akademija.application.priorities.PrioritiesDAO;
 import it.akademija.application.priorities.PrioritiesDTO;
 import it.akademija.journal.JournalService;
-import it.akademija.journal.ObjectType;
-import it.akademija.journal.OperationType;
 import it.akademija.kindergarten.Kindergarten;
 import it.akademija.kindergarten.KindergartenService;
 import it.akademija.kindergartenchoise.KindergartenChoise;
@@ -201,8 +199,8 @@ public class ApplicationService {
 
 			applicationDao.delete(application);
 
-			journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.APPLICATION,
-					"Ištrintas prašymas");
+//			journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.APPLICATION,
+//					"Ištrintas prašymas");
 
 			return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
 		}

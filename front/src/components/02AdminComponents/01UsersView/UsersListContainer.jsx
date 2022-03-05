@@ -88,7 +88,8 @@ export default class UsersListContainer extends Component {
     }).then((actionConfirmed) => {
       if (actionConfirmed) {
         const { currentPage, numberOfElements } = this.state;
-        const page = numberOfElements === 1 ? currentPage - 1 : currentPage;
+        let page = numberOfElements === 1 ? currentPage - 1 : currentPage;
+        page = page === 0 ? 1 : page;
         http
           .delete(`${apiEndpoint}/api/users/admin/delete/${item.username}`)
           .then((response) => {
@@ -105,25 +106,21 @@ export default class UsersListContainer extends Component {
 
   handleRestorePassword = (item) => {
     const username = item.username;
-
     swal({
       text: "Ar tikrai norite atkurti pirminį slaptažodį?",
       buttons: ["Ne", "Taip"],
       dangerMode: true,
     }).then((actionConfirmed) => {
       if (actionConfirmed) {
-        http
-          .put(`${apiEndpoint}/api/users/admin/password/${username}`)
+        http.put(`${apiEndpoint}/api/users/admin/password/${username}`)
           .then((response) => {
-            const { currentPage, numberOfElements } = this.state;
-            const page = numberOfElements === 1 ? currentPage - 1 : currentPage;
-            this.getUserInfo(page);
             swal({
               text: response.data,
               button: "Gerai",
             });
-          })
-          .catch(() => { });
+          }).then(() => {
+            this.getUserInfo(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
+          }).catch(() => { });
       }
     });
   };

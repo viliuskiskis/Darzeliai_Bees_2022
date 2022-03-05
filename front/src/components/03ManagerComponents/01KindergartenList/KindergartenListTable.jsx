@@ -28,7 +28,7 @@ class KindergartenListTable extends Component {
               <th>Seniūnija</th>
               <th colSpan={2}>Vietų</th>
               <th colSpan={2}>Direktorius</th>
-              <th className="deleteColumn">Veikmai</th>
+              <th className="deleteColumn">Veiksmai</th>
             </tr>
           </thead>
           <tbody >
