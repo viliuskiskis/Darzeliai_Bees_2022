@@ -59,10 +59,14 @@ public class Kindergarten {
 	
 	private int placesTakenAgeGroup3to6;
 
-	@OneToMany(mappedBy = "kindergarten", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "kindergarten", 
+			cascade = { CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE }, 
+			fetch = FetchType.LAZY)
 	private Set<KindergartenChoise> kindergartenChoises;
 	
-	@OneToMany(mappedBy = "approvedKindergarten", cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE}, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "approvedKindergarten", 
+			cascade = { CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE }, 
+			fetch = FetchType.LAZY)
 	private Set<Application> approvedApplications;
 
 	public Kindergarten() {

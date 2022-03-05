@@ -18,7 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -78,8 +77,8 @@ public class Application {
 
 	private int numberInWaitingList;
 
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE }, fetch = FetchType.LAZY)
-	@JoinColumn(name = "approved_kindergarten_id")
+	@ManyToOne( fetch = FetchType.LAZY)
+	@JoinColumn(name = "approved_kindergarten_id", nullable = true)
 	private Kindergarten approvedKindergarten;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

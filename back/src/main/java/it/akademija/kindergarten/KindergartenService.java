@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import it.akademija.application.Application;
 import it.akademija.application.ApplicationDAO;
 import it.akademija.application.ApplicationStatus;
+import it.akademija.kindergartenchoise.KindergartenChoise;
+import it.akademija.kindergartenchoise.KindergartenChoiseDAO;
 
 @Service
 public class KindergartenService {
@@ -29,6 +31,9 @@ public class KindergartenService {
 
 	@Autowired
 	private ApplicationDAO applicationDao;
+	
+	@Autowired
+	private KindergartenChoiseDAO kindergartenChoiseDAO;
 // o.v. JournalService nenaudojamas kintamasis
 //	@Autowired
 //	private JournalService journalService;
@@ -136,27 +141,37 @@ public class KindergartenService {
 	 * 
 	 * @param id
 	 */
-	@Transactional
+	//@Transactional
 	public ResponseEntity<String> deleteKindergarten(String id) {
 
-		// String gartenID = id; o.v. versijos paliktas nenaudojamas kintamasis.
+		Kindergarten kindergarten = gartenDao.findById(id).orElse(null);
 
-		Kindergarten garten = gartenDao.findById(id).orElse(null);
+		if (kindergarten != null) {
+			Set<Application> applicationQueue = kindergarten.getApprovedApplications();
+			Set<KindergartenChoise> kindergartenChoises = kindergarten.getKindergartenChoises();
+			
+			for (Application application : applicationQueue) {
+				application.setApprovedKindergarten(null);
 
-		if (garten != null) {
-			Set<Application> applicationQueue = garten.getApprovedApplications();
-			for (Application a : applicationQueue) {
-				a.setApprovedKindergarten(null);
-
-				if (a.getKindergartenChoises().size() > 1) {
-					a.setStatus(ApplicationStatus.Pateiktas);
+				if (application.getKindergartenChoises().size() > 1) {
+					application.setStatus(ApplicationStatus.Pateiktas);
 				} else {
-					a.setStatus(ApplicationStatus.Neaktualus);
+					application.setStatus(ApplicationStatus.Neaktualus);
+					
 				}
-
-				applicationDao.saveAndFlush(a);
+				
+				applicationDao.saveAndFlush(application);
 			}
-
+			
+			for (KindergartenChoise kindergartenChoise : kindergartenChoises) {
+				kindergartenChoise.setKindergarten(null);;
+				
+				kindergartenChoiseDAO.saveAndFlush(kindergartenChoise);
+			}
+			
+			kindergarten.setApprovedApplications(null);
+			kindergarten.setKindergartenChoises(null);
+			gartenDao.saveAndFlush(kindergarten);
 			gartenDao.deleteById(id);
 
 			LOG.info("** UserService: trinamas darželis ID [{}] **", id);
