@@ -79,15 +79,20 @@ public class ApplicationQueueService {
 					.collect(Collectors.toList());
 
 			for (KindergartenChoise choise : choises) {
-
-				Kindergarten garten = choise.getKindergarten();
-				int availablePlaces = getNumberOfAvailablePlaces(garten, age);
-
-				if (availablePlaces > 0) {
-					a.setApprovedKindergarten(garten);
-					gartenService.increaseNumberOfTakenPlacesInAgeGroup(garten, age);
-					break;
+				
+				if(choise.getKindergarten() != null) { //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					
+					Kindergarten kindergarten = choise.getKindergarten();
+					int availablePlaces = getNumberOfAvailablePlaces(kindergarten, age);
+	
+					if (availablePlaces > 0) {
+						a.setApprovedKindergarten(kindergarten);
+						gartenService.increaseNumberOfTakenPlacesInAgeGroup(kindergarten, age);
+						break;
+					}
+					
 				}
+				
 			}
 
 			if (choises.size() > 0 && a.getApprovedKindergarten() == null) {
@@ -95,7 +100,9 @@ public class ApplicationQueueService {
 				lastNumberInWaitingList++;
 				a.setNumberInWaitingList(lastNumberInWaitingList);
 
-			} else if (choises.size() == 0) {
+			} 
+			
+			else if (choises.size() == 0) {
 
 				a.setStatus(ApplicationStatus.Neaktualus);
 				LOG.info("Prašymo Nr. [{}] statusas automatiškai pakeistas į 'Neaktualus'", a.getId());
