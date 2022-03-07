@@ -71,8 +71,8 @@ public class ApplicationController {
 
 	if (!statusService.getStatus().isRegistrationActive()) {
 	    
-	    journalService.newJournalEntry(OperationType.ERROR, null, ObjectType.APPLICATION,
-		    "Naudotojas bandė registruoti prašymą esant neaktyviai registracijai");
+	    journalService.newJournalEntry(OperationType.ERROR, null, ObjectType.REGISTRATION_APPLICATION,
+		    "Bandyta registruoti prašymą esant neaktyviai registracijai");
 	    
 	    LOG.warn("** Naudotojas [{}] bandė registruoti prašymą "
 	    	+ "esant neaktyviai registracijai **", currentUsername);
@@ -82,8 +82,8 @@ public class ApplicationController {
 	    
 	} else if (applicationService.existsByPersonalCode(childPersonalCode)) {
 	    
-	    journalService.newJournalEntry(OperationType.ERROR, null, ObjectType.APPLICATION,
-		    "Naudotojas bandė registruoti prašymą jau registruotam vaikui");
+	    journalService.newJournalEntry(OperationType.ERROR, null, ObjectType.REGISTRATION_APPLICATION,
+		    "Bandyta registruoti registracijos prašymą jau registruotam vaikui");
 	    
 	    LOG.warn("** Naudotojas [{}] bandė registruoti prašymą jau registruotam vaikui "
 	    	+ "su asmens kodu [{}] **", currentUsername, data.getChildPersonalCode());
@@ -99,14 +99,14 @@ public class ApplicationController {
 	    if (application != null) {
 		
 		journalService.newJournalEntry(OperationType.APPLICATION_SUBMITED, application.getId(),
-			ObjectType.APPLICATION, "Sukurtas naujas prašymas");
+			ObjectType.REGISTRATION_APPLICATION, "Sukurtas naujas registracijos prašymas");
 		
 		LOG.info("** Prašymas [{}] sukurtas **", application.getId());
 
 		return new ResponseEntity<String>("Prašymas sukurtas sėkmingai", HttpStatus.OK);
 	    }
 		journalService.newJournalEntry(OperationType.ERROR, null,
-			ObjectType.APPLICATION, "Įvyko klaida kuriant prašymą");
+			ObjectType.REGISTRATION_APPLICATION, "Įvyko klaida kuriant registracijos prašymą");
 		
 		LOG.warn("** ApplicationController: Įvyko klaida kuriant prašymą **");
 		
@@ -143,8 +143,15 @@ public class ApplicationController {
 	    @PathVariable Long id) {
 
 	if (id != null) {
+	    
+	    journalService.newJournalEntry(OperationType.APPLICATION_REVIEWED, id,
+		    ObjectType.REGISTRATION_APPLICATION, "Peržiūrėtas registracijos prašymas");
+	    
 	    return applicationService.getUserApplicationDetails(id);
 	}
+	journalService.newJournalEntry(OperationType.ERROR, id,
+		ObjectType.REGISTRATION_APPLICATION, "Nepavyko peržiūrėti registracijos prašymo");
+	
 	return new ResponseEntity<ApplicationDetails>(new ApplicationDetails(), HttpStatus.BAD_REQUEST);
     }
 	
@@ -162,7 +169,7 @@ public class ApplicationController {
 	    @PathVariable Long id) {
 	
 	journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id,
-		ObjectType.APPLICATION, "Prašymas ištrintas");
+		ObjectType.REGISTRATION_APPLICATION, "Ištrintas registracijos prašymas");
 
 	LOG.info("**ApplicationController: trinamas prasymas [{}] **", id);
 
@@ -237,7 +244,7 @@ public class ApplicationController {
 	    @PathVariable Long id) {
 	
 	journalService.newJournalEntry(OperationType.APPLICATION_DEACTVATED, id,
-		ObjectType.APPLICATION, "Prašymas atmestas");
+		ObjectType.REGISTRATION_APPLICATION, "Atmestas registracijos prašymas");
 
 	LOG.info("**ApplicationController: deaktyvuojamas prasymas [{}] **", id);
 
@@ -258,8 +265,15 @@ public class ApplicationController {
 	    @PathVariable Long id) {
 
 	if (id != null) {
+	    
+	    journalService.newJournalEntry(OperationType.APPLICATION_REVIEWED, id,
+		    ObjectType.REGISTRATION_APPLICATION, "Peržiūrėtas registracijos prašymas");
+	    
 	    return applicationService.getApplicationDetails(id);
 	}
+	journalService.newJournalEntry(OperationType.ERROR, id,
+		ObjectType.REGISTRATION_APPLICATION, "Nepavyko peržiūrėti registracijos prašymo");
+	
 	return new ResponseEntity<ApplicationDetails>(new ApplicationDetails(), HttpStatus.BAD_REQUEST);
     }
 

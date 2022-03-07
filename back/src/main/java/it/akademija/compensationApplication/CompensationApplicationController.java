@@ -68,8 +68,8 @@ public class CompensationApplicationController {
 		    compensationApplicationDTO.getChildPersonalCode())) {
 		
 		journalService.newJournalEntry(OperationType.ERROR, null,
-			ObjectType.COMPENSATIONAPPLICATION,
-			"Naudotojas bandė registruoti kompensacijos prašymą jau registruotam vaikui");
+			ObjectType.COMPENSATION_APPLICATION,
+			"Bandyta registruoti kompensacijos prašymą jau registruotam vaikui");
 
 		LOG.warn("** Naudotojas [{}] bandė registruoti kompensacijos prašymą "
 			+ "jau registruotam vaikui su asmens kodu [{}] **",
@@ -84,7 +84,7 @@ public class CompensationApplicationController {
 			.createNewCompensationApplication(compensationApplicationDTO).getId();
 
 		journalService.newJournalEntry(OperationType.APPLICATION_SUBMITED, compensationId,
-			ObjectType.COMPENSATIONAPPLICATION, "Sukurtas naujas kompensacijos prašymas");
+			ObjectType.COMPENSATION_APPLICATION, "Sukurtas naujas kompensacijos prašymas");
 		
 		LOG.info("** Sukurtas kompensacijos prašymas id: [{}] **", compensationId);
 
@@ -94,7 +94,7 @@ public class CompensationApplicationController {
 	}
 	
 	journalService.newJournalEntry(OperationType.ERROR, null,
-		ObjectType.COMPENSATIONAPPLICATION, "Įvyko klaida kuriant kompensacijos prašymą");
+		ObjectType.COMPENSATION_APPLICATION, "Įvyko klaida kuriant kompensacijos prašymą");
 	
 	LOG.warn("** Įvyko klaida kuriant kompensacijos prašymą **");
 
@@ -148,10 +148,16 @@ public class CompensationApplicationController {
 
 	    CompensationApplicationInfo compensationApplicationInfo = 
 		    compensationApplicationService.getUserCompensationApplicationInfo(currentUsername, id);
+	    
+	    journalService.newJournalEntry(OperationType.APPLICATION_REVIEWED, id,
+		    ObjectType.COMPENSATION_APPLICATION, "Peržiūrėtas kompensacijos prašymas");
 
 	    return new ResponseEntity<CompensationApplicationInfo>(
 		    compensationApplicationInfo, HttpStatus.OK);
 	}
+	journalService.newJournalEntry(OperationType.ERROR, id,
+		ObjectType.COMPENSATION_APPLICATION, "Nepavyko peržiūrėti kompensacijos prašymo");
+	
 	return new ResponseEntity<CompensationApplicationInfo>(new CompensationApplicationInfo(),
 		HttpStatus.BAD_REQUEST);
     }
@@ -175,15 +181,15 @@ public class CompensationApplicationController {
 	    compensationApplicationService.deleteUserCompensationApplicationById(id);
 	    
 	    journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id,
-		    ObjectType.COMPENSATIONAPPLICATION, "Kompensacijos prašymas ištrintas");
+		    ObjectType.COMPENSATION_APPLICATION, "Ištrintas kompensacijos prašymas");
 	    
 	    LOG.info("** Kompensacijos prašymas id: [{}] ištrintas **", id);
 
 	    return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
 	}
 	
-	journalService.newJournalEntry(OperationType.ERROR, id, ObjectType.COMPENSATIONAPPLICATION,
-		    "Naudotojas bandė ištrinti neegzistuojantį kompensacijos prašymą");
+	journalService.newJournalEntry(OperationType.ERROR, id, ObjectType.COMPENSATION_APPLICATION,
+		    "Bandyta ištrinti neegzistuojantį kompensacijos prašymą");
 	
 	LOG.warn("** Naudotojas bandė ištrinti neegzistuojantį kompensacijos prašymą **");
 
@@ -239,10 +245,15 @@ public class CompensationApplicationController {
 	if (id != null) {
 	    CompensationApplicationInfo compensationApplicationInfo = 
 		    compensationApplicationService.getCompensationApplicationInfo(id);
+	    
+	    journalService.newJournalEntry(OperationType.APPLICATION_REVIEWED, id,
+		    ObjectType.COMPENSATION_APPLICATION, "Peržiūrėtas kompensacijos prašymas");
 
 	    return new ResponseEntity<CompensationApplicationInfo>(
 		    compensationApplicationInfo, HttpStatus.OK);
 	}
+	journalService.newJournalEntry(OperationType.ERROR, id,
+		ObjectType.COMPENSATION_APPLICATION, "Nepavyko peržiūrėti kompensacijos prašymo");
 
 	return new ResponseEntity<CompensationApplicationInfo>(new CompensationApplicationInfo(),
 		HttpStatus.BAD_REQUEST);
@@ -293,7 +304,8 @@ public class CompensationApplicationController {
 				       .equals(ApplicationStatus.Patvirtintas)) {
 		
 		journalService.newJournalEntry(OperationType.ERROR, id,
-			ObjectType.COMPENSATIONAPPLICATION, "Bandyta atmesti jau patvirtintą prašymą");
+			ObjectType.COMPENSATION_APPLICATION,
+			"Bandyta atmesti jau patvirtintą kompensacijos prašymą");
 		
 		LOG.warn("** Bnadyta atmesti jau patvirtintą prašymą [{}]**", id);
 
@@ -302,7 +314,7 @@ public class CompensationApplicationController {
 	    }
 	    
 	    journalService.newJournalEntry(OperationType.APPLICATION_DEACTVATED, id,
-		    ObjectType.COMPENSATIONAPPLICATION, "Kompensacijos prašymas atmestas");
+		    ObjectType.COMPENSATION_APPLICATION, "Atmestas kompensacijos prašymas");
 
 	    LOG.info("**CompensationApplicationController: deaktyvuojamas prasymas [{}] **", id);
 
@@ -311,7 +323,8 @@ public class CompensationApplicationController {
 	    return new ResponseEntity<String>("Statusas pakeistas sėkmingai", HttpStatus.OK);
 	}
 	journalService.newJournalEntry(OperationType.ERROR, id,
-		ObjectType.COMPENSATIONAPPLICATION, "Bandyta atmesti neegzistuojantį prašymą");
+		ObjectType.COMPENSATION_APPLICATION,
+		"Bandyta atmesti neegzistuojantį kompensacijos prašymą");
 	
 	LOG.warn("** Bnadyta atmesti neegzistuojantį prašymą [{}]**", id);
 
@@ -340,14 +353,15 @@ public class CompensationApplicationController {
 				       .equals(ApplicationStatus.Neaktualus)) {
 		
 		journalService.newJournalEntry(OperationType.ERROR, id,
-			ObjectType.COMPENSATIONAPPLICATION, "Bandyta patvirtinti atmestą prašymą");
+			ObjectType.COMPENSATION_APPLICATION,
+			"Bandyta patvirtinti atmestą kompensacijos prašymą");
 
 		return new ResponseEntity<String>("Veiksmas negalimas. Prašymas jau atmestas.",
 			HttpStatus.METHOD_NOT_ALLOWED);
 	    }
 	    
 	    journalService.newJournalEntry(OperationType.APPLICATION_CONFIRMED, id,
-		    ObjectType.COMPENSATIONAPPLICATION, "Kompensacijos prašymas patvirtintas");
+		    ObjectType.COMPENSATION_APPLICATION, "Patvirtintas kompensacijos prašymas");
 
 	    LOG.info("**CompensationApplicationController: patvirtinamas prasymas [{}] **", id);
 
@@ -356,7 +370,8 @@ public class CompensationApplicationController {
 	    return new ResponseEntity<String>("Statusas pakeistas sėkmingai", HttpStatus.OK);
 	}
 	journalService.newJournalEntry(OperationType.ERROR, id,
-		ObjectType.COMPENSATIONAPPLICATION, "Bandyta patvirtinti neegzistuojantį prašymą");
+		ObjectType.COMPENSATION_APPLICATION,
+		"Bandyta patvirtinti neegzistuojantį kompensacijos prašymą");
 	
 	LOG.warn("** Bnadyta patvirtinti neegzistuojantį prašymą [{}]**", id);
 

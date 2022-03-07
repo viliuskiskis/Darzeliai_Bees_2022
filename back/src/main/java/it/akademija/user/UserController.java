@@ -320,6 +320,9 @@ public class UserController {
 	zipOutputStream.putNextEntry(new ZipEntry("naudotojas.json"));
 
 	IOUtils.copy(inputStream, zipOutputStream);
+	
+	journalService.newJournalEntry(OperationType.USER_DATA_DOWNLOADED, ObjectType.USER_DATA,
+		"Atsisiųsta informacija apie kaupiamus asmens duomenis");
 
 	inputStream.close();
 

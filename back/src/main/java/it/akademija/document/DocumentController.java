@@ -60,8 +60,8 @@ public class DocumentController {
 	    @ApiParam(value = "id", required = true)
 	    @PathVariable Long id) {
 
-//	journalService.newJournalEntry(OperationType.MEDICAL_RECORD_DOWNLOADED, id,
-//		ObjectType.MEDICAL_RECORD, "Atsisiųsta medicininė pažyma");
+	journalService.newJournalEntry(OperationType.CERTIFICATE_DOWNLOADED, id,
+		ObjectType.CERTIFICATE, "Atsisiųsta pažyma");
 	
 	LOG.info("** DocumentController: pažyma [{}] parsiųsta**", id);
 
@@ -88,8 +88,8 @@ public class DocumentController {
 	
 	if (documentId != 0) {
 
-	    journalService.newJournalEntry(OperationType.MEDICAL_RECORD_SUBMITED, documentId,
-		    ObjectType.MEDICAL_RECORD, "Įkelta medicininė pažyma");
+	    journalService.newJournalEntry(OperationType.CERTIFICATE_SUBMITED, documentId,
+		    ObjectType.CERTIFICATE, "Įkelta pažyma");
 	    
 	    LOG.info("** DocumentController: pažyma [{}] įkelta**", documentId);
 
@@ -97,7 +97,7 @@ public class DocumentController {
 
 	} else {
 	    journalService.newJournalEntry(OperationType.ERROR, null,
-		    ObjectType.MEDICAL_RECORD, "Nepavyko įkelti medicininės pažymos");
+		    ObjectType.CERTIFICATE, "Nepavyko įkelti pažymos");
 
 	    LOG.warn("** Įvyko klaida įkeliant dokumentą: [{}]**", fileName);
 	    
@@ -119,8 +119,8 @@ public class DocumentController {
 
 	documentService.deleteDocument(id);
 	
-	journalService.newJournalEntry(OperationType.MEDICAL_RECORD_DELETED, id,
-		ObjectType.MEDICAL_RECORD, "Medicininė pažyma ištrinta");
+	journalService.newJournalEntry(OperationType.CERTIFICATE_DELETED, id,
+		ObjectType.CERTIFICATE, "Ištrinta pažyma");
 	
 	LOG.info("** DocumentController: pažyma [{}] ištrinta**", id);
 
@@ -168,8 +168,8 @@ public class DocumentController {
 	    @ApiParam(value = "id", required = true)
 	    @PathVariable Long id) {
 
-//	journalService.newJournalEntry(OperationType.MEDICAL_RECORD_DOWNLOADED, id, ObjectType.MEDICAL_RECORD,
-//		"Specialistas atsisiuntė medicininę pažymą");
+	journalService.newJournalEntry(OperationType.CERTIFICATE_DOWNLOADED, id, ObjectType.CERTIFICATE,
+		"Atsisiųsta pažyma");
 
 	return documentService.getDocumentById(id).getData();
     }
