@@ -16,7 +16,7 @@ public class BaseTest {
     protected static WebDriver driver;
 
     @BeforeSuite(alwaysRun = true)
-    public static void setUp() {
+    public  void setUp() {
         WebDriverManager.chromedriver().setup();
 //        WebDriverManager.firefoxdriver().setup();
 //        WebDriverManager.edgedriver().setup();
@@ -27,7 +27,7 @@ public class BaseTest {
     }
 
     @BeforeClass(alwaysRun = true)
-    public static void openHomePage(){
+    public  void openHomePage(){
 //        driver = new FirefoxDriver();
         driver = new ChromeDriver();
 //        driver = new EdgeDriver();
@@ -37,14 +37,14 @@ public class BaseTest {
     }
 
 //    @AfterClass(alwaysRun = true)
-//    public static void closeBrowser() {
+//    public  void closeBrowser() {
 //        driver.manage().deleteAllCookies();
-//        driver.close();
-//        driver.quit();
+////        driver.close();
+////        driver.quit();
 //    }
 //
 //    @AfterSuite(alwaysRun = true)
-//    protected static void tearDown() {
+//    protected  void tearDown() {
 //        driver.quit();
 //    }
 }

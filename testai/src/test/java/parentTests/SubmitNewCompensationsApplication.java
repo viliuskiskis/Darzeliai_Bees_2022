@@ -22,14 +22,14 @@ public class SubmitNewCompensationsApplication extends GeneralMethods {
      * Fill in and submit application for a compensation.
      * Review and edit application for a compensation.
      * Delete the submitted application afterwards.
-     * <p>
+     *
      * Test steps:
      * 1. Login as admin. New user (parent) is created for the test. Logout.
      * 2. Login as the newly created user.
      * 3. User fills in application. All information needed is stored in parentAndChildDetails.txt file
      * 4. Parent logs in again to review and edit the application.
-     * 4. Parent logs in again to delete the application.
-     * 5. The user that was used for this test is deleted.
+     * 5. Parent logs in again to delete the application.
+     * 6. The user that was used for this test is deleted.
      */
 
     @Test(groups = "regression", priority = 1)
@@ -68,9 +68,10 @@ public class SubmitNewCompensationsApplication extends GeneralMethods {
         // parent logs in
         waitForLoginToLoad();
         doLogin(createNewUserParentEmail, createNewUserParentEmail);
-//       assertTrue(textToBePresentInElement((WebElement) By.xpath("//h6[text()='Mano prašymai dėl " +
-//               "kompensacijos'][@class='ps-2 pt-3']"),"Mano prašymai dėl kompensacijos").apply(driver));
+
+
 //        assertEquals(compensationApplication.verifyCompensationsApplicationsListName(), "Mano prašymai dėl kompensacijos");
+        compensationApplication.verifyIfCompensationsApplicationsListNameIsShowen();
 
         //compensations application reviewed
         compensationApplication.clickButtonReviewCompensationApplication();
@@ -95,11 +96,18 @@ public class SubmitNewCompensationsApplication extends GeneralMethods {
         compensationApplication.clickDeleteCompensationsApplication();
         waitToAgreePopUp();
 //        clickOkButton();
-          waitAndClickOkButton();
+        waitAndClickOkButton();
         doLogout();
 
         // delete test user
+//        LoginPage loginPage = new LoginPage(driver);
+//        waitForLoginToLoad();
+//        loginPage.enterUsername(adminLogins);
+//        loginPage.enterPassword(adminLogins);
+//        loginPage.clickLoginButton();
+
         doLoginAsAdmin();
+
         verifyIfAdminIsLoggedIn();
         deleteNewUser();
 
