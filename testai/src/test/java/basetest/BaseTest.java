@@ -35,15 +35,15 @@ public class BaseTest {
         driver.get("https://bees.akademijait.vtmc.lt/darzelis");
     }
 
-    @AfterClass(alwaysRun = true)
-    public  void closeBrowser() {
-        driver.manage().deleteAllCookies();
-        driver.close();
-        driver.quit();
-    }
-
-    @AfterSuite(alwaysRun = true)
-    protected  void tearDown() {
-        driver.quit();
-    }
+//    @AfterClass(alwaysRun = true)
+//    public  void closeBrowser() {
+//        driver.manage().deleteAllCookies();
+////        driver.close();
+////        driver.quit();
+//    }
+//
+//    @AfterSuite(alwaysRun = true)
+//    protected  void tearDown() {
+//        driver.quit();
+//    }
 }

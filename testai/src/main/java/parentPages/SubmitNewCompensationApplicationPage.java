@@ -129,7 +129,7 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
     public void clickButtonReviewCompensationApplication() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         driver.findElement(By.tagName("body")).sendKeys(Keys.END);
-        Thread.sleep(160);
+        Thread.sleep(200);
 //        buttonReviewCompensation.click();
         WebElement button = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("btnReviewCompensationUser")));
@@ -205,7 +205,8 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
 
     public Boolean compensationsApplicationSuccessful() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        return wait.until(ExpectedConditions.textToBe(By.xpath("/html/body/div[2]/div/div[1]"), "Kompensacijos prašymas sukuras sėkmingai"));
+        return wait.until(ExpectedConditions.textToBe(By.xpath("/html/body/div[2]/div/div[1]"), "Kompensacijos " +
+                "prašymas sukuras sėkmingai"));
     }
 
     public Boolean verifyIfCompensationsApplicationsListNameIsShowen() {
