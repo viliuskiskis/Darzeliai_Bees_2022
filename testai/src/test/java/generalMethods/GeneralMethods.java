@@ -522,19 +522,19 @@ public class GeneralMethods extends BaseTest {
         js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//button[@class='swal-button swal-button--confirm']")));
     }
 
-    public void clickOkButtonJSWait() throws InterruptedException {
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        int count = 0;
-        if ((Boolean) executor.executeScript("return window.jQuery != undefined")) {
-            while (!(Boolean) executor.executeScript("return jQuery.active == 0")) {
-                Thread.sleep(4000);
-                if (count > 4) break;
-                count++;
-            }
-        }
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        WebElement we = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='swal-button swal-button--confirm']")));
-    }
+//    public void clickOkButtonJSWait() throws InterruptedException {
+//        JavascriptExecutor executor = (JavascriptExecutor) driver;
+//        int count = 0;
+//        if ((Boolean) executor.executeScript("return window.jQuery != undefined")) {
+//            while (!(Boolean) executor.executeScript("return jQuery.active == 0")) {
+//                Thread.sleep(4000);
+//                if (count > 4) break;
+//                count++;
+//            }
+//        }
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+//        WebElement we = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='swal-button swal-button--confirm']")));
+//    }
 
     //	public void clickOkButton() {
 //		JavascriptExecutor js = (JavascriptExecutor) driver;
