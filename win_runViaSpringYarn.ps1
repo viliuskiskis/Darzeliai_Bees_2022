@@ -10,7 +10,7 @@ $GIT = "git@github.com:viliuskiskis/Darzeliai_Bees_2022.git"
 # Edit to change active branch
 $BRANCH = "JUS-199--separateKindergartenMap"
 # Repo name
-$NAME = "Darzeliai_Bees_2022-m3v2"
+$NAME = "Darzeliai_Bees_2022-sp3-zemelapiai"
 # Edit to change active commit - if needed - uncomment necessary code below
 #$COMMIT = "891f7fd48ee88106ed033319cf79b5eb1b2a0dd1"
 

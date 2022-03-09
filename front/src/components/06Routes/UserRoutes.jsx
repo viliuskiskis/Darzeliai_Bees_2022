@@ -12,6 +12,7 @@ import CreateApplicationFormContainer from "../04UserComponents/01ApplicationFor
 import UpdateProfileFormContainer from "../01CommonComponents/03UpdateProfile/UpdateProfileFormContainer";
 import UserDocumentContainer from "../04UserComponents/04Documents/UserDocumentContainer";
 import NotFound from "../01CommonComponents/02NotFound/NotFound";
+import UserMainMapContainer from "../01CommonComponents/06Maps/UserMainMapContainer";
 
 import Testing from "../99DeleteThis/Testing";
 import ContractReviewContainer from "../04UserComponents/03ApplicationReview/ContractReviewContainer";
@@ -31,6 +32,10 @@ export default function UserRoutes() {
               exact
               path="/prasymai"
               component={UserHomeContainer}
+            />
+            <Route
+              path="/zemelapis"
+              component={UserMainMapContainer}
             />
             <Route
               path="/prasymas/priimti/:id"

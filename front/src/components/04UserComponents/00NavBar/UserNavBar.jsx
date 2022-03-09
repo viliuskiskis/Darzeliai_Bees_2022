@@ -28,6 +28,10 @@ export default function UserNavBar(props) {
                         <ul className="navbar-nav ms-auto ">
 
                             <li className="nav-item me-1">
+                                <NavLink className="nav-link" id="navUserKindergartenMap" to={"/zemelapis"}>Darželių žemėlapis</NavLink>
+                            </li>
+
+                            <li className="nav-item me-1">
                                 <NavLink className="nav-link" id="navUserNewApplication" to={"/prasymai/naujas"}>Sukurti prašymą</NavLink>
                             </li>
 
