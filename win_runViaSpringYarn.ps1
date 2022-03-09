@@ -10,7 +10,7 @@ $GIT = "git@github.com:viliuskiskis/Darzeliai_Bees_2022.git"
 # Edit to change active branch
 $BRANCH = "JUS-199--separateKindergartenMap"
 # Repo name
-$NAME = "Darzeliai_Bees_2022-m3"
+$NAME = "Darzeliai_Bees_2022-m3v2"
 # Edit to change active commit - if needed - uncomment necessary code below
 #$COMMIT = "891f7fd48ee88106ed033319cf79b5eb1b2a0dd1"
 
@@ -46,7 +46,7 @@ if (Test-Path -Path $LOC'\'$NAME) {
 }
 
 function endpointMod ($endpoint) {
-	Write-Host '...endpoint.js $endpoint mod started' 
+	Write-Host '...endpoint.js '$endpoint' mod started' 
 
 	$filePath = '.\front\src\components\00Services\endpoint.js'
 	$filePathBak = '.\front\src\components\00Services\endpoint.jsBak'
@@ -72,7 +72,7 @@ function endpointMod ($endpoint) {
 	#Move-Item -Path $filePath -Destination $filePathBak
 	Move-Item -Path $tempFilePath -Destination $filePath
 
-	'...endpoint.js $($endpoint.value) mod finished'
+	Write-Host '...endpoint.js '$endpoint' mod finished'
 }
 
 function startBackend {
@@ -113,7 +113,9 @@ function buildApp {
 	# build frontend
 	Write-Host '...building frontend'
 	cd front
+	yarn install
 	yarn build
+	#sleep 30
 	cd ..
 	#move front to xx
 	Move-Item -Path 'front\build\*' -Destination 'back\src\main\resources\public' -Force
