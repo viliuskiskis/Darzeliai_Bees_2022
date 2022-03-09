@@ -73,11 +73,14 @@ public class SubmitAndDownloadPDFNewApplication extends GeneralMethods {
         download.clickStopRegistration();
         download.clickFormQueue();
 //        clickOkButton();
-        clickOkButtonJSWait();
-        download.clickOKPopUp();
+//        clickOkButtonJSWait();
+//        download.clickOKPopUp();
+        download.clickSwalPopUp("//button[@class='swal-button swal-button--confirm']");
         download.clickConfirmQueue();
-        download.clickOKPopUp();
-        clickOkButton();
+        download.clickSwalPopUp("//button[@class='swal-button swal-button--confirm swal-button--danger']");
+        download.clickSwalPopUp("//button[@class='swal-button swal-button--confirm']");
+//        download.clickOKPopUp();
+//        clickOkButton();
         doLogout();
     }
 

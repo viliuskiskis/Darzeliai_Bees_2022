@@ -73,6 +73,13 @@ public class SubmitAndDownloadPDFNewApplicationPage extends AbstractObjectPage {
         popUpClickOK.click();
     }
 
+    public void clickSwalPopUp(String path) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement popUpClickOK = wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath(path)));
+        popUpClickOK.click();
+    }
+
     public void clickReviewContract() {
         reviewContract.click();
     }
@@ -85,7 +92,7 @@ public class SubmitAndDownloadPDFNewApplicationPage extends AbstractObjectPage {
 
     public void clickButtonDownload() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,400)");
+        js.executeScript("window.scrollBy(0,2030)");
         js.executeScript("arguments[0].scrollIntoView()", downloadPDF);
         js.executeScript("arguments[0].click();", downloadPDF);
     }
