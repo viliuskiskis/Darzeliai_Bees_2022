@@ -12,10 +12,10 @@ import CreateApplicationFormContainer from "../04UserComponents/01ApplicationFor
 import UpdateProfileFormContainer from "../01CommonComponents/03UpdateProfile/UpdateProfileFormContainer";
 import UserDocumentContainer from "../04UserComponents/04Documents/UserDocumentContainer";
 import NotFound from "../01CommonComponents/02NotFound/NotFound";
-
-import Testing from "../99DeleteThis/Testing";
+import MapViewContainer from "../01CommonComponents/06Map/MapViewContainer";
 import ContractReviewContainer from "../04UserComponents/03ApplicationReview/ContractReviewContainer";
 
+import Testing from "../99DeleteThis/Testing";
 
 export default function UserRoutes() {
   return (
@@ -47,6 +47,11 @@ export default function UserRoutes() {
             <Route
               path="/prasymas/kompensuoti/:id"
               component={CompensationReviewContainer}
+            />
+            <Route
+              exact
+              path="/zemelapis"
+              component={MapViewContainer}
             />
             <Route
               exact
