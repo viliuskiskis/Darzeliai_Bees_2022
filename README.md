@@ -35,7 +35,7 @@ USER pages: https://agn709575.invisionapp.com/console/share/GB26F5SD2U/550996143
 
 - to run manually 
 - change `const apiEndpoint= process.env.PUBLIC_URL` to `const apiEndpoint = "http://localhost:8080"`
-- follow bash files runViaTomcat.sh or runViaSpringYarn.sh
+- follow bash files runViaTomcat.sh or runViaSpringYarn.sh or win_runViaSpringYarn.ps1
 
 ### Run on Tomcat Server
 
@@ -45,6 +45,17 @@ USER pages: https://agn709575.invisionapp.com/console/share/GB26F5SD2U/550996143
 
 -- change `const apiEndpoint= process.env.PUBLIC_URL` to `const apiEndpoint = "http://localhost:8080"`
 -- edit as needed and run bash script runViaSpringYarn.sh, takes ~ 10min
+
+## Deployment
+
+To make a war file for deployment:
+- run `yarn build` while in the project folder `.../Projektas_Darzeliu_IS/front`
+- move all files from folder `.../Projektas_Darzeliu_IS/front/build`
+to `.../back/source/main/resources/public`
+- run `mvn clean install` while in the project folder `.../Projektas_Darzeliu_IS/back`
+- `darzelis.war` file will appear in the `..\Projektas_Darzeliu_IS\back\target` folder
+
+or use win_runViaSpringYarn.ps1 script on windows
 
 ### Accessing the database
 
@@ -86,15 +97,6 @@ parentPages package tests:
 - upload medical document (pdf)
 
 ```
-
-## Deployment
-
-To make a war file for deployment:
-- run `yarn build` while in the project folder `.../Projektas_Darzeliu_IS/front`
-- move all files from folder `.../Projektas_Darzeliu_IS/front/build`
-to `.../back/source/main/resources/public`
-- run `mvn clean install` while in the project folder `.../Projektas_Darzeliu_IS/back`
-- `darzelis.war` file will appear in the `..\Projektas_Darzeliu_IS\back\target` folder
 
 
 ## Authors
