@@ -46,7 +46,7 @@ public class CompensationApplicationService {
 	 * @param data
 	 */
 	@Transactional
-	public void createNewCompensationApplication(CompensationApplicationDTO compensationApplicationDTO) {
+	public CompensationApplication createNewCompensationApplication(CompensationApplicationDTO compensationApplicationDTO) {
 		
 		CompensationApplication compensationApplication = new CompensationApplication();
 		
@@ -73,6 +73,7 @@ public class CompensationApplicationService {
 		childData.setCompensationApplication(compensationApplication);
 		kindergartenData.setCompensationApplication(compensationApplication);
 		
+		return compensationApplication;
 	}
 	
 	/**
@@ -206,10 +207,7 @@ public class CompensationApplicationService {
 		return childDataService.childExistsByPersonalCode(childPersonalCode);
 	}
 
-	public Page<CompensationApplicationInfoUser> getPageFromCompensationApplications(Pageable pageable) {
-		return compensationApplicationDAO.findAllCompensationApplicationInfoUser(pageable);
-		
-	}
+	
 
 	public boolean existsCompensationApplicationById(Long id) {
 		return compensationApplicationDAO.existsById(id);
@@ -217,6 +215,11 @@ public class CompensationApplicationService {
 
 	public void deactivateCompensationApplication(CompensationApplication compensationApplication) {
 		compensationApplication.setApplicationStatus(ApplicationStatus.Neaktualus);
+		compensationApplicationDAO.save(compensationApplication);
+	}
+	
+	public void confirmCompensationApplication(CompensationApplication compensationApplication) {
+		compensationApplication.setApplicationStatus(ApplicationStatus.Patvirtintas);
 		compensationApplicationDAO.save(compensationApplication);
 	}
 
@@ -230,12 +233,6 @@ public class CompensationApplicationService {
 		
 		CompensationApplication compensationApplication = 
 				compensationApplicationDAO.getById(id);
-		
-//		compensationApplication.setApplicationStatus(
-//				compensationApplicationdDTO.getApplicationStatus());
-//		
-//		compensationApplication.setApprovalDate(
-//				compensationApplicationdDTO.getApprovalDate());
 		
 		String currentUsername = SecurityContextHolder
 				.getContext()
@@ -253,7 +250,23 @@ public class CompensationApplicationService {
 		
 		compensationApplicationDAO.save(compensationApplication);
 	}
+
 	
 	
+	public Page<CompensationApplicationInfoUser> getPageFromCompensationApplications(Pageable pageable, String filter) {
+		
+//		if(filter.equals("childPersonalCode")) {
+//			return compensationApplicationDAO
+//					.findAllCompensationsByChildPersonalCode(pageable, filter);
+//		}
+//		else if(filter.equals("entityName")) {
+//			return compensationApplicationDAO
+//					.findAllCompensationsByEntityName(pageable, filter);
+//		}
+//		return compensationApplicationDAO.findAllCompensationApplicationInfoUser(pageable);
+	    	return compensationApplicationDAO.findAllCompensationsByChildPersonalCode(filter, pageable);
+		
+	}
 	
+		
 }

@@ -1,6 +1,7 @@
 package it.akademija.document;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
@@ -37,7 +38,7 @@ class DocumentServiceTest {
 		MockMultipartFile file = new MockMultipartFile("file", "file.pdf", MediaType.APPLICATION_PDF_VALUE,
 				"Hello, World!".getBytes());
 
-		assertTrue(documentService.uploadDocument(file, "file.pdf", 1L));
+		assertNotEquals(0L, documentService.uploadDocument(file, "file.pdf", 1L));
 
 	}
 
@@ -45,11 +46,11 @@ class DocumentServiceTest {
 	void getDocumentById() {
 
 		DocumentViewmodel newDocument = new DocumentViewmodel();
-		newDocument.setDocumentId(123L);
+		newDocument.setId(123L);
 		newDocument.setName("pazyma");
 		newDocument.setUploadDate(LocalDate.of(2019, 5, 5));
 
-		assertEquals(123L, newDocument.getDocumentId());
+		assertEquals(123L, newDocument.getId());
 		assertEquals("pazyma", newDocument.getName());
 		assertEquals(LocalDate.of(2019, 5, 5), newDocument.getUploadDate());
 

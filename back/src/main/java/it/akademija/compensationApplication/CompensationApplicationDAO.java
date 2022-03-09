@@ -17,6 +17,7 @@ public interface CompensationApplicationDAO extends JpaRepository<CompensationAp
 			+ "ca.submitedAt, "
 			+ "cd.childName, "
 			+ "cd.childSurname, "
+			+ "cd.childPersonalCode, "
 			+ "kd.entityName) "
 			+ "FROM CompensationApplication ca "
 			+ "JOIN ChildData cd "
@@ -63,14 +64,50 @@ public interface CompensationApplicationDAO extends JpaRepository<CompensationAp
 			+ "ca.submitedAt, "
 			+ "cd.childName, "
 			+ "cd.childSurname, "
+			+ "cd.childPersonalCode, "
 			+ "kd.entityName) "
 			+ "FROM CompensationApplication ca "
 			+ "JOIN ChildData cd "
 			+ "ON ca.id = cd.compensationApplication.id "
 			+ "JOIN KindergartenData kd "
-			+ "ON ca.id = kd.compensationApplication.id",
+			+ "ON ca.id = kd.compensationApplication.id ",
 			nativeQuery = false)
 	Page<CompensationApplicationInfoUser> findAllCompensationApplicationInfoUser(Pageable pageable);
+
+	@Query(value ="SELECT new it.akademija.compensationApplication.CompensationApplicationInfoUser("
+			+ "ca.id, "
+			+ "ca.applicationStatus, "
+			+ "ca.submitedAt, "
+			+ "cd.childName, "
+			+ "cd.childSurname, "
+			+ "cd.childPersonalCode, "
+			+ "kd.entityName) "
+			+ "FROM CompensationApplication ca "
+			+ "JOIN ChildData cd "
+			+ "ON ca.id = cd.compensationApplication.id "
+			+ "JOIN KindergartenData kd "
+			+ "ON ca.id = kd.compensationApplication.id "
+			+ "WHERE cd.childPersonalCode "
+			+ "LIKE(concat('%', ?1, '%'))",
+			nativeQuery = false)
+	Page<CompensationApplicationInfoUser> findAllCompensationsByChildPersonalCode(String filter, Pageable pageable);
+	
+	@Query(value ="SELECT new it.akademija.compensationApplication.CompensationApplicationInfoUser("
+			+ "ca.id, "
+			+ "ca.applicationStatus, "
+			+ "ca.submitedAt, "
+			+ "cd.childName, "
+			+ "cd.childSurname, "
+			+ "cd.childPersonalCode, "
+			+ "kd.entityName) "
+			+ "FROM CompensationApplication ca "
+			+ "JOIN ChildData cd "
+			+ "ON ca.id = cd.compensationApplication.id "
+			+ "JOIN KindergartenData kd "
+			+ "ON ca.id = kd.compensationApplication.id "
+			+ "WHERE kd.entityName=?1 ",
+			nativeQuery = false)
+	Page<CompensationApplicationInfoUser> findAllCompensationsByEntityName(Pageable pageable, String filter);
 
 	
 

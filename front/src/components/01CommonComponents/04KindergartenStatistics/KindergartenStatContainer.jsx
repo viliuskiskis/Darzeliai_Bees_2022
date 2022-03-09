@@ -1,91 +1,94 @@
 import React, { Component } from 'react';
 
-import '../../../App.css';
-
 import http from '../../00Services/httpService';
 import apiEndpoint from '../../00Services/endpoint';
 
 import KindergartenStatTable from './KindergartenStatTable';
-import Pagination from '../../05ReusableComponents/Pagination';
+import Pagination from "react-js-pagination";
 
 export default class KindergartenStatContainer extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            darzeliai: [],
-            pageSize: 10,
-            currentPage: 1,
-            totalPages: 0,
-            totalElements: 0,
-            numberOfElements: 0
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      darzeliai: [],
+      pageSize: 10, // FUNCTIONALITY NOT YET IMPLEMENTED
+      currentPage: 1,
+      totalPages: 0,
+      totalElements: 0,
+      numberOfElements: 0
     }
-    componentDidMount() {
-        this.getKindergartenStat(this.state.currentPage);
-    }
+  }
+  componentDidMount() {
+    this.getKindergartenStat(this.state.currentPage);
+  }
 
-    getKindergartenStat(currentPage) {
+  getKindergartenStat(currentPage) {
 
-        const { pageSize } = this.state;
-        currentPage -= 1;
+    const { pageSize } = this.state;
+    currentPage -= 1;
 
-        var uri = `${apiEndpoint}/api/darzeliai/statistics?page=${currentPage}&size=${pageSize}`;
+    var uri = `${apiEndpoint}/api/darzeliai/statistics?page=${currentPage}&size=${pageSize}`;
 
-        http
-            .get(uri)
-            .then((response) => {
+    http
+      .get(uri)
+      .then((response) => {
 
-                this.setState({
-                    darzeliai: response.data.content,
-                    totalPages: response.data.totalPages,
-                    totalElements: response.data.totalElements,
-                    numberOfElements: response.data.numberOfElements,
-                    currentPage: response.data.number + 1
-                });
+        this.setState({
+          darzeliai: response.data.content,
+          totalPages: response.data.totalPages,
+          totalElements: response.data.totalElements,
+          numberOfElements: response.data.numberOfElements,
+          currentPage: response.data.number + 1
+        });
 
-            }).catch(() => { });
-    }
+      }).catch(() => { });
+  }
 
-    handlePageChange = (page) => {
-        this.setState({ currentPage: page });
-        this.getKindergartenStat(page);
-    };
+  handlePageChange = (page) => {
+    this.setState({ currentPage: page });
+    this.getKindergartenStat(page);
+  };
 
 
-    render() {
+  render() {
 
-        const { darzeliai, totalElements, pageSize } = this.state;
-        let count = 0;
+    let count = 0;
 
-        if (darzeliai !== undefined) count = darzeliai.length;
+    if (this.state.darzeliai !== undefined) count = this.state.darzeliai.length;
 
-        if (count === 0) return <div className="container pt-5"><h6 className="pt-5">Informacija ruošiama</h6></div>
+    if (count === 0) return <div className="container pt-5"><h6 className="pt-5">Informacija ruošiama</h6></div>
 
-        return (
+    return (
 
-            <div className="container pt-4" >
+      <div className="container pt-4" >
 
-                <h6 className="ps-2 pt-3">Prašymų statistika</h6>
+        <h6 className="ps-2 pt-3">Prašymų statistika</h6>
 
-                <div className="row pt-2">
-                    <div className="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div className="row pt-2">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-12">
 
-                        <KindergartenStatTable
-                            darzeliai={darzeliai}
-                        />
+            <KindergartenStatTable
+              darzeliai={this.state.darzeliai}
+            />
 
-                        <Pagination
-                            itemsCount={totalElements}
-                            pageSize={pageSize}
-                            onPageChange={this.handlePageChange}
-                            currentPage={this.state.currentPage}
-                        />
+            {this.state.totalPages > 1 &&
+              <div className="d-flex justify-content-center">
+                <Pagination
+                  itemClass="page-item"
+                  linkClass="page-link"
+                  activePage={this.state.currentPage}
+                  itemsCountPerPage={this.state.pageSize}
+                  totalItemsCount={this.state.totalElements}
+                  pageRangeDisplayed={15}
+                  onChange={this.handlePageChange}
+                />
+              </div>
+            }
+          </div>
 
-                    </div>
-
-                </div>
-            </div>
-        )
-    }
+        </div>
+      </div>
+    )
+  }
 }

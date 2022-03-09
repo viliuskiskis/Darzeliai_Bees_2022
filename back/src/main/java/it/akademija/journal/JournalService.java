@@ -16,16 +16,22 @@ import it.akademija.user.UserDAO;
 @Service
 public class JournalService {
 
-	@Autowired
-	private JournalEntryDAO journalEntryDAO;
+    @Autowired
+    private JournalEntryDAO journalEntryDAO;
 
-	@Autowired
-	private UserDAO userDAO;
+    @Autowired
+    private UserDAO userDAO;
 
-	@Transactional(readOnly = true)
-	public Page<JournalEntry> getAllJournalEntries(Pageable pageable) {
-		return journalEntryDAO.getAllJournalEntries(pageable);
+    @Transactional(readOnly = true)
+    public Page<JournalEntry> getAllJournalEntries(Pageable pageable, String filter) {
+	
+	if (filter.equals("")) {
+	    return journalEntryDAO.getAllJournalEntries(pageable);
+	    
+	} else {
+	    return journalEntryDAO.getAllJournalEntriesByUsername(filter, pageable);
 	}
+    }
 
 	/**
 	 * Metodas visiems atvejams, kai pasiekiamas user iš SecurityContext

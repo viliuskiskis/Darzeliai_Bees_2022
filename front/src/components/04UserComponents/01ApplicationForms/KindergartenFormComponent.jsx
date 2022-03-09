@@ -29,7 +29,7 @@ export default function KindergartenFormComponent(props) {
             Įmonės kodas <span className="fieldRequired">*</span>
           </label>
           <input
-            type="text"
+            type="tel"
             id="kindergartenCode"
             name="code"
             placeholder="Įmonės kodas"

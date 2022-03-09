@@ -3,6 +3,8 @@ import apiEndpoint from "../../00Services/endpoint";
 import http from "../../00Services/httpService";
 import swal from "sweetalert";
 import AdmissionReviewComponent from "./AdmissionReviewComponent";
+
+//import KindergartenContractComponent from "./KindergartenContractComponent";
 import AuthContext from "../../00Services/AuthContext";
 
 export default class AdmissionReviewContainer extends Component {
@@ -19,18 +21,16 @@ export default class AdmissionReviewContainer extends Component {
       childPersonalCode: "",
       approvalDate: null,
       birthdate: "",
-      mainGuardian: {
-        name: "",
-        surname: "",
-        personalCode: "",
-        address: "",
-        phone: "",
-        email: "",
-        username: ""
-      },
-      kindergartenInfo: {}
+      numberInWaitingList: "",
+      mainGuardian: null,
+      additionalGuardian: null,
+      approvedKindergarten: "",
+      approvedKindergartenManager: "",
+      kindergartenChoices: null,
+      priorities: null
     };
     this.handleReturn = this.handleReturn.bind(this);
+    //this.handleDownloadContract = this.handleDownloadContract.bind(this);
   };
 
   componentDidMount() {
@@ -50,8 +50,13 @@ export default class AdmissionReviewContainer extends Component {
           childPersonalCode: response.data.childPersonalCode,
           approvalDate: response.data.approvalDate,
           birthdate: response.data.birthdate,
+          numberInWaitingList: response.data.numberInWaitingList,
           mainGuardian: response.data.mainGuardian,
-          kindergartenInfo: response.data.kindergartenInfo
+          additionalGuardian: response.data.additionalGuardian,
+          approvedKindergarten: response.data.approvedKindergarten,
+          approvedKindergartenManager: response.data.approvedKindergartenManager,
+          kindergartenChoices: response.data.kindergartenChoices,
+          priorities: response.data.priorities
         })
       }).catch(error => {
         swal({
@@ -60,6 +65,31 @@ export default class AdmissionReviewContainer extends Component {
         })
       });
   }
+
+  /* 
+  handleDownloadContract(data) {
+    let role = this.context.state.role.toLowerCase();
+    http.request({
+      url: `${apiEndpoint}/api/contract/${role}/${data.id}`,
+      method: "GET",
+      responseType: "blob"
+    }).then(response => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download',
+        `Ikimokyklinio ugdymo sutartis, ${data.childName} ${data.childSurname}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }).catch(error => {
+      swal({
+        text: "Įvyko klaida atsisiunčiant sutartį.",
+        button: "Gerai"
+      })
+    })
+  }
+  */
 
   handleReturn() {
     let route = this.context.state.role === "USER" ? "/prasymai" : "/eile";
@@ -71,6 +101,7 @@ export default class AdmissionReviewContainer extends Component {
       <AdmissionReviewComponent
         state={this.state}
         role={this.context.state.role}
+        //handleDownloadContract={this.handleDownloadContract}
         handleReturn={this.handleReturn}
       />
     )

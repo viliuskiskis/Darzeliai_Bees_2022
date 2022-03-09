@@ -17,15 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 import it.akademija.application.priorities.Priorities;
 import it.akademija.application.priorities.PrioritiesDAO;
 import it.akademija.application.priorities.PrioritiesDTO;
-import it.akademija.compensationApplication.CompensationApplication;
 import it.akademija.journal.JournalService;
-import it.akademija.journal.ObjectType;
-import it.akademija.journal.OperationType;
 import it.akademija.kindergarten.Kindergarten;
 import it.akademija.kindergarten.KindergartenService;
 import it.akademija.kindergartenchoise.KindergartenChoise;
-import it.akademija.kindergartenchoise.KindergartenChoiseDAO;
 import it.akademija.kindergartenchoise.KindergartenChoiseDTO;
+import it.akademija.kindergartenchoise.KindergartenChoiseService;
 import it.akademija.user.ParentDetails;
 import it.akademija.user.ParentDetailsDAO;
 import it.akademija.user.ParentDetailsDTO;
@@ -51,7 +48,7 @@ public class ApplicationService {
 	private PrioritiesDAO prioritiesDao;
 
 	@Autowired
-	private KindergartenChoiseDAO choiseDao;
+	private KindergartenChoiseService kindergartenChoiseService;
 
 	@Autowired
 	private JournalService journalService;
@@ -83,15 +80,19 @@ public class ApplicationService {
 	 * @return application or null if no kindergarten are chosen
 	 */
 	@Transactional
-	public Application createNewApplication(String currentUsername, ApplicationDTO data) {
+	public Application createNewApplication(
+			String currentUsername, 
+			ApplicationDTO data) {
 
 		Application application = new Application();
 
-		User firstParent = userService.updateUserData(data.getMainGuardian(), currentUsername);
+		User firstParent = userService
+				.updateUserData(data.getMainGuardian(), currentUsername);
 
-		ParentDetailsDTO detailsDto = data.getAdditionalGuardian();
+		ParentDetailsDTO detailsDto = data
+				.getAdditionalGuardian();
 
-		if (detailsDto!=null && detailsDto.getPersonalCode() != null && detailsDto.getPersonalCode() != "") {
+		if (detailsDto!=null && detailsDto.getPersonalCode() != null && !detailsDto.getPersonalCode().isEmpty()) {
 			ParentDetails secondParent = parentDetailsDao.findByPersonalCode(detailsDto.getPersonalCode());
 
 			if (secondParent == null) {
@@ -122,26 +123,33 @@ public class ApplicationService {
 
 		application.setMainGuardian(firstParent);
 
-		KindergartenChoiseDTO choisesDto = data.getKindergartenChoises();
-		Set<KindergartenChoise> choises = new HashSet<>();
+		KindergartenChoiseDTO kindergartenChoiseDTO = data.getKindergartenChoises();
+		Set<KindergartenChoise> kindergartenChoises = new HashSet<>();
 
 		for (int i = 1; i <= 5; i++) {
-			if (null != choisesDto.getKindergartenId(i)) {
-				Kindergarten garten = gartenService.findById(choisesDto.getKindergartenId(i));
-				if (garten != null) {
-					KindergartenChoise choise = choiseDao.save(new KindergartenChoise(garten, application, i));
-					choises.add(choise);
+			if (kindergartenChoiseDTO.getKindergartenId(i) != null) {
+				
+				Kindergarten kindergarten = 
+						gartenService.findById(kindergartenChoiseDTO.getKindergartenId(i));
+				
+				if (kindergarten != null) {
+					
+					KindergartenChoise kindergartenChoise = 
+							kindergartenChoiseService.saveKindergartenChoise(
+							new KindergartenChoise(kindergarten, application, i));
+					
+					kindergartenChoises.add(kindergartenChoise);
 				}
 			}
 		}
 
-		if (choises.isEmpty()) {
+		if (kindergartenChoises.isEmpty()) {
 
 			return null;
 
 		}
 
-		application.setKindergartenChoises(choises);
+		application.setKindergartenChoises(kindergartenChoises);
 		application = applicationDao.saveAndFlush(application);
 
 		return application;
@@ -191,8 +199,8 @@ public class ApplicationService {
 
 			applicationDao.delete(application);
 
-			journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.APPLICATION,
-					"Ištrintas prašymas");
+//			journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.APPLICATION,
+//					"Ištrintas prašymas");
 
 			return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
 		}
@@ -320,9 +328,9 @@ public class ApplicationService {
 	 * @param pageable
 	 * @return page from Application database
 	 */
-	public Page<ApplicationInfo> getPageFromSubmittedApplications(Pageable pageable) {
+	public Page<ApplicationInfo> getPageFromSubmittedApplications(Pageable pageable, String filter) {
 
-		return applicationDao.findAllApplications(pageable);
+		return applicationDao.findAllApplications(pageable, filter);
 
 	}
 
@@ -346,19 +354,25 @@ public class ApplicationService {
 	 * @param id
 	 * @return application details
 	 */
-	public ApplicationDetails getUserApplicationDetails(String currentUsername, Long id) {
-		
-		ApplicationDetails applicationDetails = 
-				applicationDao.getUserApplicationDetails(currentUsername, id);
-		
-		applicationDetails.setMainGuardian(
-				userService.getUserInfoByUsername(currentUsername));
-	
-		applicationDetails.setKindergartenInfo(
-				gartenService.getKindergartenInfoByApplicationId(id));
-		
-		
-		return applicationDetails;
+	public ResponseEntity<ApplicationDetails> getUserApplicationDetails(Long id) {
+
+	    String currentUsername = SecurityContextHolder.getContext()
+							  .getAuthentication()
+							  .getName();
+	    String applicationUsername = "";
+
+	    if (applicationDao.findById(id).isPresent()) {
+		applicationUsername = applicationDao.findById(id)
+						    .get()
+						    .getMainGuardian()
+						    .getUsername();
+	    }
+
+	    if (currentUsername.equals(applicationUsername)) {
+		return getApplicationDetails(id);
+	    } else {
+		return new ResponseEntity<ApplicationDetails>(new ApplicationDetails(), HttpStatus.FORBIDDEN);
+	    }
 	}
 
 	/**
@@ -367,21 +381,22 @@ public class ApplicationService {
 	 * @param id
 	 * @return application details
 	 */
-	public ApplicationDetails getApplicationDetails(Long id) {
-		
-		ApplicationDetails applicationDetails = 
-				applicationDao.getApplicationDetails(id);
-		
-		applicationDetails.setMainGuardian(
-				userService.getUserInfoByApplicationId(id));
-	
-		applicationDetails.setKindergartenInfo(
-				gartenService.getKindergartenInfoByApplicationId(id));
-		
-		
-		return applicationDetails;
+	public ResponseEntity<ApplicationDetails> getApplicationDetails(Long id) {
+	    
+	    ApplicationDetails applicationDetails = applicationDao.getApplicationDetails(id);
+	    applicationDetails.setMainGuardian(userService.getUserInfoByApplicationId(id));
+	    applicationDetails.setAdditionalGuardian(parentDetailsDao.getParentDetailsByApplicationId(id));
+	    applicationDetails.setKindergartenChoices(applicationDao.getKindergartenChoicesByApplicationId(id));
+	    applicationDetails.setPriorities(applicationDao.getPrioritiesByApplicationId(id));
+	    return new ResponseEntity<ApplicationDetails>(applicationDetails, HttpStatus.OK);
 	}
 
+	/**
+	 * Returns boolean is application and user data matches 
+	 * 
+	 * @param id
+	 * @return boolean
+	 */
 	public boolean isApplicationPresentAndMatchesMainGuardian(Long id) {
 		Optional<Application> optionalApplication = 
 				applicationDao.findById(id);
@@ -403,6 +418,12 @@ public class ApplicationService {
 		return false;
 	}
 
+	/**
+	 * Updates application
+	 * 
+	 * @param applicationDTO
+	 * @param id 
+	 */
 	public void updateApplication(ApplicationDTO applicationdDTO, Long id) {
 		
 		Application application = 
@@ -412,10 +433,42 @@ public class ApplicationService {
 		application.setChildName(applicationdDTO.getChildName());
 		application.setChildSurname(applicationdDTO.getChildSurname());
 		application.setChildPersonalCode(applicationdDTO.getChildPersonalCode());
-//		application.setKindergartenChoises(null);
-//		application.setMainGuardian(null);
-//		application.setAdditionalGuardian(null);
 		
+		applicationDao.save(application);
+		
+		KindergartenChoiseDTO kindergartenChoiseDTO = 
+				applicationdDTO.getKindergartenChoises();
+		
+		kindergartenChoiseService
+			.updateKindergartenChoises(kindergartenChoiseDTO, application);
+		
+		
+		String currentUsername = SecurityContextHolder
+				.getContext()
+				.getAuthentication()
+				.getName();
+		
+		userService
+				.updateUserData(applicationdDTO
+				.getMainGuardian(), currentUsername);
+		
+		ParentDetailsDTO parentDetailsDTO =  
+				applicationdDTO.getAdditionalGuardian();
+		
+		
+		ParentDetails parentDetails = 
+				parentDetailsDao.findByPersonalCode(
+						application.getAdditionalGuardian()
+						.getPersonalCode());
+		
+		parentDetails.setAddress(parentDetailsDTO.getAddress());
+		parentDetails.setEmail(parentDetailsDTO.getEmail());
+		parentDetails.setName(parentDetailsDTO.getName());
+		parentDetails.setSurname(parentDetailsDTO.getSurname());
+		parentDetails.setPhone(parentDetailsDTO.getPhone());
+		parentDetails.setPersonalCode(parentDetailsDTO.getPersonalCode());
+		
+		parentDetailsDao.save(parentDetails);
 	}
 
 }

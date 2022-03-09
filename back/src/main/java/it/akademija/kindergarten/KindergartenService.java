@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import it.akademija.application.Application;
 import it.akademija.application.ApplicationDAO;
 import it.akademija.application.ApplicationStatus;
+import it.akademija.kindergartenchoise.KindergartenChoise;
+import it.akademija.kindergartenchoise.KindergartenChoiseDAO;
 
 @Service
 public class KindergartenService {
@@ -29,6 +31,9 @@ public class KindergartenService {
 
 	@Autowired
 	private ApplicationDAO applicationDao;
+	
+	@Autowired
+	private KindergartenChoiseDAO kindergartenChoiseDAO;
 // o.v. JournalService nenaudojamas kintamasis
 //	@Autowired
 //	private JournalService journalService;
@@ -66,25 +71,25 @@ public class KindergartenService {
 	 * @return page from kindergarten database
 	 */
 	@Transactional(readOnly = true)
-	public Page<Kindergarten> getKindergartenPage(Pageable pageable) {
+	public Page<Kindergarten> getKindergartenPage(Pageable pageable, String filter) {
 
-		return gartenDao.findAllKindergarten(pageable);
+		return gartenDao.findByNameContainingIgnoreCase(filter, pageable);
 	}
 
-	/**
-	 * 
-	 * Returns a page of Kindergarten filtered by name containing text with
-	 * specified page number and page size
-	 * 
-	 * @param pageable
-	 * @return filtered page from kindergarten database
-	 */
-	@Transactional(readOnly = true)
-	public Page<Kindergarten> getKindergartenPageFilteredByName(String name, Pageable pageable) {
-
-		return gartenDao.findByNameContainingIgnoreCase(name, pageable);
-
-	}
+//	/**
+//	 * 
+//	 * Returns a page of Kindergarten filtered by name containing text with
+//	 * specified page number and page size
+//	 * 
+//	 * @param pageable
+//	 * @return filtered page from kindergarten database
+//	 */
+//	@Transactional(readOnly = true)
+//	public Page<Kindergarten> getKindergartenPageFilteredByName(String name, Pageable pageable) {
+//
+//		return gartenDao.findByNameContainingIgnoreCase(name, pageable);
+//
+//	}
 
 	/**
 	 * Save new kindergarten to database
@@ -95,7 +100,7 @@ public class KindergartenService {
 	public void createNewKindergarten(KindergartenDTO kindergarten) {
 
 		gartenDao.save(new Kindergarten(kindergarten.getId(), kindergarten.getName(), kindergarten.getAddress(),
-				kindergarten.getElderate(), kindergarten.getCapacityAgeGroup2to3(),
+				kindergarten.getElderate(), kindergarten.getManagerName(), kindergarten.getManagerSurname(), kindergarten.getCapacityAgeGroup2to3(),
 				kindergarten.getCapacityAgeGroup3to6()));
 
 	}
@@ -136,27 +141,37 @@ public class KindergartenService {
 	 * 
 	 * @param id
 	 */
-	@Transactional
+	//@Transactional
 	public ResponseEntity<String> deleteKindergarten(String id) {
 
-		// String gartenID = id; o.v. versijos paliktas nenaudojamas kintamasis.
+		Kindergarten kindergarten = gartenDao.findById(id).orElse(null);
 
-		Kindergarten garten = gartenDao.findById(id).orElse(null);
+		if (kindergarten != null) {
+			Set<Application> applicationQueue = kindergarten.getApprovedApplications();
+			Set<KindergartenChoise> kindergartenChoises = kindergarten.getKindergartenChoises();
+			
+			for (Application application : applicationQueue) {
+				application.setApprovedKindergarten(null);
 
-		if (garten != null) {
-			Set<Application> applicationQueue = garten.getApprovedApplications();
-			for (Application a : applicationQueue) {
-				a.setApprovedKindergarten(null);
-
-				if (a.getKindergartenChoises().size() > 1) {
-					a.setStatus(ApplicationStatus.Pateiktas);
+				if (application.getKindergartenChoises().size() > 1) {
+					application.setStatus(ApplicationStatus.Pateiktas);
 				} else {
-					a.setStatus(ApplicationStatus.Neaktualus);
+					application.setStatus(ApplicationStatus.Neaktualus);
+					
 				}
-
-				applicationDao.saveAndFlush(a);
+				
+				applicationDao.saveAndFlush(application);
 			}
-
+			
+			for (KindergartenChoise kindergartenChoise : kindergartenChoises) {
+				kindergartenChoise.setKindergarten(null);;
+				
+				kindergartenChoiseDAO.saveAndFlush(kindergartenChoise);
+			}
+			
+			kindergarten.setApprovedApplications(null);
+			kindergarten.setKindergartenChoises(null);
+			gartenDao.saveAndFlush(kindergarten);
 			gartenDao.deleteById(id);
 
 			LOG.info("** UserService: trinamas darželis ID [{}] **", id);
@@ -183,6 +198,8 @@ public class KindergartenService {
 		current.setName(updatedInfo.getName());
 		current.setAddress(updatedInfo.getAddress());
 		current.setElderate(updatedInfo.getElderate());
+		current.setManagerName(updatedInfo.getManagerName());
+		current.setManagerSurname(updatedInfo.getManagerSurname());
 		current.setCapacityAgeGroup2to3(updatedInfo.getCapacityAgeGroup2to3());
 		current.setCapacityAgeGroup3to6(updatedInfo.getCapacityAgeGroup3to6());
 
@@ -309,5 +326,10 @@ public class KindergartenService {
 	public KindergartenInfo getKindergartenInfoByApplicationId(Long id) {
 		return gartenDao.getKindergartenInfoByApplicationId(id);
 	}
+
+	public Kindergarten getKindergartenByApplicationId(String id) {
+		return gartenDao.getById(id);
+	}
+
 
 }

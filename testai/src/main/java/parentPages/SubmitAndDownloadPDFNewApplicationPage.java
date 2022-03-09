@@ -66,10 +66,17 @@ public class SubmitAndDownloadPDFNewApplicationPage extends AbstractObjectPage {
         formQueue.click();
     }
 
-    public void clickOKPopUp() {
+//    public void clickOKPopUp() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement popUpClickOK = wait.until(
+//                ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/button")));
+//        popUpClickOK.click();
+//    }
+
+    public void clickSwalPopUp(String path) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement popUpClickOK = wait.until(
-                ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/button")));
+                ExpectedConditions.elementToBeClickable(By.xpath(path)));
         popUpClickOK.click();
     }
 

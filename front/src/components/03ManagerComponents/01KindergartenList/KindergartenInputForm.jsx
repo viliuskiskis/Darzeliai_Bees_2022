@@ -13,6 +13,8 @@ function KindergartenInputForm() {
     elderate: "",
     id: "",
     name: "",
+    managerName: "",
+    managerSurname: ""
   };
 
   var savingStatus = false;
@@ -79,6 +81,10 @@ function KindergartenInputForm() {
         target.setCustomValidity("Įstaigos kodą turi sudaryti 9 skaitmenys");
       if (target.id === "name")
         target.setCustomValidity("Pavadinimas turi būti 3-50 simbolių ir negali prasidėti tarpu");
+      if (target.id === "managerName")
+        target.setCustomValidity("Vardą gali sudaryti radės, tarpai ir brūkšneliai");
+      if (target.id === "managerSurname")
+        target.setCustomValidity("Pavardę gali sudaryti raidės, tarpai ir brūkšneliai");
     } else if (target.validity.rangeUnderflow || target.validity.rangeOverflow) {
       target.setCustomValidity("Negali būti mažiau nei 0 ir daugiau nei 999");
 
@@ -166,6 +172,46 @@ function KindergartenInputForm() {
             data-toggle="tooltip"
             data-placement="top"
             title="Įveskite darželio adresą"
+          />
+        </div>
+
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="managerName">
+            Direktoriaus vardas <span className="fieldRequired">*</span>
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            name="managerName"
+            id="managerName"
+            value={data.managerName}
+            onChange={handleChange}
+            onInvalid={validateField}
+            required
+            pattern="^[A-zÀ-ž\s-]{2,32}"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Įveskite darželio direktoriaus vardą"
+          />
+        </div>
+
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="managerSurname">
+            Direktoriaus pavardė <span className="fieldRequired">*</span>
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            name="managerSurname"
+            id="managerSurname"
+            value={data.managerSurname}
+            onChange={handleChange}
+            onInvalid={validateField}
+            required
+            pattern="^[A-zÀ-ž\s-]{2,32}"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Įveskite darželio direktoriaus pavardę"
           />
         </div>
 
