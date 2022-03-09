@@ -19,13 +19,13 @@ cd $LOC &&
 if [ -d $LOC+'/'+$NAME] 
 then
     echo "Path exists!" &&
-	cd $NAME &&
-	git fetch &&
+	cd $NAME &&	
 	git switch $BRANCH &&
+	git fetch --all &&
 	git pull
 else
     echo "cloning repo to selected location" &&
-	git clone $GIT &&
+	git clone -b $BRANCH $GIT $NAME &&
 	cd $NAME	
 } &&
 
@@ -44,6 +44,8 @@ do
 done &&
 echo ...Hooray! Backend alive &&
 sleep 1 &&
+
+# implement endpoint.js comment/uncomment 
 
 # launch separate frontend terminal in location and keep it open
 xfce4-terminal --hold --working-directory $LOC/$NAME/front -e 'bash -c "
