@@ -80,7 +80,7 @@ public class ApplicationQueueService {
 
 			for (KindergartenChoise choise : choises) {
 				
-				if(choise.getKindergarten() != null) { //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				if(choise.getKindergarten() != null) { 
 					
 					Kindergarten kindergarten = choise.getKindergarten();
 					int availablePlaces = getNumberOfAvailablePlaces(kindergarten, age);
