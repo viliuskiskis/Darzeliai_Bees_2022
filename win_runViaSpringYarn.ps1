@@ -22,8 +22,9 @@ if (Test-Path -Path $LOC'\'$NAME) {
 	Write-Host | Get-Location
 	
 	# TODO ask if ok to change  
-	$answer1 = Read-Host "repo exists in selected location.`nPull into selected repo? (y)`nEnd program (n)"
+	$answer1 = Read-Host "repo exists in selected location.`nPull into selected repo? (y)`nSkip updating(any key except y/n)`nEnd program (n)"
 	if ($answer1 -eq 'y') {
+		Write-Host "...pulling repo"
 		git switch $BRANCH
 		git fetch --all
 		git pull }
@@ -40,27 +41,38 @@ if (Test-Path -Path $LOC'\'$NAME) {
     Write-Host "...cloning repo to selected location"
 	mkdir $NAME
 	git clone -b $BRANCH $GIT $NAME
-	cd $NAME	
+	cd $NAME
+	Write-Host "...cloned repo"	
 }
 
-function endpointMod {
-	Write-Host '...cloned repo, endpoint.js comment/uncomment started' 
+function endpointMod ($endpoint) {
+	Write-Host '...endpoint.js $endpoint mod started' 
 
 	$filePath = '.\front\src\components\00Services\endpoint.js'
+	$filePathBak = '.\front\src\components\00Services\endpoint.jsBak'
 	$tempFilePath = "$env:TEMP\$($filePath | Split-Path -Leaf)"
 
 	$find1 = '.*const apiEndpoint = process.env.PUBLIC_URL.*'
-	$replace1 = '// const apiEndpoint = process.env.PUBLIC_URL;'
+	$replace1off = '// const apiEndpoint = process.env.PUBLIC_URL;'
+	$replace1on = ' const apiEndpoint = process.env.PUBLIC_URL;'
 
 	$find2 = '.*const apiEndpoint = "http://localhost:8080".*'
-	$replace2 = 'const apiEndpoint = "http://localhost:8080";'
+	$replace2on = ' const apiEndpoint = "http://localhost:8080";'
+	$replace2off = '// const apiEndpoint = "http://localhost:8080";'
+	
+	if ($endpoint -eq 'local'){
+		((Get-Content -Path $filePath) -replace $find1, $replace1off) -replace $find2, $replace2on | Add-Content -Path $tempFilePath
+	}
+	elseif ($endpoint -eq 'server'){
+		((Get-Content -Path $filePath) -replace $find1, $replace1on) -replace $find2, $replace2off | Add-Content -Path $tempFilePath
+	}
+	#else Copy-Item -Path $filePath -Destination $tempFilePath
 
-	((Get-Content -Path $filePath) -replace $find1, $replace1) -replace $find2, $replace2 | Add-Content -Path $tempFilePath
-
-	Remove-Item -Path $filePath
+	Remove-Item -Path $filePath 
+	#Move-Item -Path $filePath -Destination $filePathBak
 	Move-Item -Path $tempFilePath -Destination $filePath
 
-	Write-Host '...endpoint.js comment/uncomment finished'
+	'...endpoint.js $($endpoint.value) mod finished'
 }
 
 function startBackend {
@@ -97,17 +109,42 @@ function startFrontend {
 	}
 }
 
-$answerBack = Read-Host "start back+front (y)`nstart only front (f)`nstop program (n)"
+function buildApp {
+	# build frontend
+	Write-Host '...building frontend'
+	cd front
+	yarn build
+	cd ..
+	#move front to xx
+	Move-Item -Path 'front\build\*' -Destination 'back\src\main\resources\public' -Force
+	cd back
+	mvn clean install
+	cd ..
+	# move war to ..
+	Move-Item -Path 'back\target\darzelis.war' -Destination 'darzelis.war' -Force
+	Write-Host 'darzelis.war file is in the root of the project folder'
+	
+}
+
+$answerBack = Read-Host "start back+front (y)`nstart only front (f)`nbuild application (b)`nstop program (n)"
 
 if ($answerBack -eq 'y') {
+	Write-Host '...starting back and front'
 	startBackend
-	endpointMod
+	endpointMod('local')
 	startFrontend	
 }
 
 elseif ($answerBack -eq 'f'){
-	endpointMod
+	Write-Host '...starting front only'
+	endpointMod('local')
 	startFrontend
+}
+
+elseif ($answerBack -eq 'b'){
+	Write-Host '...starting build'
+	endpointMod('server')
+	buildApp
 }
 
 elseif ($answer1 -eq 'n') {
