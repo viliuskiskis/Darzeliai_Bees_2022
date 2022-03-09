@@ -18,8 +18,8 @@ public class BaseTest {
     @BeforeSuite(alwaysRun = true)
     public static void setUp() {
         WebDriverManager.chromedriver().setup();
-//        WebDriverManager.firefoxdriver().setup();
-//        WebDriverManager.edgedriver().setup();
+ //       WebDriverManager.firefoxdriver().setup();
+ //       WebDriverManager.edgedriver().setup();
 //        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 //        System.setProperty("webdriver.gecko.driver",  "src/test/resources/geckodriver.exe");
 //        System.setProperty("webdriver.edge.driver", "src/test/resources/msedgedriver.exe");
@@ -28,11 +28,11 @@ public class BaseTest {
 
     @BeforeClass(alwaysRun = true)
     public static void openHomePage(){
-//        driver = new FirefoxDriver();
+ //       driver = new FirefoxDriver();
         driver = new ChromeDriver();
-//        driver = new EdgeDriver();
+ //       driver = new EdgeDriver();
         driver.manage().window().maximize();
-        driver.get("https://bees.akademijait.vtmc.lt/darzelis");
+        driver.get("https://bees.akademijait.vtmc.lt/darzelis/login");
 //        driver.get("http://localhost:3000/darzelis");
     }
 

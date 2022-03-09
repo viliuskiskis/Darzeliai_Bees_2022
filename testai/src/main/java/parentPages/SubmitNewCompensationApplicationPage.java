@@ -206,7 +206,7 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
 
     public Boolean compensationsApplicationSuccessful() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        return wait.until(ExpectedConditions.textToBe(By.xpath("/html/body/div[2]/div/div[1]"), "Kompensacijos prašymas sukuras sėkmingai"));
+        return wait.until(ExpectedConditions.textToBe(By.xpath("/html/body/div[2]/div/div[1]"), "Kompensacijos prašymas sukurtas sėkmingai"));
     }
 
 //    public void assertEquals(String actual, String expected) {
