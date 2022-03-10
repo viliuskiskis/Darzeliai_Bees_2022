@@ -70,19 +70,10 @@ public class SubmitAndDownloadPDFNewApplication extends GeneralMethods {
         download.verifyIfApplicationPageIsPresent();
         download.clickStopRegistration();
         download.clickFormQueue();
-//        clickOkButton();
-//        clickOkButtonJSWait();
-//        download.clickOKPopUp();
         download.clickSwalPopUp1();
         download.clickConfirmQueue();
         download.clickSwalPopUp2();
         download.clickSwalPopUp1();
-//        download.clickSwalPopUp1("//button[@class='swal-button swal-button--confirm']");
-//        download.clickConfirmQueue();
-//        download.clickSwalPopUp2("//button[@class='swal-button swal-button--confirm swal-button--danger']");
-//        download.clickSwalPopUp1("//button[@class='swal-button swal-button--confirm']");
-//        download.clickOKPopUp();
-//        clickOkButton();
         doLogout();
     }
 

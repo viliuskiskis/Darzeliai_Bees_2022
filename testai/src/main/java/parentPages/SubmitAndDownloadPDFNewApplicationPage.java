@@ -48,9 +48,6 @@ public class SubmitAndDownloadPDFNewApplicationPage extends AbstractObjectPage {
         stopRegistrationButton.click();
     }
 
-//    public void clickApplicationsForRegistration() {
-//        applicationsForRegistrationButton.click();
-//    }
 
     public void clickApplicationsForRegistration() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
