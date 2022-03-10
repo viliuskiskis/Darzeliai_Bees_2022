@@ -35,8 +35,6 @@ p
 @src/main/java/specialistPages/CheckIfRegistrationIsOpenPage.java,b\8\b87b53f4699f3672d282bf27acfdec86a155e7e2
 u
 Esrc/main/java/specialistPages/CreateAndDeleteNewKindergartenPage.java,6\6\66eee569ffb09e385b45c25dc8b4cec61df446a9
-V
-&src/main/java/utilities/WaitUtils.java,6\3\63320f32fd5e27c151229f2ff234f6e5b19d6f4f
 g
 7src/test/java/parentTests/UploadMedicalDocumentPDF.java,e\d\edc3cd3d3754e239a61aaf8aeaff3ba6b9c615bb
 k
@@ -47,3 +45,9 @@ p
 @src/test/java/parentTests/SubmitNewCompensationsApplication.java,e\b\ebdf458c2a1466a7ab9c4d002099704095612950
 c
 3src/test/java/parentTests/SubmitNewApplication.java,e\f\ef03c71281120a068fbf2c1340dbed618fe589c7
+g
+7src/main/java/parentPages/SubmitNewApplicationPage.java,b\5\b522efced4f96d807e7b640f8f745bca73e6d03a
+T
+$src/test/java/basetest/BaseTest.java,c\f\cf9309327158b196b80850b4e9ec6ffb3ba89d71
+`
+0src/test/java/generalMethods/GeneralMethods.java,f\7\f71abf140fa5df72cca7f28ba4f4810e3f490be4

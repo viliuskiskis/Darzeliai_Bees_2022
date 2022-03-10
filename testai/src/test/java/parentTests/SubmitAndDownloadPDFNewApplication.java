@@ -1,8 +1,6 @@
 package parentTests;
 
 import generalMethods.GeneralMethods;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import parentPages.SubmitAndDownloadPDFNewApplicationPage;
@@ -72,15 +70,10 @@ public class SubmitAndDownloadPDFNewApplication extends GeneralMethods {
         download.verifyIfApplicationPageIsPresent();
         download.clickStopRegistration();
         download.clickFormQueue();
-//        clickOkButton();
-//        clickOkButtonJSWait();
-//        download.clickOKPopUp();
-        download.clickSwalPopUp("//button[@class='swal-button swal-button--confirm']");
+        download.clickSwalPopUp1();
         download.clickConfirmQueue();
-        download.clickSwalPopUp("//button[@class='swal-button swal-button--confirm swal-button--danger']");
-        download.clickSwalPopUp("//button[@class='swal-button swal-button--confirm']");
-//        download.clickOKPopUp();
-//        clickOkButton();
+        download.clickSwalPopUp2();
+        download.clickSwalPopUp1();
         doLogout();
     }
 
