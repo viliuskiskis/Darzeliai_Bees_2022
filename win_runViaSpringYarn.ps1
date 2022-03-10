@@ -10,7 +10,7 @@ $GIT = "git@github.com:viliuskiskis/Darzeliai_Bees_2022.git"
 # Edit to change active branch
 $BRANCH = "JUS-199--separateKindergartenMap"
 # Repo name
-$NAME = "Darzeliai_Bees_2022-sp3-zemelapiai"
+$NAME = "Darzeliai_Bees_2022-sp3-zemelapiai-2"
 # Edit to change active commit - if needed - uncomment necessary code below
 #$COMMIT = "891f7fd48ee88106ed033319cf79b5eb1b2a0dd1"
 
@@ -21,12 +21,13 @@ if (Test-Path -Path $LOC'\'$NAME) {
 	cd $NAME
 	Write-Host | Get-Location
 	
-	# TODO ask if ok to change  
-	$answer1 = Read-Host "repo exists in selected location.`nPull into selected repo? (y)`nSkip updating(any key except y/n)`nEnd program (n)"
+	# TODO ask if ok to change 
+	$curLoc=Get-Location
+	$answer1 = Read-Host "repo exists in selected location ("$curLoc" ).`nPull into selected repo? (y)`nSkip updating(any key except y/n)`nEnd program (n)"
 	if ($answer1 -eq 'y') {
 		Write-Host "...pulling repo"
-		git switch $BRANCH
 		git fetch --all
+		git switch $BRANCH
 		git pull }
 	elseif ($answer1 -eq 'n') {
 		Write-Host "...exiting"
@@ -78,7 +79,7 @@ function endpointMod ($endpoint) {
 function startBackend {
 	# BACKEND
 	# launch separate backend terminal in location and keep it open
-	wt --window 0 -d . pwsh.exe -c  {
+	wt --window 0 -d $LOC'\'$NAME pwsh.exe -c  {
 		Write-Host '...starting backend'
 		cd back
 		mvn spring-boot:run
@@ -101,7 +102,7 @@ function startFrontend {
 
 	# FRONTEND
 	# launch separate backend terminal in location and keep it open
-	wt --window 0 -d . pwsh.exe -c {
+	wt --window 0 -d $LOC'\'$NAME pwsh.exe -c {
 		Write-Host '...starting frontend'
 		cd front
 		yarn install
