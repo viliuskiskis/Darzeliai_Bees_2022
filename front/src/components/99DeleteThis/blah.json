@@ -1,169 +1,35 @@
-{
-  "content": [
-    {
-      "id": "190032931",
-      "name": "Aitvarasasf",
-      "address": "Pašilaičių g. 10asfd",
-      "elderate": "Antakalnio",
-      "managerName": "Auginas",
-      "managerSurname": "Batėnasasfd",
-      "capacityAgeGroup2to3": 1,
-      "placesTakenAgeGroup2to3": 0,
-      "capacityAgeGroup3to6": 1,
-      "placesTakenAgeGroup3to6": 0,
-      "kindergartenChoises": null,
-      "approvedApplications": null
-    },
-    {
-      "id": "190019122",
-      "name": "Atžalėlės",
-      "address": "Antakalnio g. 74",
-      "elderate": "Antakalnio",
-      "managerName": "Odinas",
-      "managerSurname": "Čepulis",
-      "capacityAgeGroup2to3": 0,
-      "placesTakenAgeGroup2to3": 0,
-      "capacityAgeGroup3to6": 0,
-      "placesTakenAgeGroup3to6": 0,
-      "kindergartenChoises": null,
-      "approvedApplications": null
-    },
-    {
-      "id": "190020391",
-      "name": "Aušrelė",
-      "address": "Gerosios Vilties g. 28",
-      "elderate": "Vilkpėdės",
-      "managerName": "Ervinas",
-      "managerSurname": "Sibrikas",
-      "capacityAgeGroup2to3": 0,
-      "placesTakenAgeGroup2to3": 0,
-      "capacityAgeGroup3to6": 0,
-      "placesTakenAgeGroup3to6": 0,
-      "kindergartenChoises": null,
-      "approvedApplications": null
-    },
-    {
-      "id": "303318623",
-      "name": "Ąžuolas",
-      "address": "Žirmūnų g. 32",
-      "elderate": "Žirmūnų",
-      "managerName": "Zitas",
-      "managerSurname": "Uoksas",
-      "capacityAgeGroup2to3": 0,
-      "placesTakenAgeGroup2to3": 0,
-      "capacityAgeGroup3to6": 0,
-      "placesTakenAgeGroup3to6": 0,
-      "kindergartenChoises": null,
-      "approvedApplications": null
-    },
-    {
-      "id": "190020434",
-      "name": "Bangelė",
-      "address": "Žemaitės g. 3",
-      "elderate": "Vilkpėdės",
-      "managerName": "Anastasis",
-      "managerSurname": "Narmantas",
-      "capacityAgeGroup2to3": 0,
-      "placesTakenAgeGroup2to3": 0,
-      "capacityAgeGroup3to6": 0,
-      "placesTakenAgeGroup3to6": 0,
-      "kindergartenChoises": null,
-      "approvedApplications": null
-    },
-    {
-      "id": "190026120",
-      "name": "Berželis",
-      "address": "Taikos g. 187",
-      "elderate": "Justiniškių",
-      "managerName": "Elvys",
-      "managerSurname": "Visokinskas",
-      "capacityAgeGroup2to3": 0,
-      "placesTakenAgeGroup2to3": 0,
-      "capacityAgeGroup3to6": 0,
-      "placesTakenAgeGroup3to6": 0,
-      "kindergartenChoises": null,
-      "approvedApplications": null
-    },
-    {
-      "id": "190019275",
-      "name": "Beržynėlis",
-      "address": "Beržyno g. 7A",
-      "elderate": "Naujamiesčio",
-      "managerName": "Aeronimas",
-      "managerSurname": "Niparas",
-      "capacityAgeGroup2to3": 1,
-      "placesTakenAgeGroup2to3": 0,
-      "capacityAgeGroup3to6": 1,
-      "placesTakenAgeGroup3to6": 0,
-      "kindergartenChoises": null,
-      "approvedApplications": null
-    },
-    {
-      "id": "190031797",
-      "name": "Bitutė",
-      "address": "Paberžės g. 20",
-      "elderate": "Šeškinės",
-      "managerName": "Vaidingas",
-      "managerSurname": "Pšiulkauskas",
-      "capacityAgeGroup2to3": 0,
-      "placesTakenAgeGroup2to3": 0,
-      "capacityAgeGroup3to6": 0,
-      "placesTakenAgeGroup3to6": 0,
-      "kindergartenChoises": null,
-      "approvedApplications": null
-    },
-    {
-      "id": "190021721",
-      "name": "Boružėlė",
-      "address": "Latvių g. 40",
-      "elderate": "Žvėryno",
-      "managerName": "Eiminas",
-      "managerSurname": "Daščiaras",
-      "capacityAgeGroup2to3": 0,
-      "placesTakenAgeGroup2to3": 0,
-      "capacityAgeGroup3to6": 0,
-      "placesTakenAgeGroup3to6": 0,
-      "kindergartenChoises": null,
-      "approvedApplications": null
-    },
-    {
-      "id": "190015444",
-      "name": "Coliukė",
-      "address": "A. Kojelavičiaus g. 298",
-      "elderate": "Naujosios Vilnios",
-      "managerName": "Daugvilas",
-      "managerSurname": "Orkauskis",
-      "capacityAgeGroup2to3": 0,
-      "placesTakenAgeGroup2to3": 0,
-      "capacityAgeGroup3to6": 0,
-      "placesTakenAgeGroup3to6": 0,
-      "kindergartenChoises": null,
-      "approvedApplications": null
+[
+  {
+    "x": 23.2848067,
+    "y": 55.9405462,
+    "label": "138, Gumbinės g., Užkirkis, Šiauliai, Šiaulių miesto savivaldybė, Siauliai County, 76326, Lithuania",
+    "bounds": [
+      [
+        55.9404962,
+        23.2847567
+      ],
+      [
+        55.9405962,
+        23.2848567
+      ]
+    ],
+    "raw": {
+      "place_id": 83506243,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8148274466,
+      "boundingbox": [
+        "55.9404962",
+        "55.9405962",
+        "23.2847567",
+        "23.2848567"
+      ],
+      "lat": "55.9405462",
+      "lon": "23.2848067",
+      "display_name": "138, Gumbinės g., Užkirkis, Šiauliai, Šiaulių miesto savivaldybė, Siauliai County, 76326, Lithuania",
+      "class": "place",
+      "type": "house",
+      "importance": 0.42099999999999993
     }
-  ],
-  "pageable": {
-    "sort": {
-      "empty": false,
-      "sorted": true,
-      "unsorted": false
-    },
-    "offset": 0,
-    "pageNumber": 0,
-    "pageSize": 10,
-    "unpaged": false,
-    "paged": true
-  },
-  "last": false,
-  "totalElements": 120,
-  "totalPages": 12,
-  "size": 10,
-  "number": 0,
-  "first": true,
-  "sort": {
-    "empty": false,
-    "sorted": true,
-    "unsorted": false
-  },
-  "numberOfElements": 10,
-  "empty": false
-}
+  }
+]
