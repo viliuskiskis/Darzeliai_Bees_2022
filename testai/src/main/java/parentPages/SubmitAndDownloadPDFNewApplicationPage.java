@@ -66,26 +66,43 @@ public class SubmitAndDownloadPDFNewApplicationPage extends AbstractObjectPage {
         formQueue.click();
     }
 
-//    public void clickOKPopUp() {
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public void clickOKPopUp() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement popUpClickOK = wait.until(
+                ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/button")));
+        popUpClickOK.click();
+    }
+
+
+    public void clickSwalPopUp1() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement popUpClickOK = wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='swal-button swal-button--confirm']")));
+        popUpClickOK.click();
+    }
+
+    public void clickSwalPopUp2() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement popUpClickOK = wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='swal-button swal-button--confirm swal-button--danger']")));
+        popUpClickOK.click();
+    }
+
+//
+//    public void clickSwalPopUp1(String path) {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 //        WebElement popUpClickOK = wait.until(
-//                ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/button")));
+//                ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='swal-button swal-button--confirm']")));
+//        popUpClickOK.click();
+//    }
+//
+//    public void clickSwalPopUp2(String path) {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//        WebElement popUpClickOK = wait.until(
+//                ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='swal-button swal-button--confirm swal-button--danger']")));
 //        popUpClickOK.click();
 //    }
 
-    public void clickSwalPopUp(String path) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement popUpClickOK = wait.until(
-                ExpectedConditions.elementToBeClickable(By.xpath(path)));
-        popUpClickOK.click();
-    }
-
-    public void clickSwalPopUp(String path) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        WebElement popUpClickOK = wait.until(
-                ExpectedConditions.elementToBeClickable(By.xpath(path)));
-        popUpClickOK.click();
-    }
 
     public void clickReviewContract() {
         reviewContract.click();
