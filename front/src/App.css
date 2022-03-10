@@ -110,13 +110,29 @@ a:hover, .btn-link:hover {
 
 /* Map */
 
-.map-container {
+.map-view-container {
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   background-color: azure;
+}
+
+.application-map-container {
+  width: 100%;
+  height: 100%;
+  padding-top: 4%;
 }
 
 .leaflet-container {
   width: 100%;
   height: 100%;
+}
+
+/* User Application page */
+
+.navigation-button {
+  width: 100%;
+}
+
+.green-background:disabled {
+  background-color: lightgreen;
 }

@@ -5,7 +5,7 @@ import KindergartenPriorityFormComponent from "./KindergartenPriorityFormCompone
 import MainGuardianFormComponent from "./MainGuardianFormComponent";
 import AdditionalGuardianFormComponent from "./AdditionalGuardianFormComponent";
 import KindergartenFormComponent from "./KindergartenFormComponent";
-import "./Application.css";
+import MapComponent from "../../01CommonComponents/06Map/MapComponent";
 
 export default function CreateApplicationFormComponent(props) {
 
@@ -14,6 +14,9 @@ export default function CreateApplicationFormComponent(props) {
   function handleClick() {
     setCompensationActive(prevState => !prevState)
   };
+
+  let { pointer1, pointer2, pointer3, pointer4, pointer5 } = props.state.pointers;
+  let kindergartens = [pointer1, pointer2, pointer3, pointer4, pointer5];
 
   return (
     <div>
@@ -88,7 +91,7 @@ export default function CreateApplicationFormComponent(props) {
                     />
                   </div>
 
-                  <div className="col-12 col-lg-7">
+                  <div className="col-12 col-lg-6">
                     <KindergartenPriorityFormComponent
                       kindergartenList={props.state.kindergartenList}
                       handleKindergarten1={props.handleKindergarten1}
@@ -97,17 +100,31 @@ export default function CreateApplicationFormComponent(props) {
                       handleKindergarten4={props.handleKindergarten4}
                       handleKindergarten5={props.handleKindergarten5}
                     />
-
-                    <button
-                      id="submitApplicationButton"
-                      type="submit"
-                      className="btn btn-primary mt-3"
-                      disabled={props.state.registrationDisabled}>
-                      Sukurti prašymą į darželius
-                    </button>
-
                   </div>
+
+                  <div className="col-12 col-lg-6">
+                    <div className="application-map-container">
+                      <MapComponent
+                        center={[
+                          54.69440014996402,
+                          25.28081236030032
+                        ]}
+                        zoom={12}
+                        kindergartens={kindergartens.filter(kindergarten => kindergarten !== null)}
+                      />
+                    </div>
+                  </div>
+
                 </div>
+
+                <button
+                  id="submitApplicationButton"
+                  type="submit"
+                  className="btn btn-primary mt-3"
+                  disabled={props.state.registrationDisabled}>
+                  Sukurti prašymą į darželius
+                </button>
+
               </form>
             </div>
           </div>

@@ -1,0 +1,519 @@
+[
+  {
+    "id": "190032931",
+    "name": "Aitvaras",
+    "address": "Pašilaičių g. 10",
+    "elderate": "Pašilaičių",
+    "latitude": "54.73031957283682",
+    "longitude": " 25.23131588335099"
+  },
+  {
+    "id": "303318623",
+    "name": "Ąžuolas",
+    "address": "Žirmūnų g. 32",
+    "elderate": "Žirmūnų",
+    "latitude": "54.70260546539054",
+    "longitude": " 25.299960998696115"
+  },
+  {
+    "id": "190020434",
+    "name": "Bangelė",
+    "address": "Žemaitės g. 3",
+    "elderate": "Vilkpėdės",
+    "latitude": "54.673399064202414",
+    "longitude": " 25.251765698695213"
+  },
+  {
+    "id": "190026120",
+    "name": "Berželis",
+    "address": "Taikos g. 187",
+    "elderate": "Justiniškių",
+    "latitude": "54.713675435801186",
+    "longitude": " 25.21197202753288"
+  },
+  {
+    "id": "190031797",
+    "name": "Bitutė",
+    "address": "Paberžės g. 20",
+    "elderate": "Šeškinės",
+    "latitude": "54.717255616769414",
+    "longitude": " 25.25495099869659"
+  },
+  {
+    "id": "190021721",
+    "name": "Boružėlė",
+    "address": "Latvių g. 40",
+    "elderate": "Žvėryno",
+    "latitude": "54.694771694609145",
+    "longitude": " 25.2468995119264"
+  },
+  {
+    "id": "190015444",
+    "name": "Coliukė",
+    "address": "A. Kojelavičiaus g. 298",
+    "elderate": "Naujosios Vilnios",
+    "latitude": "54.69773628305291",
+    "longitude": " 25.4274792275324"
+  },
+  {
+    "id": "191727213",
+    "name": "Daigelis",
+    "address": "Dariaus ir Girėno g. 14",
+    "elderate": "Naujininkų",
+    "latitude": "54.634194381210854",
+    "longitude": " 25.272074220591737"
+  },
+  {
+    "id": "190027037",
+    "name": "Delfinukas",
+    "address": "Vido Maciulevičiaus g. 32",
+    "elderate": "Karoliniškių",
+    "latitude": "54.689321813371585",
+    "longitude": " 25.20233070419159"
+  },
+  {
+    "id": "190018935",
+    "name": "Drevinukas",
+    "address": "K. Donelaičio g. 12",
+    "elderate": "Naujamiesčio",
+    "latitude": "54.68039573792934",
+    "longitude": " 25.25206081280203"
+  },
+  {
+    "id": "190014723",
+    "name": "Du gaideliai",
+    "address": "Pelesos g. 15",
+    "elderate": "Naujininkų",
+    "latitude": "54.66574047994994",
+    "longitude": " 25.281141539790394"
+  },
+  {
+    "id": "190019994",
+    "name": "Eglutė",
+    "address": "Miglos g. 3",
+    "elderate": "Žvėryno",
+    "latitude": "54.70343476171068",
+    "longitude": " 25.247870597462835"
+  },
+  {
+    "id": "190033271",
+    "name": "Gabijėlė",
+    "address": "Gabijos g. 1",
+    "elderate": "Pašilaičių",
+    "latitude": "54.73246837081096",
+    "longitude": " 25.22670526862939"
+  },
+  {
+    "id": "190033129",
+    "name": "Gandriukas",
+    "address": "Fabijoniškių g. 7",
+    "elderate": "Fabijoniškių",
+    "latitude": "54.72709656615655",
+    "longitude": " 25.246497068629072"
+  },
+  {
+    "id": "190012334",
+    "name": "Gėlynas",
+    "address": "Gėlių g. 9A",
+    "elderate": "Senamiesčio",
+    "latitude": "54.67380525907276",
+    "longitude": " 25.28236562445032"
+  },
+  {
+    "id": "290031830",
+    "name": "Gelvonėlis",
+    "address": "Gelvonų g. 1",
+    "elderate": "Šeškinės",
+    "latitude": "54.71540473337481",
+    "longitude": " 25.258538566782498"
+  },
+  {
+    "id": "190012487",
+    "name": "Geniukų kalvė",
+    "address": "Muitinės g. 30",
+    "elderate": "Naujamiesčio",
+    "latitude": "54.67789155852196",
+    "longitude": " 25.261701810955955"
+  },
+  {
+    "id": "190013589",
+    "name": "Gervelė",
+    "address": "Dzūkų g. 32",
+    "elderate": "Naujininkų",
+    "latitude": "54.664706903719186",
+    "longitude": " 25.28589093979034"
+  },
+  {
+    "id": "302716948",
+    "name": "Giliukas",
+    "address": "Minties g. 1",
+    "elderate": "Žirmūnų",
+    "latitude": "54.70617815519843",
+    "longitude": " 25.30165543979274"
+  },
+  {
+    "id": "190029383",
+    "name": "Gintarėlis",
+    "address": "Didlaukio g. 35",
+    "elderate": "Verkių",
+    "latitude": "54.731521763734314",
+    "longitude": " 25.270967868629334"
+  },
+  {
+    "id": "190025214",
+    "name": "Giraitė",
+    "address": "Erfurto g. 42",
+    "elderate": "Lazdynų",
+    "latitude": "54.674908251941176",
+    "longitude": " 25.205767355131453"
+  },
+  {
+    "id": "190012715",
+    "name": "Gudrutis",
+    "address": "Trakų g. 12",
+    "elderate": "Senamiesčio",
+    "latitude": "54.680420935097665",
+    "longitude": " 25.280331455131776"
+  },
+  {
+    "id": "190033467",
+    "name": "Jovarėlis",
+    "address": "S. Stanevičiaus g. 21",
+    "elderate": "Fabijoniškių",
+    "latitude": "54.72278603170942",
+    "longitude": " 25.254897782123486"
+  },
+  {
+    "id": "190019841",
+    "name": "Kaštonas",
+    "address": "Antakalnio g. 108",
+    "elderate": "Antakalnio",
+    "latitude": "54.71594312118078",
+    "longitude": " 25.314810826298665"
+  },
+  {
+    "id": "190015782",
+    "name": "Krivūlė",
+    "address": "Lydos g. 5",
+    "elderate": "Senamiesčio",
+    "latitude": "54.678586534645426",
+    "longitude": " 25.281441411820985"
+  },
+  {
+    "id": "190013436",
+    "name": "Kūlverstukas",
+    "address": "Suvalkų g. 6",
+    "elderate": "Naujamiesčio",
+    "latitude": "54.68353462786074",
+    "longitude": " 25.26605195599722"
+  },
+  {
+    "id": "190023010",
+    "name": "Lakštingala",
+    "address": "Lakštingalų g. 10",
+    "elderate": "Antakalnio",
+    "latitude": "54.7311065602012",
+    "longitude": " 25.323227085151757"
+  },
+  {
+    "id": "190017452",
+    "name": "Lašelis",
+    "address": "Dzūkų g. 29",
+    "elderate": "Naujininkų",
+    "latitude": "54.66383150692838",
+    "longitude": " 25.279723271658085"
+  },
+  {
+    "id": "190018173",
+    "name": "Lazdynėlis",
+    "address": "Lazdynų g. 36",
+    "elderate": "Lazdynų",
+    "latitude": "54.66919637832442",
+    "longitude": " 25.216746183296543"
+  },
+  {
+    "id": "290018740",
+    "name": "Liepsnelė",
+    "address": "Kapsų g. 7",
+    "elderate": "Naujininkų",
+    "latitude": "54.66088071200669",
+    "longitude": " 25.27600549864087"
+  },
+  {
+    "id": "190648777",
+    "name": "Lokiuko giraitė",
+    "address": "Kovo 11-osios g. 54",
+    "elderate": "Grigiškių",
+    "latitude": "54.668889492901926",
+    "longitude": " 25.101920012132666"
+  },
+  {
+    "id": "304111905",
+    "name": "Malūnėlis",
+    "address": "Popieriaus g. 7",
+    "elderate": "Verkių",
+    "latitude": "54.76950723014251",
+    "longitude": " 25.332063185153086"
+  },
+  {
+    "id": "190019318",
+    "name": "Mažylis",
+    "address": "A. Vivulskio g. 8A",
+    "elderate": "Naujamiesčio",
+    "latitude": "54.678603649738704",
+    "longitude": " 25.26923836980536"
+  },
+  {
+    "id": "190018554",
+    "name": "Molinukas",
+    "address": "Keramikų g. 34",
+    "elderate": "Antakalnio",
+    "latitude": "54.727805658852816",
+    "longitude": " 25.371494854462398"
+  },
+  {
+    "id": "290015630",
+    "name": "Nykštukas",
+    "address": "Taikos g. 190",
+    "elderate": "Justiniškių",
+    "latitude": "54.7093677349457",
+    "longitude": " 25.213866125625614"
+  },
+  {
+    "id": "190023882",
+    "name": "Obelėlė",
+    "address": "Architektų g. 204",
+    "elderate": "Lazdynų",
+    "latitude": "54.68185965097624",
+    "longitude": " 25.220403196788507"
+  },
+  {
+    "id": "190021874",
+    "name": "Pabiručiai",
+    "address": "Brolių g. 18",
+    "elderate": "Naujininkų",
+    "latitude": "54.66348437083318",
+    "longitude": " 25.26727544096872"
+  },
+  {
+    "id": "190013817",
+    "name": "Pagrandukas",
+    "address": "Mindaugo g. 15A",
+    "elderate": "Naujamiesčio",
+    "latitude": "54.6768200560058",
+    "longitude": " 25.273110585150004"
+  },
+  {
+    "id": "190030880",
+    "name": "Papartis",
+    "address": "Čiobiškio g. 17",
+    "elderate": "Šeškinės",
+    "latitude": "54.71802889621346",
+    "longitude": " 25.240894440970482"
+  },
+  {
+    "id": "190021917",
+    "name": "Pasaka",
+    "address": "Žirmūnų g. 110",
+    "elderate": "Žirmūnų",
+    "latitude": "54.72491619100669",
+    "longitude": " 25.30132515631545"
+  },
+  {
+    "id": "190022780",
+    "name": "Pasakaitė",
+    "address": "Taikos g. 30",
+    "elderate": "Justiniškių",
+    "latitude": "54.72040649945683",
+    "longitude": " 25.225488896789734"
+  },
+  {
+    "id": "190020249",
+    "name": "Paslaptis",
+    "address": "Darželio g. 7",
+    "elderate": "Naujosios Vilnios",
+    "latitude": "54.68920230404302",
+    "longitude": " 25.41651435446098"
+  },
+  {
+    "id": "190030542",
+    "name": "Pelėda",
+    "address": "Musninkų g. 10",
+    "elderate": "Šeškinės",
+    "latitude": "54.71522173130897",
+    "longitude": " 25.23925436980662"
+  },
+  {
+    "id": "190648396",
+    "name": "Pelėdžiukas",
+    "address": "Lentvario g. 1A",
+    "elderate": "Grigiškių",
+    "latitude": "54.64181215303918",
+    "longitude": " 25.176366727476445"
+  },
+  {
+    "id": "301879757",
+    "name": "Pilaitukas",
+    "address": "I. Kanto al. 7A",
+    "elderate": "Pilaitės",
+    "latitude": "54.70326126234701",
+    "longitude": " 25.183983754461522"
+  },
+  {
+    "id": "190021493",
+    "name": "Pipiras",
+    "address": "Krokuvos g. 6A",
+    "elderate": "Šnipiškių",
+    "latitude": "54.69657798544369",
+    "longitude": " 25.284727127478305"
+  },
+  {
+    "id": "190028858",
+    "name": "Prie pasakų parko",
+    "address": "Loretos Asanavičiūtės g. 7",
+    "elderate": "Visos seniūnijos",
+    "latitude": "54.68264463795288",
+    "longitude": " 25.200766985150107"
+  },
+  {
+    "id": "190011951",
+    "name": "Pumpurėlis",
+    "address": "Kalvarijų g. 186",
+    "elderate": "Šnipiškių",
+    "latitude": "54.71222684422993",
+    "longitude": " 25.282143071659625"
+  },
+  {
+    "id": "190025890",
+    "name": "Pušaitė",
+    "address": "Bistryčios g. 3",
+    "elderate": "Antakalnio",
+    "latitude": "54.70592485715788",
+    "longitude": " 25.31843126980631"
+  },
+  {
+    "id": "190016884",
+    "name": "Pušynėlis",
+    "address": "Miglos g. 53",
+    "elderate": "Žvėryno",
+    "latitude": "54.701427769071735",
+    "longitude": " 25.241708712133825"
+  },
+  {
+    "id": "190028662",
+    "name": "Raktelis",
+    "address": "Algimanto Petro Kavoliuko g. 12",
+    "elderate": "Karoliniškių",
+    "latitude": "54.69785058201134",
+    "longitude": " 25.214321512133683"
+  },
+  {
+    "id": "190021155",
+    "name": "Ramunėlė",
+    "address": "Žirmūnų g. 10",
+    "elderate": "Žirmūnų",
+    "latitude": "54.70028587186471",
+    "longitude": " 25.297649312133746"
+  },
+  {
+    "id": "190013055",
+    "name": "Rasa",
+    "address": "M. Daukšos g. 15",
+    "elderate": "Senamiesčio",
+    "latitude": "54.67460074924162",
+    "longitude": " 25.296564569805188"
+  },
+  {
+    "id": "190013621",
+    "name": "Riešutėlis",
+    "address": "Erfurto g. 21",
+    "elderate": "Lazdynų",
+    "latitude": "54.6772804414636",
+    "longitude": " 25.205734012133025"
+  },
+  {
+    "id": "190026316",
+    "name": "Rytas",
+    "address": "Architektų g. 162",
+    "elderate": "Lazdynų",
+    "latitude": "54.68532051812526",
+    "longitude": " 25.216636056314066"
+  },
+  {
+    "id": "190648058",
+    "name": "Rugelis",
+    "address": "Kovo 11-osios g. 29A",
+    "elderate": "Grigiškių",
+    "latitude": "54.66918240967924",
+    "longitude": " 25.092531640968804"
+  },
+  {
+    "id": "190020968",
+    "name": "Rūta",
+    "address": "Žirmūnų g. 50",
+    "elderate": "Žirmūnų",
+    "latitude": "54.70434595566744",
+    "longitude": " 25.302352998642338"
+  },
+  {
+    "id": "190017986",
+    "name": "Sadutė",
+    "address": "Z. Sierakausko g. 28",
+    "elderate": "Naujamiesčio",
+    "latitude": "54.683577823184066",
+    "longitude": " 25.263313812133227"
+  },
+  {
+    "id": "190019460",
+    "name": "Salvija",
+    "address": "J. Jasinskio g. 17",
+    "elderate": "Naujamiesčio",
+    "latitude": "54.68947791701098",
+    "longitude": " 25.260062712133408"
+  },
+  {
+    "id": "190027560",
+    "name": "Saulėgrąža",
+    "address": "Taikos g. 31",
+    "elderate": "Justiniškių",
+    "latitude": "54.72049081263336",
+    "longitude": " 25.23094581213448"
+  },
+  {
+    "id": "190014680",
+    "name": "Skroblinukas",
+    "address": "Skroblų g. 13",
+    "elderate": "Vilkpėdės",
+    "latitude": "54.67027529191525",
+    "longitude": " 25.25280261213267"
+  },
+  {
+    "id": "190022595",
+    "name": "Spygliukas",
+    "address": "Architektų g. 16",
+    "elderate": "Lazdynų",
+    "latitude": "54.67517884401385",
+    "longitude": " 25.216840569805242"
+  },
+  {
+    "id": "190028477",
+    "name": "Strazdelis",
+    "address": "Igno Šimulionio g. 14",
+    "elderate": "Karoliniškių",
+    "latitude": "54.69927357707631",
+    "longitude": " 25.228814356322996"
+  },
+  {
+    "id": "190030161",
+    "name": "Sveikuolis",
+    "address": "Dūkštų g. 14",
+    "elderate": "Šeškinės",
+    "latitude": "54.71234092055603",
+    "longitude": " 25.243398598642667"
+  },
+  {
+    "id": "290029950",
+    "name": "Šermukšnėlė",
+    "address": "Didlaukio g. 66",
+    "elderate": "Verkių",
+    "latitude":"54.7271208099195

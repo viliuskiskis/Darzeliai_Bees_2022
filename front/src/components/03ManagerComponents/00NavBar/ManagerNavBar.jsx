@@ -1,9 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
 import logo from '../../../images/logo.png';
-import '../../../App.css';
-
 import Logout from '../../05ReusableComponents/Logout';
 
 export default function ManagerNavBar(props) {
@@ -42,6 +39,13 @@ export default function ManagerNavBar(props) {
                   className="nav-link"
                   id="navManagerApplicationQueue"
                   to={"/eile"}>Registracijų prašymai</NavLink>
+              </li>
+
+              <li className="nav-item me-2">
+                <NavLink
+                  className="nav-link"
+                  id="navManagerMap"
+                  to={"/zemelapis"}>Darželių žemėlapis</NavLink>
               </li>
 
               <li className="nav-item me-2">

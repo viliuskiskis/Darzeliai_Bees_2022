@@ -23,6 +23,7 @@ export default class KindergartenListContainer extends Component {
       editedKindergarten: null,
       errorMessages: {}
     }
+    this.getKindergartenInfo = this.getKindergartenInfo.bind(this);
   }
   componentDidMount() {
     this.getKindergartenInfo(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
@@ -132,6 +133,7 @@ export default class KindergartenListContainer extends Component {
       http.put(`${apiEndpoint}/api/darzeliai/manager/update/${editRowId}`, editedKindergarten)
         .then(() => {
           this.onCancel();
+        }).then(() => {
           this.getKindergartenInfo(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
         }).catch(error => {
           if (error && error.response.status === 409) {

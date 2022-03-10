@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import http from "../../00Services/httpService";
+import apiEndpoint from "../../00Services/endpoint";
+import swal from "sweetalert";
 // import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import MapComponent from "./MapComponent";
-import { OpenStreetMapProvider } from 'leaflet-geosearch';
+// import { OpenStreetMapProvider } from 'leaflet-geosearch';
 
-const provider = new OpenStreetMapProvider();
+// const provider = new OpenStreetMapProvider();
 
 export default class MapViewContainer extends Component {
   constructor(props) {
@@ -13,43 +16,54 @@ export default class MapViewContainer extends Component {
         54.69440014996402,
         25.28081236030032
       ],
-      zoom: 13,
-      latLonList: []
-    }
+      zoom: 12,
+      kindergartens: []
+    };
   }
 
   componentDidMount() {
-    // provider.search({ query: "Gumbinės 138, Šiauliai, Lithuania" })
-    //   .then(response => {
-    //     alert("response: " + response[0].raw.lat + " " + response[0].raw.lon);
-    //   })
-    this.searchForAddress("Pašilaičių g. 10");
+    this.getKindergartens();
   }
 
-  searchForAddress(address) {
-    provider.search({ query: address + ", Vilnius, Lithuania" })
-      .then(response => {
+  getKindergartens() {
+    http.get(`${apiEndpoint}/api/darzeliai`)
+      .then((response) => {
         this.setState({
-          latLonList: [
-            ...this.state.latLonList,
-            {
-              address: address,
-              latitude: response[0].raw.lat,
-              longitude: response[0].raw.lon
-            }
-          ]
+          kindergartens: response.data
+        });
+      }).catch(error => {
+        swal({
+          text: "Įvyko klaida perduodant duomenis iš serverio",
+          button: "Gerai"
         })
       })
   }
 
 
+  // searchForAddress(address) {
+  //   provider.search({ query: address + ", Vilnius, Lithuania" })
+  //     .then(response => {
+  //       this.setState({
+  //         latLonList: [
+  //           ...this.state.latLonList,
+  //           {
+  //             address: address,
+  //             latitude: response[0].raw.lat,
+  //             longitude: response[0].raw.lon
+  //           }
+  //         ]
+  //       })
+  //     })
+  // }
+
   render() {
     return (
       <div className="container pt-4 " >
-        <div className="map-container">
+        <div className="map-view-container">
           <MapComponent
             center={this.state.center}
             zoom={this.state.zoom}
+            kindergartens={this.state.kindergartens}
           />
 
           {/* <MapContainer center={this.state.center} zoom={this.state.zoom}>
@@ -64,8 +78,6 @@ export default class MapViewContainer extends Component {
             </Marker>
           </MapContainer> */}
         </div>
-        <h6>Latitude and longitude list:</h6>
-        {this.state.latLonList.map(data => <p>{JSON.stringify(data)}</p>)}
       </div>
     )
   }

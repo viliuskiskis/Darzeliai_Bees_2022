@@ -49,8 +49,9 @@ public class KindergartenService {
 
 		List<Kindergarten> kindergartens = gartenDao.findAllWithNonZeroCapacity(Sort.by("name").ascending());
 
-		return kindergartens.stream().map(garten -> new KindergartenInfo(garten.getId(), garten.getName(),
-				garten.getAddress(), garten.getElderate())).collect(Collectors.toList());
+		return kindergartens.stream().map(garten -> new KindergartenInfo(
+			garten.getId(), garten.getName(), garten.getAddress(), garten.getElderate(),
+			garten.getLatitude(), garten.getLongitude())).collect(Collectors.toList());
 	}
 
 	/**

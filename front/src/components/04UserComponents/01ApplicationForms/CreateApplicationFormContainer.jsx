@@ -54,6 +54,13 @@ class CreateApplicationFormContainer extends Component {
         kindergartenId4: "",
         kindergartenId5: "",
       },
+      pointers: {
+        pointer1: null,
+        pointer2: null,
+        pointer3: null,
+        pointer4: null,
+        pointer5: null
+      },
       priorities: {
         childIsAdopted: false,
         familyHasThreeOrMoreChildrenInSchools: false,
@@ -116,6 +123,10 @@ class CreateApplicationFormContainer extends Component {
             value: k.id,
             label: k.name + " (" + k.address + ")",
             disabled: "no",
+            latitude: k.latitude,
+            longitude: k.longitude,
+            name: k.name,
+            address: k.address
           }));
           this.setState({
             kindergartenList,
@@ -249,6 +260,10 @@ class CreateApplicationFormContainer extends Component {
           ...this.state.kindergartenChoices,
           kindergartenId1: e.value,
         },
+        pointers: {
+          ...this.state.pointers,
+          pointer1: e
+        }
       });
       this.state.kindergartenList.forEach((element) => {
         if (element.value === lastIdValue) {
@@ -262,6 +277,10 @@ class CreateApplicationFormContainer extends Component {
         ...this.state.kindergartenChoices,
         kindergartenId1: e.value,
       },
+      pointers: {
+        ...this.state.pointers,
+        pointer1: e
+      }
     });
     this.state.kindergartenList.forEach((element) => {
       if (element.value === e.value) {
@@ -282,6 +301,10 @@ class CreateApplicationFormContainer extends Component {
           ...this.state.kindergartenChoices,
           kindergartenId2: e.value,
         },
+        pointers: {
+          ...this.state.pointers,
+          pointer2: e
+        }
       });
       this.state.kindergartenList.forEach((element) => {
         if (element.value === lastIdValue) {
@@ -295,6 +318,10 @@ class CreateApplicationFormContainer extends Component {
         ...this.state.kindergartenChoices,
         kindergartenId2: e.value,
       },
+      pointers: {
+        ...this.state.pointers,
+        pointer2: e
+      }
     });
     this.state.kindergartenList.forEach((element) => {
       if (element.value === e.value) {
@@ -315,6 +342,10 @@ class CreateApplicationFormContainer extends Component {
           ...this.state.kindergartenChoices,
           kindergartenId3: e.value,
         },
+        pointers: {
+          ...this.state.pointers,
+          pointer3: e
+        }
       });
       this.state.kindergartenList.forEach((element) => {
         if (element.value === lastIdValue) {
@@ -328,6 +359,10 @@ class CreateApplicationFormContainer extends Component {
         ...this.state.kindergartenChoices,
         kindergartenId3: e.value,
       },
+      pointers: {
+        ...this.state.pointers,
+        pointer3: e
+      }
     });
     this.state.kindergartenList.forEach((element) => {
       if (element.value === e.value) {
@@ -348,6 +383,10 @@ class CreateApplicationFormContainer extends Component {
           ...this.state.kindergartenChoices,
           kindergartenId4: e.value,
         },
+        pointers: {
+          ...this.state.pointers,
+          pointer4: e
+        }
       });
       this.state.kindergartenList.forEach((element) => {
         if (element.value === lastIdValue) {
@@ -361,6 +400,10 @@ class CreateApplicationFormContainer extends Component {
         ...this.state.kindergartenChoices,
         kindergartenId4: e.value,
       },
+      pointers: {
+        ...this.state.pointers,
+        pointer4: e
+      }
     });
     this.state.kindergartenList.forEach((element) => {
       if (element.value === e.value) {
@@ -381,6 +424,10 @@ class CreateApplicationFormContainer extends Component {
           ...this.state.kindergartenChoices,
           kindergartenId5: e.value,
         },
+        pointers: {
+          ...this.state.pointers,
+          pointer5: e
+        }
       });
       this.state.kindergartenList.forEach((element) => {
         if (element.value === lastIdValue) {
@@ -394,6 +441,10 @@ class CreateApplicationFormContainer extends Component {
         ...this.state.kindergartenChoices,
         kindergartenId5: e.value,
       },
+      pointers: {
+        ...this.state.pointers,
+        pointer5: e
+      }
     });
     this.state.kindergartenList.forEach((element) => {
       if (element.value === e.value) {
