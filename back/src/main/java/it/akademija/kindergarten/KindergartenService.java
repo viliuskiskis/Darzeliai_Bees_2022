@@ -169,8 +169,6 @@ public class KindergartenService {
 				kindergartenChoiseDAO.saveAndFlush(kindergartenChoise);
 			}
 			
-			kindergarten.setApprovedApplications(null);
-			kindergarten.setKindergartenChoises(null);
 			gartenDao.saveAndFlush(kindergarten);
 			gartenDao.deleteById(id);
 

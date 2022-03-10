@@ -85,12 +85,14 @@ public class UserService implements UserDetailsService {
 
 		if (userData.getRole().equals("USER")) {
 			ParentDetails details = new ParentDetails();
+			
 			details.setAddress(userData.getAddress());
 			details.setEmail(userData.getEmail());
 			details.setName(userData.getName());
 			details.setPersonalCode(userData.getPersonalCode());
 			details.setPhone(userData.getPhone());
 			details.setSurname(userData.getSurname());
+			
 			newUser.setParentDetails(details);
 		}
 
@@ -100,6 +102,7 @@ public class UserService implements UserDetailsService {
 		newUser.setRole(Role.valueOf(userData.getRole()));
 		newUser.setUsername(userData.getUsername());
 		newUser.setPassword(passwordEncoder.encode(userData.getUsername()));
+		
 		userDao.saveAndFlush(newUser);
 	}
 
