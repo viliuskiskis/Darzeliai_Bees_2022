@@ -127,6 +127,23 @@ a:hover, .btn-link:hover {
   height: 100%;
 }
 
+.z-index-1 {
+  position: absolute;
+  z-index: 801;
+  top: 0px;
+  right: 0px;
+  margin: 12px;
+  border-radius: 2px;
+  height: 30px;
+  display: flex;
+  align-items:center;
+  justify-items: center;
+  padding: 0 10px;
+  background-color: white;
+  outline: 2px solid rgba(0,0,0,0.2);
+  font-weight: 600;
+}
+
 /* User Application page */
 
 .navigation-button {

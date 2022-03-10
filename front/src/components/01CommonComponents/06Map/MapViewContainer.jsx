@@ -13,7 +13,7 @@ export default class MapViewContainer extends Component {
     super(props);
     this.state = {
       center: [
-        54.69440014996402,
+        54.70440014996402,
         25.28081236030032
       ],
       zoom: 12,
@@ -37,6 +37,14 @@ export default class MapViewContainer extends Component {
           button: "Gerai"
         })
       })
+  }
+
+  openPopup(marker) {
+    if (marker && marker.leafletElement) {
+      window.setTimeout(() => {
+        marker.leafletElement.openPopup()
+      })
+    }
   }
 
 
@@ -64,6 +72,7 @@ export default class MapViewContainer extends Component {
             center={this.state.center}
             zoom={this.state.zoom}
             kindergartens={this.state.kindergartens}
+            openPopup={this.openPopup}
           />
 
           {/* <MapContainer center={this.state.center} zoom={this.state.zoom}>
