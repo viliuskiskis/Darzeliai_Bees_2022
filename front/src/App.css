@@ -127,7 +127,7 @@ a:hover, .btn-link:hover {
   height: 100%;
 }
 
-.z-index-1 {
+.mano-vieta-button {
   position: absolute;
   z-index: 801;
   top: 0px;

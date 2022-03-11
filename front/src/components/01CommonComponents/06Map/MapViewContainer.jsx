@@ -47,7 +47,6 @@ export default class MapViewContainer extends Component {
     }
   }
 
-
   // searchForAddress(address) {
   //   provider.search({ query: address + ", Vilnius, Lithuania" })
   //     .then(response => {
@@ -74,18 +73,6 @@ export default class MapViewContainer extends Component {
             kindergartens={this.state.kindergartens}
             openPopup={this.openPopup}
           />
-
-          {/* <MapContainer center={this.state.center} zoom={this.state.zoom}>
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={this.state.center}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-          </MapContainer> */}
         </div>
       </div>
     )
