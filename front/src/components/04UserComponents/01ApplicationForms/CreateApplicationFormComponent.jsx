@@ -102,7 +102,7 @@ export default function CreateApplicationFormComponent(props) {
                     />
                   </div>
 
-                  <div className="col-12 col-lg-6">
+                  <div className="col-12 col-lg-6 application-map-column">
                     <div className="application-map-container">
                       <MapComponent
                         center={[

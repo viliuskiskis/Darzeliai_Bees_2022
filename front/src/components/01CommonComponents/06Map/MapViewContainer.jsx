@@ -17,7 +17,7 @@ export default class MapViewContainer extends Component {
         25.28081236030032
       ],
       zoom: 12,
-      kindergartens: []
+      kindergartens: [],
     };
   }
 
@@ -26,10 +26,20 @@ export default class MapViewContainer extends Component {
   }
 
   getKindergartens() {
+    let kindergartens = [];
     http.get(`${apiEndpoint}/api/darzeliai`)
       .then((response) => {
+        kindergartens = response.data.map((k) => ({
+          value: k.id,
+          label: k.name + " (" + k.address + ")",
+          disabled: "no",
+          latitude: k.latitude,
+          longitude: k.longitude,
+          name: k.name,
+          address: k.address
+        }));
         this.setState({
-          kindergartens: response.data
+          kindergartens,
         });
       }).catch(error => {
         swal({
@@ -39,13 +49,15 @@ export default class MapViewContainer extends Component {
       })
   }
 
-  openPopup(marker) {
-    if (marker && marker.leafletElement) {
-      window.setTimeout(() => {
-        marker.leafletElement.openPopup()
-      })
-    }
-  }
+
+
+  // openPopup(marker) {
+  //   if (marker && marker.leafletElement) {
+  //     window.setTimeout(() => {
+  //       marker.leafletElement.openPopup()
+  //     })
+  //   }
+  // }
 
   // searchForAddress(address) {
   //   provider.search({ query: address + ", Vilnius, Lithuania" })
@@ -72,6 +84,7 @@ export default class MapViewContainer extends Component {
             zoom={this.state.zoom}
             kindergartens={this.state.kindergartens}
             openPopup={this.openPopup}
+            selectKindergarten={true}
           />
         </div>
       </div>

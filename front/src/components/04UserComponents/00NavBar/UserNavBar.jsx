@@ -36,7 +36,7 @@ export default function UserNavBar(props) {
               </li>
 
               <li className="nav-item me-1">
-                <NavLink className="nav-link" id="navUserMyApplications" to={"/zemelapis"}>Žemėlapis</NavLink>
+                <NavLink className="nav-link" id="navUserMyApplications" to={"/zemelapis"}>Darželių žemėlapis</NavLink>
               </li>
 
               <li className="nav-item me-1">
