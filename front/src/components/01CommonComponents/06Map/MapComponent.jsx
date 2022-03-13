@@ -41,7 +41,7 @@ export default function MapComponent(props) {
   function handleKindergarten(event) {
     let selected = props.kindergartens.find(kindergarten => event.value === kindergarten.value);
     setSelectedKindergarten(selected);
-    map.flyTo([selected.latitude, selected.longitude], 15, { animate: true, duration: 2 });
+    map.flyTo([selected.latitude, selected.longitude], 15, { animate: true, duration: 1 });
   }
 
   return (

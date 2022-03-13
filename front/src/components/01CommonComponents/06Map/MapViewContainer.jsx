@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import http from "../../00Services/httpService";
 import apiEndpoint from "../../00Services/endpoint";
 import swal from "sweetalert";
-// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import MapComponent from "./MapComponent";
 // import { OpenStreetMapProvider } from 'leaflet-geosearch';
-
 // const provider = new OpenStreetMapProvider();
 
 export default class MapViewContainer extends Component {
@@ -35,8 +33,6 @@ export default class MapViewContainer extends Component {
           disabled: "no",
           latitude: k.latitude,
           longitude: k.longitude,
-          name: k.name,
-          address: k.address
         }));
         this.setState({
           kindergartens,
@@ -48,16 +44,6 @@ export default class MapViewContainer extends Component {
         })
       })
   }
-
-
-
-  // openPopup(marker) {
-  //   if (marker && marker.leafletElement) {
-  //     window.setTimeout(() => {
-  //       marker.leafletElement.openPopup()
-  //     })
-  //   }
-  // }
 
   // searchForAddress(address) {
   //   provider.search({ query: address + ", Vilnius, Lithuania" })

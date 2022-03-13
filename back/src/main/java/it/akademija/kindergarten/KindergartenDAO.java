@@ -23,7 +23,9 @@ public interface KindergartenDAO extends JpaRepository<Kindergarten, String> {
 	    + "k.managerName, "
 	    + "k.managerSurname, "
 	    + "k.capacityAgeGroup2to3, "
-	    + "k.capacityAgeGroup3to6) "
+	    + "k.capacityAgeGroup3to6, "
+	    + "k.latitude, "
+	    + "k.longitude) "
 	    + "FROM Kindergarten k "
 	    + "WHERE LOWER(k.name) LIKE LOWER(CONCAT('%', ?1,'%'))")
     Page<Kindergarten> findByNameContainingIgnoreCase(String name, Pageable pageable);
@@ -36,7 +38,9 @@ public interface KindergartenDAO extends JpaRepository<Kindergarten, String> {
 	    + "k.managerName, "
 	    + "k.managerSurname, "
 	    + "k.capacityAgeGroup2to3, "
-	    + "k.capacityAgeGroup3to6) "
+	    + "k.capacityAgeGroup3to6, "
+	    + "k.latitude, "
+	    + "k.longitude) "
 	    + "FROM Kindergarten k")
     Page<Kindergarten> findAllKindergarten(Pageable pageable);
 

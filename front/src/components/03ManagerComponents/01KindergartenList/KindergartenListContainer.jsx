@@ -5,6 +5,9 @@ import apiEndpoint from '../../00Services/endpoint';
 import KindergartenListTable from './KindergartenListTable';
 import Pagination from "react-js-pagination";
 import SearchBox from '../../05ReusableComponents/SeachBox';
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
+
+const provider = new OpenStreetMapProvider();
 
 export default class KindergartenListContainer extends Component {
   constructor(props) {
@@ -21,7 +24,8 @@ export default class KindergartenListContainer extends Component {
       inEditMode: false,
       editRowId: "",
       editedKindergarten: null,
-      errorMessages: {}
+      errorMessages: {},
+      isDisabled: false
     }
     this.getKindergartenInfo = this.getKindergartenInfo.bind(this);
   }
@@ -108,7 +112,9 @@ export default class KindergartenListContainer extends Component {
         editRowId: "",
         editedKindergarten: null
       }
-    )
+    );
+    this.setState({ errorMessages: {} });
+    this.getKindergartenInfo(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
   }
 
   handleChange = ({ target: input }) => {
@@ -125,6 +131,34 @@ export default class KindergartenListContainer extends Component {
       editedKindergarten: kindergarten,
       errorMessages: errorMessages
     });
+  }
+
+  handleUpdateCoordinates = () => {
+    const kindergarten = this.state.editedKindergarten;
+    this.setState({ isDisabled: true });
+    setTimeout(() => {
+      this.setState({ isDisabled: false });
+    }, 1500);
+    if (kindergarten.address === "") {
+      kindergarten.latitude = "";
+      kindergarten.longitude = "";
+    } else {
+      provider.search({ query: kindergarten.address + ", Vilnius, Lithuania" })
+        .then(response => {
+          if (typeof response[0] !== "undefined") {
+            kindergarten.latitude = response[0].raw.lat;
+            kindergarten.longitude = response[0].raw.lon;
+          } else {
+            kindergarten.latitude = "";
+            kindergarten.longitude = "";
+          }
+        }).catch(error => {
+          alert(error);
+        })
+    }
+    this.setState({
+      editedKindergarten: kindergarten
+    })
   }
 
   handleSaveEdited = () => {
@@ -176,6 +210,9 @@ export default class KindergartenListContainer extends Component {
           onEscape={this.handleEscape}
           onChange={this.handleChange}
           onSave={this.handleSaveEdited}
+          handleUpdateCoordinates={this.handleUpdateCoordinates}
+          isDisabled={this.state.isDisabled}
+          onCancel={this.onCancel}
         />
 
         {this.state.totalPages > 1 &&

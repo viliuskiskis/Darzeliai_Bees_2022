@@ -100,9 +100,18 @@ public class KindergartenService {
 	@Transactional
 	public void createNewKindergarten(KindergartenDTO kindergarten) {
 
-		gartenDao.save(new Kindergarten(kindergarten.getId(), kindergarten.getName(), kindergarten.getAddress(),
-				kindergarten.getElderate(), kindergarten.getManagerName(), kindergarten.getManagerSurname(), kindergarten.getCapacityAgeGroup2to3(),
-				kindergarten.getCapacityAgeGroup3to6()));
+		gartenDao.save(new Kindergarten(
+			kindergarten.getId(),
+			kindergarten.getName(),
+			kindergarten.getAddress(),
+			kindergarten.getElderate(),
+			kindergarten.getManagerName(),
+			kindergarten.getManagerSurname(),
+			kindergarten.getCapacityAgeGroup2to3(),
+			kindergarten.getCapacityAgeGroup3to6(),
+			kindergarten.getLatitude(),
+			kindergarten.getLongitude()			
+			));
 
 	}
 
@@ -201,6 +210,8 @@ public class KindergartenService {
 		current.setManagerSurname(updatedInfo.getManagerSurname());
 		current.setCapacityAgeGroup2to3(updatedInfo.getCapacityAgeGroup2to3());
 		current.setCapacityAgeGroup3to6(updatedInfo.getCapacityAgeGroup3to6());
+		current.setLatitude(updatedInfo.getLatitude());
+		current.setLongitude(updatedInfo.getLongitude());
 
 		gartenDao.save(current);
 	}

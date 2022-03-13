@@ -77,8 +77,8 @@ public class Kindergarten {
 
 	}
 
-	public Kindergarten(String id, String name, String address, String elderate, int capacityAgeGroup2to3,
-			int capacityAgeGroup3to6) {
+	public Kindergarten(String id, String name, String address, String elderate,
+		int capacityAgeGroup2to3, int capacityAgeGroup3to6) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -88,15 +88,9 @@ public class Kindergarten {
 		this.capacityAgeGroup3to6 = capacityAgeGroup3to6;
 	}	
 	
-	public Kindergarten(
-		@Pattern(regexp = "^(?!\\s*$)[0-9\\s]{9}$|", message = "Įstaigos kodas turi būti sudarytas iš 9 skaitmenų") String id,
-		@NotBlank(message = "Pavadinimas privalomas") @Pattern(regexp = "\\S[\\s\\S]{2,49}") String name,
-		@NotBlank(message = "Adresas privalomas") String address,
-		@Pattern(regexp = "^[\\p{L}\\s]{3,20}$") @NotBlank(message = "Seniūnija privaloma") String elderate,
-		@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}") String managerName,
-		@Pattern(regexp = "^[A-zÀ-ž\\s-]{2,32}") String managerSurname,
-		@Min(value = 0, message = "Laisvų vietų skaičius negali būti mažesnis už 0") @Max(value = 999, message = "Laisvų vietų skaičius negali būti didesnis už 999") int capacityAgeGroup2to3,
-		@Min(value = 0, message = "Laisvų vietų skaičius negali būti mažesnis už 0") @Max(value = 999, message = "Laisvų vietų skaičius negali būti didesnis už 999") int capacityAgeGroup3to6) {
+	public Kindergarten(String id, String name, String address, String elderate,
+		String managerName, String managerSurname, int capacityAgeGroup2to3,
+		int capacityAgeGroup3to6, Double latitude, Double longitude) {
 	    super();
 	    this.id = id;
 	    this.name = name;
@@ -106,6 +100,8 @@ public class Kindergarten {
 	    this.managerSurname = managerSurname;
 	    this.capacityAgeGroup2to3 = capacityAgeGroup2to3;
 	    this.capacityAgeGroup3to6 = capacityAgeGroup3to6;
+	    this.latitude = latitude;
+	    this.longitude = longitude;
 	}
 
 	public String getId() {

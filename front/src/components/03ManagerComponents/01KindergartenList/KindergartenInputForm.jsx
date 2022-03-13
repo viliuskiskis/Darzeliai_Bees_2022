@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
-import "../../../App.css";
 import http from "../../00Services/httpService";
 import apiEndpoint from "../../00Services/endpoint";
 import swal from "sweetalert";
+import { OpenStreetMapProvider } from "leaflet-geosearch";
 
 function KindergartenInputForm() {
   const initKindergartenData = {
@@ -14,7 +14,9 @@ function KindergartenInputForm() {
     id: "",
     name: "",
     managerName: "",
-    managerSurname: ""
+    managerSurname: "",
+    latitude: "",
+    longitude: ""
   };
 
   var savingStatus = false;
@@ -22,6 +24,8 @@ function KindergartenInputForm() {
   const [data, setData] = useState(initKindergartenData);
   const [elderates, setElderate] = useState([]);
   const history = useHistory();
+  const [isDisabled, setIsDisabled] = useState(false);
+  const provider = new OpenStreetMapProvider();
 
   useEffect(() => {
     http
@@ -39,13 +43,10 @@ function KindergartenInputForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //console.log("saugoma į serverį");
-    //console.log(data);
     savingStatus = true;
     http
       .post(`${apiEndpoint}/api/darzeliai/manager/createKindergarten`, data)
       .then((response) => {
-        //console.log("įrašyta: " + response.data);
         swal({
           text: "Naujas darželis „" + data.name + "“ pridėtas sėkmingai!",
           button: "Gerai",
@@ -108,6 +109,39 @@ function KindergartenInputForm() {
     setData(initKindergartenData);
   };
 
+  const handleSearchCoordinates = () => {
+    setIsDisabled(true);
+    setTimeout(() => {
+      setIsDisabled(false);
+    }, 1500);
+    if (data.address === "") {
+      setData({
+        ...data,
+        latitude: "",
+        longitude: ""
+      })
+    } else {
+      provider.search({ query: data.address + ", Vilnius, Lithuania" })
+        .then(response => {
+          if (typeof response[0] !== "undefined") {
+            setData({
+              ...data,
+              latitude: response[0].raw.lat,
+              longitude: response[0].raw.lon
+            })
+          } else {
+            setData({
+              ...data,
+              latitude: "",
+              longitude: ""
+            })
+          }
+        }).catch(error => {
+          alert(error);
+        })
+    }
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit} onReset={resetForm}>
@@ -157,6 +191,31 @@ function KindergartenInputForm() {
         </div>
 
         <div className="form-group mb-3">
+          <label className="form-label" htmlFor="elderate">
+            Seniūnija <span className="fieldRequired">*</span>
+          </label>
+          <select
+            type="text"
+            className="form-control"
+            name="elderate"
+            id="elderate"
+            value={data.elderate}
+            onChange={handleChange}
+            onInvalid={validateField}
+            required
+            placeholder="Pasirinkite seniūniją"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Pasirinkite seniūniją, kuriai priskiriamas darželis"
+          >
+            <option value="" disabled hidden label="Pasirinkite" />
+            {elderates.map((option) => (
+              <option value={option} label={option} key={option} />
+            ))}
+          </select>
+        </div>
+
+        <div className="form-group mb-3">
           <label className="form-label" htmlFor="address">
             Adresas <span className="fieldRequired">*</span>
           </label>
@@ -169,9 +228,61 @@ function KindergartenInputForm() {
             onChange={handleChange}
             onInvalid={validateField}
             required
+            placeholder="Darželio adresas"
             data-toggle="tooltip"
             data-placement="top"
             title="Įveskite darželio adresą"
+          />
+        </div>
+
+        <h6 className="py-3">
+          <b>Koordinatės </b>
+          <span className="fieldRequired">*</span>
+          <button
+            id="findCoordinatesBtn"
+            className="btn btn-outline-primary btn-sm ms-2"
+            onClick={handleSearchCoordinates}
+            disabled={isDisabled || data.address === ""}
+          >Ieškoti</button>
+        </h6>
+
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="latitude">
+            Platuma <span className="fieldRequired">*</span>
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            name="latitude"
+            id="latitude"
+            value={data.latitude}
+            onChange={handleChange}
+            onInvalid={validateField}
+            required
+            placeholder="Platuma"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Platuma"
+          />
+        </div>
+
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="longitude">
+            Ilguma<span className="fieldRequired">*</span>
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            name="longitude"
+            id="longitude"
+            value={data.longitude}
+            onChange={handleChange}
+            onInvalid={validateField}
+            required
+            placeholder="Ilguma"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Ilguma"
           />
         </div>
 
@@ -188,6 +299,7 @@ function KindergartenInputForm() {
             onChange={handleChange}
             onInvalid={validateField}
             required
+            placeholder="Direktoriaus vardas"
             pattern="^[A-zÀ-ž\s-]{2,32}"
             data-toggle="tooltip"
             data-placement="top"
@@ -208,6 +320,7 @@ function KindergartenInputForm() {
             onChange={handleChange}
             onInvalid={validateField}
             required
+            placeholder="Direktoriaus pavardė"
             pattern="^[A-zÀ-ž\s-]{2,32}"
             data-toggle="tooltip"
             data-placement="top"
@@ -215,29 +328,6 @@ function KindergartenInputForm() {
           />
         </div>
 
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="elderate">
-            Seniūnija <span className="fieldRequired">*</span>
-          </label>
-          <select
-            type="text"
-            className="form-control"
-            name="elderate"
-            id="elderate"
-            value={data.elderate}
-            onChange={handleChange}
-            onInvalid={validateField}
-            required
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Pasirinkite seniūniją, kuriai priskiriamas darželis"
-          >
-            <option value="" disabled hidden label="Pasirinkite" />
-            {elderates.map((option) => (
-              <option value={option} label={option} key={option} />
-            ))}
-          </select>
-        </div>
         <h6 className="py-3">
           <b>Laisvų vietų skaičius </b>
           <span className="fieldRequired">*</span>
