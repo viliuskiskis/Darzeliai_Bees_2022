@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AbstractObjectPage;
 
 import java.time.Duration;
+import java.util.function.Function;
 
 public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
 
@@ -63,6 +64,9 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
     @FindBy(xpath = "//*/div[2]/button")
     public WebElement buttonAgreeToDeleteKindergarten;
 
+    @FindBy (id = "findCoordinatesBtn")
+    public WebElement buttonSearchCoordinates;
+
     public void inputKindergartenID(String value) {
         kindergartenID.sendKeys(value);
     }
@@ -92,6 +96,9 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
         js.executeScript("arguments[0].click();", buttonSaveKindergarten);
     }
 
+    public void clickButtonSearchCoordinates() {}{
+        buttonSearchCoordinates.click();
+    }
     public void clickOKPopUp() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement popUpClickOK = wait.until(

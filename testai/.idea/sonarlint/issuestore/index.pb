@@ -7,8 +7,6 @@ f
 6src/main/java/parentPages/UpdateParentDetailsPage.java,7\b\7b566b7392e9a261f805fa7907f29f168a2abcff
 Y
 )src/test/java/login/AdminLoginLogout.java,c\7\c73c767ea646036d09ca80d1ba6d68101db48880
->
-regression.xml,9\2\923a95634bf9543cd26d27ef9561f4d58caaeab9
 d
 4src/test/java/adminTests/CreateAndDeleteNewUser.java,8\c\8c3bf101dbece3ce851289ff42bff39cde814e54
 b
@@ -17,14 +15,10 @@ t
 Dsrc/test/java/smokeTests/CheckIfKindergartenSpecialistPagesWork.java,f\6\f6e60870f6b32f91b0bfe5514c6e7e75f7c6f4c0
 d
 4src/test/java/smokeTests/CheckIfParentPagesWork.java,1\8\185c87805d53e488061e7aceffdf5fb86de123c2
-q
-Asrc/test/java/specialistTests/CreateAndDeleteNewKindergarten.java,4\0\4040f5f7eedaadfc201b7af26790e7a64e971b93
 j
 :src/main/java/smokeTestPages/CheckIfAllUsersPagesLoad.java,b\b\bb5176cc0417d49fde6e6a5f03b4b2a2a2486244
 `
 0src/test/java/adminTests/UpdateAdminDetails.java,3\4\345605128547eaf9162c325778080c8a82c51069
-W
-'src/test/java/basetest/BaseTestAPI.java,a\b\abcbf6d2ea46096afa03dabe473d992875f824d0
 j
 :src/test/java/specialistTests/UpdateSpecialistDetails.java,e\5\e52f32d58790212a76810d73629294cfd8a9994a
 c
@@ -33,8 +27,6 @@ h
 8src/main/java/adminPages/CreateAndDeleteNewUserPage.java,e\2\e2d360b85d81631be398a324b5d53eede26b6f88
 p
 @src/main/java/specialistPages/CheckIfRegistrationIsOpenPage.java,b\8\b87b53f4699f3672d282bf27acfdec86a155e7e2
-u
-Esrc/main/java/specialistPages/CreateAndDeleteNewKindergartenPage.java,6\6\66eee569ffb09e385b45c25dc8b4cec61df446a9
 g
 7src/test/java/parentTests/UploadMedicalDocumentPDF.java,e\d\edc3cd3d3754e239a61aaf8aeaff3ba6b9c615bb
 k
@@ -47,7 +39,3 @@ c
 3src/test/java/parentTests/SubmitNewApplication.java,e\f\ef03c71281120a068fbf2c1340dbed618fe589c7
 g
 7src/main/java/parentPages/SubmitNewApplicationPage.java,b\5\b522efced4f96d807e7b640f8f745bca73e6d03a
-T
-$src/test/java/basetest/BaseTest.java,c\f\cf9309327158b196b80850b4e9ec6ffb3ba89d71
-`
-0src/test/java/generalMethods/GeneralMethods.java,f\7\f71abf140fa5df72cca7f28ba4f4810e3f490be4
