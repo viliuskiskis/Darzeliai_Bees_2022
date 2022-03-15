@@ -252,7 +252,7 @@ public class GeneralMethods extends BaseTest {
 
     // CREATE AND DELETE NEW KINDERGARTEN
 
-    public void successfullyCreateNewKindergarten() {
+    public void successfullyCreateNewKindergarten() throws InterruptedException {
 
         // login as kindergarten specialist
         doLogin(specialistLogins, specialistLogins);
@@ -264,11 +264,13 @@ public class GeneralMethods extends BaseTest {
         CreateAndDeleteNewKindergartenPage createNewKindergarten = new CreateAndDeleteNewKindergartenPage(driver);
         createNewKindergarten.inputKindergartenID("000000001");
         createNewKindergarten.inputkindergartenName("123 Testinis");
-        createNewKindergarten.inputkindergartenAddress("Adreso g. 5");
         createNewKindergarten.inputKindergartenManagerName("Testutis");
         createNewKindergarten.inputKindergartenmanagerSurname("Testauskas");
         Select dropdownUserRole = new Select(driver.findElement(By.id("elderate")));
         dropdownUserRole.selectByIndex(5);
+        createNewKindergarten.inputkindergartenAddress("Gardino g. 8");
+        createNewKindergarten.clickButtonSearchCoordinates();
+        Thread.sleep(2000);
         createNewKindergarten.inputcapacityAgeGroup2to3("1");
         createNewKindergarten.inputcapacityAgeGroup3to6("1");
 
