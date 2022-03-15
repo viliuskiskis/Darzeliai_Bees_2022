@@ -191,6 +191,48 @@ function KindergartenInputForm() {
         </div>
 
         <div className="form-group mb-3">
+          <label className="form-label" htmlFor="managerName">
+            Direktoriaus vardas <span className="fieldRequired">*</span>
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            name="managerName"
+            id="managerName"
+            value={data.managerName}
+            onChange={handleChange}
+            onInvalid={validateField}
+            required
+            placeholder="Direktoriaus vardas"
+            pattern="^[A-zÀ-ž\s-]{2,32}"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Įveskite darželio direktoriaus vardą"
+          />
+        </div>
+
+        <div className="form-group mb-3">
+          <label className="form-label" htmlFor="managerSurname">
+            Direktoriaus pavardė <span className="fieldRequired">*</span>
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            name="managerSurname"
+            id="managerSurname"
+            value={data.managerSurname}
+            onChange={handleChange}
+            onInvalid={validateField}
+            required
+            placeholder="Direktoriaus pavardė"
+            pattern="^[A-zÀ-ž\s-]{2,32}"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Įveskite darželio direktoriaus pavardę"
+          />
+        </div>
+
+        <div className="form-group mb-3">
           <label className="form-label" htmlFor="elderate">
             Seniūnija <span className="fieldRequired">*</span>
           </label>
@@ -283,48 +325,6 @@ function KindergartenInputForm() {
             data-toggle="tooltip"
             data-placement="top"
             title="Ilguma"
-          />
-        </div>
-
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="managerName">
-            Direktoriaus vardas <span className="fieldRequired">*</span>
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="managerName"
-            id="managerName"
-            value={data.managerName}
-            onChange={handleChange}
-            onInvalid={validateField}
-            required
-            placeholder="Direktoriaus vardas"
-            pattern="^[A-zÀ-ž\s-]{2,32}"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Įveskite darželio direktoriaus vardą"
-          />
-        </div>
-
-        <div className="form-group mb-3">
-          <label className="form-label" htmlFor="managerSurname">
-            Direktoriaus pavardė <span className="fieldRequired">*</span>
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="managerSurname"
-            id="managerSurname"
-            value={data.managerSurname}
-            onChange={handleChange}
-            onInvalid={validateField}
-            required
-            placeholder="Direktoriaus pavardė"
-            pattern="^[A-zÀ-ž\s-]{2,32}"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Įveskite darželio direktoriaus pavardę"
           />
         </div>
 

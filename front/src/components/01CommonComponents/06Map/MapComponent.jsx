@@ -26,6 +26,7 @@ export default function MapComponent(props) {
         searchLabel: "Įveskite adresą",
         retainZoomLevel: true,
         animateZoom: true,
+        keepResult: true,
         marker: {
           icon: redIcon,
           draggable: false,
