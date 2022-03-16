@@ -8,17 +8,24 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import java.util.Arrays;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class TestAPI {
+
     static SessionFilter sessionFilter = new SessionFilter();
+
     RequestSpecification reqSpec = new RequestSpecBuilder().
-            setBaseUri("https://bees.akademijait.vtmc.lt/darzelis/").
+//            setBaseUri("https://bees.akademijait.vtmc.lt/darzelis/").
+        setBaseUri("https://bees.akademijait.vtmc.lt/darzelis").
             setContentType(ContentType.JSON).
             addFilters(Arrays.asList(new RequestLoggingFilter(), new ResponseLoggingFilter())).
             build();
+
+    //log in and rerutn session ID
     public static SessionFilter logInApi(String username, String pwd, RequestSpecification reqSpec) {
         given().
                 spec(reqSpec).

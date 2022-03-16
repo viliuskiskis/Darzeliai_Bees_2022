@@ -35,7 +35,3 @@ s
 Csrc/main/java/parentPages/SubmitNewCompensationApplicationPage.java,4\a\4a0dadeca267d4291f974d840e3fe5709843bfa8
 p
 @src/test/java/parentTests/SubmitNewCompensationsApplication.java,e\b\ebdf458c2a1466a7ab9c4d002099704095612950
-c
-3src/test/java/parentTests/SubmitNewApplication.java,e\f\ef03c71281120a068fbf2c1340dbed618fe589c7
-g
-7src/main/java/parentPages/SubmitNewApplicationPage.java,b\5\b522efced4f96d807e7b640f8f745bca73e6d03a

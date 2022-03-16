@@ -229,7 +229,7 @@ public class SubmitNewApplicationPage extends AbstractObjectPage {
         Thread.sleep(160);
         kindergartenPriorityOne.click();
         WebElement drpDnPrioOne = wait.until(
-                ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='123 Testinis darželis (Adreso g. 5)']")));
+                ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='123 Testinis darželis (Gardino g. 8)']")));
         drpDnPrioOne.click();
     }
 
