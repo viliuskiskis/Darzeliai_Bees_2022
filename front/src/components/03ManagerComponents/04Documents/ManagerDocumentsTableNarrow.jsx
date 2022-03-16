@@ -1,28 +1,18 @@
 import React, { Component } from 'react'
 import Table from '../../05ReusableComponents/Table';
 
-export default class ManagerDocumentsTable extends Component {
+export default class ManagerDocumentsTableNarrow extends Component {
 
   columns = [
     {
       key: "uploadDate",
-      label: "Įkėlimo\u00a0data",
-      content: document => <span>{document.uploadDate}</span>
+      label: "Įkėlimo\u00a0data Naudotojo\u00a0a.k.",
+      content: document => <span>{document.uploadDate} {document.userPersonalCode}</span>
     },
     {
-      key: "userPersonalCode",
-      label: "Naudotojo\u00a0a.k.",
-      content: document => <span>{document.userPersonalCode}</span>
-    },
-    {
-      key: "userFirstName",
-      label: "Vardas",
-      content: document => <span>{document.userFirstName}</span>
-    },
-    {
-      key: "userLastName",
-      label: "Pavardė",
-      content: document => <span>{document.userLastName}</span>
+      key: "userFirstName userLastName",
+      label: `Vardas\nPavardė`,
+      content: document => <span>{document.userFirstName}<br />{document.userLastName}</span>
     },
     {
       key: "name",

@@ -55,6 +55,7 @@ export default function UserNavBar(props) {
 
               <li className="nav-item me-1">
                 <NavLink
+                  onClick={collapseNav}
                   className="nav-link"
                   id="navUserNewApplication"
                   to={"/prasymai/naujas"}

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import Table from "../../05ReusableComponents/Table";
 
 export default class UserCompensationsTable extends Component {

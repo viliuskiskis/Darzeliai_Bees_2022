@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Table from '../../05ReusableComponents/Table';
 
 export default class UserApplicationsTable extends Component {
@@ -12,10 +11,16 @@ export default class UserApplicationsTable extends Component {
       content: application => <span>{application.submitedAt}</span>
     },
     {
+      key: 'childName',
+      path: 'childName',
+      label: 'Vaiko vardas',
+      content: application => <span>{application.childName}</span>
+    },
+    {
       key: 'childSurname',
       path: 'childSurname',
-      label: 'Vaiko vardas, pavardė',
-      content: application => <span>{application.childName} {application.childSurname}</span>
+      label: 'Vaiko pavardė',
+      content: application => <span>{application.childSurname}</span>
     },
     {
       key: 'status',
@@ -83,7 +88,6 @@ export default class UserApplicationsTable extends Component {
         </div>
     }
   ]
-
 
   render() {
     return (

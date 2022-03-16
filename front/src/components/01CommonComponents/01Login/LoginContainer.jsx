@@ -1,16 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-
-import "../../../App.css";
-
 import apiEndpoint from "../../00Services/endpoint";
 import AuthContext from "../../00Services/AuthContext";
 import logo from "../../../images/logo.png";
 import swal from "sweetalert";
-
 import ForgotPasswordWindow from "./ForgotPasswordWindow";
-
 import instructionsPdf from '../../../documents/VMS_VDIS_naudotojo_gidas.pdf';
 
 axios.defaults.withCredentials = true;
@@ -119,11 +114,11 @@ export const LoginContainer = () => {
 
   return (
     <div className="d-flex flex-column justify-content-center align-items-center min-vh-100">
-      <div className="card p-5">
+      <div className="card p-5 max-width-100">
         <img
           src={logo}
           alt="Vilniaus miesto savivaldybės vaikų darželių informacinė sistema"
-          className="img-flex mb-3"
+          className="img-flex mb-3 max-width-100"
         />
         <form onSubmit={handleSubmit}>
           <h3>Prisijungti</h3>
@@ -198,12 +193,14 @@ export const LoginContainer = () => {
       </div>
       <div className="row">
         <div className="col">
-          <h6 className="py-3">
+          <h6 className="py-3 ms-4 me-4">
             Kaip naudotis šia sistema?
             <a href={instructionsPdf}
               target="_blank"
               rel="noopener noreferrer"
-            >Parsisiųsti naudotojo instrukciją.
+              className="no-breaks ms-2"
+            >
+              Parsisiųsti naudotojo instrukciją.
             </a>
           </h6>
         </div>

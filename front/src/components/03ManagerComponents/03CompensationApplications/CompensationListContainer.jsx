@@ -4,8 +4,10 @@ import apiEndpoint from "../../00Services/endpoint";
 import swal from "sweetalert";
 import Pagination from "react-js-pagination";
 import SearchBox from "../../05ReusableComponents/SeachBox";
-
 import CompensationListTable from "./CompensationListTable";
+import CompensationListTableNarrow from "./CompensationListTableNarrow";
+
+const breakpoint = 768;
 
 export default class CompensationListContainer extends Component {
   constructor(props) {
@@ -17,7 +19,8 @@ export default class CompensationListContainer extends Component {
       totalPages: 0,
       totalElements: 0,
       numberOfElements: 0,
-      searchQuery: ""
+      searchQuery: "",
+      width: ""
     }
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleCompensationReview = this.handleCompensationReview.bind(this);
@@ -28,6 +31,18 @@ export default class CompensationListContainer extends Component {
 
   componentDidMount() {
     this.getCompensations(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
+    window.addEventListener("resize", this.update);
+    this.update();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.update);
+  }
+
+  update = () => {
+    this.setState({
+      width: window.innerWidth
+    })
   }
 
   getCompensations(page, size, filter) {
@@ -114,6 +129,7 @@ export default class CompensationListContainer extends Component {
 
   render() {
     let size = 0;
+    let pageRange = this.state.width > breakpoint ? 15 : 10;
     if (this.state.compensations !== undefined) size = this.state.compensations.length;
 
     return (
@@ -128,12 +144,21 @@ export default class CompensationListContainer extends Component {
           />
         }
 
-        <CompensationListTable
-          compensations={this.state.compensations}
-          handleCompensationReview={this.handleCompensationReview}
-          handleCompensationDeactivate={this.handleCompensationDeactivate}
-          handleCompensationConfirm={this.handleCompensationConfirm}
-        />
+        {this.state.width > breakpoint ?
+          <CompensationListTable
+            compensations={this.state.compensations}
+            handleCompensationReview={this.handleCompensationReview}
+            handleCompensationDeactivate={this.handleCompensationDeactivate}
+            handleCompensationConfirm={this.handleCompensationConfirm}
+          />
+          :
+          <CompensationListTableNarrow
+            compensations={this.state.compensations}
+            handleCompensationReview={this.handleCompensationReview}
+            handleCompensationDeactivate={this.handleCompensationDeactivate}
+            handleCompensationConfirm={this.handleCompensationConfirm}
+          />
+        }
 
         {this.state.totalPages > 1 &&
           <div className="d-flex justify-content-center">
@@ -143,7 +168,7 @@ export default class CompensationListContainer extends Component {
               activePage={this.state.currentPage}
               itemsCountPerPage={this.state.pageSize}
               totalItemsCount={this.state.totalElements}
-              pageRangeDisplayed={15}
+              pageRangeDisplayed={pageRange}
               onChange={this.handlePageChange}
             />
           </div>

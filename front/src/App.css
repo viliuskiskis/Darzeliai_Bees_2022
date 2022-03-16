@@ -181,3 +181,12 @@ a:hover, .btn-link:hover {
   height: 50px;
 }
 
+/* No Breaks */
+
+.no-breaks {
+  white-space: nowrap;
+}
+
+.max-width-100 {
+  max-width: 100%;
+}
