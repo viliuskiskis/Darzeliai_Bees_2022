@@ -6,7 +6,7 @@ import Logout from '../../05ReusableComponents/Logout';
 export default function ManagerNavBar(props) {
   return (
     <div className="pb-4" >
-      <nav className="navbar navbar-expand-md py-4 navbar-light bg-light">
+      <nav className="navbar navbar-expand-xl py-4 navbar-light bg-light">
 
         <div className="container">
 
@@ -16,67 +16,67 @@ export default function ManagerNavBar(props) {
           <button
             className="navbar-toggler"
             type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
-            aria-label="Toggle navigation"
+            aria-label="Navigacija"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto ">
+            <ul className="navbar-nav ms-auto align-items-center">
 
-              <li className="nav-item me-2">
+              <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerKindergartenList"
                   to={"/darzeliai"}>Darželių sąrašas</NavLink>
               </li>
 
-              <li className="nav-item me-2">
+              <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerApplicationQueue"
                   to={"/eile"}>Registracijų prašymai</NavLink>
               </li>
 
-              <li className="nav-item me-2">
+              <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerMap"
                   to={"/zemelapis"}>Darželių žemėlapis</NavLink>
               </li>
 
-              <li className="nav-item me-2">
+              <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerCompensationQueue"
                   to={"/kompensacijos"}>Kompensacijų prašymai</NavLink>
               </li>
 
-              <li className="nav-item me-2">
+              <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerApplicationStats"
                   to={"/statistika"}>Registracijų statistika</NavLink>
               </li>
 
-              <li className="nav-item me-2">
+              <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerDocuments"
                   to={"/pazymos"}>Prašymų pažymos</NavLink>
               </li>
 
-              <li className="nav-item me-2">
+              <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerMyAccount"
                   to={"/profilis/atnaujinti"}>Mano paskyra</NavLink>
               </li>
 
-              <li className="nav-item nav-item me-2" id="navManagerLogout">
+              <li className="nav-item nav-item me-1 my-2" id="navManagerLogout">
                 <Logout />
               </li>
 

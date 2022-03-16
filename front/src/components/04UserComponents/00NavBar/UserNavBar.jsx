@@ -1,20 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
 import logo from '../../../images/logo.png';
-import '../../../App.css';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
-
 import instructionsPdf from '../../../documents/VMS_VDIS_naudotojo_gidas.pdf';
-
 import Logout from '../../05ReusableComponents/Logout';
 
 export default function UserNavBar(props) {
   return (
     <div className="pb-4" >
-      <nav className="navbar navbar-expand-xxl py-4 navbar-light bg-light">
+      <nav className="navbar navbar-expand-xl py-4 navbar-light bg-light">
 
         <div className="container">
 
@@ -28,11 +23,12 @@ export default function UserNavBar(props) {
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
-            aria-label="Toggle navigation">
+            aria-label="Navigacija"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto ">
+            <ul className="navbar-nav ms-auto align-items-center">
 
               <li className="nav-item me-1">
                 <NavLink className="nav-link" id="navUserNewApplication" to={"/prasymai/naujas"}>Sukurti prašymą</NavLink>
@@ -58,7 +54,7 @@ export default function UserNavBar(props) {
                 <NavLink className="nav-link" id="navUserMyAccount" to={"/profilis/atnaujinti"}>Mano paskyra</NavLink>
               </li>
 
-              <li className="nav-item me-1">
+              <li className="nav-item me-2">
                 <a className="nav-link"
                   id="navInstructions"
                   target="_blank"
@@ -70,7 +66,7 @@ export default function UserNavBar(props) {
                 </a>
               </li>
 
-              <li className="nav-item nav-item me-2">
+              <li className="nav-item nav-item me-1 my-2">
                 <Logout />
               </li>
 
