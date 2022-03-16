@@ -98,6 +98,25 @@ a:hover, .btn-link:hover {
   width: 100%;
 }
 
+/* Tables */
+
+.table-header {
+  width: fit-content;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+}
+
+.vertical-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+.table-header:after, .table-header:before {
+  box-sizing: border-box;
+}
+
 /* Table row background color */
 
 .background-green {
@@ -158,21 +177,7 @@ a:hover, .btn-link:hover {
   background-color: lightgreen;
 }
 
-/* Tables */
-
-.table-header {
-  width: fit-content;
-  height: fit-content;
-  margin: 0;
-  padding: 0;
+.application-form-header {
+  height: 50px;
 }
 
-.vertical-label {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  white-space: nowrap;
-}
-
-.table-header:after, .table-header:before {
-  box-sizing: border-box;
-}

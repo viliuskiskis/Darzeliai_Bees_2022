@@ -55,14 +55,14 @@ export default function CreateApplicationFormComponent(props) {
             <div className="form">
               <form onSubmit={(e) => props.handleApplicationSubmit(e)}>
                 <div className="row">
-                  <div className="col-12 col-md-4">
+                  <div className="col-12 col-lg-4">
                     <MainGuardianFormComponent
                       mainGuardian={props.state.mainGuardian}
                       mainGuardianOnChange={props.mainGuardianOnChange}
                     />
                   </div>
 
-                  <div className="col-12 col-md-4">
+                  <div className="col-12 col-lg-4">
                     <AdditionalGuardianFormComponent
                       additionalGuardian={props.state.additionalGuardian}
                       enableAdditionalGuardian={props.enableAdditionalGuardian}
@@ -71,7 +71,7 @@ export default function CreateApplicationFormComponent(props) {
                     />
                   </div>
 
-                  <div className="col-12 col-md-4">
+                  <div className="col-12 col-lg-4">
                     <ChildFormComponent
                       birthdate={props.state.birthdate}
                       childName={props.state.childName}
@@ -120,7 +120,7 @@ export default function CreateApplicationFormComponent(props) {
                 <button
                   id="submitApplicationButton"
                   type="submit"
-                  className="btn btn-primary mt-3"
+                  className="btn btn-primary btn-block mt-3"
                   disabled={props.state.registrationDisabled}>
                   Sukurti prašymą į darželius
                 </button>

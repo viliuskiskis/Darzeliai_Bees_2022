@@ -4,11 +4,8 @@ import http from "../../00Services/httpService";
 import apiEndpoint from "../../00Services/endpoint";
 import childDataUrl from "../../00Services/childDataUrl";
 import swal from "sweetalert";
-
 import inputValidator from "../../00Services/InputValidator";
 import CreateApplicationFormComponent from "./CreateApplicationFormComponent";
-
-import "../../../App.css";
 
 class CreateApplicationFormContainer extends Component {
   constructor(props) {
@@ -515,12 +512,10 @@ class CreateApplicationFormContainer extends Component {
   handleCompensationSubmit(e) {
     e.preventDefault();
 
-    // for (let i = 0; i < 100; i++) {
     const data = {
       birthdate: this.state.birthdate,
       childName: this.state.childName,
       childPersonalCode: this.state.childPersonalCode,
-      // childPersonalCode: 51609260300 + i,
       childSurname: this.state.childSurname,
       kindergartenData: this.state.kindergartenData,
       mainGuardian: this.state.mainGuardian,
@@ -548,7 +543,6 @@ class CreateApplicationFormContainer extends Component {
           });
         });
     }
-    // }
   }
 
   render() {

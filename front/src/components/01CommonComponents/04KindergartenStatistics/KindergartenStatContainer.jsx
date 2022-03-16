@@ -4,8 +4,9 @@ import apiEndpoint from '../../00Services/endpoint';
 import KindergartenStatTable from './KindergartenStatTable';
 import Pagination from "react-js-pagination";
 
-export default class KindergartenStatContainer extends Component {
+const breakpoint = 768;
 
+export default class KindergartenStatContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,11 +15,25 @@ export default class KindergartenStatContainer extends Component {
       currentPage: 1,
       totalPages: 0,
       totalElements: 0,
-      numberOfElements: 0
-    }
-  }
+      numberOfElements: 0,
+      width: ""
+    };
+  };
+
   componentDidMount() {
     this.getKindergartenStat(this.state.currentPage);
+    window.addEventListener("resize", this.update);
+    this.update();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.update);
+  }
+
+  update = () => {
+    this.setState({
+      width: window.innerWidth
+    })
   }
 
   getKindergartenStat(currentPage) {
@@ -50,8 +65,8 @@ export default class KindergartenStatContainer extends Component {
 
 
   render() {
-
     let count = 0;
+    let pageRange = this.state.width > breakpoint ? 15 : 10;
 
     if (this.state.darzeliai !== undefined) count = this.state.darzeliai.length;
 
@@ -78,7 +93,7 @@ export default class KindergartenStatContainer extends Component {
                   activePage={this.state.currentPage}
                   itemsCountPerPage={this.state.pageSize}
                   totalItemsCount={this.state.totalElements}
-                  pageRangeDisplayed={15}
+                  pageRangeDisplayed={pageRange}
                   onChange={this.handlePageChange}
                 />
               </div>

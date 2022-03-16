@@ -222,7 +222,7 @@ export default class UserDocumentContainer extends Component {
           </div>
         </div>
         <div className="row formHeader">
-          <div className="col-6">
+          <div className="col-12 col-lg-10">
             {
               //**UserDocumentList */
               <UserDocumentListTable

@@ -8,10 +8,9 @@ export default class KindergartenStatTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: {}
+      width: ""
     };
-
-  }
+  };
 
   componentDidMount() {
     window.addEventListener("resize", this.update);
@@ -20,7 +19,7 @@ export default class KindergartenStatTable extends Component {
 
   update = () => {
     this.setState({
-      width: window.innerWidth,
+      width: window.innerWidth
     });
   };
 
