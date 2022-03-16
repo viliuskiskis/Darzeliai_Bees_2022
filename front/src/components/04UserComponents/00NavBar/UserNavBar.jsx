@@ -14,14 +14,21 @@ import Logout from '../../05ReusableComponents/Logout';
 export default function UserNavBar(props) {
   return (
     <div className="pb-4" >
-      <nav className="navbar navbar-expand-md py-4 navbar-light bg-light">
+      <nav className="navbar navbar-expand-xxl py-4 navbar-light bg-light">
 
         <div className="container">
 
           <NavLink className="navbar-brand" to={"/home"}>
             <img className="nav-img" src={logo} alt="logotipas" loading="lazy" />
           </NavLink>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
