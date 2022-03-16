@@ -198,7 +198,14 @@ export const LoginContainer = () => {
       </div>
       <div className="row">
         <div className="col">
-          <h6 className="py-3">Kaip naudotis šia sistema? <a href={instructionsPdf} target="_blank" rel="noopener noreferrer">Parsisiųsti naudotojo instrukciją.</a></h6>
+          <h6 className="py-3">
+            Kaip naudotis šia sistema?
+            <a href={instructionsPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+            >Parsisiųsti naudotojo instrukciją.
+            </a>
+          </h6>
         </div>
       </div>
     </div>

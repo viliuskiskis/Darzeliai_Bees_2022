@@ -31,49 +31,77 @@ export default function ManagerNavBar(props) {
                 <NavLink
                   className="nav-link"
                   id="navManagerKindergartenList"
-                  to={"/darzeliai"}>Darželių sąrašas</NavLink>
+                  to={"/darzeliai"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Darželių sąrašas
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerApplicationQueue"
-                  to={"/eile"}>Registracijų prašymai</NavLink>
+                  to={"/eile"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Registracijų prašymai
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerMap"
-                  to={"/zemelapis"}>Darželių žemėlapis</NavLink>
+                  to={"/zemelapis"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Darželių žemėlapis
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerCompensationQueue"
-                  to={"/kompensacijos"}>Kompensacijų prašymai</NavLink>
+                  to={"/kompensacijos"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Kompensacijų prašymai
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerApplicationStats"
-                  to={"/statistika"}>Registracijų statistika</NavLink>
+                  to={"/statistika"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Registracijų statistika
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerDocuments"
-                  to={"/pazymos"}>Prašymų pažymos</NavLink>
+                  to={"/pazymos"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Prašymų pažymos
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
                 <NavLink
                   className="nav-link"
                   id="navManagerMyAccount"
-                  to={"/profilis/atnaujinti"}>Mano paskyra</NavLink>
+                  to={"/profilis/atnaujinti"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Mano paskyra
+                </NavLink>
               </li>
 
               <li className="nav-item nav-item me-1 my-2" id="navManagerLogout">

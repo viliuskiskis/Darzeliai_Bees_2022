@@ -28,19 +28,45 @@ export default function AdminNavBar(props) {
             <ul className="navbar-nav ms-auto align-items-center">
 
               <li className="nav-item me-1">
-                <NavLink className="nav-link" id="navAdminUserList" to={"/admin"}>Naudotojai</NavLink>
+                <NavLink
+                  className="nav-link"
+                  id="navAdminUserList"
+                  to={"/admin"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Naudotojai
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
-                <NavLink className="nav-link" id="navAdminApplicationStats" to={"/statistika"}>Prašymų statistika</NavLink>
+                <NavLink
+                  className="nav-link"
+                  id="navAdminApplicationStats"
+                  to={"/statistika"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Prašymų statistika
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
-                <NavLink className="nav-link" id="navAdminEventLog" to={"/zurnalas"}>Įvykių žurnalas</NavLink>
+                <NavLink
+                  className="nav-link"
+                  id="navAdminEventLog"
+                  to={"/zurnalas"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Įvykių žurnalas</NavLink>
               </li>
 
               <li className="nav-item me-1">
-                <NavLink className="nav-link" id="navAdminMyAccount" to={"/profilis/atnaujinti"}>Mano paskyra</NavLink>
+                <NavLink
+                  className="nav-link"
+                  id="navAdminMyAccount"
+                  to={"/profilis/atnaujinti"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Mano paskyra</NavLink>
               </li>
 
               <li className="nav-item nav-item me-1 my-2">

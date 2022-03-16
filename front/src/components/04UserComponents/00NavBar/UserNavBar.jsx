@@ -31,27 +31,69 @@ export default function UserNavBar(props) {
             <ul className="navbar-nav ms-auto align-items-center">
 
               <li className="nav-item me-1">
-                <NavLink className="nav-link" id="navUserNewApplication" to={"/prasymai/naujas"}>Sukurti prašymą</NavLink>
+                <NavLink
+                  className="nav-link"
+                  id="navUserNewApplication"
+                  to={"/prasymai/naujas"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Sukurti prašymą
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
-                <NavLink className="nav-link" id="navUserMyApplications" to={"/prasymai"}>Mano prašymai</NavLink>
+                <NavLink
+                  className="nav-link"
+                  id="navUserMyApplications"
+                  to={"/prasymai"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Mano prašymai
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
-                <NavLink className="nav-link" id="navUserMyApplications" to={"/zemelapis"}>Darželių žemėlapis</NavLink>
+                <NavLink
+                  className="nav-link"
+                  id="navUserMyApplications"
+                  to={"/zemelapis"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Darželių žemėlapis
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
-                <NavLink className="nav-link" id="navUserDocuments" to={"/pazymos"}>Mano pažymos</NavLink>
+                <NavLink
+                  className="nav-link"
+                  id="navUserDocuments"
+                  to={"/pazymos"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Mano pažymos
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
-                <NavLink className="nav-link" id="navUserApplicationStats" to={"/statistika"}>Prašymų statistika</NavLink>
+                <NavLink
+                  className="nav-link"
+                  id="navUserApplicationStats"
+                  to={"/statistika"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Prašymų statistika
+                </NavLink>
               </li>
 
               <li className="nav-item me-1">
-                <NavLink className="nav-link" id="navUserMyAccount" to={"/profilis/atnaujinti"}>Mano paskyra</NavLink>
+                <NavLink
+                  className="nav-link"
+                  id="navUserMyAccount"
+                  to={"/profilis/atnaujinti"}
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >Mano paskyra
+                </NavLink>
               </li>
 
               <li className="nav-item me-2">
