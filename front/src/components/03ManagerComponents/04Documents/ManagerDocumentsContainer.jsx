@@ -95,7 +95,7 @@ export default class ManagerDocumentsContainer extends Component {
 
   render() {
     let size = 0;
-    let pageRange = this.state.width > breakpoint ? 15 : 10;
+    let pageRange = this.state.width > breakpoint ? 15 : 8;
     if (this.state.documentList !== undefined) size = this.state.documentList.length;
 
     return (

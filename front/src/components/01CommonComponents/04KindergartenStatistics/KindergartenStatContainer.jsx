@@ -66,7 +66,7 @@ export default class KindergartenStatContainer extends Component {
 
   render() {
     let count = 0;
-    let pageRange = this.state.width > breakpoint ? 15 : 10;
+    let pageRange = this.state.width > breakpoint ? 15 : 8;
 
     if (this.state.darzeliai !== undefined) count = this.state.darzeliai.length;
 
