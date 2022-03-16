@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-
 import http from '../../00Services/httpService';
 import apiEndpoint from '../../00Services/endpoint';
-
 import KindergartenStatTable from './KindergartenStatTable';
 import Pagination from "react-js-pagination";
 

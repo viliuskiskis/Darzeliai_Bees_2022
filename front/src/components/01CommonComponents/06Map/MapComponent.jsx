@@ -91,8 +91,8 @@ export default function MapComponent(props) {
 
         {props.kindergartens.map(kindergarten =>
           <Marker
-            id={kindergarten.id}
-            key={kindergarten.id}
+            id={kindergarten.value}
+            key={kindergarten.value}
             position={[kindergarten.latitude, kindergarten.longitude]}
             icon={blueIcon}
           >

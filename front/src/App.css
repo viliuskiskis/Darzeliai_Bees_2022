@@ -157,3 +157,22 @@ a:hover, .btn-link:hover {
 .green-background:disabled {
   background-color: lightgreen;
 }
+
+/* Tables */
+
+.table-header {
+  width: fit-content;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+}
+
+.vertical-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+.table-header:after, .table-header:before {
+  box-sizing: border-box;
+}

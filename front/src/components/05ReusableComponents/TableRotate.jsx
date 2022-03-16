@@ -1,8 +1,8 @@
 import React from 'react';
 import TableBody from './TableBody';
-import TableHeader from './TableHeader';
+import TableHeaderRotate from './TableHeaderRotate';
 
-const Table = (props) => {
+const TableRotate = (props) => {
   const { columns, data } = props;
 
   return (
@@ -10,7 +10,7 @@ const Table = (props) => {
 
       <table className="table">
 
-        <TableHeader
+        <TableHeaderRotate
           columns={columns}
         />
 
@@ -25,4 +25,4 @@ const Table = (props) => {
   );
 }
 
-export default Table;
+export default TableRotate;

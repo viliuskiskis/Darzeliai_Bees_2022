@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class TableHeader extends Component {
+export default class TableHeaderRotate extends Component {
 
   render() {
     return (
@@ -10,11 +10,15 @@ export default class TableHeader extends Component {
             <th
               key={column.key}
               id={column.key}
-              scope="col">
-              {column.label}
+              scope="col"
+              className="table-header"
+            ><span className="vertical-label">
+                <span>
+                  {column.label}
+                </span>
+              </span>
             </th>)}
         </tr>
-
       </thead>
     );
   }
