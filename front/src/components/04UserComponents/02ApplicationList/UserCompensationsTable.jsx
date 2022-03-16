@@ -12,12 +12,6 @@ export default class UserCompensationsTable extends Component {
       content: compensation => <span>{compensation.submitedAt}</span>
     },
     {
-      key: 'childPersonalCode',
-      path: 'childPersonalCode',
-      label: 'Vaiko asmens kodas',
-      content: compensation => <span>{compensation.childPersonalCode}</span>
-    },
-    {
       key: 'childName',
       path: 'childName',
       label: 'Vaiko vardas, pavardė',
@@ -34,6 +28,12 @@ export default class UserCompensationsTable extends Component {
       path: 'entityName',
       label: 'Darželio pavadinimas',
       content: compensation => <span>{compensation.entityName}</span>
+    },
+    {
+      key: 'childPersonalCode',
+      path: 'childPersonalCode',
+      label: 'Vaiko asmens kodas',
+      content: compensation => <span>{compensation.childPersonalCode}</span>
     },
     {
       key: 'veiksmai',
