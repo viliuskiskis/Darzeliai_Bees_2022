@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../../images/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,16 +7,34 @@ import instructionsPdf from '../../../documents/VMS_VDIS_naudotojo_gidas.pdf';
 import Logout from '../../05ReusableComponents/Logout';
 
 export default function UserNavBar(props) {
+  const navButton = useRef(null);
+  const linksContainerRef = useRef(null);
+
+  function collapseNav() {
+    navButton.current.classList.add("collapsed");
+    linksContainerRef.current.classList.remove("show");
+  }
+
   return (
     <div className="pb-4" >
       <nav className="navbar navbar-expand-xl py-4 navbar-light bg-light">
-
         <div className="container">
 
-          <NavLink className="navbar-brand" to={"/home"}>
-            <img className="nav-img" src={logo} alt="logotipas" loading="lazy" />
+          <NavLink
+            className="navbar-brand"
+            to={"/home"}
+            onClick={collapseNav}
+          >
+            <img
+              className="nav-img"
+              src={logo}
+              alt="logotipas"
+              loading="lazy"
+            />
           </NavLink>
+
           <button
+            ref={navButton}
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -27,7 +45,12 @@ export default function UserNavBar(props) {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <div
+            ref={linksContainerRef}
+            className="collapse navbar-collapse"
+            id="navbarSupportedContent"
+          >
             <ul className="navbar-nav ms-auto align-items-center">
 
               <li className="nav-item me-1">
@@ -35,69 +58,64 @@ export default function UserNavBar(props) {
                   className="nav-link"
                   id="navUserNewApplication"
                   to={"/prasymai/naujas"}
-                  data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show"
                 >Sukurti prašymą
                 </NavLink>
               </li>
 
               <li className="nav-item me-1">
                 <NavLink
+                  onClick={collapseNav}
                   className="nav-link"
                   id="navUserMyApplications"
                   to={"/prasymai"}
-                  data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show"
                 >Mano prašymai
                 </NavLink>
               </li>
 
               <li className="nav-item me-1">
                 <NavLink
+                  onClick={collapseNav}
                   className="nav-link"
                   id="navUserMyApplications"
                   to={"/zemelapis"}
-                  data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show"
                 >Darželių žemėlapis
                 </NavLink>
               </li>
 
               <li className="nav-item me-1">
                 <NavLink
+                  onClick={collapseNav}
                   className="nav-link"
                   id="navUserDocuments"
                   to={"/pazymos"}
-                  data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show"
                 >Mano pažymos
                 </NavLink>
               </li>
 
               <li className="nav-item me-1">
                 <NavLink
+                  onClick={collapseNav}
                   className="nav-link"
                   id="navUserApplicationStats"
                   to={"/statistika"}
-                  data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show"
                 >Prašymų statistika
                 </NavLink>
               </li>
 
               <li className="nav-item me-1">
                 <NavLink
+                  onClick={collapseNav}
                   className="nav-link"
                   id="navUserMyAccount"
                   to={"/profilis/atnaujinti"}
-                  data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show"
                 >Mano paskyra
                 </NavLink>
               </li>
 
               <li className="nav-item me-2">
-                <a className="nav-link"
+                <a
+                  onClick={collapseNav}
+                  className="nav-link"
                   id="navInstructions"
                   target="_blank"
                   rel="noopener noreferrer"
