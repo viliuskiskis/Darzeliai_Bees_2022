@@ -82,7 +82,7 @@ export default class UserApplicationsTable extends Component {
 
           <button onClick={() => this.props.handleApplicationDelete(application.id)}
             id="btnDeleteApplication"
-            className="btn btn-danger btn-block btn-sm"
+            className="btn btn-outline-danger btn-block btn-sm"
           >Ištrinti
           </button>
         </div>

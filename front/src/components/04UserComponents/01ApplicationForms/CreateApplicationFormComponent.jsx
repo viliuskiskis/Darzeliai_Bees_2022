@@ -48,7 +48,7 @@ export default function CreateApplicationFormComponent(props) {
           <div>
             {props.state.registrationDisabled &&
               <div className="alert alert-warning p-1" role="alert">
-                Šiuo metu registracija nevykdoma
+                <h6>Šiuo metu registracija nevykdoma</h6>
               </div>
             }
 
@@ -171,7 +171,7 @@ export default function CreateApplicationFormComponent(props) {
                     <button
                       id="submitCompensationButton"
                       type="submit"
-                      className="btn btn-primary mt-3">
+                      className="btn btn-primary btn-block mt-3">
                       Sukurti prašymą kompensacijai
                     </button>
 

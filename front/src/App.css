@@ -120,11 +120,11 @@ a:hover, .btn-link:hover {
 /* Table row background color */
 
 .background-green {
-  background-color: lightgreen;
+  background-color:  #D8ED96;
 }
 
 .background-red {
-  background-color: lightcoral;
+  background-color: rgba(240, 128, 128, 0.5);
 }
 
 /* Map */

@@ -210,7 +210,7 @@ export default class UserDocumentContainer extends Component {
       <div className="container">
         <div className="row">
           <div className="col">
-            <h6 className="py-3"><b>Mano pažymos</b></h6>
+            <h6 className="py-3">Mano pažymos</h6>
           </div>
         </div>
         <div className="row">

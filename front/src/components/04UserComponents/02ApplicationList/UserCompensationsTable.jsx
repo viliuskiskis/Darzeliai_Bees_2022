@@ -59,7 +59,7 @@ export default class UserCompensationsTable extends Component {
 
           <button
             id="btnDeleteCompensation"
-            className="btn btn-danger btn-block btn-sm"
+            className="btn btn-outline-danger btn-block btn-sm"
             onClick={() => this.props.handleCompensationDelete(compensation.id)}
           >Ištrinti
           </button>

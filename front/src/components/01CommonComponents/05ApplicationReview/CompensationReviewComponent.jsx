@@ -55,7 +55,7 @@ export default function CompensationReviewComponent(props) {
           {props.role === "USER" &&
             <button
               id="CompensationReviewDelete"
-              className="btn btn-danger me-2 btn-block"
+              className="btn btn-outline-danger me-2 btn-block"
               onClick={props.handleDelete}
             >Ištrinti
             </button>
@@ -63,7 +63,7 @@ export default function CompensationReviewComponent(props) {
 
           <button
             id="CompensationReviewReturn"
-            className="btn btn-success btn-block"
+            className="btn btn-outline-success btn-block"
             onClick={props.handleReturn}
           >Grįžti
           </button>

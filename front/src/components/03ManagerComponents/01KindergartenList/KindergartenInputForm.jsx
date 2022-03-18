@@ -146,7 +146,7 @@ function KindergartenInputForm() {
     <div>
       <form onSubmit={handleSubmit} onReset={resetForm}>
         <h6 className="pt-3">
-          <b>Pridėti naują darželį </b>
+          Pridėti naują darželį
         </h6>
         <div className="form-group mb-3">
           <label className="form-label" htmlFor="id">
@@ -286,9 +286,8 @@ function KindergartenInputForm() {
         </button>
 
         <h6 className="pt-2">
-          <b>Koordinatės </b>
+          Koordinatės
           <span className="fieldRequired">*</span>
-
         </h6>
 
         <div className="form-group mb-3">
@@ -332,7 +331,7 @@ function KindergartenInputForm() {
         </div>
 
         <h6 className="pt-2">
-          <b>Laisvų vietų skaičius </b>
+          Laisvų vietų skaičius
           <span className="fieldRequired">*</span>
         </h6>
         <div className="form-group mb-3">

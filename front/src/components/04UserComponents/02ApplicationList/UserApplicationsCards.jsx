@@ -44,14 +44,14 @@ export default function UserApplicationsCards(props) {
                 <button
                   onClick={() => props.handleKindergartenContract(application.id)}
                   id="btnReviewContractUser"
-                  className="btn btn-success btn-block btn-sm me-2"
+                  className="btn btn-outline-success btn-block btn-sm me-2"
                 >Pasirašymui
                 </button>
               }
               <button
                 onClick={() => props.handleApplicationDelete(application.id)}
                 id="btnDeleteApplication"
-                className="btn btn-danger btn-block btn-sm"
+                className="btn btn-outline-danger btn-block btn-sm"
               >Ištrinti
               </button>
             </div>

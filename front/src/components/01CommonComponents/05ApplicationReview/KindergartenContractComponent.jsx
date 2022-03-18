@@ -99,22 +99,23 @@ export default function KindergartenContractComponent(props) {
         <p>Ugdymo įstaigos atstovas: <b>{props.state.approvedKindergartenManager}</b> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Tėvas/Globėjas: <b>{props.state.mainGuardianName} {props.state.mainGuardianSurname} </b></p>
 
 
-
-        {
-          props.state.status === "Patvirtintas" &&
+        <div className="d-flex">
+          {
+            props.state.status === "Patvirtintas" &&
+            <button
+              id="CompensationReviewDownloadPDF"
+              className="btn btn-outline-success btn-block me-2 no-breaks"
+              onClick={() => props.handleDownloadContract(props.state)}
+            >Parsisiųsti dokumentą pasirašymui
+            </button>
+          }
           <button
-            id="CompensationReviewDownloadPDF"
-            className="btn btn-success me-2"
-            onClick={() => props.handleDownloadContract(props.state)}
-          >Parsisiųsti dokumentą pasirašymui
+            id="CompensationReviewReturn"
+            className="btn btn-outline-success btn-block"
+            onClick={props.handleReturn}
+          >Grįžti
           </button>
-        }
-        <button
-          id="CompensationReviewReturn"
-          className="btn btn-success me-2"
-          onClick={props.handleReturn}
-        >Grįžti
-        </button>
+        </div>
       </div>
     </div >
   )

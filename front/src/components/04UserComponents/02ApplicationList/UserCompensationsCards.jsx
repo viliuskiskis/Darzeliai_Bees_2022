@@ -23,13 +23,13 @@ export default function UserCompensationsCards(props) {
             <div className="d-flex">
               <button
                 id="btnReviewCompensationUser"
-                className="btn btn-primary btn-sm btn-block me-2"
+                className="btn btn-outline-primary btn-sm btn-block me-2"
                 onClick={() => props.handleCompensationReview(compensation.id)}
               >Peržiūrėti
               </button>
               <button
                 id="btnDeleteCompensation"
-                className="btn btn-danger btn-block btn-sm"
+                className="btn btn-outline-danger btn-block btn-sm"
                 onClick={() => props.handleCompensationDelete(compensation.id)}
               >Ištrinti
               </button>
