@@ -57,7 +57,7 @@ export default class QueueTableNarrow extends Component {
         <div>
           <button
             id="btnReviewApplicationManager"
-            className="btn btn-primary btn-sm btn-block mb-2"
+            className="btn btn-outline-primary btn-sm btn-block mb-2"
             onClick={() => this.props.handleApplicationReview(application.id)}
           >Peržiūrėti
           </button>

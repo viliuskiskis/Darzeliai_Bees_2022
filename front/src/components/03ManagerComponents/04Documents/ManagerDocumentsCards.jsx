@@ -51,7 +51,7 @@ export default function ManagerDocumentsCards(props) {
             </div>
 
             <button
-              className="btn btn-primary btn-sm btn-block mt-2"
+              className="btn btn-outline-primary btn-sm btn-block mt-2"
               onClick={() => props.handleDocumentDownload(document)}
             >
               Atsisiųsti

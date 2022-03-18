@@ -23,7 +23,7 @@ export default class ManagerDocumentsTableNarrow extends Component {
       key: "download",
       label: "Atsisiųsti",
       content: document => <button
-        className="btn btn-primary btn-sm btn-block"
+        className="btn btn-outline-primary btn-sm btn-block"
         onClick={() => this.props.handleDocumentDownload(document)}
       >
         Siųstis

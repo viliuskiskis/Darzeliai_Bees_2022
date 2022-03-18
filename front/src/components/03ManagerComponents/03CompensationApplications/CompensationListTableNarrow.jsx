@@ -47,7 +47,7 @@ export default class CompensationListTableNarrow extends Component {
         <div>
           <button onClick={() => this.props.handleCompensationReview(compensation.id)}
             id="btnReviewCompensationManager"
-            className="btn btn-primary w-100 btn-sm py-0"
+            className="btn btn-outline-primary w-100 btn-sm py-0"
           >Peržiūrėti
           </button>
           <br />

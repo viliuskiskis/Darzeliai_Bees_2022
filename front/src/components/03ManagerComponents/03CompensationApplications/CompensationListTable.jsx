@@ -52,7 +52,7 @@ export default class CompensationListTable extends Component {
         <div className="d-flex justify-content-center">
           <button onClick={() => this.props.handleCompensationReview(compensation.id)}
             id="btnReviewCompensationManager"
-            className="btn btn-primary btn-sm btn-block me-2"
+            className="btn btn-outline-primary btn-sm btn-block me-2"
           >Peržiūrėti
           </button>
           <button
