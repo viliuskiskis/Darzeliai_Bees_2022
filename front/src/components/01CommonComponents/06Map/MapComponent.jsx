@@ -3,11 +3,30 @@ import Select from "react-select";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import { redIcon, greenIcon, blueIcon, orangeIcon } from "../../05ReusableComponents/LeafletIcon";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as Icons from '@fortawesome/free-solid-svg-icons'
 
 export default function MapComponent(props) {
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState();
   const [selectedKindergarten, setSelectedKindergarten] = useState(null);
+  const [width, setWidth] = useState("");
+
+  const breakpoint = 768;
+  const houseIcon = <FontAwesomeIcon icon={Icons.faHouse} />
+  const homeButton = width < breakpoint ? houseIcon : "Mano vieta";
+
+  useEffect(() => {
+    window.addEventListener("resize", updateWidth);
+    updateWidth();
+    return function cleanup() {
+      window.removeEventListener("resize", updateWidth);
+    }
+  })
+
+  function updateWidth() {
+    setWidth(document.getElementById("map-size").getBoundingClientRect().width);
+  }
 
   function handleMyLocation() {
     map.locate().on("locationfound", function (e) {
@@ -46,7 +65,7 @@ export default function MapComponent(props) {
   }
 
   return (
-    <div style={{ height: "100%", width: "100%" }}>
+    <div style={{ height: "100%", width: "100%" }} id="map-size">
 
       {props.selectKindergarten &&
         <div className="form-group mb-3">
@@ -120,7 +139,7 @@ export default function MapComponent(props) {
             id="ManoVietaButton"
             className="mano-vieta-button"
             onClick={handleMyLocation}
-          >Mano Vieta
+          >{homeButton}
           </div>
         }
 

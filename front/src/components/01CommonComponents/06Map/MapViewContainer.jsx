@@ -3,8 +3,6 @@ import http from "../../00Services/httpService";
 import apiEndpoint from "../../00Services/endpoint";
 import swal from "sweetalert";
 import MapComponent from "./MapComponent";
-// import { OpenStreetMapProvider } from 'leaflet-geosearch';
-// const provider = new OpenStreetMapProvider();
 
 export default class MapViewContainer extends Component {
   constructor(props) {
@@ -44,22 +42,6 @@ export default class MapViewContainer extends Component {
         })
       })
   }
-
-  // searchForAddress(address) {
-  //   provider.search({ query: address + ", Vilnius, Lithuania" })
-  //     .then(response => {
-  //       this.setState({
-  //         latLonList: [
-  //           ...this.state.latLonList,
-  //           {
-  //             address: address,
-  //             latitude: response[0].raw.lat,
-  //             longitude: response[0].raw.lon
-  //           }
-  //         ]
-  //       })
-  //     })
-  // }
 
   render() {
     return (
