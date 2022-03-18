@@ -17,35 +17,60 @@ export default function UserApplicationsCards(props) {
       {props.applications.map(application => (
         <div className={handleClassName(application)} key={application.id}>
           <div className="card-body">
-            <h6 className="card-title">
-              {application.childName} {application.childSurname}
-            </h6>
-            <br />
-            <p className="card-text">
-              Pateikimo data: <b>{application.submitedAt}</b>
-            </p>
-            <p className="card-text">
-              Prašymo statusas: <b>{application.status}</b>
-            </p>
+
+            <div className="row">
+              <div className="col text-center">
+                <h6>{application.childName} {application.childSurname}</h6>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-6 text-end">
+                Pateikimo data:
+              </div>
+              <div className="col-6 text-start">
+                <b>{application.submitedAt}</b>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-6 text-end">
+                Prašymo statusas:
+              </div>
+              <div className="col-6 text-start">
+                <b>{application.status}</b>
+              </div>
+            </div>
+
             {/* Show this if status is "Patvirtintas" */}
             {application.status === "Patvirtintas" &&
-              <p className="card-text">
-                Priimta į darželį: <b>{application.kindergartenName}</b>
-              </p>
+              <div className="row">
+                <div className="col-6 text-end">
+                  Priimta į darželį:
+                </div>
+                <div className="col-6 text-start">
+                  <b>{application.kindergartenName}</b>
+                </div>
+              </div>
             }
             {/* Show this if status is "Laukiantis" */}
             {application.status === "Laukiantis" &&
-              <p className="card-text">
-                Laukiančiųjų eilės nr.: <b>{application.numberInWaitingList}</b>
-              </p>
+              <div className="row">
+                <div className="col-6 text-end">
+                  Laukiančiųjų eilės nr.:
+                </div>
+                <div className="col-6 text-start">
+                  <b>{application.numberInWaitingList}</b>
+                </div>
+              </div>
             }
-            <div className="d-flex">
+            <div className="d-flex mt-2">
               {/* Show this button, if application status is NOT "Parvirtintas" */}
               {application.status !== "Patvirtintas" &&
                 <button
                   onClick={() => props.handleApplicationReview(application)}
                   id="btnReviewCompensation"
-                  className="btn btn-primary btn-sm btn-block me-2"
+                  className="btn btn-outline-primary btn-sm btn-block me-2"
                 >Peržiūrėti
                 </button>
               }

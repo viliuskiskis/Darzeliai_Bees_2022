@@ -17,20 +17,41 @@ export default function UserCompensationsCards(props) {
       {props.compensations.map(compensation => (
         <div className={handleClassName(compensation)} key={compensation.id}>
           <div className="card-body">
-            <h6 className="card-title">
-              {compensation.childName} {compensation.childSurname}
-            </h6>
-            <br />
-            <p className="card-text">
-              Pateikimo data: <b>{compensation.submitedAt}</b>
-            </p>
-            <p className="card-text">
-              Prašymo statusas: <b>{compensation.applicationStatus}</b>
-            </p>
-            <p className="card-text">
-              Darželio pavadinimas: <b>{compensation.entityName}</b>
-            </p>
-            <div className="d-flex">
+
+            <div className="row">
+              <div className="col text-center">
+                <h6>{compensation.childName} {compensation.childSurname}</h6>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-6 text-end">
+                Pateikimo data:
+              </div>
+              <div className="col-6 text-start">
+                <b>{compensation.submitedAt}</b>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-6 text-end">
+                Prašymo statusas:
+              </div>
+              <div className="col-6 text-start">
+                <b>{compensation.applicationStatus}</b>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-6 text-end">
+                Darželio pavadinimas:
+              </div>
+              <div className="col-6 text-start">
+                <b>{compensation.entityName}</b>
+              </div>
+            </div>
+
+            <div className="d-flex mt-2">
               <button
                 id="btnReviewCompensationUser"
                 className="btn btn-outline-primary btn-sm btn-block me-2"

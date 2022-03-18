@@ -41,21 +41,10 @@ export default class UserCompensationsTable extends Component {
         <div className="d-flex justify-content-around">
           <button
             id="btnReviewCompensationUser"
-            className="btn btn-primary btn-sm btn-block me-2"
+            className="btn btn-outline-primary btn-sm btn-block me-2"
             onClick={() => this.props.handleCompensationReview(compensation.id)}
           >Peržiūrėti
           </button>
-
-          {/* Show this button, if application status is "Parvirtintas" */}
-          {/* unused code */}
-          {/*compensation.applicationStatus === "Patvirtintas" &&
-            <button
-              id="btnReviewContractUser"
-              className="btn btn-success btn-block btn-sm me-2"
-              onClick={() => this.props.handleCompensationContractReview(compensation.id)}
-            >Pasirašymui
-            </button>
-           */}
 
           <button
             id="btnDeleteCompensation"

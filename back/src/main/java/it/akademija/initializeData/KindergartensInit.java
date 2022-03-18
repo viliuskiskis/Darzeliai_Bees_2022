@@ -48,8 +48,8 @@ public class KindergartensInit {
 		    kindergarten.setElderate(data[3]);
 		    kindergarten.setManagerName(data[4]);
 		    kindergarten.setManagerSurname(data[5]);
-		    kindergarten.setCapacityAgeGroup2to3(random.nextInt(5));
-		    kindergarten.setCapacityAgeGroup3to6(random.nextInt(5));
+		    kindergarten.setCapacityAgeGroup2to3(random.nextInt(3));
+		    kindergarten.setCapacityAgeGroup3to6(random.nextInt(2));
 		    kindergarten.setLatitude(Double.parseDouble(data[6]));
 		    kindergarten.setLongitude(Double.parseDouble(data[7]));
 		    
