@@ -108,7 +108,7 @@ export default function QueueCards(props) {
             <div className="d-flex mt-2">
               <button
                 id="btnReviewApplicationManager"
-                className="btn btn-primary btn-sm btn-block me-2"
+                className="btn btn-outline-primary btn-sm btn-block me-2"
                 onClick={() => props.handleApplicationReview(application.id)}
               >Peržiūrėti
               </button>

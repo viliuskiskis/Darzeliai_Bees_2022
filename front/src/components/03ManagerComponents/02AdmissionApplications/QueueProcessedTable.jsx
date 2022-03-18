@@ -52,7 +52,7 @@ class QueueProcessedTable extends Component {
         <div className="d-flex justify-content-center">
           <button
             id="btnReviewApplicationManager"
-            className="btn btn-primary btn-sm btn-block me-2"
+            className="btn btn-outline-primary btn-sm btn-block me-2"
             onClick={() => this.props.handleApplicationReview(application.id)}
           >Peržiūrėti
           </button>
