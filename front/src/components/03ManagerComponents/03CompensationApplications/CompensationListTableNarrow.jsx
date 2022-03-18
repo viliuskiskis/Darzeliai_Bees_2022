@@ -6,7 +6,7 @@ export default class CompensationListTableNarrow extends Component {
     {
       key: 'submitedAt',
       path: 'submitedAt',
-      label: 'Statusas\nData',
+      label: 'Statusas,\nData',
       content: compensation =>
         <span>
           <span>{compensation.applicationStatus}</span>
@@ -26,7 +26,7 @@ export default class CompensationListTableNarrow extends Component {
     {
       key: 'childName childSurname',
       path: 'childName childSurname',
-      label: 'Vardas\nPavardė',
+      label: 'Vardas,\nPavardė',
       content: compensation =>
         <span>
           {compensation.childName}
@@ -53,7 +53,7 @@ export default class CompensationListTableNarrow extends Component {
           <br />
           <button
             id="btnDeactivateCompensationManager"
-            className="btn btn-danger w-100 btn-sm py-0"
+            className="btn btn-outline-danger w-100 btn-sm py-0"
             onClick={() => this.props.handleCompensationDeactivate(compensation)}
             disabled={compensation.applicationStatus !== "Pateiktas"}
           >Atmesti
@@ -61,7 +61,7 @@ export default class CompensationListTableNarrow extends Component {
           <br />
           <button
             id="btnConfirmCompensationManager"
-            className="btn btn-success w-100 btn-sm py-0"
+            className="btn btn-outline-success w-100 btn-sm py-0"
             onClick={() => this.props.handleCompensationConfirm(compensation)}
             disabled={compensation.applicationStatus !== "Pateiktas"}
           >Patvirtinti

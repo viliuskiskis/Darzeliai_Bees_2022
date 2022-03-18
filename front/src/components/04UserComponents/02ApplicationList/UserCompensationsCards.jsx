@@ -2,10 +2,20 @@ import React from "react";
 
 export default function UserCompensationsCards(props) {
 
+  function handleClassName(item) {
+    if (item.status === "Patvirtintas" || item.applicationStatus === "Patvirtintas") {
+      return "card mb-2 background-green";
+    } else if (item.status === "Neaktualus" || item.applicationStatus === "Neaktualus") {
+      return "card mb-2 background-red";
+    } else {
+      return "card mb-2";
+    }
+  }
+
   return (
     <div>
       {props.compensations.map(compensation => (
-        <div className="card mb-2">
+        <div className={handleClassName(compensation)} key={compensation.id}>
           <div className="card-body">
             <h6 className="card-title">
               {compensation.childName} {compensation.childSurname}

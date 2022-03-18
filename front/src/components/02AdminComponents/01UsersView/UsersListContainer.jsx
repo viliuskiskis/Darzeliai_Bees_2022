@@ -5,7 +5,7 @@ import http from "../../00Services/httpService";
 import apiEndpoint from "../../00Services/endpoint";
 import SearchBox from "../../05ReusableComponents/SeachBox";
 import UserListTable from "./UsersListTable";
-// import UserListCards from "./UserListCards";
+import UserListCards from "./UserListCards";
 
 const breakpoint = 768;
 
@@ -23,11 +23,11 @@ export default class UsersListContainer extends Component {
       searchQuery: "",
       width: ""
     };
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
     this.getUserInfo(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
-    this.handleSearch = this.handleSearch.bind(this);
     window.addEventListener("resize", this.update);
     this.update();
   }
@@ -148,7 +148,7 @@ export default class UsersListContainer extends Component {
   };
 
   render() {
-    let pageRange = this.state.width > breakpoint ? 15 : 8;
+    let pageRange = this.state.width >= breakpoint ? 15 : 8;
 
     return (
       <React.Fragment>
@@ -158,19 +158,19 @@ export default class UsersListContainer extends Component {
           placeholder={"Ieškoti pagal naudotojo vardą..."}
         />
 
-        {/* {this.state.width > breakpoint ? */}
-        <UserListTable
-          naudotojai={this.state.naudotojai}
-          onDelete={this.handleDelete}
-          onRestorePassword={this.handleRestorePassword}
-        />
-        {/* :
+        {this.state.width >= breakpoint ?
+          <UserListTable
+            naudotojai={this.state.naudotojai}
+            onDelete={this.handleDelete}
+            onRestorePassword={this.handleRestorePassword}
+          />
+          :
           <UserListCards
             naudotojai={this.state.naudotojai}
             onDelete={this.handleDelete}
             onRestorePassword={this.handleRestorePassword}
           />
-        } */}
+        }
 
         {this.state.totalPages > 1 &&
           <div className="d-flex justify-content-center">

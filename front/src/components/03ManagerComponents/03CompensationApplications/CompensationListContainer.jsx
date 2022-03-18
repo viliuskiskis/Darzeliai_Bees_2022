@@ -6,8 +6,10 @@ import Pagination from "react-js-pagination";
 import SearchBox from "../../05ReusableComponents/SeachBox";
 import CompensationListTable from "./CompensationListTable";
 import CompensationListTableNarrow from "./CompensationListTableNarrow";
+import CompensationListCards from "./CompensationListCards";
 
-const breakpoint = 768;
+const breakpointSm = 768;
+const breakpointMd = 992;
 
 export default class CompensationListContainer extends Component {
   constructor(props) {
@@ -129,7 +131,7 @@ export default class CompensationListContainer extends Component {
 
   render() {
     let size = 0;
-    let pageRange = this.state.width > breakpoint ? 15 : 10;
+    let pageRange = this.state.width > breakpointSm ? 15 : 8;
     if (this.state.compensations !== undefined) size = this.state.compensations.length;
 
     return (
@@ -144,7 +146,7 @@ export default class CompensationListContainer extends Component {
           />
         }
 
-        {this.state.width > breakpoint ?
+        {this.state.width >= breakpointMd ?
           <CompensationListTable
             compensations={this.state.compensations}
             handleCompensationReview={this.handleCompensationReview}
@@ -152,12 +154,20 @@ export default class CompensationListContainer extends Component {
             handleCompensationConfirm={this.handleCompensationConfirm}
           />
           :
-          <CompensationListTableNarrow
-            compensations={this.state.compensations}
-            handleCompensationReview={this.handleCompensationReview}
-            handleCompensationDeactivate={this.handleCompensationDeactivate}
-            handleCompensationConfirm={this.handleCompensationConfirm}
-          />
+          this.state.width >= breakpointSm ?
+            <CompensationListTableNarrow
+              compensations={this.state.compensations}
+              handleCompensationReview={this.handleCompensationReview}
+              handleCompensationDeactivate={this.handleCompensationDeactivate}
+              handleCompensationConfirm={this.handleCompensationConfirm}
+            />
+            :
+            <CompensationListCards
+              compensations={this.state.compensations}
+              handleCompensationReview={this.handleCompensationReview}
+              handleCompensationDeactivate={this.handleCompensationDeactivate}
+              handleCompensationConfirm={this.handleCompensationConfirm}
+            />
         }
 
         {this.state.totalPages > 1 &&

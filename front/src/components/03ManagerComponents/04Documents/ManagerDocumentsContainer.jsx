@@ -5,7 +5,7 @@ import swal from "sweetalert";
 import Pagination from "react-js-pagination";
 import ManagerDocumentsTable from "./ManagerDocumentsTable";
 import SearchBox from "../../05ReusableComponents/SeachBox";
-import ManagerDocumentsTableNarrow from "./ManagerDocumentsTableNarrow";
+import ManagerDocumentsCards from "./ManagerDocumentsCards";
 
 const breakpoint = 768;
 
@@ -116,7 +116,7 @@ export default class ManagerDocumentsContainer extends Component {
             handleDocumentDownload={this.handleDocumentDownload}
           />
           :
-          <ManagerDocumentsTableNarrow
+          <ManagerDocumentsCards
             documentList={this.state.documentList}
             handleDocumentDownload={this.handleDocumentDownload}
           />

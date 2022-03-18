@@ -7,7 +7,7 @@ export default class CompensationListTable extends Component {
       key: 'id',
       path: 'id',
       label: '#',
-      content: application => <span> {application.id}</span>
+      content: compensation => <span> {compensation.id}</span>
     },
     {
       key: 'applicationStatus',
@@ -18,7 +18,7 @@ export default class CompensationListTable extends Component {
     {
       key: 'submitedAt',
       path: 'submitedAt',
-      label: 'Pateikimo data',
+      label: 'Pateikimo\u00a0data',
       content: compensation => <span> {compensation.submitedAt}</span>
     },
     {

@@ -5,6 +5,9 @@ import apiEndpoint from '../../00Services/endpoint';
 import Spinner from '../../05ReusableComponents/Spinner'
 import SearchBox from "../../05ReusableComponents/SeachBox";
 import EventJournalTable from './EventJournalTable';
+import EventJournalCards from './EventJournalCards';
+
+const breakpoint = 768;
 
 export default class EventJournalContainer extends Component {
 
@@ -18,7 +21,8 @@ export default class EventJournalContainer extends Component {
       totalElements: 0,
       numberOfElements: 0,
       entriesLoaded: false,
-      searchQuery: ""
+      searchQuery: "",
+      width: ""
     };
     this.getJournalEntries = this.getJournalEntries.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
@@ -27,6 +31,18 @@ export default class EventJournalContainer extends Component {
 
   componentDidMount() {
     this.getJournalEntries(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
+    window.addEventListener("resize", this.update);
+    this.update();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.update);
+  }
+
+  update = () => {
+    this.setState({
+      width: window.innerWidth
+    })
   }
 
   getJournalEntries(page, size, filter) {
@@ -61,6 +77,8 @@ export default class EventJournalContainer extends Component {
   };
 
   render() {
+    let pageRange = this.state.width > breakpoint ? 15 : 8;
+
     return (
       <div className="container pt-4" >
         <h6 className="ps-2 pt-3">Sistemos įvykių žurnalas</h6>
@@ -71,8 +89,11 @@ export default class EventJournalContainer extends Component {
               onSearch={this.handleSearch}
               placeholder={"Ieškoti pagal naudotojo vardą..."}
             />
-
-            <EventJournalTable entries={this.state.entries} />
+            {this.state.width > breakpoint ?
+              <EventJournalTable entries={this.state.entries} />
+              :
+              <EventJournalCards entries={this.state.entries} />
+            }
           </div>
         ) : (<Spinner />)}
 
@@ -84,7 +105,7 @@ export default class EventJournalContainer extends Component {
               activePage={this.state.currentPage}
               itemsCountPerPage={this.state.pageSize}
               totalItemsCount={this.state.totalElements}
-              pageRangeDisplayed={15}
+              pageRangeDisplayed={pageRange}
               onChange={this.handlePageChange.bind(this)}
             />
           </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Table from '../../05ReusableComponents/Table';
 
-class QueueProcessedTable extends Component {
+export default class QueueProcessedTableNarrow extends Component {
   columns = [
     {
       key: 'id',
@@ -12,47 +12,46 @@ class QueueProcessedTable extends Component {
     {
       key: 'childPersonalCode',
       path: 'childPersonalCode',
-      label: 'Vaiko asmens kodas',
+      label: 'Vaiko a.k.',
       content: application => <span> {application.childPersonalCode}</span>
     },
     {
       key: 'name',
       path: 'name',
-      label: 'Vaiko vardas',
-      content: application => <span> {application.childName}</span>
-    },
-    {
-      key: 'surname',
-      path: 'surname',
-      label: 'Vaiko pavardė',
-      content: application => <span>{application.childSurname}</span>
+      label: 'Vardas, pavardė',
+      content: application =>
+        <span>
+          {application.childName}
+          <br />
+          {application.childSurname}
+        </span>
     },
     {
       key: 'status',
       path: 'status',
-      label: 'Prašymo statusas',
+      label: 'Statusas',
       content: application => <span> {application.status ? application.status : "-"} </span>
     },
     {
       key: 'kindergartenName',
       path: 'kindergartenName',
-      label: 'Darželio pavadinimas',
+      label: 'Darželis',
       content: application => <span> {application.kindergartenName ? application.kindergartenName : "-"} </span>
     },
     {
       key: 'numberInWaitingList',
       path: 'numberInWaitingList',
-      label: 'Laukiančiųjų eilės numeris',
+      label: 'Eilės nr.',
       content: application => <span> {application.numberInWaitingList ? application.numberInWaitingList : "-"} </span>
     },
     {
       key: 'veiksmai',
       label: 'Veiksmai',
       content: application =>
-        <div className="d-flex justify-content-center">
+        <div>
           <button
             id="btnReviewApplicationManager"
-            className="btn btn-primary btn-sm btn-block me-2"
+            className="btn btn-primary btn-sm btn-block mb-2"
             onClick={() => this.props.handleApplicationReview(application.id)}
           >Peržiūrėti
           </button>
@@ -79,7 +78,6 @@ class QueueProcessedTable extends Component {
   ]
 
   render() {
-
     return (
       <Table
         columns={this.columns}
@@ -88,7 +86,5 @@ class QueueProcessedTable extends Component {
     );
   }
 }
-
-export default QueueProcessedTable
 
 

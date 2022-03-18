@@ -208,13 +208,6 @@ class KindergartenListTable extends Component {
                             >
                               Koordinatės
                             </button>
-
-                            {/* <button
-                              onClick={() => onDelete(darzelis)}
-                              id="btnDeleteKindergarten"
-                              className="btn btn-outline-danger btn-sm btn-block">
-                              Ištrinti
-                            </button> */}
                           </div>
                         </td>
                       </React.Fragment>

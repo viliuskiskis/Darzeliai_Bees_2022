@@ -113,12 +113,12 @@ export const LoginContainer = () => {
   };
 
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center min-vh-100">
-      <div className="card p-5 max-width-100">
+    <div className="d-flex flex-column justify-content-center align-items-center overflow-hidden min-vh-100">
+      <div className="card p-5 max-width">
         <img
           src={logo}
           alt="Vilniaus miesto savivaldybės vaikų darželių informacinė sistema"
-          className="img-flex mb-3 max-width-100"
+          className="img-flex mb-3"
         />
         <form onSubmit={handleSubmit}>
           <h3>Prisijungti</h3>

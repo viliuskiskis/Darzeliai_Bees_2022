@@ -3,11 +3,13 @@ import swal from 'sweetalert';
 import http from '../../00Services/httpService';
 import apiEndpoint from '../../00Services/endpoint';
 import KindergartenListTable from './KindergartenListTable';
+import KindergartenListCards from './KindergartenListCards';
 import Pagination from "react-js-pagination";
 import SearchBox from '../../05ReusableComponents/SeachBox';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 
 const provider = new OpenStreetMapProvider();
+const breakpoint = 768;
 
 export default class KindergartenListContainer extends Component {
   constructor(props) {
@@ -25,18 +27,29 @@ export default class KindergartenListContainer extends Component {
       editRowId: "",
       editedKindergarten: null,
       errorMessages: {},
-      isDisabled: false
+      isDisabled: false,
+      width: ""
     }
     this.getKindergartenInfo = this.getKindergartenInfo.bind(this);
   }
+
   componentDidMount() {
     this.getKindergartenInfo(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
     this.getElderates();
     document.addEventListener("keydown", this.handleEscape, false);
+    window.addEventListener("resize", this.update);
+    this.update();
   }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleEscape, false);
+    window.removeEventListener("resize", this.update);
+  }
+
+  update = () => {
+    this.setState({
+      width: window.innerWidth
+    })
   }
 
   handleEscape = (e) => {
@@ -188,6 +201,7 @@ export default class KindergartenListContainer extends Component {
   render() {
     const { darzeliai, elderates, searchQuery, inEditMode, editRowId, errorMessages } = this.state;
     const hasErrors = Object.keys(errorMessages).length === 0 ? false : true;
+    let pageRange = this.state.width >= breakpoint ? 15 : 8;
 
     return (
       <React.Fragment>
@@ -198,22 +212,41 @@ export default class KindergartenListContainer extends Component {
           placeholder={"Ieškoti pagal pavadinimą..."}
         />
 
-        <KindergartenListTable
-          darzeliai={darzeliai}
-          elderates={elderates}
-          inEditMode={inEditMode}
-          editRowId={editRowId}
-          errorMessages={errorMessages}
-          hasErrors={hasErrors}
-          onDelete={this.handleDelete}
-          onEditData={this.handleEditKindergarten}
-          onEscape={this.handleEscape}
-          onChange={this.handleChange}
-          onSave={this.handleSaveEdited}
-          handleUpdateCoordinates={this.handleUpdateCoordinates}
-          isDisabled={this.state.isDisabled}
-          onCancel={this.onCancel}
-        />
+        {this.state.width >= breakpoint ?
+          <KindergartenListTable
+            darzeliai={darzeliai}
+            elderates={elderates}
+            inEditMode={inEditMode}
+            editRowId={editRowId}
+            errorMessages={errorMessages}
+            hasErrors={hasErrors}
+            onDelete={this.handleDelete}
+            onEditData={this.handleEditKindergarten}
+            onEscape={this.handleEscape}
+            onChange={this.handleChange}
+            onSave={this.handleSaveEdited}
+            handleUpdateCoordinates={this.handleUpdateCoordinates}
+            isDisabled={this.state.isDisabled}
+            onCancel={this.onCancel}
+          />
+          :
+          <KindergartenListCards
+            darzeliai={darzeliai}
+            elderates={elderates}
+            inEditMode={inEditMode}
+            editRowId={editRowId}
+            errorMessages={errorMessages}
+            hasErrors={hasErrors}
+            onDelete={this.handleDelete}
+            onEditData={this.handleEditKindergarten}
+            onEscape={this.handleEscape}
+            onChange={this.handleChange}
+            onSave={this.handleSaveEdited}
+            handleUpdateCoordinates={this.handleUpdateCoordinates}
+            isDisabled={this.state.isDisabled}
+            onCancel={this.onCancel}
+          />
+        }
 
         {this.state.totalPages > 1 &&
           <div className="d-flex justify-content-center">
@@ -223,7 +256,7 @@ export default class KindergartenListContainer extends Component {
               activePage={this.state.currentPage}
               itemsCountPerPage={this.state.pageSize}
               totalItemsCount={this.state.totalElements}
-              pageRangeDisplayed={15}
+              pageRangeDisplayed={pageRange}
               onChange={this.handlePageChange}
             />
           </div>

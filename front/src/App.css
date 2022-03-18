@@ -187,6 +187,6 @@ a:hover, .btn-link:hover {
   white-space: nowrap;
 }
 
-.max-width-100 {
-  max-width: 100%;
+.max-width {
+  max-width: 98%;
 }

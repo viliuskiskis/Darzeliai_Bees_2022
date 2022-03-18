@@ -13,26 +13,26 @@ export default class UserCompensationsTable extends Component {
     {
       key: 'childName',
       path: 'childName',
-      label: 'Vaiko vardas, pavardė',
-      content: compensation => <span>{compensation.childName} {compensation.childSurname}</span>
+      label: 'Vaiko vardas',
+      content: compensation => <span>{compensation.childName}</span>
+    },
+    {
+      key: 'childSurname',
+      path: 'childSurname',
+      label: 'Vaiko pavardė',
+      content: compensation => <span>{compensation.childSurname}</span>
     },
     {
       key: 'applicationStatus',
       path: 'applicationStatus',
       label: 'Prašymo statusas',
-      content: compensation => <span>{compensation.applicationStatus} </span>
+      content: compensation => <span>{compensation.applicationStatus}</span>
     },
     {
       key: 'entityName',
       path: 'entityName',
       label: 'Darželio pavadinimas',
       content: compensation => <span>{compensation.entityName}</span>
-    },
-    {
-      key: 'childPersonalCode',
-      path: 'childPersonalCode',
-      label: 'Vaiko asmens kodas',
-      content: compensation => <span>{compensation.childPersonalCode}</span>
     },
     {
       key: 'veiksmai',

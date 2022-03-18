@@ -36,7 +36,7 @@ export default class ManagerDocumentsTable extends Component {
         className="btn btn-primary btn-sm btn-block"
         onClick={() => this.props.handleDocumentDownload(document)}
       >
-        Siųstis
+        Atsisiųsti
       </button>
     }
   ]
