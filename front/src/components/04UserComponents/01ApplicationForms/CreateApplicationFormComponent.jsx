@@ -55,6 +55,7 @@ export default function CreateApplicationFormComponent(props) {
             <div className="form">
               <form onSubmit={(e) => props.handleApplicationSubmit(e)}>
                 <div className="row">
+
                   <div className="col-12 col-lg-4">
                     <MainGuardianFormComponent
                       mainGuardian={props.state.mainGuardian}
@@ -82,7 +83,9 @@ export default function CreateApplicationFormComponent(props) {
                       childSurnameOnChange={props.childSurnameOnChange}
                     />
                   </div>
+
                 </div>
+
                 <div className="row">
                   <div className="col-12">
                     <CheckboxPriorityFormComponent
@@ -128,7 +131,6 @@ export default function CreateApplicationFormComponent(props) {
               </form>
             </div>
           </div>
-
         }
 
         {/* Prašymo forma dėl kompensacijos */}
@@ -163,20 +165,18 @@ export default function CreateApplicationFormComponent(props) {
                     />
                   </div>
                 </div>
+
                 <div className="row">
-
-
-                  <div className="col-12 col-lg-7">
-
+                  <div className="col">
                     <button
                       id="submitCompensationButton"
                       type="submit"
                       className="btn btn-primary btn-block mt-3">
                       Sukurti prašymą kompensacijai
                     </button>
-
                   </div>
                 </div>
+
               </form>
             </div>
           </div>
