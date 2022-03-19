@@ -42,6 +42,10 @@ public class JournalService {
 		endTime = LocalDateTime.parse("3000-01-01T00:00:00.00");
 	    } 
 	    
+	    if (username.equals("")) {
+		return journalEntryDAO.getJournalEntriesByTime(pageable, startTime, endTime);
+	    }
+	    
 	    if (username.equals("NULL")) {
 		return journalEntryDAO.getNullJournalEntriesByTime(pageable, startTime, endTime);
 	    }

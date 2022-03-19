@@ -168,7 +168,6 @@ export default class EventJournalContainer extends Component {
     return (
       <div className="container pt-4" >
         <h6 className="ps-2 pt-3">Sistemos įvykių žurnalas</h6>
-        <div>{this.state.startTime === null ? "NULL" : "not null"}</div>
         {this.state.entriesLoaded ? (
           <div>
             <div className="row">

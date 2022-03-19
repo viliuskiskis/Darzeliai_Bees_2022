@@ -16,6 +16,9 @@ public interface JournalEntryDAO extends JpaRepository<JournalEntry, Long>{
 	@Query("SELECT j FROM JournalEntry j WHERE j.userName LIKE(CONCAT('%', ?1, '%')) AND j.eventTime BETWEEN ?2 and ?3")
 	Page<JournalEntry> getJournalEntriesByUsernameAndTime(Pageable pageable, String username, LocalDateTime startTime, LocalDateTime endTime);
 	
+	@Query("SELECT j FROM JournalEntry j WHERE j.eventTime BETWEEN ?1 and ?2")
+	Page<JournalEntry> getJournalEntriesByTime(Pageable pageable, LocalDateTime startTime, LocalDateTime endTime);
+	
 	@Query("SELECT j FROM JournalEntry j WHERE j.userName IS NULL AND j.eventTime BETWEEN ?1 and ?2")
 	Page<JournalEntry> getNullJournalEntriesByTime(Pageable pageable, LocalDateTime startTime, LocalDateTime endTime);
 	

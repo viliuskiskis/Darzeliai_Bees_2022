@@ -6,7 +6,7 @@ public class JournalRequestDTO {
 
     private int page;
     private int size;
-    private String username;
+    private String username = "";
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
