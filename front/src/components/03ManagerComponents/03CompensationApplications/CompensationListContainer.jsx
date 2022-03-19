@@ -7,6 +7,7 @@ import SearchBox from "../../05ReusableComponents/SeachBox";
 import CompensationListTable from "./CompensationListTable";
 import CompensationListTableNarrow from "./CompensationListTableNarrow";
 import CompensationListCards from "./CompensationListCards";
+import CompensationReviewComponent from "../../01CommonComponents/05ApplicationReview/CompensationReviewComponent";
 
 const breakpointSm = 768;
 const breakpointMd = 992;
@@ -15,6 +16,7 @@ export default class CompensationListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      applicationPreview: false,
       compensations: [],
       pageSize: 10, // PAGE SIZE FUNCTIONALITY NOT YET IMPLEMENTED
       currentPage: 1,
@@ -22,13 +24,27 @@ export default class CompensationListContainer extends Component {
       totalElements: 0,
       numberOfElements: 0,
       searchQuery: "",
-      width: ""
+      width: "",
+
+      id: 0,
+      submitedAt: "",
+      applicationStatus: "",
+      approvalDate: "",
+      kindergartenData: null,
+      mainGuardian: null,
+      birthdate: "",
+      childName: "",
+      childPersonalCode: "",
+      childSurname: "",
+      hiddenChildName: "",
+      hiddenChildSurname: ""
     }
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleCompensationReview = this.handleCompensationReview.bind(this);
     this.handleCompensationDeactivate = this.handleCompensationDeactivate.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleCompensationConfirm = this.handleCompensationConfirm.bind(this);
+    this.handleReturn = this.handleReturn.bind(this);
   }
 
   componentDidMount() {
@@ -76,7 +92,37 @@ export default class CompensationListContainer extends Component {
   }
 
   handleCompensationReview(id) {
-    this.props.history.push(`/prasymas/kompensuoti/${id}`)
+    http.get(`${apiEndpoint}/api/kompensacijos/manager/${id}`)
+      .then(response => {
+        this.setState({
+          id: response.data.id,
+          submitedAt: response.data.submitedAt,
+          applicationStatus: response.data.applicationStatus,
+          approvalDate: response.data.approvalDate,
+          kindergartenData: response.data.kindergartenDataInfo,
+          mainGuardian: response.data.mainGuardianInfo,
+          birthdate: response.data.childDataInfo.birthdate,
+          childName: response.data.childDataInfo.childName,
+          childPersonalCode: response.data.childDataInfo.childPersonalCode,
+          childSurname: response.data.childDataInfo.childSurname,
+          hiddenChildSurname: response.data.childDataInfo.childSurname,
+          hiddenChildName: response.data.childDataInfo.childName
+        })
+      }).catch(error => {
+        swal({
+          text: "Įvyko klaida perduodant duomenis iš serverio: " + JSON.stringify(error),
+          button: "Gerai"
+        })
+      });
+    this.setState({
+      applicationPreview: true
+    })
+  }
+
+  handleReturn() {
+    this.setState({
+      applicationPreview: false
+    })
   }
 
   handleCompensationDeactivate(item) {
@@ -134,58 +180,67 @@ export default class CompensationListContainer extends Component {
     let pageRange = this.state.width > breakpointSm ? 15 : 8;
     if (this.state.compensations !== undefined) size = this.state.compensations.length;
 
-    return (
-      <div className="container pt-4">
-        <h6 className="ps-2 pt-3">Prašymai gauti kompensaciją</h6>
+    if (this.state.applicationPreview) {
+      return (
+        <CompensationReviewComponent
+          state={this.state}
+          role={"manager"}
+          handleReturn={this.handleReturn}
+        />
+      )
+    } else {
+      return (
+        <div className="container pt-4">
+          <h6 className="ps-2 pt-3">Prašymai gauti kompensaciją</h6>
 
-        {(size > 0 || this.state.searchQuery !== "") &&
-          <SearchBox
-            value={this.state.searchQuery}
-            onSearch={this.handleSearch}
-            placeholder={"Ieškoti pagal vaiko asmens kodą..."}
-          />
-        }
+          {(size > 0 || this.state.searchQuery !== "") &&
+            <SearchBox
+              value={this.state.searchQuery}
+              onSearch={this.handleSearch}
+              placeholder={"Ieškoti pagal vaiko asmens kodą..."}
+            />
+          }
 
-        {this.state.width >= breakpointMd ?
-          <CompensationListTable
-            compensations={this.state.compensations}
-            handleCompensationReview={this.handleCompensationReview}
-            handleCompensationDeactivate={this.handleCompensationDeactivate}
-            handleCompensationConfirm={this.handleCompensationConfirm}
-          />
-          :
-          this.state.width >= breakpointSm ?
-            <CompensationListTableNarrow
+          {this.state.width >= breakpointMd ?
+            <CompensationListTable
               compensations={this.state.compensations}
               handleCompensationReview={this.handleCompensationReview}
               handleCompensationDeactivate={this.handleCompensationDeactivate}
               handleCompensationConfirm={this.handleCompensationConfirm}
             />
             :
-            <CompensationListCards
-              compensations={this.state.compensations}
-              handleCompensationReview={this.handleCompensationReview}
-              handleCompensationDeactivate={this.handleCompensationDeactivate}
-              handleCompensationConfirm={this.handleCompensationConfirm}
-            />
-        }
+            this.state.width >= breakpointSm ?
+              <CompensationListTableNarrow
+                compensations={this.state.compensations}
+                handleCompensationReview={this.handleCompensationReview}
+                handleCompensationDeactivate={this.handleCompensationDeactivate}
+                handleCompensationConfirm={this.handleCompensationConfirm}
+              />
+              :
+              <CompensationListCards
+                compensations={this.state.compensations}
+                handleCompensationReview={this.handleCompensationReview}
+                handleCompensationDeactivate={this.handleCompensationDeactivate}
+                handleCompensationConfirm={this.handleCompensationConfirm}
+              />
+          }
 
-        {this.state.totalPages > 1 &&
-          <div className="d-flex justify-content-center">
-            <Pagination
-              itemClass="page-item"
-              linkClass="page-link"
-              activePage={this.state.currentPage}
-              itemsCountPerPage={this.state.pageSize}
-              totalItemsCount={this.state.totalElements}
-              pageRangeDisplayed={pageRange}
-              onChange={this.handlePageChange}
-            />
-          </div>
-        }
+          {this.state.totalPages > 1 &&
+            <div className="d-flex justify-content-center">
+              <Pagination
+                itemClass="page-item"
+                linkClass="page-link"
+                activePage={this.state.currentPage}
+                itemsCountPerPage={this.state.pageSize}
+                totalItemsCount={this.state.totalElements}
+                pageRangeDisplayed={pageRange}
+                onChange={this.handlePageChange}
+              />
+            </div>
+          }
 
-      </div>
-    )
+        </div>
+      )
+    }
   }
-
 }

@@ -24,28 +24,32 @@ export default function CompensationReviewComponent(props) {
 
         <div className="col-12 col-md-6 col-lg-4 pb-4">
           <h6>Ugdymo įstaigos duomenys</h6>
-          <div>
-            <span>Pavadinimas:<b> {props.state.kindergartenData.entityName}</b></span><br />
-            <span>Įmonės kodas:<b> {props.state.kindergartenData.code}</b></span><br />
-            <span>Telefonas:<b> {props.state.kindergartenData.phone}</b></span><br />
-            <span>El. paštas:<b> {props.state.kindergartenData.email}</b></span><br />
-            <span>Adresas:<b> {props.state.kindergartenData.address}</b></span><br />
-            <span>Banko sąskaitos numeris:<b> {props.state.kindergartenData.account}</b></span><br />
-            <span>Banko kodas:<b> {props.state.kindergartenData.bankCode}</b></span><br />
-            <span>Banko pavadinimas:<b> {props.state.kindergartenData.bankName}</b></span><br />
-          </div>
+          {props.state.kindergartenData !== null &&
+            <div>
+              <span>Pavadinimas:<b> {props.state.kindergartenData.entityName}</b></span><br />
+              <span>Įmonės kodas:<b> {props.state.kindergartenData.code}</b></span><br />
+              <span>Telefonas:<b> {props.state.kindergartenData.phone}</b></span><br />
+              <span>El. paštas:<b> {props.state.kindergartenData.email}</b></span><br />
+              <span>Adresas:<b> {props.state.kindergartenData.address}</b></span><br />
+              <span>Banko sąskaitos numeris:<b> {props.state.kindergartenData.account}</b></span><br />
+              <span>Banko kodas:<b> {props.state.kindergartenData.bankCode}</b></span><br />
+              <span>Banko pavadinimas:<b> {props.state.kindergartenData.bankName}</b></span><br />
+            </div>
+          }
         </div>
 
         <div className="col-12 col-md-6 col-lg-4 pb-4">
           <h6>Globėjo duomenys</h6>
-          <div>
-            <span>Vardas:<b> {props.state.mainGuardian.name}</b></span><br />
-            <span>Pavardė:<b> {props.state.mainGuardian.surname}</b></span><br />
-            <span>Asmens kodas:<b> {props.state.mainGuardian.personalCode}</b></span><br />
-            <span>Telefonas:<b> {props.state.mainGuardian.phone}</b></span><br />
-            <span>El. paštas:<b> {props.state.mainGuardian.email}</b></span><br />
-            <span>Adresas:<b> {props.state.mainGuardian.address}</b></span><br />
-          </div>
+          {props.state.mainGuardian !== null &&
+            <div>
+              <span>Vardas:<b> {props.state.mainGuardian.name}</b></span><br />
+              <span>Pavardė:<b> {props.state.mainGuardian.surname}</b></span><br />
+              <span>Asmens kodas:<b> {props.state.mainGuardian.personalCode}</b></span><br />
+              <span>Telefonas:<b> {props.state.mainGuardian.phone}</b></span><br />
+              <span>El. paštas:<b> {props.state.mainGuardian.email}</b></span><br />
+              <span>Adresas:<b> {props.state.mainGuardian.address}</b></span><br />
+            </div>
+          }
         </div>
       </div>
 
