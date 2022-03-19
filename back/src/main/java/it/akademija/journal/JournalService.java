@@ -23,14 +23,32 @@ public class JournalService {
     private UserDAO userDAO;
 
     @Transactional(readOnly = true)
-    public Page<JournalEntry> getAllJournalEntries(Pageable pageable, String filter) {
+    public Page<JournalEntry> getAllJournalEntries(Pageable pageable, JournalRequestDTO request) {
 	
-	if (filter.equals("")) {
+	if (request.getUsername().equals("") && request.getStartTime() == null && request.getEndTime() == null ) {
 	    return journalEntryDAO.getAllJournalEntries(pageable);
 	    
 	} else {
-	    return journalEntryDAO.getAllJournalEntriesByUsername(filter, pageable);
+	    
+	    String username = request.getUsername().trim();
+	    LocalDateTime startTime = request.getStartTime();
+	    LocalDateTime endTime = request.getEndTime();
+	    
+	    if (startTime == null) {
+		startTime = LocalDateTime.parse("2000-01-01T00:00:00.00");
+	    } 
+		
+	    if (endTime == null) {
+		endTime = LocalDateTime.parse("3000-01-01T00:00:00.00");
+	    } 
+	    
+	    if (username.equals("NULL")) {
+		return journalEntryDAO.getNullJournalEntriesByTime(pageable, startTime, endTime);
+	    }
+
+	    return journalEntryDAO.getJournalEntriesByUsernameAndTime(pageable, username, startTime, endTime);
 	}
+	   
     }
 
 	/**

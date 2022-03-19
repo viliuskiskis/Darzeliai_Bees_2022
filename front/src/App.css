@@ -190,3 +190,13 @@ a:hover, .btn-link:hover {
 .max-width {
   max-width: 98%;
 }
+
+/* Date Picker */
+
+.react-datepicker__input-container {
+  width: inherit;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
