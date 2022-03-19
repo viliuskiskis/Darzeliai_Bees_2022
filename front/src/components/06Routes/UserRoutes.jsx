@@ -60,7 +60,7 @@ export default function UserRoutes() {
             />
             <Route
               exact
-              path="/prasymai/naujas"
+              path="/aplikuoti"
               component={CreateApplicationFormContainer}
             />
             <Route

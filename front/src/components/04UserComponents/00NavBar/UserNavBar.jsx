@@ -41,7 +41,7 @@ export default function UserNavBar(props) {
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
-            aria-label="Navigacija"
+            aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -58,7 +58,7 @@ export default function UserNavBar(props) {
                   onClick={collapseNav}
                   className="nav-link"
                   id="navUserNewApplication"
-                  to={"/prasymai/naujas"}
+                  to={"/aplikuoti"}
                 >Sukurti prašymą
                 </NavLink>
               </li>
