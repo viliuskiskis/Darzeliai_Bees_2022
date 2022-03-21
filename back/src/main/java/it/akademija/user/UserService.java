@@ -124,7 +124,9 @@ public class UserService implements UserDetailsService {
 			userDao.save(new User(Role.ADMIN, "admin", "admin", "admin@admin.lt", "admin@admin.lt",
 					passwordEncoder.encode("admin@admin.lt")));
 
-		} else if (user.getRole().equals(Role.USER)) {
+		} 
+		
+		if (user.getRole().equals(Role.USER)) {
 
 			Set<Application> submittedApplications = user.getUserApplications();
 
