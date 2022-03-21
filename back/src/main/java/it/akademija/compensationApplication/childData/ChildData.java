@@ -1,6 +1,7 @@
 package it.akademija.compensationApplication.childData;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +26,7 @@ public class ChildData {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.DETACH })
+	@OneToOne
 	@JoinColumn(name = "compensation_application_id")
 	private CompensationApplication compensationApplication;
 	
@@ -106,4 +107,27 @@ public class ChildData {
 		this.compensationApplication = compensationApplication;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(birthdate, childName, childPersonalCode, childSurname, compensationApplication, id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ChildData other = (ChildData) obj;
+		return Objects.equals(birthdate, other.birthdate) && Objects.equals(childName, other.childName)
+				&& Objects.equals(childPersonalCode, other.childPersonalCode)
+				&& Objects.equals(childSurname, other.childSurname)
+				&& Objects.equals(compensationApplication, other.compensationApplication)
+				&& Objects.equals(id, other.id);
+	}
+
+	
+	
 }

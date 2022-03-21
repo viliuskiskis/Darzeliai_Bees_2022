@@ -119,7 +119,7 @@ public class CompensationApplicationController {
 	if (currentUsername != null) {
 
 	    compensationApplicationInfoUser = compensationApplicationService
-		    .getAllUserCompensationApplications(currentUsername);
+		    .getAllUserCompensationApplicationsInfoUser(currentUsername);
 
 	    return new ResponseEntity<Set<CompensationApplicationInfoUser>>(
 		    compensationApplicationInfoUser, HttpStatus.OK);
@@ -178,12 +178,13 @@ public class CompensationApplicationController {
 	if (id != null && compensationApplicationService
 		.isCompensationApplicationPresentAndMatchesMainGuardian(id)) {
 
-	    compensationApplicationService.deleteUserCompensationApplicationById(id);
+	    compensationApplicationService.deleteCompensationApplicationById(id);
 	    
 	    journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id,
 		    ObjectType.COMPENSATION_APPLICATION, "Ištrintas kompensacijos prašymas");
 	    
-	    LOG.info("** Kompensacijos prašymas id: [{}] ištrintas **", id);
+	    LOG.info("** Kompen\n"
+	    		+ "	void sacijos prašymas id: [{}] ištrintas **", id);
 
 	    return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
 	}
@@ -295,7 +296,7 @@ public class CompensationApplicationController {
 	    @ApiParam(value = "CompensationApplication id", required = true)
 	    @PathVariable Long id) {
 
-	if (id != null && compensationApplicationService.existsCompensationApplicationById(id)) {
+	if (id != null && compensationApplicationService.isCompensationApplicationExistsById(id)) {
 
 	    CompensationApplication compensationApplication =
 		    compensationApplicationService.getCompensationApplicationById(id);
@@ -344,7 +345,7 @@ public class CompensationApplicationController {
 	    @ApiParam(value = "CompensationApplication id", required = true)
 	    @PathVariable Long id) {
 
-	if (id != null && compensationApplicationService.existsCompensationApplicationById(id)) {
+	if (id != null && compensationApplicationService.isCompensationApplicationExistsById(id)) {
 
 	    CompensationApplication compensationApplication =
 		    compensationApplicationService.getCompensationApplicationById(id);

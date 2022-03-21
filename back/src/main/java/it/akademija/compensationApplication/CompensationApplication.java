@@ -1,6 +1,7 @@
 package it.akademija.compensationApplication;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -125,6 +126,26 @@ public class CompensationApplication {
 	public String toString() {
 		return "CompensationApplication [id=" + id + ", mainGuardian=" + mainGuardian + ", submitedAt=" + submitedAt
 				+ ", applicationStatus=" + applicationStatus + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(applicationStatus, approvalDate, childData, id, kindergartenData, mainGuardian, submitedAt);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CompensationApplication other = (CompensationApplication) obj;
+		return applicationStatus == other.applicationStatus && Objects.equals(approvalDate, other.approvalDate)
+				&& Objects.equals(childData, other.childData) && Objects.equals(id, other.id)
+				&& Objects.equals(kindergartenData, other.kindergartenData)
+				&& Objects.equals(mainGuardian, other.mainGuardian) && Objects.equals(submitedAt, other.submitedAt);
 	}
 	
 	

@@ -84,7 +84,7 @@ public class CompensationApplicationService {
 	 * @return set of user compensation applications
 	 */
 	@Transactional(readOnly = true)
-	public Set<CompensationApplicationInfoUser> getAllUserCompensationApplications(String currentUsername) {
+	public Set<CompensationApplicationInfoUser> getAllUserCompensationApplicationsInfoUser(String currentUsername) {
 		return compensationApplicationDAO.findAllUserCompensationApplications(currentUsername);
 	}
 	
@@ -155,20 +155,9 @@ public class CompensationApplicationService {
 	 * @param id
 	 * 
 	 */
-	public void deleteUserCompensationApplicationById(Long id){
+	public void deleteCompensationApplicationById(Long id){
 			
-		CompensationApplication compensationApplication = 
-				compensationApplicationDAO.getById(id);
-		
-		childDataService.deleteChildData(
-				compensationApplication.getChildData());
-		
-		kindergartenDataService.deleteKindergartenData(
-				compensationApplication.getKindergartenData());
-		
-		compensationApplicationDAO.delete(
-				compensationApplication);
-				
+		compensationApplicationDAO.deleteById(id);
 	}
 	
 	public boolean isCompensationApplicationPresentAndMatchesMainGuardian(Long id) {
@@ -209,7 +198,7 @@ public class CompensationApplicationService {
 
 	
 
-	public boolean existsCompensationApplicationById(Long id) {
+	public boolean isCompensationApplicationExistsById(Long id) {
 		return compensationApplicationDAO.existsById(id);
 	}
 
