@@ -1,15 +1,12 @@
 package it.akademija.compensationApplication;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
-
-import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -265,5 +262,5 @@ public class CompensationApplicationServiceTest {
 				"51913245685", 
 				page.get(0).getChildPersonalCode(),
 				"page should contain object with child personal code 51913245685");
-	}	
+	}
 }

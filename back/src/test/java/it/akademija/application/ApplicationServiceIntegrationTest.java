@@ -8,26 +8,34 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.test.context.ContextConfiguration;
 
 import it.akademija.application.priorities.Priorities;
 import it.akademija.application.priorities.PrioritiesDTO;
 import it.akademija.application.queue.ApplicationQueueInfo;
 import it.akademija.application.queue.ApplicationQueueService;
 import it.akademija.kindergartenchoise.KindergartenChoiseDTO;
+import it.akademija.user.ParentDetailsDAO;
 import it.akademija.user.ParentDetailsDTO;
 import it.akademija.user.UserDTO;
 import it.akademija.user.UserService;
 
+@ContextConfiguration(locations = "classpath:application-context.xml")
+@SpringBootTest(classes = ApplicationServiceIntegrationTest.class)
+@TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(OrderAnnotation.class)
-@SpringBootTest
 public class ApplicationServiceIntegrationTest {
 
 	@Autowired
@@ -38,12 +46,71 @@ public class ApplicationServiceIntegrationTest {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ParentDetailsDAO parentDetailsDAO;
 
-	@Test
-	@Order(1)
-	public void testGetQueueInformation() {
+	UserDTO newUser;
+	
+	ParentDetailsDTO secondGuardian;
+	
+	Application application;
+	
+	Long applicationId;
+	
+	ApplicationQueueInfo queueInfo;
+	
+	ApplicationInfo app;
+	
+	@BeforeAll
+	void setUp() {
+		newUser = new UserDTO(
+				"USER", 
+				"user", 
+				"user", 
+				"22345678989", 
+				"Address 1", 
+				"+37061398876",
+				"user1@user.lt", 
+				"user1@user.lt", 
+				"user1@user.lt");
+		userService.createUser(newUser);
+		
+		secondGuardian = new ParentDetailsDTO(
+				"48702241234", 
+				"seconduser", 
+				"seconduser",
+				"second2@user.lt", 
+				"Address 1", 
+				"+37061398876");
 
-		ApplicationQueueInfo queueInfo = new ApplicationQueueInfo(
+		PrioritiesDTO priorities = new PrioritiesDTO();
+		priorities.setLivesInVilnius(true);
+
+		KindergartenChoiseDTO choices = new KindergartenChoiseDTO();
+		choices.setKindergartenId1("190028324");
+
+		ApplicationDTO applicationDTO = new ApplicationDTO(
+				"Test", 
+				"Testing", 
+				"51913245686", 
+				LocalDate.of(2019, 5, 5),
+				priorities, 
+				newUser, 
+				secondGuardian, 
+				choices);
+
+		application = service
+				.createNewApplication("user1@user.lt", applicationDTO);
+		
+		applicationId = userService.findByUsername("user1@user.lt").getUserApplications()
+				.stream()
+				.filter(a -> a.getChildName().equals("Test"))
+				.findFirst()
+				.get()
+				.getId();
+		
+		queueInfo = new ApplicationQueueInfo(
 				123L, 
 				"39902254789", 
 				"Test", 
@@ -52,103 +119,7 @@ public class ApplicationServiceIntegrationTest {
 				ApplicationStatus.Patvirtintas, 
 				0);
 		
-		PageRequest page = PageRequest.of(1, 10);
-		
-		Page<ApplicationQueueInfo> info = queueService
-				.getApplicationQueueInformation(page, null);
-		
-		assertTrue(info.getSize() != 0);
-		
-		assertEquals(123L, queueInfo.getId());
-
-	}
-
-
-//	@Test
-//	@Order(2)
-//	public void testCreateNewApplication() {
-//
-//		UserDTO newUser = new UserDTO(
-//				"USER", 
-//				"user", 
-//				"user", 
-//				"22345678989", 
-//				"Address 1", 
-//				"+37061398876",
-//				"user1@user.lt", 
-//				"user1@user.lt", 
-//				"user1@user.lt");
-//		userService.createUser(newUser);
-//
-//		ParentDetailsDTO secondGuardian = new ParentDetailsDTO(
-//				"48702241234", 
-//				"seconduser", 
-//				"seconduser",
-//				"second2@user.lt", 
-//				"Address 1", 
-//				"+37061398876");
-//
-//		PrioritiesDTO priorities = new PrioritiesDTO();
-//		priorities.setLivesInVilnius(true);
-//
-//		KindergartenChoiseDTO choices = new KindergartenChoiseDTO();
-//		choices.setKindergartenId1("190028324");
-//
-//		ApplicationDTO application = new ApplicationDTO(
-//				"Test", 
-//				"Test", 
-//				"51913245685", 
-//				LocalDate.of(2019, 5, 5),
-//				priorities, 
-//				newUser, 
-//				secondGuardian, 
-//				choices);
-//
-//		service.createNewApplication("user1@user.lt", application);
-//
-//		assertEquals("firstuser", userService
-//										.findByUsername("user1@user.lt")
-//										.getName());
-//
-//		assertTrue(service.existsByPersonalCode("49702253898"));
-//
-//		assertNotNull(userService.findByUsername("user1@user.lt"));
-//
-//		assertEquals(1, service
-//							.getAllUserApplications("user1@user.lt")
-//							.size());
-//
-//		assertEquals(1, userService
-//							.findByUsername("user1@user.lt")
-//							.getUserApplications()
-//							.size());
-//		
-//		Long id = userService.findByUsername("user1@user.lt").getUserApplications()
-//				.stream()
-//				.filter(a -> a.getChildName().equals("Test"))
-//				.findFirst()
-//				.get()
-//				.getId();
-//		
-//		service.deactivateApplication(id);
-//		
-//		assertEquals(ApplicationStatus.Neaktualus, 
-//				userService.findByUsername("test@user.lt").getUserApplications()
-//					.stream()
-//					.filter(a -> a.getChildName().equals("Test"))
-//					.findFirst()
-//					.get()
-//					.getStatus());
-//
-//		userService.deleteUser("user1@user.lt");
-//
-//	}
-
-	@Test
-	@Order(2)
-	public void testApplicationInfoAndPriorities() {
-
-		ApplicationInfo app = new ApplicationInfo(123L, 
+		app = new ApplicationInfo(123L, 
 				"49902261456", 
 				"Test", 
 				"Test",
@@ -158,28 +129,103 @@ public class ApplicationServiceIntegrationTest {
 				"133456789", 
 				"123446789", 
 				"128456789");
-		assertTrue(app.getChildSurname().equals("Test"));
-		assertTrue(app.getChildName().equals("Test"));
-		assertTrue(app.getChildPersonalCode().equals("49902261456"));
-
-		Application applic = new Application();
-		Priorities prior = new Priorities();
-		prior.setChildIsAdopted(false);
-		prior.setFamilyHasThreeOrMoreChildrenInSchools(true);
-		prior.setGuardianDisability(false);
-		prior.setGuardianInSchool(true);
-		prior.setLivesInVilnius(true);
-		prior.setLivesMoreThanTwoYears(true);
-		prior.setApplication(applic);
-
-		assertEquals(13, prior.getScore());
-		assertFalse(prior.isChildIsAdopted());
-		assertTrue(prior.isFamilyHasThreeOrMoreChildrenInSchools());
-		assertFalse(prior.isGuardianDisability());
-		assertTrue(prior.isLivesInVilnius());
-		assertTrue(prior.isGuardianInSchool());
-		assertEquals(applic, prior.getApplication());
 	}
+	
+	@AfterAll
+	void cleanUp() {
+		parentDetailsDAO.delete(application.getAdditionalGuardian());
+		service.deleteApplication(application.getId());
+		userService.deleteUser("user1@user.lt");
+	}
+	
+	@Test
+	@Order(1)
+	public void testGetQueueInformation() {
+
+		PageRequest page = PageRequest.of(1, 10);
+		
+		Page<ApplicationQueueInfo> info = queueService
+				.getApplicationQueueInformation(page, null);
+		
+		assertTrue(info.getSize() != 0);
+		
+		assertEquals(123L, queueInfo.getId());
+	}
+
+//	@Test
+//	@Order(2)
+//	public void userExistsTest() {
+//
+//		assertEquals("user", 
+//				userService
+//						.findByUsername("user1@user.lt")
+//						.getName());
+//	}
+//	
+//	@Test
+//	@Order(3)
+//	public void childExistsByPersonalCodeTest() {
+//		assertTrue(service.existsByPersonalCode("51913245685"));
+//	}
+//	
+//	@Test
+//	@Order(4)
+//	public void getSizeOfAllUserApplicationsTest() {
+//		assertEquals(1, 
+//				service
+//					.getAllUserApplications("user1@user.lt")
+//					.size());
+//	}
+//
+//	@Test
+//	@Order(4)
+//	public void getSizeOfAllUserApplicationsByUsernameTest() {
+//		assertEquals(1, userService
+//							.findByUsername("user1@user.lt")
+//							.getUserApplications()
+//							.size());
+//	}
+//
+//	@Test
+//	@Order(4)
+//	public void deactivateApplicationTest() {
+//		service.deactivateApplication(applicationId);
+//		
+//		assertEquals(ApplicationStatus.Neaktualus, 
+//				userService.findByUsername("test@user.lt").getUserApplications()
+//					.stream()
+//					.filter(a -> a.getChildName().equals("Test"))
+//					.findFirst()
+//					.get()
+//					.getStatus());
+//	}
+//
+//	@Test
+//	@Order(5)
+//	public void testApplicationInfoAndPriorities() {
+//		
+//		assertTrue(app.getChildSurname().equals("Test"));
+//		assertTrue(app.getChildName().equals("Test"));
+//		assertTrue(app.getChildPersonalCode().equals("49902261456"));
+//
+//		Application applic = new Application();
+//		Priorities prior = new Priorities();
+//		prior.setChildIsAdopted(false);
+//		prior.setFamilyHasThreeOrMoreChildrenInSchools(true);
+//		prior.setGuardianDisability(false);
+//		prior.setGuardianInSchool(true);
+//		prior.setLivesInVilnius(true);
+//		prior.setLivesMoreThanTwoYears(true);
+//		prior.setApplication(applic);
+//
+//		assertEquals(13, prior.getScore());
+//		assertFalse(prior.isChildIsAdopted());
+//		assertTrue(prior.isFamilyHasThreeOrMoreChildrenInSchools());
+//		assertFalse(prior.isGuardianDisability());
+//		assertTrue(prior.isLivesInVilnius());
+//		assertTrue(prior.isGuardianInSchool());
+//		assertEquals(applic, prior.getApplication());
+//	}
 
 }
 
