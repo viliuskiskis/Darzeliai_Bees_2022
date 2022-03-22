@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class KindergartenListTable extends Component {
+export default class KindergartenListTable extends Component {
 
   render() {
     const {
@@ -248,5 +248,3 @@ class KindergartenListTable extends Component {
     );
   }
 }
-
-export default KindergartenListTable;

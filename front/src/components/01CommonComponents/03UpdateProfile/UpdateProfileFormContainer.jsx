@@ -54,10 +54,7 @@ export default class UpdateProfileFormContainer extends Component {
             username: response.data.username
           })
         }
-
-      })
-      .catch((error) => {
-        //console.log(error);
+      }).catch((error) => {
         swal({
           text: "Įvyko klaida perduodant duomenis iš serverio.",
           button: "Gerai"
@@ -367,7 +364,7 @@ export default class UpdateProfileFormContainer extends Component {
     }
   }
 
-  render(props) {
+  render() {
 
     const currenUserRole = this.state.role;
 

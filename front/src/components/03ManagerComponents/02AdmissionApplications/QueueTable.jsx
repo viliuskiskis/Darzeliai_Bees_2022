@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Table from '../../05ReusableComponents/Table';
 
 export default class QueueTable extends Component {
@@ -98,7 +97,6 @@ export default class QueueTable extends Component {
   ]
 
   render() {
-
     return (
       <Table
         columns={this.columns}

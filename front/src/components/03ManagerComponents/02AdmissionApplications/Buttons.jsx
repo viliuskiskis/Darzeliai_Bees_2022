@@ -1,13 +1,9 @@
 import React from 'react';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-import '../../../App.css';
-
 const Buttons = (props) => {
   const { isActive, currentButtonValue, onClick, onProcess, onConfirm } = props;
-
 
   if (isActive) {
 

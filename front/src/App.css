@@ -20,6 +20,8 @@
 
 .nav-img {
   max-width: 18rem;
+  width: 100%;
+  height: 100%;
 }
 
 .no-top-border th {

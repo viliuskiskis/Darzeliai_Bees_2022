@@ -26,7 +26,7 @@ export default function ManagerNavBar(props) {
               className="nav-img"
               src={logo}
               alt="logotipas"
-              loading="lazy"
+            // loading="lazy"
             />
           </NavLink>
           <button

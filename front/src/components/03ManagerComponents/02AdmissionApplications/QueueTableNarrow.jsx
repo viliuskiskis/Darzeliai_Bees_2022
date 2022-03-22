@@ -84,7 +84,6 @@ export default class QueueTableNarrow extends Component {
   ]
 
   render() {
-
     return (
       <Table
         columns={this.columns}

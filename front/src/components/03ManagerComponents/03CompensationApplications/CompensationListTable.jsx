@@ -74,7 +74,6 @@ export default class CompensationListTable extends Component {
   ]
 
   render() {
-
     return (
       <Table
         columns={this.columns}

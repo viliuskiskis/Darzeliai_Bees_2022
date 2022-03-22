@@ -94,10 +94,8 @@ export default class UserHomeContainer extends Component {
 
   handleApplicationReview = (application) => {
     application.status === "Patvirtintas" ?
-      // this.props.history.push(`/prasymas/pasirasymui/${application.id}`)
       this.props.history.push(`/sutartis/${application.id}`)
       : this.props.history.push(`/prasymas/priimti/${application.id}`)
-
   }
 
   handleKindergartenContract = (applicationId) => {
