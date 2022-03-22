@@ -8,7 +8,7 @@ export default class QueueTable extends Component {
     {
       key: 'id',
       path: 'id',
-      label: '#',
+      label: 'Id',
       content: application => <span> {application.id}</span>
     },
     {
