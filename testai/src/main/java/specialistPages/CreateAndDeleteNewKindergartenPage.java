@@ -61,7 +61,8 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
     @FindBy(id = "btnDeleteKindergarten")
     public WebElement buttonDeleteKindergarten;
 
-    @FindBy(xpath = "//*/div[2]/button")
+//    @FindBy(xpath = "//*/div[2]/button")
+    @FindBy(xpath = "/html/body/div[2]/div/div[2]/div[2]/button")
     public WebElement buttonAgreeToDeleteKindergarten;
 
     @FindBy(id = "findCoordinatesBtn")

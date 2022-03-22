@@ -3,6 +3,7 @@ package basetest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.chromium.ChromiumDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -23,6 +24,13 @@ public class BaseTest {
 //        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 //        System.setProperty("webdriver.gecko.driver",  "src/test/resources/geckodriver.exe");
 //        System.setProperty("webdriver.edge.driver", "src/test/resources/msedgedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-maximized");
+        options.addArguments("disable-infobars");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
 
     }
 
@@ -39,8 +47,9 @@ public class BaseTest {
 //    @AfterClass(alwaysRun = true)
 //    public  void closeBrowser() {
 //        driver.manage().deleteAllCookies();
-////        driver.close();
-////        driver.quit();
+//       //for Firefox browser lines close and quit should be commented
+//        driver.close();
+//        driver.quit();
 //    }
 //
 //    @AfterSuite(alwaysRun = true)
