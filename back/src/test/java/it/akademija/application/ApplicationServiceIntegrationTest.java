@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 
 import it.akademija.application.priorities.Priorities;
@@ -42,14 +43,14 @@ public class ApplicationServiceIntegrationTest {
 	private ApplicationService service;
 
 	@Autowired
+	private ApplicationDAO applicationDAO;
+	
+	@Autowired
 	private ApplicationQueueService queueService;
 
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private ParentDetailsDAO parentDetailsDAO;
-
 	UserDTO newUser;
 	
 	ParentDetailsDTO secondGuardian;
@@ -66,14 +67,14 @@ public class ApplicationServiceIntegrationTest {
 	void setUp() {
 		newUser = new UserDTO(
 				"USER", 
-				"user", 
-				"user", 
-				"22345678989", 
+				"Test", 
+				"Tester", 
+				"22345678985", 
 				"Address 1", 
-				"+37061398876",
-				"user1@user.lt", 
-				"user1@user.lt", 
-				"user1@user.lt");
+				"+37061398875",
+				"test@user2.lt", 
+				"test@user2.lt", 
+				"test@user2.lt");
 		userService.createUser(newUser);
 		
 		secondGuardian = new ParentDetailsDTO(
@@ -82,7 +83,7 @@ public class ApplicationServiceIntegrationTest {
 				"seconduser",
 				"second2@user.lt", 
 				"Address 1", 
-				"+37061398876");
+				"+37061398874");
 
 		PrioritiesDTO priorities = new PrioritiesDTO();
 		priorities.setLivesInVilnius(true);
@@ -101,9 +102,9 @@ public class ApplicationServiceIntegrationTest {
 				choices);
 
 		application = service
-				.createNewApplication("user1@user.lt", applicationDTO);
+				.createNewApplication("test@user2.lt", applicationDTO);
 		
-		applicationId = userService.findByUsername("user1@user.lt").getUserApplications()
+		applicationId = userService.findByUsername("test@user2.lt").getUserApplications()
 				.stream()
 				.filter(a -> a.getChildName().equals("Test"))
 				.findFirst()
@@ -133,8 +134,7 @@ public class ApplicationServiceIntegrationTest {
 	
 	@AfterAll
 	void cleanUp() {
-		parentDetailsDAO.delete(application.getAdditionalGuardian());
-		service.deleteApplication(application.getId());
+		applicationDAO.delete(application);
 		userService.deleteUser("user1@user.lt");
 	}
 	
@@ -152,80 +152,80 @@ public class ApplicationServiceIntegrationTest {
 		assertEquals(123L, queueInfo.getId());
 	}
 
-//	@Test
-//	@Order(2)
-//	public void userExistsTest() {
-//
-//		assertEquals("user", 
-//				userService
-//						.findByUsername("user1@user.lt")
-//						.getName());
-//	}
-//	
-//	@Test
-//	@Order(3)
-//	public void childExistsByPersonalCodeTest() {
-//		assertTrue(service.existsByPersonalCode("51913245685"));
-//	}
-//	
-//	@Test
-//	@Order(4)
-//	public void getSizeOfAllUserApplicationsTest() {
-//		assertEquals(1, 
-//				service
-//					.getAllUserApplications("user1@user.lt")
-//					.size());
-//	}
-//
-//	@Test
-//	@Order(4)
-//	public void getSizeOfAllUserApplicationsByUsernameTest() {
-//		assertEquals(1, userService
-//							.findByUsername("user1@user.lt")
-//							.getUserApplications()
-//							.size());
-//	}
-//
-//	@Test
-//	@Order(4)
-//	public void deactivateApplicationTest() {
-//		service.deactivateApplication(applicationId);
-//		
-//		assertEquals(ApplicationStatus.Neaktualus, 
-//				userService.findByUsername("test@user.lt").getUserApplications()
-//					.stream()
-//					.filter(a -> a.getChildName().equals("Test"))
-//					.findFirst()
-//					.get()
-//					.getStatus());
-//	}
-//
-//	@Test
-//	@Order(5)
-//	public void testApplicationInfoAndPriorities() {
-//		
-//		assertTrue(app.getChildSurname().equals("Test"));
-//		assertTrue(app.getChildName().equals("Test"));
-//		assertTrue(app.getChildPersonalCode().equals("49902261456"));
-//
-//		Application applic = new Application();
-//		Priorities prior = new Priorities();
-//		prior.setChildIsAdopted(false);
-//		prior.setFamilyHasThreeOrMoreChildrenInSchools(true);
-//		prior.setGuardianDisability(false);
-//		prior.setGuardianInSchool(true);
-//		prior.setLivesInVilnius(true);
-//		prior.setLivesMoreThanTwoYears(true);
-//		prior.setApplication(applic);
-//
-//		assertEquals(13, prior.getScore());
-//		assertFalse(prior.isChildIsAdopted());
-//		assertTrue(prior.isFamilyHasThreeOrMoreChildrenInSchools());
-//		assertFalse(prior.isGuardianDisability());
-//		assertTrue(prior.isLivesInVilnius());
-//		assertTrue(prior.isGuardianInSchool());
-//		assertEquals(applic, prior.getApplication());
-//	}
+	@Test
+	@Order(2)
+	public void userExistsTest() {
+
+		assertEquals("Test", 
+				userService
+						.findByUsername("test@user2.lt")
+						.getName());
+	}
+	
+	@Test
+	@Order(3)
+	public void childExistsByPersonalCodeTest() {
+		assertTrue(service.existsByPersonalCode("51913245686"));
+	}
+	
+	@Test
+	@Order(4)
+	public void getSizeOfAllUserApplicationsTest() {
+		assertEquals(1, 
+				service
+					.getAllUserApplications("test@user2.lt")
+					.size());
+	}
+
+	@Test
+	@Order(4)
+	public void getSizeOfAllUserApplicationsByUsernameTest() {
+		assertEquals(1, userService
+							.findByUsername("test@user2.lt")
+							.getUserApplications()
+							.size());
+	}
+
+	@Test
+	@Order(4)
+	public void deactivateApplicationTest() {
+		service.deactivateApplication(applicationId);
+		
+		assertEquals(ApplicationStatus.Neaktualus, 
+				userService.findByUsername("test@user2.lt").getUserApplications()
+					.stream()
+					.filter(a -> a.getChildName().equals("Test"))
+					.findFirst()
+					.get()
+					.getStatus());
+	}
+
+	@Test
+	@Order(5)
+	public void testApplicationInfoAndPriorities() {
+		
+		assertTrue(app.getChildSurname().equals("Test"));
+		assertTrue(app.getChildName().equals("Test"));
+		assertTrue(app.getChildPersonalCode().equals("49902261456"));
+
+		Application applic = new Application();
+		Priorities prior = new Priorities();
+		prior.setChildIsAdopted(false);
+		prior.setFamilyHasThreeOrMoreChildrenInSchools(true);
+		prior.setGuardianDisability(false);
+		prior.setGuardianInSchool(true);
+		prior.setLivesInVilnius(true);
+		prior.setLivesMoreThanTwoYears(true);
+		prior.setApplication(applic);
+
+		assertEquals(13, prior.getScore());
+		assertFalse(prior.isChildIsAdopted());
+		assertTrue(prior.isFamilyHasThreeOrMoreChildrenInSchools());
+		assertFalse(prior.isGuardianDisability());
+		assertTrue(prior.isLivesInVilnius());
+		assertTrue(prior.isGuardianInSchool());
+		assertEquals(applic, prior.getApplication());
+	}
 
 }
 
