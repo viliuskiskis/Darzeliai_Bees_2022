@@ -1,6 +1,7 @@
 package it.akademija.journal;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import it.akademija.user.UserDAO;
 
 @Service
 public class JournalService {
+    
+    private ZoneId ltTimezone = ZoneId.of("Europe/Vilnius");
 
     @Autowired
     private JournalEntryDAO journalEntryDAO;
@@ -66,12 +69,12 @@ public class JournalService {
 		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 		User currentUser = userDAO.findByUsername(currentUsername);
 		Long currentUserID = 0L;
-		
+				
 		if(currentUser!=null) {
 			currentUserID = currentUser.getUserId();
 		} 
 		
-		JournalEntry entry = new JournalEntry(currentUserID, currentUsername, LocalDateTime.now(), operationType,
+		JournalEntry entry = new JournalEntry(currentUserID, currentUsername, LocalDateTime.now(ltTimezone), operationType,
 				objectID, objectType, entryMessage);
 
 		journalEntryDAO.saveAndFlush(entry);
@@ -111,7 +114,7 @@ public class JournalService {
 			currentUserID = currentUser.getUserId();
 		} 
 		
-		JournalEntry entry = new JournalEntry(currentUserID, currentUsername, LocalDateTime.now(), operationType,
+		JournalEntry entry = new JournalEntry(currentUserID, currentUsername, LocalDateTime.now(ltTimezone), operationType,
 				currentUserID, objectType, entryMessage);
 
 		journalEntryDAO.saveAndFlush(entry);
@@ -127,7 +130,7 @@ public class JournalService {
 	public void newJournalEntry(Long currentUserID, String currentUsername, OperationType operationType, Long objectID,
 			ObjectType objectType, String entryMessage) {
 
-		JournalEntry entry = new JournalEntry(currentUserID, currentUsername, LocalDateTime.now(), operationType,
+		JournalEntry entry = new JournalEntry(currentUserID, currentUsername, LocalDateTime.now(ltTimezone), operationType,
 				objectID, objectType, entryMessage);
 
 		journalEntryDAO.saveAndFlush(entry);
