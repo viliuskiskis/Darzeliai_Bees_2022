@@ -6,12 +6,12 @@ export default class ManagerDocumentsTable extends Component {
   columns = [
     {
       key: "uploadDate",
-      label: "Įkėlimo data",
+      label: "Įkėlimo\u00a0data",
       content: document => <span>{document.uploadDate}</span>
     },
     {
       key: "userPersonalCode",
-      label: "Naudotojo a.k.",
+      label: "Naudotojo\u00a0a.k.",
       content: document => <span>{document.userPersonalCode}</span>
     },
     {
@@ -33,7 +33,7 @@ export default class ManagerDocumentsTable extends Component {
       key: "download",
       label: "Atsisiųsti",
       content: document => <button
-        className="btn btn-primary btn-sm btn-block"
+        className="btn btn-outline-primary btn-sm btn-block"
         onClick={() => this.props.handleDocumentDownload(document)}
       >
         Atsisiųsti

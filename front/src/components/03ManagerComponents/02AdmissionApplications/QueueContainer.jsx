@@ -4,9 +4,17 @@ import Pagination from "react-js-pagination";
 import http from '../../00Services/httpService';
 import apiEndpoint from '../../00Services/endpoint';
 import QueueTable from './QueueTable';
+import QueueTableNarrow from './QueueTableNarrow';
+import QueueCards from './QueueCards';
 import QueueProcessedTable from './QueueProcessedTable';
+import QueueProcessedTableNarrow from './QueueProcessedTableNarrow';
+import QueueProcessedCards from './QueueProcessedCards';
 import SearchBox from '../../05ReusableComponents/SeachBox';
 import Buttons from './Buttons';
+import AdmissionReviewComponent from '../../01CommonComponents/05ApplicationReview/AdmissionReviewComponent';
+
+const breakpointLg = 1200;
+const breakpointSm = 768;
 
 export default class QueueContainer extends Component {
   constructor(props) {
@@ -21,13 +29,45 @@ export default class QueueContainer extends Component {
       searchQuery: "",
       isActive: false,
       isLocked: false,
-      currentButtonValue: ""
+      currentButtonValue: "",
+      width: "",
+      applicationPreview: false,
+
+      id: 0,
+      submitedAt: "",
+      status: "",
+      childName: "",
+      childSurname: "",
+      childPersonalCode: "",
+      approvalDate: null,
+      birthdate: "",
+      numberInWaitingList: "",
+      mainGuardian: null,
+      additionalGuardian: null,
+      approvedKindergarten: "",
+      approvedKindergartenManager: "",
+      kindergartenChoices: null,
+      priorities: null
     }
     this.handleApplicationReview = this.handleApplicationReview.bind(this);
     this.handleContractDownload = this.handleContractDownload.bind(this);
+    this.handleReturn = this.handleReturn.bind(this);
   }
+
   componentDidMount() {
     this.getApplicationState();
+    window.addEventListener("resize", this.update);
+    this.update();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.update);
+  }
+
+  update = () => {
+    this.setState({
+      width: window.innerWidth
+    })
   }
 
   getApplicationState() {
@@ -194,7 +234,34 @@ export default class QueueContainer extends Component {
   }
 
   handleApplicationReview(id) {
-    this.props.history.push(`/prasymas/priimti/${id}`);
+    http.get(`${apiEndpoint}/api/prasymai/manager/${id}`)
+      .then(response => {
+        this.setState({
+          id: response.data.id,
+          submitedAt: response.data.submitedAt,
+          status: response.data.status,
+          childName: response.data.childName,
+          childSurname: response.data.childSurname,
+          childPersonalCode: response.data.childPersonalCode,
+          approvalDate: response.data.approvalDate,
+          birthdate: response.data.birthdate,
+          numberInWaitingList: response.data.numberInWaitingList,
+          mainGuardian: response.data.mainGuardian,
+          additionalGuardian: response.data.additionalGuardian,
+          approvedKindergarten: response.data.approvedKindergarten,
+          approvedKindergartenManager: response.data.approvedKindergartenManager,
+          kindergartenChoices: response.data.kindergartenChoices,
+          priorities: response.data.priorities
+        })
+      }).catch(error => {
+        swal({
+          text: "Įvyko klaida perduodant duomenis iš serverio: " + JSON.stringify(error),
+          button: "Gerai"
+        })
+      });
+    this.setState({
+      applicationPreview: true
+    })
   }
 
   handlePageChange = (page) => {
@@ -224,77 +291,128 @@ export default class QueueContainer extends Component {
     })
   }
 
+  handleReturn() {
+    this.setState({
+      applicationPreview: false
+    })
+  }
+
+
 
   render() {
 
     const { applications, totalPages, searchQuery, isActive, currentButtonValue } = this.state;
-
+    let pageRange = this.state.width >= breakpointSm ? 15 : 8;
     let size = 0;
 
     if (applications !== undefined) size = applications.length;
 
     const placeholder = "Ieškoti pagal vaiko asmens kodą..."
 
-    return (
-
-      <div className="container pt-4" >
-
-        <h6 className="ps-2 pt-3">Prašymai registruotis į valstybinius darželius</h6>
-        {isActive && <p className="ps-2 pt-3">Registracija vykdoma</p>}
-        {!isActive && <p className="ps-2 pt-3">Šiuo metu registracija nevykdoma</p>}
-
-        <Buttons
-          onClick={this.handleClick}
-          onProcess={this.handleProcessQueue}
-          onConfirm={this.handleConfirmQueue}
-          isActive={isActive}
-          currentButtonValue={currentButtonValue}
-          size={size}
+    if (this.state.applicationPreview) {
+      return (
+        <AdmissionReviewComponent
+          state={this.state}
+          role={"manager"}
+          handleReturn={this.handleReturn}
         />
+      )
+    } else {
 
-        {(size > 0 || searchQuery !== "") &&
-          <SearchBox
-            value={searchQuery}
-            onSearch={this.handleSearch}
-            placeholder={placeholder}
+      return (
+        <div className="container pt-4" >
+
+          <h6 className="ps-2 pt-3">Prašymai registruotis į valstybinius darželius</h6>
+          {isActive && <p className="ps-2 pt-3">Registracija vykdoma</p>}
+          {!isActive && <p className="ps-2 pt-3">Šiuo metu registracija nevykdoma</p>}
+
+          <Buttons
+            onClick={this.handleClick}
+            onProcess={this.handleProcessQueue}
+            onConfirm={this.handleConfirmQueue}
+            isActive={isActive}
+            currentButtonValue={currentButtonValue}
+            size={size}
           />
-        }
 
-        <div className=" ">
-
-          {isActive &&
-            <QueueTable
-              applications={applications}
-              onDeactivate={this.handleDeactivate}
-              handleApplicationReview={this.handleApplicationReview}
-              handleContractDownload={this.handleContractDownload}
+          {(size > 0 || searchQuery !== "") &&
+            <SearchBox
+              value={searchQuery}
+              onSearch={this.handleSearch}
+              placeholder={placeholder}
             />
           }
 
-          {!isActive &&
-            <QueueProcessedTable
-              applications={applications}
-              onDeactivate={this.handleDeactivate}
-              handleApplicationReview={this.handleApplicationReview}
-              handleContractDownload={this.handleContractDownload}
-            />
-          }
+          <div className=" ">
 
-          {totalPages > 1 && <div className="d-flex justify-content-center">
-            <Pagination
-              itemClass="page-item"
-              linkClass="page-link"
-              activePage={this.state.currentPage}
-              itemsCountPerPage={this.state.pageSize}
-              totalItemsCount={this.state.totalElements}
-              pageRangeDisplayed={15}
-              onChange={this.handlePageChange.bind(this)}
-            />
+            {isActive &&
+              (this.state.width >= breakpointLg ?
+                <QueueTable
+                  applications={applications}
+                  onDeactivate={this.handleDeactivate}
+                  handleApplicationReview={this.handleApplicationReview}
+                  handleContractDownload={this.handleContractDownload}
+                />
+                :
+                (this.state.width >= breakpointSm ?
+                  <QueueTableNarrow
+                    applications={applications}
+                    onDeactivate={this.handleDeactivate}
+                    handleApplicationReview={this.handleApplicationReview}
+                    handleContractDownload={this.handleContractDownload}
+                  />
+                  :
+                  <QueueCards
+                    applications={applications}
+                    onDeactivate={this.handleDeactivate}
+                    handleApplicationReview={this.handleApplicationReview}
+                    handleContractDownload={this.handleContractDownload}
+                  />
+                ))
+            }
+
+            {!isActive &&
+              (this.state.width >= breakpointLg ?
+                <QueueProcessedTable
+                  applications={applications}
+                  onDeactivate={this.handleDeactivate}
+                  handleApplicationReview={this.handleApplicationReview}
+                  handleContractDownload={this.handleContractDownload}
+                />
+                :
+                (this.state.width >= breakpointSm ?
+                  <QueueProcessedTableNarrow
+                    applications={applications}
+                    onDeactivate={this.handleDeactivate}
+                    handleApplicationReview={this.handleApplicationReview}
+                    handleContractDownload={this.handleContractDownload}
+                  />
+                  :
+                  <QueueProcessedCards
+                    applications={applications}
+                    onDeactivate={this.handleDeactivate}
+                    handleApplicationReview={this.handleApplicationReview}
+                    handleContractDownload={this.handleContractDownload}
+                  />
+                ))
+            }
+
+            {totalPages > 1 && <div className="d-flex justify-content-center">
+              <Pagination
+                itemClass="page-item"
+                linkClass="page-link"
+                activePage={this.state.currentPage}
+                itemsCountPerPage={this.state.pageSize}
+                totalItemsCount={this.state.totalElements}
+                pageRangeDisplayed={pageRange}
+                onChange={this.handlePageChange.bind(this)}
+              />
+            </div>
+            }
+
           </div>
-          }
-
         </div>
-      </div>
-    )
+      )
+    }
   }
 }

@@ -82,12 +82,23 @@ export default function AdmissionReviewComponent(props) {
       </div>
 
       <div className="row">
-        <button
-          id="CompensationReviewReturn"
-          className="btn btn-success me-2"
-          onClick={props.handleReturn}
-        >Grįžti
-        </button>
+        <div className="d-flex">
+          {/* Show this button only for USER */}
+          {props.role === "USER" &&
+            <button
+              id="CompensationReviewDelete"
+              className="btn btn-outline-danger me-2 btn-block"
+              onClick={props.handleDelete}
+            >Ištrinti
+            </button>
+          }
+          <button
+            id="CompensationReviewReturn"
+            className="btn btn-outline-success btn-block"
+            onClick={props.handleReturn}
+          >Grįžti
+          </button>
+        </div>
       </div>
     </div>
 

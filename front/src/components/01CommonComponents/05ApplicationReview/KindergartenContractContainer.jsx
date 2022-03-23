@@ -96,8 +96,6 @@ export default class KindergartenContractContainer extends Component {
           kindergartenChoices: response.data.kindergartenChoices,
           priorities: response.data.priorities
         })
-        // test what data comes from backend
-        //alert(JSON.stringify(response.data))
       }).catch(error => {
         swal({
           text: "Įvyko klaida perduodant duomenis iš serverio: " + JSON.stringify(error),

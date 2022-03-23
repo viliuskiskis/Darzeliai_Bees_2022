@@ -86,14 +86,19 @@ public class ReviewCompensationApplicationsManagerPage extends AbstractObjectPag
     }
 
     public void enterPersonalIdForSearch() {
+        searchPersonalIdField.clear();
         searchPersonalIdField.sendKeys("51609260014");
     }
 
     public void clickButtonOkRejectCompensation() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+//        wait.until(
+//                ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[2]/div/div[1]")));
+//        buttonOkRejectCompensation.click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        wait.until(
-                ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[2]/div/div[1]")));
-        buttonOkRejectCompensation.click();
+        WebElement swalButtonConfirm = wait.until(ExpectedConditions.elementToBeClickable(
+                By.className("swal-button--confirm")));
+        swalButtonConfirm.click();
     }
 
     public void clickButtonOkConfirmCompensation() {
@@ -112,9 +117,9 @@ public class ReviewCompensationApplicationsManagerPage extends AbstractObjectPag
 
     public void clickButtonOkStatusChanged() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        wait.until(
-                ExpectedConditions.presenceOfElementLocated(By.xpath("//html/body/div[2]/div/div[1]")));
-        buttonOkStatusChanged.click();
+        WebElement swalButtonConfirm = wait.until(ExpectedConditions.elementToBeClickable(
+                By.className("swal-button--confirm")));
+                swalButtonConfirm.click();
     }
 
     public void clickButtonOkDeleteApplication() {
@@ -126,9 +131,9 @@ public class ReviewCompensationApplicationsManagerPage extends AbstractObjectPag
 
     public void clickButtonOkDeletedSuccessfully() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(
-                ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[2]/div/div[1]")));
-        buttonOkDeletedSuccessfully.click();
+        WebElement swalButtonConfirm = wait.until(ExpectedConditions.elementToBeClickable(
+                By.className("swal-button--confirm")));
+        swalButtonConfirm.click();
     }
 
 

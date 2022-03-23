@@ -3,8 +3,13 @@ import swal from 'sweetalert';
 import http from '../../00Services/httpService';
 import apiEndpoint from '../../00Services/endpoint';
 import KindergartenListTable from './KindergartenListTable';
+import KindergartenListCards from './KindergartenListCards';
 import Pagination from "react-js-pagination";
 import SearchBox from '../../05ReusableComponents/SeachBox';
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
+
+const provider = new OpenStreetMapProvider();
+const breakpoint = 768;
 
 export default class KindergartenListContainer extends Component {
   constructor(props) {
@@ -21,17 +26,30 @@ export default class KindergartenListContainer extends Component {
       inEditMode: false,
       editRowId: "",
       editedKindergarten: null,
-      errorMessages: {}
+      errorMessages: {},
+      isDisabled: false,
+      width: ""
     }
+    this.getKindergartenInfo = this.getKindergartenInfo.bind(this);
   }
+
   componentDidMount() {
     this.getKindergartenInfo(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
     this.getElderates();
     document.addEventListener("keydown", this.handleEscape, false);
+    window.addEventListener("resize", this.update);
+    this.update();
   }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleEscape, false);
+    window.removeEventListener("resize", this.update);
+  }
+
+  update = () => {
+    this.setState({
+      width: window.innerWidth
+    })
   }
 
   handleEscape = (e) => {
@@ -107,7 +125,9 @@ export default class KindergartenListContainer extends Component {
         editRowId: "",
         editedKindergarten: null
       }
-    )
+    );
+    this.setState({ errorMessages: {} });
+    this.getKindergartenInfo(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
   }
 
   handleChange = ({ target: input }) => {
@@ -126,12 +146,41 @@ export default class KindergartenListContainer extends Component {
     });
   }
 
+  handleUpdateCoordinates = () => {
+    const kindergarten = this.state.editedKindergarten;
+    this.setState({ isDisabled: true });
+    setTimeout(() => {
+      this.setState({ isDisabled: false });
+    }, 1500);
+    if (kindergarten.address === "") {
+      kindergarten.latitude = "";
+      kindergarten.longitude = "";
+    } else {
+      provider.search({ query: kindergarten.address + ", Vilnius, Lithuania" })
+        .then(response => {
+          if (typeof response[0] !== "undefined") {
+            kindergarten.latitude = response[0].raw.lat;
+            kindergarten.longitude = response[0].raw.lon;
+          } else {
+            kindergarten.latitude = "";
+            kindergarten.longitude = "";
+          }
+        }).catch(error => {
+          alert(error);
+        })
+    }
+    this.setState({
+      editedKindergarten: kindergarten
+    })
+  }
+
   handleSaveEdited = () => {
     const { editedKindergarten, editRowId, errorMessages } = this.state;
     if (Object.keys(errorMessages).length === 0) {
       http.put(`${apiEndpoint}/api/darzeliai/manager/update/${editRowId}`, editedKindergarten)
         .then(() => {
           this.onCancel();
+        }).then(() => {
           this.getKindergartenInfo(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
         }).catch(error => {
           if (error && error.response.status === 409) {
@@ -152,6 +201,7 @@ export default class KindergartenListContainer extends Component {
   render() {
     const { darzeliai, elderates, searchQuery, inEditMode, editRowId, errorMessages } = this.state;
     const hasErrors = Object.keys(errorMessages).length === 0 ? false : true;
+    let pageRange = this.state.width >= breakpoint ? 15 : 8;
 
     return (
       <React.Fragment>
@@ -162,19 +212,41 @@ export default class KindergartenListContainer extends Component {
           placeholder={"Ieškoti pagal pavadinimą..."}
         />
 
-        <KindergartenListTable
-          darzeliai={darzeliai}
-          elderates={elderates}
-          inEditMode={inEditMode}
-          editRowId={editRowId}
-          errorMessages={errorMessages}
-          hasErrors={hasErrors}
-          onDelete={this.handleDelete}
-          onEditData={this.handleEditKindergarten}
-          onEscape={this.handleEscape}
-          onChange={this.handleChange}
-          onSave={this.handleSaveEdited}
-        />
+        {this.state.width >= breakpoint ?
+          <KindergartenListTable
+            darzeliai={darzeliai}
+            elderates={elderates}
+            inEditMode={inEditMode}
+            editRowId={editRowId}
+            errorMessages={errorMessages}
+            hasErrors={hasErrors}
+            onDelete={this.handleDelete}
+            onEditData={this.handleEditKindergarten}
+            onEscape={this.handleEscape}
+            onChange={this.handleChange}
+            onSave={this.handleSaveEdited}
+            handleUpdateCoordinates={this.handleUpdateCoordinates}
+            isDisabled={this.state.isDisabled}
+            onCancel={this.onCancel}
+          />
+          :
+          <KindergartenListCards
+            darzeliai={darzeliai}
+            elderates={elderates}
+            inEditMode={inEditMode}
+            editRowId={editRowId}
+            errorMessages={errorMessages}
+            hasErrors={hasErrors}
+            onDelete={this.handleDelete}
+            onEditData={this.handleEditKindergarten}
+            onEscape={this.handleEscape}
+            onChange={this.handleChange}
+            onSave={this.handleSaveEdited}
+            handleUpdateCoordinates={this.handleUpdateCoordinates}
+            isDisabled={this.state.isDisabled}
+            onCancel={this.onCancel}
+          />
+        }
 
         {this.state.totalPages > 1 &&
           <div className="d-flex justify-content-center">
@@ -184,7 +256,7 @@ export default class KindergartenListContainer extends Component {
               activePage={this.state.currentPage}
               itemsCountPerPage={this.state.pageSize}
               totalItemsCount={this.state.totalElements}
-              pageRangeDisplayed={15}
+              pageRangeDisplayed={pageRange}
               onChange={this.handlePageChange}
             />
           </div>

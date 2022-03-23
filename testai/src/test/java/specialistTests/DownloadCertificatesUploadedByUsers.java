@@ -13,7 +13,7 @@ public class DownloadCertificatesUploadedByUsers extends GeneralMethods {
      * Login as user (parent) and upload a certificate.
      * Login as manager (kindergarten specialist) and download the certificate uploaded by the user.
      * Delete the uploaded certificate afterwards.
-     * <p>
+     *
      * Test steps:
      * 1. Login as admin.
      * 2. Create a new user (parent) for the test. Logout.

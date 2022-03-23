@@ -183,6 +183,9 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
         String childPersonalCode = formData.get(8);
         inputChildPersonalCode(childPersonalCode);
         inputChildSurname(childSurname);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("txtChildName"),"Sandijus"));
     }
 
     public void fillInTheCompensationApplication() throws IOException {

@@ -11,7 +11,6 @@ export default class CompensationReviewContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editIsActive: false,
       id: 0,
       submitedAt: "",
       applicationStatus: "",
@@ -108,7 +107,6 @@ export default class CompensationReviewContainer extends Component {
       <CompensationReviewComponent
         state={this.state}
         role={this.context.state.role}
-        activateEdit={this.activateEdit}
         handleDelete={this.handleDelete}
         handleReturn={this.handleReturn}
       />

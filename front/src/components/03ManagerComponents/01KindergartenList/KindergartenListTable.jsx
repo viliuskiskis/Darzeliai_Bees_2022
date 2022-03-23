@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
-import '../../../App.css';
-class KindergartenListTable extends Component {
+export default class KindergartenListTable extends Component {
 
   render() {
     const {
+      handleUpdateCoordinates,
+      isDisabled,
+      onCancel,
       darzeliai,
       elderates,
       inEditMode,
@@ -24,10 +26,10 @@ class KindergartenListTable extends Component {
           <thead className="no-top-border">
             <tr >
               <th>Pavadinimas</th>
-              <th>Adresas</th>
-              <th>Seniūnija</th>
-              <th colSpan={2}>Vietų</th>
-              <th colSpan={2}>Direktorius</th>
+              <th>Adresas, Seniūnija</th>
+              <th className="no-breaks">Vietų sk.</th>
+              <th>Direktorius</th>
+              <th>Koordinatės</th>
               <th className="deleteColumn">Veiksmai</th>
             </tr>
           </thead>
@@ -68,9 +70,7 @@ class KindergartenListTable extends Component {
                             required
                           />
                           {errorMessages.address && <div className="text-danger">{errorMessages.address}</div>}
-                        </td>
 
-                        <td>
                           <select type="text"
                             className="form-control"
                             id="txtKindergartenElderate"
@@ -87,6 +87,7 @@ class KindergartenListTable extends Component {
                             ))}
                           </select>
                           {errorMessages.elderate && <div className="text-danger">{errorMessages.elderate}</div>}
+
                         </td>
 
                         <td>
@@ -103,9 +104,7 @@ class KindergartenListTable extends Component {
                             required
                           />
                           {errorMessages.capacityAgeGroup2to3 && <div className="text-danger">{errorMessages.capacityAgeGroup2to3}</div>}
-                        </td>
 
-                        <td>
                           <input
                             type="number"
                             min="0"
@@ -119,6 +118,7 @@ class KindergartenListTable extends Component {
                             required
                           />
                           {errorMessages.capacityAgeGroup3to6 && <div className="text-danger">{errorMessages.capacityAgeGroup3to6}</div>}
+
                         </td>
 
                         <td>
@@ -135,9 +135,7 @@ class KindergartenListTable extends Component {
                             pattern="^[A-zÀ-ž\s-]{2,32}"
                           />
                           {errorMessages.managerName && <div className="text-danger">{errorMessages.managerName}</div>}
-                        </td>
 
-                        <td>
                           <input
                             type="text"
                             className="form-control"
@@ -154,20 +152,61 @@ class KindergartenListTable extends Component {
                         </td>
 
                         <td>
+                          <input
+                            type="number"
+                            className="form-control"
+                            id="nmbLatitude"
+                            name="latitude"
+                            value={darzelis.latitude}
+                            onChange={(event) => onChange(event)}
+                            placeholder="Platuma"
+                            title="Platuma"
+                            required
+                          />
+                          {errorMessages.latitude && <div className="text-danger">{errorMessages.latitude}</div>}
+
+                          <input
+                            type="number"
+                            className="form-control"
+                            id="nmbLongitude"
+                            name="longitude"
+                            value={darzelis.longitude}
+                            onChange={(event) => onChange(event)}
+                            placeholder="Ilguma"
+                            title="Ilguma"
+                            required
+                          />
+                          {errorMessages.longitude && <div className="text-danger">{errorMessages.longitude}</div>}
+
+                        </td>
+
+                        <td>
                           <div className="d-flex">
                             <button
                               type="submit"
-                              className="btn btn-primary btn-sm btn-block me-2"
+                              className="btn btn-success btn-sm btn-block me-2"
                               id="btnSaveUpdatedKindergarten"
                               onClick={() => onSave({ id: darzelis.id, item: darzelis })}
-                              disabled={hasErrors}>
+                              disabled={hasErrors}
+                            >
                               Saugoti
                             </button>
                             <button
-                              onClick={() => onDelete(darzelis)}
-                              id="btnDeleteKindergarten"
-                              className="btn btn-outline-danger btn-sm btn-block">
-                              Ištrinti
+                              className="btn btn-primary btn-sm btn-block"
+                              id="btnCancelUpdatedKindergarten"
+                              onClick={() => onCancel()}
+                            >
+                              Atšaukti
+                            </button>
+                          </div>
+                          <div className="d-flex">
+                            <button
+                              className="btn btn-outline-primary btn-sm btn-block mt-2"
+                              id="btnUpdateCoordinates"
+                              onClick={() => handleUpdateCoordinates()}
+                              disabled={isDisabled}
+                            >
+                              Koordinatės
                             </button>
                           </div>
                         </td>
@@ -175,12 +214,10 @@ class KindergartenListTable extends Component {
                     ) : (
                       <React.Fragment>
                         <td>{darzelis.name}</td>
-                        <td>{darzelis.address}</td>
-                        <td>{darzelis.elderate}</td>
-                        <td>{darzelis.capacityAgeGroup2to3}</td>
-                        <td>{darzelis.capacityAgeGroup3to6}</td>
-                        <td>{darzelis.managerName}</td>
-                        <td>{darzelis.managerSurname}</td>
+                        <td>{darzelis.address}<br />{darzelis.elderate}</td>
+                        <td>{darzelis.capacityAgeGroup2to3} (2-3m.)<br />{darzelis.capacityAgeGroup3to6} (3-6m.)</td>
+                        <td>{darzelis.managerName}<br />{darzelis.managerSurname}</td>
+                        <td>{darzelis.latitude}<br />{darzelis.longitude}</td>
                         <td>
                           <div className="d-flex">
                             <button
@@ -189,6 +226,7 @@ class KindergartenListTable extends Component {
                               onClick={() => onEditData(darzelis)}>
                               Redaguoti
                             </button>
+                            <br />
                             <button
                               onClick={() => onDelete(darzelis)}
                               id="btnDeleteKindergarten"
@@ -210,5 +248,3 @@ class KindergartenListTable extends Component {
     );
   }
 }
-
-export default KindergartenListTable;

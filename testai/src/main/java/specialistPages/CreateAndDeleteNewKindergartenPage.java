@@ -103,10 +103,12 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
 
     public void clickButtonSearchCoordinates() {
         buttonSearchCoordinates.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("latitude"), "54.666212349999995"));
     }
 
     public void clickOKPopUp() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement popUpClickOK = wait.until(
                 ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/button")));
         popUpClickOK.click();
@@ -117,7 +119,7 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
     }
 
     public Boolean newKindergartenSearchResult() {
-        WebDriverWait wait = new WebDriverWait(driver, 20);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         return wait.until(ExpectedConditions.textToBe(By.xpath("//*//td[1]"), "123 Testinis"));
     }
 

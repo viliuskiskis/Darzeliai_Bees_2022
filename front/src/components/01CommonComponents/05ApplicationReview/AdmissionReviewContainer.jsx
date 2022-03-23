@@ -91,6 +91,26 @@ export default class AdmissionReviewContainer extends Component {
   }
   */
 
+  handleDelete = () => {
+    swal({
+      text: "Ar tikrai norite ištrinti prašymą?",
+      buttons: ["Ne", "Taip"],
+      dangerMode: true,
+    }).then((actionConfirmed) => {
+      if (actionConfirmed) {
+        http.delete(`${apiEndpoint}/api/prasymai/user/delete/${this.state.id}`)
+          .then((response) => {
+            swal({
+              text: response.data,
+              button: "Gerai"
+            })
+          }).then(() => {
+            this.props.history.push("/prasymai")
+          }).catch(() => { });
+      }
+    });
+  }
+
   handleReturn() {
     let route = this.context.state.role === "USER" ? "/prasymai" : "/eile";
     this.props.history.push(route);
@@ -103,6 +123,7 @@ export default class AdmissionReviewContainer extends Component {
         role={this.context.state.role}
         //handleDownloadContract={this.handleDownloadContract}
         handleReturn={this.handleReturn}
+        handleDelete={this.handleDelete}
       />
     )
   }

@@ -5,6 +5,9 @@ import swal from "sweetalert";
 import Pagination from "react-js-pagination";
 import ManagerDocumentsTable from "./ManagerDocumentsTable";
 import SearchBox from "../../05ReusableComponents/SeachBox";
+import ManagerDocumentsCards from "./ManagerDocumentsCards";
+
+const breakpoint = 768;
 
 export default class ManagerDocumentsContainer extends Component {
   constructor(props) {
@@ -16,7 +19,8 @@ export default class ManagerDocumentsContainer extends Component {
       totalPages: 0,
       totalElements: 0,
       numberOfElements: 0,
-      searchQuery: ""
+      searchQuery: "",
+      width: ""
     };
     this.getDocuments = this.getDocuments.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
@@ -26,6 +30,18 @@ export default class ManagerDocumentsContainer extends Component {
 
   componentDidMount() {
     this.getDocuments(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
+    window.addEventListener("resize", this.update);
+    this.update();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.update);
+  }
+
+  update = () => {
+    this.setState({
+      width: window.innerWidth
+    })
   }
 
   getDocuments(page, size, filter) {
@@ -79,6 +95,7 @@ export default class ManagerDocumentsContainer extends Component {
 
   render() {
     let size = 0;
+    let pageRange = this.state.width > breakpoint ? 15 : 8;
     if (this.state.documentList !== undefined) size = this.state.documentList.length;
 
     return (
@@ -93,10 +110,17 @@ export default class ManagerDocumentsContainer extends Component {
           />
         }
 
-        <ManagerDocumentsTable
-          documentList={this.state.documentList}
-          handleDocumentDownload={this.handleDocumentDownload}
-        />
+        {this.state.width > breakpoint ?
+          <ManagerDocumentsTable
+            documentList={this.state.documentList}
+            handleDocumentDownload={this.handleDocumentDownload}
+          />
+          :
+          <ManagerDocumentsCards
+            documentList={this.state.documentList}
+            handleDocumentDownload={this.handleDocumentDownload}
+          />
+        }
 
         {this.state.totalPages > 1 &&
           <div className="d-flex justify-content-center">
@@ -106,7 +130,7 @@ export default class ManagerDocumentsContainer extends Component {
               activePage={this.state.currentPage}
               itemsCountPerPage={this.state.pageSize}
               totalItemsCount={this.state.totalElements}
-              pageRangeDisplayed={15}
+              pageRangeDisplayed={pageRange}
               onChange={this.handlePageChange}
             />
           </div>

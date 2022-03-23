@@ -80,7 +80,7 @@ public class ApplicationQueueService {
 
 			for (KindergartenChoise choise : choises) {
 				
-				if(choise.getKindergarten() != null) { //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				if(choise.getKindergarten() != null) { 
 					
 					Kindergarten kindergarten = choise.getKindergarten();
 					int availablePlaces = getNumberOfAvailablePlaces(kindergarten, age);
@@ -184,21 +184,6 @@ public class ApplicationQueueService {
 	public Page<ApplicationQueueInfo> getApplicationQueueInformation(Pageable pageable, String filter) {
 
 		return applicationDao.findQueuedApplications(pageable, filter);
-	}
-
-	/**
-	 * 
-	 * Get application queue filtered by Child personal code and sorted by Child
-	 * surname
-	 * 
-	 * @param pageable
-	 * 
-	 * @return
-	 */
-	public Page<ApplicationQueueInfo> getApplicationQueueInformationFilteredByChildId(String childPersonalCode,
-			Pageable pageable) {
-
-		return applicationDao.findQueuedApplicationsContaining(childPersonalCode, pageable);
 	}
 
 	/**

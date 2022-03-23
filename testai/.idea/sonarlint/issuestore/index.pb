@@ -9,8 +9,6 @@ Y
 )src/test/java/login/AdminLoginLogout.java,c\7\c73c767ea646036d09ca80d1ba6d68101db48880
 d
 4src/test/java/adminTests/CreateAndDeleteNewUser.java,8\c\8c3bf101dbece3ce851289ff42bff39cde814e54
-b
-2src/test/java/parentTests/UpdateParentDetails.java,c\8\c878b6487c66b9c76b270e802922a858f68c1dc9
 t
 Dsrc/test/java/smokeTests/CheckIfKindergartenSpecialistPagesWork.java,f\6\f6e60870f6b32f91b0bfe5514c6e7e75f7c6f4c0
 `
@@ -21,8 +19,6 @@ h
 8src/main/java/adminPages/CreateAndDeleteNewUserPage.java,e\2\e2d360b85d81631be398a324b5d53eede26b6f88
 p
 @src/main/java/specialistPages/CheckIfRegistrationIsOpenPage.java,b\8\b87b53f4699f3672d282bf27acfdec86a155e7e2
-q
-Asrc/test/java/parentTests/SubmitAndDownloadPDFNewApplication.java,7\3\73c6074a26a4f0e69db9a888f44dbf59a25c62eb
 u
 Esrc/main/java/parentPages/SubmitAndDownloadPDFNewApplicationPage.java,f\5\f50c5b8d38a1dd710dcb090377cf705774a799c6
 u

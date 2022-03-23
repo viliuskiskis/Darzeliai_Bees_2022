@@ -5,6 +5,9 @@ import http from "../../00Services/httpService";
 import apiEndpoint from "../../00Services/endpoint";
 import SearchBox from "../../05ReusableComponents/SeachBox";
 import UserListTable from "./UsersListTable";
+import UserListCards from "./UserListCards";
+
+const breakpoint = 768;
 
 export default class UsersListContainer extends Component {
   constructor(props) {
@@ -17,12 +20,26 @@ export default class UsersListContainer extends Component {
       totalElements: 0,
       numberOfElements: 0,
       passwordResetRequests: [],
-      searchQuery: ""
+      searchQuery: "",
+      width: ""
     };
+    this.handleSearch = this.handleSearch.bind(this);
   }
+
   componentDidMount() {
     this.getUserInfo(this.state.currentPage, this.state.pageSize, this.state.searchQuery);
-    this.handleSearch = this.handleSearch.bind(this);
+    window.addEventListener("resize", this.update);
+    this.update();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.update);
+  }
+
+  update = () => {
+    this.setState({
+      width: window.innerWidth
+    })
   }
 
   getUserInfo(page, size, filter) {
@@ -131,6 +148,8 @@ export default class UsersListContainer extends Component {
   };
 
   render() {
+    let pageRange = this.state.width >= breakpoint ? 15 : 8;
+
     return (
       <React.Fragment>
         <SearchBox
@@ -139,11 +158,19 @@ export default class UsersListContainer extends Component {
           placeholder={"Ieškoti pagal naudotojo vardą..."}
         />
 
-        <UserListTable
-          naudotojai={this.state.naudotojai}
-          onDelete={this.handleDelete}
-          onRestorePassword={this.handleRestorePassword}
-        />
+        {this.state.width >= breakpoint ?
+          <UserListTable
+            naudotojai={this.state.naudotojai}
+            onDelete={this.handleDelete}
+            onRestorePassword={this.handleRestorePassword}
+          />
+          :
+          <UserListCards
+            naudotojai={this.state.naudotojai}
+            onDelete={this.handleDelete}
+            onRestorePassword={this.handleRestorePassword}
+          />
+        }
 
         {this.state.totalPages > 1 &&
           <div className="d-flex justify-content-center">
@@ -153,7 +180,7 @@ export default class UsersListContainer extends Component {
               activePage={this.state.currentPage}
               itemsCountPerPage={this.state.pageSize}
               totalItemsCount={this.state.totalElements}
-              pageRangeDisplayed={15}
+              pageRangeDisplayed={pageRange}
               onChange={this.handlePageChange.bind(this)}
             />
           </div>

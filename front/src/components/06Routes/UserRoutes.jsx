@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import CommonErrorHandler from "../00Services/CommonErrorHandler";
-
 import UserNavBar from "../04UserComponents/00NavBar/UserNavBar";
 import UserHomeContainer from "../04UserComponents/02ApplicationList/UserHomeContainer";
 import AdmissionReviewContainer from "../01CommonComponents/05ApplicationReview/AdmissionReviewContainer";
@@ -12,10 +11,8 @@ import CreateApplicationFormContainer from "../04UserComponents/01ApplicationFor
 import UpdateProfileFormContainer from "../01CommonComponents/03UpdateProfile/UpdateProfileFormContainer";
 import UserDocumentContainer from "../04UserComponents/04Documents/UserDocumentContainer";
 import NotFound from "../01CommonComponents/02NotFound/NotFound";
-
-import Testing from "../99DeleteThis/Testing";
+import MapViewContainer from "../01CommonComponents/06Map/MapViewContainer";
 import ContractReviewContainer from "../04UserComponents/03ApplicationReview/ContractReviewContainer";
-
 
 export default function UserRoutes() {
   return (
@@ -23,8 +20,6 @@ export default function UserRoutes() {
       <div className="container-fluid px-0">
         <UserNavBar>
           <Switch>
-            {/* Pabaigus aplikaciją ištrinti kelią iki "Testing" */}
-            <Route exact path="/testing" component={Testing} />
             <Route exact path="/" component={UserHomeContainer} />
             <Route exact path="/home" component={UserHomeContainer} />
             <Route
@@ -50,12 +45,17 @@ export default function UserRoutes() {
             />
             <Route
               exact
+              path="/zemelapis"
+              component={MapViewContainer}
+            />
+            <Route
+              exact
               path="/statistika"
               component={KindergartenStatContainer}
             />
             <Route
               exact
-              path="/prasymai/naujas"
+              path="/aplikuoti"
               component={CreateApplicationFormContainer}
             />
             <Route

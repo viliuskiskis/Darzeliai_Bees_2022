@@ -34,9 +34,6 @@ public class KindergartenService {
 	
 	@Autowired
 	private KindergartenChoiseDAO kindergartenChoiseDAO;
-// o.v. JournalService nenaudojamas kintamasis
-//	@Autowired
-//	private JournalService journalService;
 
 	/**
 	 * Get all kindergarten ID's, names and addresses where capacity in any age
@@ -49,8 +46,9 @@ public class KindergartenService {
 
 		List<Kindergarten> kindergartens = gartenDao.findAllWithNonZeroCapacity(Sort.by("name").ascending());
 
-		return kindergartens.stream().map(garten -> new KindergartenInfo(garten.getId(), garten.getName(),
-				garten.getAddress(), garten.getElderate())).collect(Collectors.toList());
+		return kindergartens.stream().map(garten -> new KindergartenInfo(
+			garten.getId(), garten.getName(), garten.getAddress(), garten.getElderate(),
+			garten.getLatitude(), garten.getLongitude())).collect(Collectors.toList());
 	}
 
 	/**
@@ -72,24 +70,13 @@ public class KindergartenService {
 	 */
 	@Transactional(readOnly = true)
 	public Page<Kindergarten> getKindergartenPage(Pageable pageable, String filter) {
-
+	    
+	    if (filter.equals("")) {
+		return gartenDao.findAllKindergarten(pageable);
+	    }
+	    
 		return gartenDao.findByNameContainingIgnoreCase(filter, pageable);
 	}
-
-//	/**
-//	 * 
-//	 * Returns a page of Kindergarten filtered by name containing text with
-//	 * specified page number and page size
-//	 * 
-//	 * @param pageable
-//	 * @return filtered page from kindergarten database
-//	 */
-//	@Transactional(readOnly = true)
-//	public Page<Kindergarten> getKindergartenPageFilteredByName(String name, Pageable pageable) {
-//
-//		return gartenDao.findByNameContainingIgnoreCase(name, pageable);
-//
-//	}
 
 	/**
 	 * Save new kindergarten to database
@@ -99,9 +86,18 @@ public class KindergartenService {
 	@Transactional
 	public void createNewKindergarten(KindergartenDTO kindergarten) {
 
-		gartenDao.save(new Kindergarten(kindergarten.getId(), kindergarten.getName(), kindergarten.getAddress(),
-				kindergarten.getElderate(), kindergarten.getManagerName(), kindergarten.getManagerSurname(), kindergarten.getCapacityAgeGroup2to3(),
-				kindergarten.getCapacityAgeGroup3to6()));
+		gartenDao.save(new Kindergarten(
+			kindergarten.getId(),
+			kindergarten.getName(),
+			kindergarten.getAddress(),
+			kindergarten.getElderate(),
+			kindergarten.getManagerName(),
+			kindergarten.getManagerSurname(),
+			kindergarten.getCapacityAgeGroup2to3(),
+			kindergarten.getCapacityAgeGroup3to6(),
+			kindergarten.getLatitude(),
+			kindergarten.getLongitude()			
+			));
 
 	}
 
@@ -169,8 +165,6 @@ public class KindergartenService {
 				kindergartenChoiseDAO.saveAndFlush(kindergartenChoise);
 			}
 			
-			kindergarten.setApprovedApplications(null);
-			kindergarten.setKindergartenChoises(null);
 			gartenDao.saveAndFlush(kindergarten);
 			gartenDao.deleteById(id);
 
@@ -202,6 +196,8 @@ public class KindergartenService {
 		current.setManagerSurname(updatedInfo.getManagerSurname());
 		current.setCapacityAgeGroup2to3(updatedInfo.getCapacityAgeGroup2to3());
 		current.setCapacityAgeGroup3to6(updatedInfo.getCapacityAgeGroup3to6());
+		current.setLatitude(updatedInfo.getLatitude());
+		current.setLongitude(updatedInfo.getLongitude());
 
 		gartenDao.save(current);
 	}

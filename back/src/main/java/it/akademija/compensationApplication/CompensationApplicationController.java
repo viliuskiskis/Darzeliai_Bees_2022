@@ -119,7 +119,7 @@ public class CompensationApplicationController {
 	if (currentUsername != null) {
 
 	    compensationApplicationInfoUser = compensationApplicationService
-		    .getAllUserCompensationApplications(currentUsername);
+		    .getAllUserCompensationApplicationsInfoUser(currentUsername);
 
 	    return new ResponseEntity<Set<CompensationApplicationInfoUser>>(
 		    compensationApplicationInfoUser, HttpStatus.OK);
@@ -178,12 +178,13 @@ public class CompensationApplicationController {
 	if (id != null && compensationApplicationService
 		.isCompensationApplicationPresentAndMatchesMainGuardian(id)) {
 
-	    compensationApplicationService.deleteUserCompensationApplicationById(id);
+	    compensationApplicationService.deleteCompensationApplicationById(id);
 	    
 	    journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id,
 		    ObjectType.COMPENSATION_APPLICATION, "Ištrintas kompensacijos prašymas");
 	    
-	    LOG.info("** Kompensacijos prašymas id: [{}] ištrintas **", id);
+	    LOG.info("** Kompen\n"
+	    		+ "	void sacijos prašymas id: [{}] ištrintas **", id);
 
 	    return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
 	}
@@ -195,39 +196,6 @@ public class CompensationApplicationController {
 
 	return new ResponseEntity<String>("Prašymas kompensacijai nerastas", HttpStatus.NOT_FOUND);
     }
-	
-// WHEN DELETING THIS, ALSO DELETE UNUSED METHODS IN compensationApplicationService 
-//    AND compensationApplicationDAO...
-//	/**
-//	 * Update user compensation application by id
-//	 * 
-//	 * @param id
-//	 * @return message
-//	 */
-//	@Secured({ "ROLE_USER" })
-//	@PutMapping("/user/edit/{id}")
-//	@ApiOperation("Edit user application by id")
-//	public ResponseEntity<String> editUserCompensationApplication(
-//			@RequestBody CompensationApplicationDTO compensationApplicationdDTO, 
-//			@PathVariable Long id){
-//		
-//		if(id != null && compensationApplicationdDTO != null) {
-//			
-//			if(compensationApplicationService
-//					.isCompensationApplicationPresentAndMatchesMainGuardian(id)) {
-//				
-//				compensationApplicationService
-//				  .editCompesationApplication(compensationApplicationdDTO, id);
-//				
-//				return new ResponseEntity<String>
-//					("Prašymas redaguotas sėkmingai", HttpStatus.OK);
-//			}
-//			
-//		}
-//	
-//		return new ResponseEntity<String>
-//				("Toks prašymas nerastas", HttpStatus.BAD_REQUEST);
-//	}
 	
     /**
      * Get information about compensation application by id
@@ -295,7 +263,7 @@ public class CompensationApplicationController {
 	    @ApiParam(value = "CompensationApplication id", required = true)
 	    @PathVariable Long id) {
 
-	if (id != null && compensationApplicationService.existsCompensationApplicationById(id)) {
+	if (id != null && compensationApplicationService.isCompensationApplicationExistsById(id)) {
 
 	    CompensationApplication compensationApplication =
 		    compensationApplicationService.getCompensationApplicationById(id);
@@ -344,7 +312,7 @@ public class CompensationApplicationController {
 	    @ApiParam(value = "CompensationApplication id", required = true)
 	    @PathVariable Long id) {
 
-	if (id != null && compensationApplicationService.existsCompensationApplicationById(id)) {
+	if (id != null && compensationApplicationService.isCompensationApplicationExistsById(id)) {
 
 	    CompensationApplication compensationApplication =
 		    compensationApplicationService.getCompensationApplicationById(id);
