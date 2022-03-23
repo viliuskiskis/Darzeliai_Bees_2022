@@ -70,7 +70,6 @@ export default class EventJournalContainer extends Component {
       endTime = new Date(endTime);
       endTime.setMinutes(endTime.getMinutes() - endTime.getTimezoneOffset());
     }
-    console.log("startTime: " + JSON.stringify(startTime) + " endTime: " + JSON.stringify(endTime));
     let data = {
       page: page - 1,
       size: size,
