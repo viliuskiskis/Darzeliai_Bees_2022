@@ -57,15 +57,11 @@ public class DownloadCertificatesUploadedByUsers extends GeneralMethods {
         DownloadCertificatesPage certificatesPage = new DownloadCertificatesPage(driver);
         certificatesPage.clickNavButtonPrasymuPazymos();
 
-        // assert page
-        //    certificatesPage.assertThatPrasymuPazymosPageLoaded();
-
         // enter surname to search box
         certificatesPage.clickSearchBox();
         certificatesPage.enterSurnameToSearchBox("Jonaitis");
 
         // download certificate
-        //  certificatesPage.assertThatSearchedCertificateIsLoaded();
         certificatesPage.clickButtonDownloadCertificate();
 
         // logout

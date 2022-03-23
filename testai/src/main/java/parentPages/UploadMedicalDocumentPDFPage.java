@@ -19,7 +19,6 @@ public class UploadMedicalDocumentPDFPage extends AbstractObjectPage{
 	public WebElement buttonDownloadDocument;
 
 	@FindBy(xpath = "//*/table//tr[1]/td[3]/div/button[2]")
-//	//*[@id="root"]/div/div/div/div/div[3]/div/div/table/tbody/tr/td[3]/div/button[2]
 	public WebElement buttonDeleteDocument;
 
 	public void clickUploadDocumentButton () {

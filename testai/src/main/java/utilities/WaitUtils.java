@@ -53,18 +53,4 @@ public class WaitUtils {
         wait.ignoring(NoSuchElementException.class);
     }
 
-//    public void clickAndWaitForElementDisplayed(WebDriver driver, WebElement elementToClick,
-//                                                WebElement elementToWaitFor) {
-//        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
-//        ExpectedCondition<Boolean> condition = arg0 -> {
-//            try {
-//                click(elementToClick, 5);
-//                waitForElementToBeDisplayed(elementToWaitFor, 5);
-//                return true;
-//            } catch (Exception e) {
-//                return false;
-//            }
-//        };
-//        wait.until(condition);
-//    }
 }
