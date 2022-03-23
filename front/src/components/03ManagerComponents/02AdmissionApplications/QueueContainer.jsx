@@ -203,7 +203,9 @@ export default class QueueContainer extends Component {
 
   handleSearch = (e) => {
     this.setState({ searchQuery: e.currentTarget.value });
-    this.getApplications(1, this.state.pageSize, e.currentTarget.value);
+    setTimeout(() => {
+      this.getApplications(1, this.state.pageSize, this.state.searchQuery);
+    }, 100);
   }
 
   handleDeactivate = (item) => {
