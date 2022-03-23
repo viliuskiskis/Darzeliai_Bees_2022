@@ -14,7 +14,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-@ContextConfiguration(locations = "classpath:application-context.xml")
 @WebMvcTest(controllers = CompensationApplicationController.class)
 public class CompensationApplicationRestControllerTest {
 

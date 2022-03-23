@@ -3,7 +3,6 @@ package it.akademija.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
@@ -20,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 
 import it.akademija.application.priorities.Priorities;
@@ -28,13 +26,12 @@ import it.akademija.application.priorities.PrioritiesDTO;
 import it.akademija.application.queue.ApplicationQueueInfo;
 import it.akademija.application.queue.ApplicationQueueService;
 import it.akademija.kindergartenchoise.KindergartenChoiseDTO;
-import it.akademija.user.ParentDetailsDAO;
 import it.akademija.user.ParentDetailsDTO;
 import it.akademija.user.UserDTO;
 import it.akademija.user.UserService;
 
 @ContextConfiguration(locations = "classpath:application-context.xml")
-@SpringBootTest(classes = ApplicationServiceIntegrationTest.class)
+@SpringBootTest(classes = ApplicationService.class)
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(OrderAnnotation.class)
 public class ApplicationServiceIntegrationTest {
@@ -135,7 +132,7 @@ public class ApplicationServiceIntegrationTest {
 	@AfterAll
 	void cleanUp() {
 		applicationDAO.delete(application);
-		userService.deleteUser("user1@user.lt");
+		userService.deleteUser("test@user2.lt");
 	}
 	
 	@Test
