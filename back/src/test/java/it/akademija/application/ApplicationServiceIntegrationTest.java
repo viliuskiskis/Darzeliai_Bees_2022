@@ -31,7 +31,7 @@ import it.akademija.user.UserDTO;
 import it.akademija.user.UserService;
 
 @ContextConfiguration(locations = "classpath:application-context.xml")
-@SpringBootTest(classes = ApplicationServiceIntegrationTest.class)
+@SpringBootTest(classes = ApplicationService.class)
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(OrderAnnotation.class)
 public class ApplicationServiceIntegrationTest {

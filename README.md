@@ -1,15 +1,15 @@
 # Kindergarten information system
 
 Vocational school project designed for learning purposes. 
-Developed system registers and processes children's requests to the kindergarten. A child is allocated a place at a kindergarten or a place in a waiting list depending on pre-determined criteria.
+Developed system registers and processes children's requests to the kindergarten and compensations. A child is allocated a place at a kindergarten or a place in a waiting list depending on pre-determined criteria. For compensations only data of parent, child and kindergarten details must be provided for agreement.
 
 System user roles and their authorities:
 
 | ROLES | AUTHORITIES |
 | --- | --- |
 | ADMIN |  create user, delete user, reset user password, lock application queue editing for manager, review system logs, update own account |
-|MANAGER | create a kindergarten, update kindergarten, start/ stop application submission, deactivate users' applications before approval (if not locked by admin), process applications queue, confirm applications queue, update own account |
-| USER | submit an application (if not locked by manager), review submitted applications and their status, submit/ review pdf documents, delete application, get user data, update and delete own account |
+|MANAGER | create a kindergarten, update kindergarten, delete kindergarten, start/ stop application submission, deactivate users' applications before approval (if not locked by admin), process applications queue, confirm applications queue, update own account, preview kindergartens on map, download applications and documents, preview applications, confirm/reject compensation applications |
+| USER | submit an application and compensation application (if not locked by manager), download application pdf, review applications and their status, submit/ review pdf documents, delete application, get user data, update and delete own account, preview kindergartens on map |
 
 #### Technologies used: 
 - React 17.0.1,  Boostrap 5.1.3
@@ -21,19 +21,9 @@ System user roles and their authorities:
 - Selenium 3.141.59
 - TestNG 
 
-#### Design previews:
-
-ADMIN pages: https://agn709575.invisionapp.com/console/share/VM26ELGVGT/550993621
-
-MANAGER pages: https://agn709575.invisionapp.com/console/share/JB26EZTCR9/550996106
-
-USER pages: https://agn709575.invisionapp.com/console/share/GB26F5SD2U/550996143
-
-<sub>*actual pages may differ to a degree from the initial designs<sub>
-
 ## Getting Started
 
-- Clone the repository `https://github.com/LukasPetraitis/Darzeliai_Bees_2022`
+- Clone the repository `https://github.com/viliuskiskis/Darzeliai_Bees_2022`
 
 ### Run on Tomcat Server
 
@@ -118,6 +108,3 @@ to `.../back/source/main/resources/public`
 List of [contributors](https://github.com/viliuskiskis/Darzeliai_Bees_2022/graphs/contributors) who participated in this project.
 This project is forked from: https://github.com/JurgitaVisa/Projektas_Darzeliu_IS
 Copyright ©️ 2022, Bees
-
-
-
