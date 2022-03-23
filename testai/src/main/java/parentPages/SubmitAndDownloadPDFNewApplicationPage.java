@@ -85,22 +85,6 @@ public class SubmitAndDownloadPDFNewApplicationPage extends AbstractObjectPage {
         popUpClickOK.click();
     }
 
-//
-//    public void clickSwalPopUp1(String path) {
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-//        WebElement popUpClickOK = wait.until(
-//                ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='swal-button swal-button--confirm']")));
-//        popUpClickOK.click();
-//    }
-//
-//    public void clickSwalPopUp2(String path) {
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-//        WebElement popUpClickOK = wait.until(
-//                ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='swal-button swal-button--confirm swal-button--danger']")));
-//        popUpClickOK.click();
-//    }
-
-
     public void clickReviewContract() {
         reviewContract.click();
     }

@@ -91,10 +91,6 @@ public class ReviewCompensationApplicationsManagerPage extends AbstractObjectPag
     }
 
     public void clickButtonOkRejectCompensation() {
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-//        wait.until(
-//                ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[2]/div/div[1]")));
-//        buttonOkRejectCompensation.click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         WebElement swalButtonConfirm = wait.until(ExpectedConditions.elementToBeClickable(
                 By.className("swal-button--confirm")));

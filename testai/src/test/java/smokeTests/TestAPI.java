@@ -19,7 +19,6 @@ public class TestAPI {
     static SessionFilter sessionFilter = new SessionFilter();
 
     RequestSpecification reqSpec = new RequestSpecBuilder().
-//            setBaseUri("https://bees.akademijait.vtmc.lt/darzelis/").
         setBaseUri("https://bees.akademijait.vtmc.lt/darzelis").
             setContentType(ContentType.JSON).
             addFilters(Arrays.asList(new RequestLoggingFilter(), new ResponseLoggingFilter())).
