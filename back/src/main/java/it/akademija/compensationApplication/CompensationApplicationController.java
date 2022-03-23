@@ -52,14 +52,7 @@ public class CompensationApplicationController {
      * 
      * @param compensationApplicationDTO - compensation application details
      * @return message
-     */
-    
-    @RequestMapping("/greeting")
-	public @ResponseBody String greeting() {
-		return compensationApplicationService.greet();
-	}
-    
-    
+     */   
     @Secured({ "ROLE_USER" })
     @PostMapping("/user/new")
     @ApiOperation(value = "Create new compensation application")
