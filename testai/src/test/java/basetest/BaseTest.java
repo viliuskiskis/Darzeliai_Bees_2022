@@ -44,16 +44,16 @@ public class BaseTest {
 //        driver.get("http://localhost:3000/darzelis");
     }
 
-//    @AfterClass(alwaysRun = true)
-//    public  void closeBrowser() {
-//        driver.manage().deleteAllCookies();
-//       //for Firefox browser lines close and quit should be commented
-//        driver.close();
-//        driver.quit();
-//    }
-//
-//    @AfterSuite(alwaysRun = true)
-//    protected  void tearDown() {
-//        driver.quit();
-//    }
+    @AfterClass(alwaysRun = true)
+    public  void closeBrowser() {
+        driver.manage().deleteAllCookies();
+       //for Firefox browser lines close and quit should be commented
+        driver.close();
+        driver.quit();
+    }
+
+    @AfterSuite(alwaysRun = true)
+    protected  void tearDown() {
+        driver.quit();
+    }
 }
