@@ -34,8 +34,8 @@ public class GeneralMethods extends BaseTest {
     private String changedUserSurname = "Pakeistas";
     private String changedUserEmail = "pakeistas@email.lt";
     private String expectedErrorMessage = "Neteisingas prisijungimo vardas ir/arba slaptažodis!";
-//    private String pdfFileLocation = "C:\\Users\\Tomas\\Desktop\\VilniausDarzeliuSistema\\Bees_projektas\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
-    private String pdfFileLocation = "C:\\Users\\Modestas\\Desktop\\Project GIT Repository\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
+    private String pdfFileLocation = "C:\\Users\\Tomas\\Desktop\\VilniausDarzeliuSistema\\Bees_projektas\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
+//    private String pdfFileLocation = "C:\\Users\\Modestas\\Desktop\\Project GIT Repository\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
 
     // LOGIN/ LOGOUT METHODS
 
@@ -271,7 +271,7 @@ public class GeneralMethods extends BaseTest {
         dropdownUserRole.selectByIndex(5);
         createNewKindergarten.inputkindergartenAddress("Gardino g. 8");
         createNewKindergarten.clickButtonSearchCoordinates();
-        Thread.sleep(600);
+        Thread.sleep(900);
         createNewKindergarten.inputcapacityAgeGroup2to3("1");
         createNewKindergarten.inputcapacityAgeGroup3to6("1");
 
@@ -287,8 +287,8 @@ public class GeneralMethods extends BaseTest {
 
         // update and save the kindergarten details
         createNewKindergarten.clickButtonUpdateKindergarten();
-        createNewKindergarten.updateNewKindergartenName("123 Testinis darželis");
         createNewKindergarten.updateKindergartenNumberCapacity3to6("6");
+        createNewKindergarten.updateNewKindergartenName("123 Testinis darželis");
         createNewKindergarten.clickSaveUpdatedKindergarten();
     }
 

@@ -40,8 +40,8 @@ public class BaseTest {
         driver = new ChromeDriver();
 //        driver = new EdgeDriver();
         driver.manage().window().maximize();
-//        driver.get("https://bees.akademijait.vtmc.lt/darzelis");
-        driver.get("http://localhost:3000/darzelis");
+        driver.get("https://bees.akademijait.vtmc.lt/darzelis");
+//        driver.get("http://localhost:3000/darzelis");
     }
 
 //    @AfterClass(alwaysRun = true)

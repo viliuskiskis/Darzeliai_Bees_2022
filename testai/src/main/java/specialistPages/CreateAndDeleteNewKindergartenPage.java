@@ -125,10 +125,8 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
         buttonUpdateKindergarten.click();
     }
 
-    public void updateNewKindergartenName(String value) throws InterruptedException {
+    public void updateNewKindergartenName(String value) {
         newKindergartenName.clear();
-        Thread.sleep(100);
-        kindergartenName.click();
         newKindergartenName.sendKeys(value);
     }
 
