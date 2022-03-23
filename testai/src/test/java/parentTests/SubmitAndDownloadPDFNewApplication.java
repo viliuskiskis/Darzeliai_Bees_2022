@@ -90,7 +90,7 @@ public class SubmitAndDownloadPDFNewApplication extends GeneralMethods {
     }
 
     @Test (groups = "regression", priority = 4)
-    public void deleteApplication () {
+    public void deleteApplication () throws InterruptedException {
 
         waitForLoginToLoad();
         doLogin(createNewUserParentEmail, createNewUserParentEmail);

@@ -1,6 +1,5 @@
 import React from "react";
 import inputValidator from "../../00Services/InputValidator";
-import "./Application.css";
 
 export default function ChildFormComponent(props) {
 

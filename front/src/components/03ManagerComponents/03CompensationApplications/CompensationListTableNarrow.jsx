@@ -71,7 +71,6 @@ export default class CompensationListTableNarrow extends Component {
   ]
 
   render() {
-
     return (
       <Table
         columns={this.columns}
@@ -79,5 +78,4 @@ export default class CompensationListTableNarrow extends Component {
       />
     )
   }
-
 }

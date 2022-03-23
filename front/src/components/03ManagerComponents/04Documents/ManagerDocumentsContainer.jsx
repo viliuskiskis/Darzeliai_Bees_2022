@@ -64,7 +64,9 @@ export default class ManagerDocumentsContainer extends Component {
 
   handleSearch(e) {
     this.setState({ searchQuery: e.currentTarget.value });
-    this.getDocuments(1, this.state.pageSize, e.currentTarget.value);
+    setTimeout(() => {
+      this.getDocuments(1, this.state.pageSize, this.state.searchQuery);
+    }, 100);
   }
 
   handlePageChange(page) {

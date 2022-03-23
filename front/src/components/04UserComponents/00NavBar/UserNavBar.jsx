@@ -29,7 +29,7 @@ export default function UserNavBar(props) {
               className="nav-img"
               src={logo}
               alt="logotipas"
-              loading="lazy"
+            // loading="lazy"
             />
           </NavLink>
 

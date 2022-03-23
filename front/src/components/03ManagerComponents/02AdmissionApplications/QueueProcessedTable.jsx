@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Table from '../../05ReusableComponents/Table';
 
-class QueueProcessedTable extends Component {
+export default class QueueProcessedTable extends Component {
   columns = [
     {
       key: 'id',
       path: 'id',
-      label: '#',
+      label: 'Id',
       content: application => <span> {application.id}</span>
     },
     {
@@ -79,7 +79,6 @@ class QueueProcessedTable extends Component {
   ]
 
   render() {
-
     return (
       <Table
         columns={this.columns}
@@ -88,7 +87,4 @@ class QueueProcessedTable extends Component {
     );
   }
 }
-
-export default QueueProcessedTable
-
 

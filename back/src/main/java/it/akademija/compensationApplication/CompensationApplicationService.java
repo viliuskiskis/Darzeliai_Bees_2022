@@ -142,11 +142,7 @@ public class CompensationApplicationService {
 		compensationApplicationInfo.setChildDataInfo(childDataInfo);
 		
 		return compensationApplicationInfo;
-		
-		
 	}
-	
-	
 	
 	/**
 	 * Delete user compensation application by id. Also deletes ChildData
@@ -182,9 +178,6 @@ public class CompensationApplicationService {
 		return false;
 	}
 	
-	
-	
-	
 	/**
 	 * 
 	 * Check if compensation application for a child already exists
@@ -196,7 +189,6 @@ public class CompensationApplicationService {
 		return childDataService.childExistsByPersonalCode(childPersonalCode);
 	}
 
-	
 
 	public boolean isCompensationApplicationExistsById(Long id) {
 		return compensationApplicationDAO.existsById(id);
@@ -216,46 +208,13 @@ public class CompensationApplicationService {
 		return compensationApplicationDAO.getById(id);
 	}
 
-	public void editCompesationApplication(
-			CompensationApplicationDTO compensationApplicationdDTO,
-			Long id) {
-		
-		CompensationApplication compensationApplication = 
-				compensationApplicationDAO.getById(id);
-		
-		String currentUsername = SecurityContextHolder
-				.getContext()
-				.getAuthentication()
-				.getName();
-		
-		userService.updateUserData(
-				compensationApplicationdDTO.getMainGuardian(), currentUsername);
-		
-		kindergartenDataService.updateKindergartenData(
-				compensationApplicationdDTO.getKindergartenData(), 
-				compensationApplication.getKindergartenData().getId());
-		
-		childDataService.updateChildData(compensationApplicationdDTO, compensationApplication.getId());
-		
-		compensationApplicationDAO.save(compensationApplication);
+	public Page<CompensationApplicationInfoUser> getPageFromCompensationApplications(Pageable pageable, String filter) {
+	    
+	    if (filter.equals("")) {
+		return compensationApplicationDAO.findAllCompensationApplicationInfoUser(pageable);
+	    }
+
+	    	return compensationApplicationDAO.findAllCompensationsByChildPersonalCode(filter, pageable);
 	}
 
-	
-	
-	public Page<CompensationApplicationInfoUser> getPageFromCompensationApplications(Pageable pageable, String filter) {
-		
-//		if(filter.equals("childPersonalCode")) {
-//			return compensationApplicationDAO
-//					.findAllCompensationsByChildPersonalCode(pageable, filter);
-//		}
-//		else if(filter.equals("entityName")) {
-//			return compensationApplicationDAO
-//					.findAllCompensationsByEntityName(pageable, filter);
-//		}
-//		return compensationApplicationDAO.findAllCompensationApplicationInfoUser(pageable);
-	    	return compensationApplicationDAO.findAllCompensationsByChildPersonalCode(filter, pageable);
-		
-	}
-	
-		
 }

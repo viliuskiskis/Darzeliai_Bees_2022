@@ -74,7 +74,9 @@ export default class UsersListContainer extends Component {
 
   handleSearch(e) {
     this.setState({ searchQuery: e.currentTarget.value });
-    this.getUserInfo(1, this.state.pageSize, e.currentTarget.value);
+    setTimeout(() => {
+      this.getUserInfo(1, this.state.pageSize, this.state.searchQuery);
+    }, 100);
   }
 
   checkIfUserIsRequestingPassword(UID, passList) {
