@@ -51,7 +51,7 @@ USER pages: https://agn709575.invisionapp.com/console/share/GB26F5SD2U/550996143
 http://localhost:8081/darzelis/console
 
 ```
-JDBC URL:jdbc:h2:~/tmp/neverLatte1.db
+JDBC URL:jdbc:h2:~/tmp/Bees44.db
 User Name:sa
 Password:
 
@@ -63,25 +63,32 @@ http://localhost:8081/darzelis/swagger-ui/
 
 
 ## Running the tests
-
 - for smoke tests, run smoke.xml
 - for regression tests, run regression.xml
-
 ### Break down into end to end tests
+There are 7 different test packages: adminTests, specialistTests, parentTests, login, smokeTests, generalMethods and basetest. First 3 are the main ones, generalMethods holds reusable code for different test cases and basetest is for set up (getting drivers and application link) and closing all tests after running them.
 
-There are 7 different test packages: adminTests, specialistTests, parentTests, login, smokeTests, generalMethods and basetest. First 3 are the main ones, generalMethods holds reusable code for different test cases and basetest is for set up (getting Chrome driver and application link) and closing all tests after running them.
+
 
 ```
 adminTests package tests:
 - create and delete new user (all three roles)
 - update admin details (change user information, password, reset password)
 
+
+
 specialistTests package tests:
 - create and delete new kindergarten
+- download certificates uploaded by users
+- review and reject or confirm compesation applications
 - update specialist details (change user information, password, reset password)
 
+
+
 parentPages package tests:
+- submit and download PDF new application
 - submit and delete new application
+- submit new compensations application
 - update parent details (change user information, password, reset password)
 - upload medical document (pdf)
 
