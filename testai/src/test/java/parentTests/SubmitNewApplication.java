@@ -30,7 +30,8 @@ public class SubmitNewApplication extends GeneralMethods {
         @Test (groups = "regression", priority = 1)
         public void successfullySubmitNewApplication() throws IOException, InterruptedException {
             successfullyCreateNewKindergarten();
-            doLogout();
+            openRegistrationIfNeeded ();
+//            doLogout();
 
             waitForLoginToLoad();
             LoginPage loginPage = new LoginPage(driver);
@@ -43,6 +44,7 @@ public class SubmitNewApplication extends GeneralMethods {
             createNewParent(2);
             doLogout();
             doLogin(createNewUserParentEmail, createNewUserParentEmail);
+
 
             // fill in the application and submit it
             fillInTheApplication();

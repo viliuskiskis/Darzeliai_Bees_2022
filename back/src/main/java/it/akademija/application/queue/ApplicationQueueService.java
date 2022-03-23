@@ -187,21 +187,6 @@ public class ApplicationQueueService {
 	}
 
 	/**
-	 * 
-	 * Get application queue filtered by Child personal code and sorted by Child
-	 * surname
-	 * 
-	 * @param pageable
-	 * 
-	 * @return
-	 */
-	public Page<ApplicationQueueInfo> getApplicationQueueInformationFilteredByChildId(String childPersonalCode,
-			Pageable pageable) {
-
-		return applicationDao.findQueuedApplicationsContaining(childPersonalCode, pageable);
-	}
-
-	/**
 	 * Reset state of queued application to initial values and decrease number of
 	 * taken places in Kindergarten for corresponding age group by 1
 	 * 

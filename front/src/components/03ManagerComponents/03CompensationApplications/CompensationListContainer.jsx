@@ -83,7 +83,9 @@ export default class CompensationListContainer extends Component {
 
   handleSearch(e) {
     this.setState({ searchQuery: e.currentTarget.value });
-    this.getCompensations(1, this.state.pageSize, e.currentTarget.value);
+    setTimeout(() => {
+      this.getCompensations(1, this.state.pageSize, this.state.searchQuery);
+    }, 100);
   }
 
   handlePageChange(page) {

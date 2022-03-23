@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import CommonErrorHandler from "../00Services/CommonErrorHandler";
-
 import UserNavBar from "../04UserComponents/00NavBar/UserNavBar";
 import UserHomeContainer from "../04UserComponents/02ApplicationList/UserHomeContainer";
 import AdmissionReviewContainer from "../01CommonComponents/05ApplicationReview/AdmissionReviewContainer";
@@ -15,16 +14,12 @@ import NotFound from "../01CommonComponents/02NotFound/NotFound";
 import MapViewContainer from "../01CommonComponents/06Map/MapViewContainer";
 import ContractReviewContainer from "../04UserComponents/03ApplicationReview/ContractReviewContainer";
 
-import Testing from "../99DeleteThis/Testing";
-
 export default function UserRoutes() {
   return (
     <CommonErrorHandler>
       <div className="container-fluid px-0">
         <UserNavBar>
           <Switch>
-            {/* Pabaigus aplikaciją ištrinti kelią iki "Testing" */}
-            <Route exact path="/testing" component={Testing} />
             <Route exact path="/" component={UserHomeContainer} />
             <Route exact path="/home" component={UserHomeContainer} />
             <Route

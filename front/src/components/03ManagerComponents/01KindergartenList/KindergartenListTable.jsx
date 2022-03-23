@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class KindergartenListTable extends Component {
+export default class KindergartenListTable extends Component {
 
   render() {
     const {
@@ -27,7 +27,7 @@ class KindergartenListTable extends Component {
             <tr >
               <th>Pavadinimas</th>
               <th>Adresas, Seniūnija</th>
-              <th>Vietų&#160;sk.</th>
+              <th className="no-breaks">Vietų sk.</th>
               <th>Direktorius</th>
               <th>Koordinatės</th>
               <th className="deleteColumn">Veiksmai</th>
@@ -248,5 +248,3 @@ class KindergartenListTable extends Component {
     );
   }
 }
-
-export default KindergartenListTable;

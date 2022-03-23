@@ -84,7 +84,9 @@ export default class KindergartenListContainer extends Component {
 
   handleSearch = (e) => {
     this.setState({ searchQuery: e.currentTarget.value });
-    this.getKindergartenInfo(1, this.state.pageSize, e.currentTarget.value);
+    setTimeout(() => {
+      this.getKindergartenInfo(1, this.state.pageSize, this.state.searchQuery);
+    }, 100);
   }
 
   handleDelete = (item) => {

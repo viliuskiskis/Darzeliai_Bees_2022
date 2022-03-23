@@ -70,7 +70,6 @@ export default class EventJournalContainer extends Component {
       endTime = new Date(endTime);
       endTime.setMinutes(endTime.getMinutes() - endTime.getTimezoneOffset());
     }
-    console.log("startTime: " + JSON.stringify(startTime) + " endTime: " + JSON.stringify(endTime));
     let data = {
       page: page - 1,
       size: size,
@@ -98,13 +97,15 @@ export default class EventJournalContainer extends Component {
 
   handleSearch(e) {
     this.setState({ searchQuery: e.currentTarget.value });
-    this.getJournalEntries(
-      1,
-      this.state.pageSize,
-      e.currentTarget.value,
-      this.state.startTime,
-      this.state.endTime
-    );
+    setTimeout(() => {
+      this.getJournalEntries(
+        1,
+        this.state.pageSize,
+        this.state.searchQuery,
+        this.state.startTime,
+        this.state.endTime
+      );
+    }, 100);
   }
 
   handlePageChange = (page) => {

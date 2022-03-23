@@ -5,7 +5,7 @@ import apiEndpoint from "../../00Services/endpoint";
 import swal from "sweetalert";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 
-function KindergartenInputForm() {
+export default function KindergartenInputForm() {
   const initKindergartenData = {
     address: "",
     capacityAgeGroup2to3: 0,
@@ -393,5 +393,3 @@ function KindergartenInputForm() {
     </div>
   );
 }
-
-export default KindergartenInputForm;
