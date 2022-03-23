@@ -61,10 +61,11 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
     @FindBy(id = "btnDeleteKindergarten")
     public WebElement buttonDeleteKindergarten;
 
-    @FindBy(xpath = "//*/div[2]/button")
+//    @FindBy(xpath = "//*/div[2]/button")
+    @FindBy(xpath = "/html/body/div[2]/div/div[2]/div[2]/button")
     public WebElement buttonAgreeToDeleteKindergarten;
 
-    @FindBy (id = "findCoordinatesBtn")
+    @FindBy(id = "findCoordinatesBtn")
     public WebElement buttonSearchCoordinates;
 
     public void inputKindergartenID(String value) {
@@ -79,9 +80,13 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
         kindergartenAddress.sendKeys(value);
     }
 
-    public void inputKindergartenManagerName (String value) {kindergartenManagerName.sendKeys(value);}
+    public void inputKindergartenManagerName(String value) {
+        kindergartenManagerName.sendKeys(value);
+    }
 
-    public void inputKindergartenmanagerSurname(String value) {kindergartenManagerSurname.sendKeys(value);}
+    public void inputKindergartenmanagerSurname(String value) {
+        kindergartenManagerSurname.sendKeys(value);
+    }
 
     public void inputcapacityAgeGroup2to3(String value) {
         capacityAgeGroup2to3.sendKeys(value);
@@ -96,9 +101,10 @@ public class CreateAndDeleteNewKindergartenPage extends AbstractObjectPage {
         js.executeScript("arguments[0].click();", buttonSaveKindergarten);
     }
 
-    public void clickButtonSearchCoordinates() {}{
+    public void clickButtonSearchCoordinates() {
         buttonSearchCoordinates.click();
     }
+
     public void clickOKPopUp() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement popUpClickOK = wait.until(

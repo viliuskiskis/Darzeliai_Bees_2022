@@ -270,7 +270,7 @@ public class GeneralMethods extends BaseTest {
         dropdownUserRole.selectByIndex(5);
         createNewKindergarten.inputkindergartenAddress("Gardino g. 8");
         createNewKindergarten.clickButtonSearchCoordinates();
-        Thread.sleep(2000);
+        Thread.sleep(600);
         createNewKindergarten.inputcapacityAgeGroup2to3("1");
         createNewKindergarten.inputcapacityAgeGroup3to6("1");
 
@@ -291,8 +291,9 @@ public class GeneralMethods extends BaseTest {
         createNewKindergarten.clickSaveUpdatedKindergarten();
     }
 
-    public void deleteNewKindergarten() {
+    public void deleteNewKindergarten() throws InterruptedException {
         CreateAndDeleteNewKindergartenPage createNewKindergarten = new CreateAndDeleteNewKindergartenPage(driver);
+        Thread.sleep(600);
         createNewKindergarten.clickButtonDeleteKindergarten();
         createNewKindergarten.clickButtonAgreeToDeleteKindergarten();
         createNewKindergarten.assertKindergartenWasDeletedSuccessfully();
