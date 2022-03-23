@@ -34,8 +34,8 @@ public class GeneralMethods extends BaseTest {
     private String changedUserSurname = "Pakeistas";
     private String changedUserEmail = "pakeistas@email.lt";
     private String expectedErrorMessage = "Neteisingas prisijungimo vardas ir/arba slaptažodis!";
-    private String pdfFileLocation = "C:\\Users\\Tomas\\Desktop\\VilniausDarzeliuSistema\\Bees_projektas\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
-//    private String pdfFileLocation = "C:\\Users\\Modestas\\Desktop\\Project GIT Repository\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
+//    private String pdfFileLocation = "C:\\Users\\Tomas\\Desktop\\VilniausDarzeliuSistema\\Bees_projektas\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
+    private String pdfFileLocation = "C:\\Users\\Modestas\\Desktop\\Project GIT Repository\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
 
     // LOGIN/ LOGOUT METHODS
 
@@ -371,6 +371,9 @@ public class GeneralMethods extends BaseTest {
         String childPersonalCode = formData.get(8);
         newApplication.inputChildSurname(childSurname);
         newApplication.inputChildPersonalCode(childPersonalCode);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("txtChildName"),"Sandijus"));
     }
 
     public void checkPrioritiesAndChooseAKindergarten() throws IOException, InterruptedException {
