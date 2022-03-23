@@ -37,6 +37,10 @@ public class CompensationApplicationService {
 	@Autowired
 	private ChildDataService childDataService;
 	
+	public String greet() {
+		return "Hello, World";
+	}
+	
 	/**
 	 * Create an compensation application for logged in user's child with specified child data.
 	 * Receives and updates user data. Sets received
