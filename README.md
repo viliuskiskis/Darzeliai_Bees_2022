@@ -33,22 +33,32 @@ USER pages: https://agn709575.invisionapp.com/console/share/GB26F5SD2U/550996143
 
 ## Getting Started
 
-- to run manually 
-- change `const apiEndpoint= process.env.PUBLIC_URL` to `const apiEndpoint = "http://localhost:8080"`
-- follow bash files runViaTomcat.sh or runViaSpringYarn.sh
+- Clone the repository `https://github.com/LukasPetraitis/Darzeliai_Bees_2022`
 
 ### Run on Tomcat Server
 
-- edit as needed and run bash script runViaTomcat.sh, takes ~ 30min
+- go to project folder `cd .../Darzeliai_Bees_2022/back`
+- run the application on Tomcat Server (port 8081):
+  
+```
+ mvn clean install org.codehaus.cargo:cargo-maven2-plugin:1.7.7:run -Dcargo.maven.containerId=tomcat9x -Dcargo.servlet.port=8081 -Dcargo.maven.containerUrl=https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/9.0.40/tomcat-9.0.40.zip
+ ```
+ - the application will start on your browser http://localhost:8081/darzelis
 
 ### Run with Spring boot and npm/yarn
 
--- change `const apiEndpoint= process.env.PUBLIC_URL` to `const apiEndpoint = "http://localhost:8080"`
--- edit as needed and run bash script runViaSpringYarn.sh, takes ~ 10min
+- go to project folder `cd .../Projektas_Darzeliu_IS/back`
+- Run `mvn spring-boot:run` (application will start on port 8080)
+- go to project folder `cd .../Projektas_Darzeliu_IS/front`
+- run `npm install` or `yarn install`
+- open file `..\Projektas_Darzeliu_IS\front\src\components\10Services\endpoint.js`
+- change `const apiEndpoint= process.env.PUBLIC_URL` to `const apiEndpoint = "http://localhost:8080"`
+- run `npm run start` or `yarn start`
+- application will open on your browser at http://localhost:3000
 
 ### Accessing the database
 
-http://localhost:8081/darzelis/console
+http://localhost:8080/darzelis/console
 
 ```
 JDBC URL:jdbc:h2:~/tmp/Bees44.db
