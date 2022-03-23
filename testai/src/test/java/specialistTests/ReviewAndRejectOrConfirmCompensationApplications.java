@@ -139,9 +139,6 @@ public class ReviewAndRejectOrConfirmCompensationApplications extends GeneralMet
         submitCompensationApplications.clickButtonReviewCompensationApplication();
         parentCompensationApplications.clickButtonCompensationReviewReturn();
 
-//        // assert that compensation application is rejected
-//        parentCompensationApplications.assertThatCompensationApplicationStatusIsNotActual();
-
         // delete compensation application
         submitCompensationApplications.clickDeleteCompensationsApplication();
         waitToAgreePopUp();
@@ -208,9 +205,6 @@ public class ReviewAndRejectOrConfirmCompensationApplications extends GeneralMet
         ReviewCompensationApplicationParentPage parentApplications = new ReviewCompensationApplicationParentPage(driver);
         submitCompensationApplications.clickButtonReviewCompensationApplication();
         managerApplications.clickButtonCompensationReviewReturn();
-
-//        // assert that compensation application is confirmed
-//        parentApplications.assertThatCompensationApplicationStatusIsConfirmed();
 
         // delete compensation application
         submitCompensationApplications.clickDeleteCompensationsApplication();

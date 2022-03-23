@@ -19,19 +19,8 @@ public class BaseTest {
     @BeforeSuite(alwaysRun = true)
     public  void setUp() {
         WebDriverManager.chromedriver().setup();
-//        WebDriverManager.firefoxdriver().setup();
-//        WebDriverManager.edgedriver().setup();
-//        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-//        System.setProperty("webdriver.gecko.driver",  "src/test/resources/geckodriver.exe");
-//        System.setProperty("webdriver.edge.driver", "src/test/resources/msedgedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-        options.addArguments("disable-infobars");
-        options.addArguments("--disable-extensions");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--no-sandbox");
-
+        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.edgedriver().setup();
     }
 
     @BeforeClass(alwaysRun = true)
@@ -41,13 +30,12 @@ public class BaseTest {
 //        driver = new EdgeDriver();
         driver.manage().window().maximize();
         driver.get("https://bees.akademijait.vtmc.lt/darzelis");
-//        driver.get("http://localhost:3000/darzelis");
     }
 
     @AfterClass(alwaysRun = true)
     public  void closeBrowser() {
         driver.manage().deleteAllCookies();
-       //for Firefox browser lines close and quit should be commented
+       //for Firefox browser, lines close and quit should be commented
         driver.close();
         driver.quit();
     }

@@ -63,7 +63,6 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
     @FindBy(id = "txtChildSurname")
     public WebElement compensationChildSurname;
 
-
     //elements
     @FindBy (xpath = "//h6[text()='Mano prašymai dėl kompensacijos'][@class='ps-2 pt-3']")
     public WebElement compensationsApplicationsListName;
@@ -116,15 +115,11 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
        return compensationsApplicationsListName.getText();
     }
 
-
     //click buttons
+
     public void clickNavButtonApplicationForCompensation() {
         buttonApplicationForCompensation.click();
     }
-
-//    public void clickButtonReviewCompensationApplication(){
-//        buttonReviewCompensation.click();
-//    }
 
     public void clickButtonReviewCompensationApplication() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -189,8 +184,6 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
     }
 
     public void fillInTheCompensationApplication() throws IOException {
-//        clickNavButtonApplicationForCompensation();
-
         clickNavButtonNewCompensApplication();
         compensatApplicFormKindergartensDetails();
         compensatApplicFormChildDetails();
