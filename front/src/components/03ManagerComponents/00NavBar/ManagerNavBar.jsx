@@ -26,7 +26,7 @@ export default function ManagerNavBar(props) {
               className="nav-img"
               src={logo}
               alt="logotipas"
-              loading="lazy"
+            // loading="lazy"
             />
           </NavLink>
           <button
@@ -73,9 +73,9 @@ export default function ManagerNavBar(props) {
                 <NavLink
                   onClick={collapseNav}
                   className="nav-link"
-                  id="navManagerMap"
-                  to={"/zemelapis"}
-                >Darželių žemėlapis
+                  id="navManagerCompensationQueue"
+                  to={"/kompensacijos"}
+                >Kompensacijų prašymai
                 </NavLink>
               </li>
 
@@ -83,9 +83,9 @@ export default function ManagerNavBar(props) {
                 <NavLink
                   onClick={collapseNav}
                   className="nav-link"
-                  id="navManagerCompensationQueue"
-                  to={"/kompensacijos"}
-                >Kompensacijų prašymai
+                  id="navManagerMap"
+                  to={"/zemelapis"}
+                >Darželių žemėlapis
                 </NavLink>
               </li>
 

@@ -7,7 +7,7 @@ export default class QueueTableNarrow extends Component {
     {
       key: 'id',
       path: 'id',
-      label: '#',
+      label: 'Id',
       content: application => <span> {application.id}</span>
     },
     {
@@ -84,7 +84,6 @@ export default class QueueTableNarrow extends Component {
   ]
 
   render() {
-
     return (
       <Table
         columns={this.columns}

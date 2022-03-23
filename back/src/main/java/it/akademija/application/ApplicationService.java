@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import it.akademija.application.priorities.Priorities;
 import it.akademija.application.priorities.PrioritiesDAO;
 import it.akademija.application.priorities.PrioritiesDTO;
-import it.akademija.journal.JournalService;
 import it.akademija.kindergarten.Kindergarten;
 import it.akademija.kindergarten.KindergartenService;
 import it.akademija.kindergartenchoise.KindergartenChoise;
@@ -50,10 +49,6 @@ public class ApplicationService {
 	@Autowired
 	private KindergartenChoiseService kindergartenChoiseService;
 
-	@Autowired
-	private JournalService journalService;
-	
-	
 	
 	/**
 	 * 
@@ -199,9 +194,6 @@ public class ApplicationService {
 
 			applicationDao.delete(application);
 
-//			journalService.newJournalEntry(OperationType.APPLICATION_DELETED, id, ObjectType.APPLICATION,
-//					"Ištrintas prašymas");
-
 			return new ResponseEntity<String>("Ištrinta sėkmingai", HttpStatus.OK);
 		}
 		
@@ -332,19 +324,6 @@ public class ApplicationService {
 
 		return applicationDao.findAllApplications(pageable, filter);
 
-	}
-
-	/**
-	 * Returns a filtered page of information from submitted Applications list,
-	 * containing applications that start with specified child personal code.
-	 * 
-	 * @param childPersonalCode
-	 * @param pageable
-	 * @return filtered page from Application database
-	 */
-	public Page<ApplicationInfo> getApplicationnPageFilteredById(String childPersonalCode, Pageable pageable) {
-
-		return applicationDao.findByIdContaining(childPersonalCode, pageable);
 	}
 
 	/**

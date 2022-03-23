@@ -6,7 +6,7 @@ export default class CompensationListTable extends Component {
     {
       key: 'id',
       path: 'id',
-      label: '#',
+      label: 'Id',
       content: compensation => <span> {compensation.id}</span>
     },
     {
@@ -74,7 +74,6 @@ export default class CompensationListTable extends Component {
   ]
 
   render() {
-
     return (
       <Table
         columns={this.columns}

@@ -202,34 +202,6 @@ public class ApplicationController {
 	return applicationService.getPageFromSubmittedApplications(pageable, filter.trim());
     }
 
-// WHEN DELETING THIS, ALSO DELETE UNUSED METHODS IN applicationService AND applicationDAO...
-//		/**
-//	 * Get page of unsorted applications filtered by child personal code
-//	 * 
-//	 * @param childPersonalCode
-//	 * @param page
-//	 * @param size
-//	 * @return page of applications
-//	 */
-//	@Secured({ "ROLE_MANAGER" })
-//	@GetMapping("/manager/page/{childPersonalCode}")
-//	@ApiOperation(value = "Get a page from all submitted applications 
-//    with specified child personal code")
-//	public ResponseEntity<Page<ApplicationInfo>> getApplicationnPageFilteredById(
-//			@PathVariable String childPersonalCode,
-//			@RequestParam("page") int page, 
-//			@RequestParam("size") int size) {
-//
-//		List<Order> orders = new ArrayList<>();
-//		orders.add(new Order(Direction.ASC, "childSurname").ignoreCase());
-//		orders.add(new Order(Direction.ASC, "childName").ignoreCase());
-//
-//		Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
-//
-//		return new ResponseEntity<>(applicationService.getApplicationnPageFilteredById(
-//    childPersonalCode, pageable), HttpStatus.OK);
-//	}
-	
     /**
      * Manager sets user application status to inactive
      * 

@@ -92,30 +92,8 @@ public class KindergartenController {
 	Pageable pageable = PageRequest.of(page, size, Sort.by(order));
 
 	return new ResponseEntity<Page<Kindergarten>>(
-		kindergartenService.getKindergartenPage(pageable, filter.trim()),HttpStatus.OK);
+		kindergartenService.getKindergartenPage(pageable, filter.trim()), HttpStatus.OK);
     }
-
-// WHEN DELETING THIS, ALSO DELETE UNUSED METHODS IN kindergartenService AND kindergartenDAO...
-//	/**
-//	 * Get specified Kindergarten information page filtered by name
-//	 * 
-//	 * @return page of kindergarten information
-//	 */
-//	@Secured({ "ROLE_MANAGER" })
-//	@GetMapping("/manager/page/{name}")
-//	@ApiOperation(value = "Get kindergarten information pages")
-//	public ResponseEntity<Page<Kindergarten>> getKindergartenPageFilteredByName(
-//    @PathVariable String name,
-//			@RequestParam("page") int page, @RequestParam("size") int size) {
-//
-//		Sort.Order order = new Sort.Order(Sort.Direction.ASC, "name").ignoreCase();
-//
-//		Pageable pageable = PageRequest.of(page, size, Sort.by(order));
-//
-//		return new ResponseEntity<>(kindergartenService.getKindergartenPageFilteredByName(
-//    name, pageable),
-//				HttpStatus.OK);
-//	}
 
     /**
      * Create new kindergarten entity

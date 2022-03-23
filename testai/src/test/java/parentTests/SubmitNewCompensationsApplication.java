@@ -77,11 +77,6 @@ public class SubmitNewCompensationsApplication extends GeneralMethods {
         compensationApplication.clickButtonReviewCompensationApplication();
         compensationApplication.verifyIfApplicationIsShowen();
 
-        // compensations application edited and saved
-        compensationApplication.clickButtonEditCompenstaionsApplication();
-        compensationApplication.clickButtonEditCompensationButton();
-//        clickOkButton();
-        waitAndClickOkButton();
         doLogout();
 
     }
@@ -89,25 +84,18 @@ public class SubmitNewCompensationsApplication extends GeneralMethods {
 
     @Test(groups = "regression", priority = 3)
     public void deleteCompensationsApplication() {
+       //login as parent user
         SubmitNewCompensationApplicationPage compensationApplication = new SubmitNewCompensationApplicationPage(driver);
         waitForLoginToLoad();
         doLogin(createNewUserParentEmail, createNewUserParentEmail);
 
         compensationApplication.clickDeleteCompensationsApplication();
         waitToAgreePopUp();
-//        clickOkButton();
         waitAndClickOkButton();
         doLogout();
 
-        // delete test user
-//        LoginPage loginPage = new LoginPage(driver);
-//        waitForLoginToLoad();
-//        loginPage.enterUsername(adminLogins);
-//        loginPage.enterPassword(adminLogins);
-//        loginPage.clickLoginButton();
-
+        //login as admin user
         doLoginAsAdmin();
-
         verifyIfAdminIsLoggedIn();
         deleteNewUser();
 

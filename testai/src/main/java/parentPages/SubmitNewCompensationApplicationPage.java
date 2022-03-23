@@ -130,7 +130,6 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         driver.findElement(By.tagName("body")).sendKeys(Keys.END);
         Thread.sleep(200);
-//        buttonReviewCompensation.click();
         WebElement button = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("btnReviewCompensationUser")));
         button.click();
@@ -184,6 +183,9 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
         String childPersonalCode = formData.get(8);
         inputChildPersonalCode(childPersonalCode);
         inputChildSurname(childSurname);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("txtChildName"),"Sandijus"));
     }
 
     public void fillInTheCompensationApplication() throws IOException {
@@ -206,7 +208,7 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
     public Boolean compensationsApplicationSuccessful() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         return wait.until(ExpectedConditions.textToBe(By.xpath("/html/body/div[2]/div/div[1]"), "Kompensacijos " +
-                "prašymas sukuras sėkmingai"));
+                "prašymas sukurtas sėkmingai"));
     }
 
     public Boolean verifyIfCompensationsApplicationsListNameIsShowen() {
@@ -218,7 +220,7 @@ public class SubmitNewCompensationApplicationPage extends AbstractObjectPage {
 
     public Boolean verifyIfApplicationIsShowen(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        return wait.until(ExpectedConditions.textToBe(By.xpath("//*[@id='root']/div/div/div/div/div/div/h5"), "Prašymas skirti kompensaciją privačiam darželiui"));
+        return wait.until(ExpectedConditions.textToBe(By.xpath("//*[@id='root']/div/div/div/div/div[1]/div[1]/h6[1]"), "Prašymas skirti kompensaciją privačiam darželiui"));
     }
     public SubmitNewCompensationApplicationPage(WebDriver driver) {
         super(driver);

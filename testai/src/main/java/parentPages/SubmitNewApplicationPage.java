@@ -223,25 +223,25 @@ public class SubmitNewApplicationPage extends AbstractObjectPage {
 //        js.executeScript("document.getElementById('react-select-2-option-0').click()");
 //    }
 
-    public void openKindergartenListDropdownPriorityOne() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        driver.findElement(By.tagName("body")).sendKeys(Keys.END);
-        Thread.sleep(160);
-        kindergartenPriorityOne.click();
-        WebElement drpDnPrioOne = wait.until(
-                ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='123 Testinis darželis (Adreso g. 5)']")));
-        drpDnPrioOne.click();
-    }
-
 //    public void openKindergartenListDropdownPriorityOne() throws InterruptedException {
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 //        driver.findElement(By.tagName("body")).sendKeys(Keys.END);
 //        Thread.sleep(160);
 //        kindergartenPriorityOne.click();
 //        WebElement drpDnPrioOne = wait.until(
-//                ExpectedConditions.visibilityOfElementLocated(By.id("react-select-2-option-0")));
+//                ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='123 Testinis darželis (Gardino g. 8)']")));
 //        drpDnPrioOne.click();
 //    }
+
+    public void openKindergartenListDropdownPriorityOne() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        driver.findElement(By.tagName("body")).sendKeys(Keys.END);
+        Thread.sleep(160);
+        kindergartenPriorityOne.click();
+        WebElement drpDnPrioOne = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.id("react-select-2-option-0")));
+        drpDnPrioOne.click();
+    }
 
 //    public void openKindergartenListDropdownPriorityOne() throws InterruptedException {
 //

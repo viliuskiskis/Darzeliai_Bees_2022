@@ -37,7 +37,6 @@ export default class UsersListTable extends Component {
       label: 'Pavardė',
       content: naudotojas => <span>{naudotojas.surname}</span>
     },
-
     {
       key: 'update',
       label: 'Pirminis slaptažodis',
@@ -64,7 +63,6 @@ export default class UsersListTable extends Component {
         }
       }
     },
-
     {
       key: 'delete',
       label: 'Ištrinti naudotoją',
@@ -76,9 +74,7 @@ export default class UsersListTable extends Component {
         >Ištrinti
         </button>
     }
-
   ]
-
 
   render() {
     const { naudotojai } = this.props;
@@ -86,7 +82,6 @@ export default class UsersListTable extends Component {
       <Table
         columns={this.columns}
         data={naudotojai}
-
       />
     );
   }

@@ -26,7 +26,7 @@ export default function AdminNavBar(props) {
               className="nav-img"
               src={logo}
               alt="logotipas"
-              loading="lazy"
+            // loading="lazy"
             />
           </NavLink>
 
