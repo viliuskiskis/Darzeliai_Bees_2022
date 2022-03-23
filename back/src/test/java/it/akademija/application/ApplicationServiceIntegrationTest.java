@@ -132,7 +132,7 @@ public class ApplicationServiceIntegrationTest {
 	@AfterAll
 	void cleanUp() {
 		applicationDAO.delete(application);
-		userService.deleteUser("user1@user.lt");
+		userService.deleteUser("test@user2.lt");
 	}
 	
 	@Test
