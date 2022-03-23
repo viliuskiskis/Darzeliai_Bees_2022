@@ -35,7 +35,7 @@ public class GeneralMethods extends BaseTest {
     private String changedUserEmail = "pakeistas@email.lt";
     private String expectedErrorMessage = "Neteisingas prisijungimo vardas ir/arba slaptažodis!";
     private String pdfFileLocation = "C:\\Users\\Tomas\\Desktop\\VilniausDarzeliuSistema\\Bees_projektas\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
-//    private String pdfFileLocation = "C:\\Users\\Modestas\\Desktop\\Project GIT Repository\\Darzeliai_Bees_2022\\testai\\src\\test\\resources\\Testas.pdf";
+
 
     // LOGIN/ LOGOUT METHODS
 
@@ -71,16 +71,6 @@ public class GeneralMethods extends BaseTest {
         js.executeScript("arguments[0].click();", logoutElement);
     }
 
-    public void doLogoutSubmitApplication() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        WebElement logoutElement = wait.until(
-                ExpectedConditions.elementToBeClickable(By.id("btnLogout")));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,-400)");
-        js.executeScript("arguments[0].scrollIntoView()", logoutElement);
-        js.executeScript("arguments[0].click();", logoutElement);
-    }
-
     public Boolean verifyIfAdminIsLoggedIn() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         return wait.until(ExpectedConditions.textToBe(By.id("navAdminUserList"), "Naudotojai"));
@@ -108,6 +98,7 @@ public class GeneralMethods extends BaseTest {
         createNewUserPage.enterSurname(newUserSurname);
 
         createNewUserPage.clickCreateButton();
+
         // check success message
         userIsCreatedMessage();
         createNewUserPage.clickOKButtonUserIsCreated();
@@ -458,11 +449,10 @@ public class GeneralMethods extends BaseTest {
 
     // WAIT TO CLICK BUTTONS
 
-    // TODO reminder: xpath has been changed
+
     public void waitToClickSubmitButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement clickButton = wait.until(
-//					ExpectedConditions.elementToBeClickable(By.xpath("//button[@type='submit']")));
                 ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'confirm')]")));
         clickButton.click();
     }
@@ -529,26 +519,6 @@ public class GeneralMethods extends BaseTest {
         js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//button[@class='swal-button swal-button--confirm']")));
     }
 
-//    public void clickOkButtonJSWait() throws InterruptedException {
-//        JavascriptExecutor executor = (JavascriptExecutor) driver;
-//        int count = 0;
-//        if ((Boolean) executor.executeScript("return window.jQuery != undefined")) {
-//            while (!(Boolean) executor.executeScript("return jQuery.active == 0")) {
-//                Thread.sleep(4000);
-//                if (count > 4) break;
-//                count++;
-//            }
-//        }
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-//        WebElement we = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='swal-button swal-button--confirm']")));
-//    }
-
-    //	public void clickOkButton() {
-//		JavascriptExecutor js = (JavascriptExecutor) driver;
-//		js.executeScript("window.scrollBy(0,600)");
-//		js.executeScript("arguments[0].scrollIntoView()", driver.findElement(By.xpath("//button[@class='swal-button swal-button--confirm']")));
-//		js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//button[@class='swal-button swal-button--confirm']")));
-//	}
     public void clickUserForgotPasswordButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         WebElement forgotPassword = wait.until(
@@ -560,7 +530,6 @@ public class GeneralMethods extends BaseTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         WebElement clickDone = wait.until(
                 ExpectedConditions.presenceOfElementLocated(By.xpath("//div/button")));
-//		ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div[2]/button")));
         clickDone.click();
     }
 

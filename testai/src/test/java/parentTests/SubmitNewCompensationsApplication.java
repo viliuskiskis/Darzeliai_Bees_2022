@@ -45,7 +45,6 @@ public class SubmitNewCompensationsApplication extends GeneralMethods {
         loginPage.enterUsername(adminLogins);
         loginPage.enterPassword(adminLogins);
 
-//        userNotLoggedInPopUp();
         loginPage.clickLoginButton();
 
         // create a new user (parent) for this test
@@ -69,8 +68,6 @@ public class SubmitNewCompensationsApplication extends GeneralMethods {
         waitForLoginToLoad();
         doLogin(createNewUserParentEmail, createNewUserParentEmail);
 
-
-//        assertEquals(compensationApplication.verifyCompensationsApplicationsListName(), "Mano prašymai dėl kompensacijos");
         compensationApplication.verifyIfCompensationsApplicationsListNameIsShowen();
 
         //compensations application reviewed
@@ -78,7 +75,6 @@ public class SubmitNewCompensationsApplication extends GeneralMethods {
         compensationApplication.verifyIfApplicationIsShowen();
 
         doLogout();
-
     }
 
 

@@ -32,11 +32,16 @@ public class SubmitAndDownloadPDFNewApplication extends GeneralMethods {
 
     @Test(groups = "regression", priority = 1)
     public void successfullySubmitNewApplication() throws IOException, InterruptedException {
+
+        //log in as a manager and create new kindergarten
         successfullyCreateNewKindergarten();
         doLogout();
 
+        // wait for login page to load
         waitForLoginToLoad();
         LoginPage loginPage = new LoginPage(driver);
+
+        //log in as an admin
         loginPage.enterUsername(adminLogins);
         loginPage.enterPassword(adminLogins);
 
@@ -63,7 +68,11 @@ public class SubmitAndDownloadPDFNewApplication extends GeneralMethods {
 
     @Test (groups = "regression", priority = 2)
     public void confirmQueue () throws InterruptedException {
+
+        // wait for login page to load
         waitForLoginToLoad();
+
+        //log in as a manager
         doLogin(specialistLogins, specialistLogins);
         SubmitAndDownloadPDFNewApplicationPage download = new SubmitAndDownloadPDFNewApplicationPage(driver);
         download.clickApplicationsForRegistration();
@@ -80,7 +89,10 @@ public class SubmitAndDownloadPDFNewApplication extends GeneralMethods {
     @Test (groups = "regression", priority = 3)
     public void printPDFAgreement () {
 
+        // wait for login page to load
         waitForLoginToLoad();
+
+        //log in as a parent
         doLogin(createNewUserParentEmail, createNewUserParentEmail);
         SubmitAndDownloadPDFNewApplicationPage download = new SubmitAndDownloadPDFNewApplicationPage(driver);
         download.verifyIfUserApplicationsArePresent();
@@ -92,7 +104,10 @@ public class SubmitAndDownloadPDFNewApplication extends GeneralMethods {
     @Test (groups = "regression", priority = 4)
     public void deleteApplication () throws InterruptedException {
 
+        // wait for login page to load
         waitForLoginToLoad();
+
+        //log in as a parent
         doLogin(createNewUserParentEmail, createNewUserParentEmail);
         SubmitAndDownloadPDFNewApplicationPage download = new SubmitAndDownloadPDFNewApplicationPage(driver);
         download.verifyIfUserIsLoggedIn();
