@@ -107,4 +107,4 @@ to `.../back/source/main/resources/public`
 ## Authors
 List of [contributors](https://github.com/viliuskiskis/Darzeliai_Bees_2022/graphs/contributors) who participated in this project.
 This project is forked from: https://github.com/JurgitaVisa/Projektas_Darzeliu_IS
-Copyright ©️ 2022, Bees
+
